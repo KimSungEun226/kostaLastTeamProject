@@ -18,10 +18,10 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -48,6 +48,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		    <version>9.0.46</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>javax.servlet</groupId>
+  			<artifactId>jstl</artifactId>
+  			<version>1.2</version>
+  		</dependency>
+  		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
+		<!-- <dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <version>18.3.0.0</version>
+		</dependency> -->
 	</dependencies>
 
 	<build>
