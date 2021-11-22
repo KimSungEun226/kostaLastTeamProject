@@ -8,6 +8,6 @@ public class IndexController {
 
 	@RequestMapping("/")
 	 public String index() {
-		 return "index";// /WEB-INF/views/index.jsp이동
+		 return "shop";// /WEB-INF/views/index.jsp이동
 	 }
 }
