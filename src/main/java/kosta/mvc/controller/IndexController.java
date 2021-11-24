@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-	@RequestMapping("/")
-	 public String index() {
-		 return "shop";// /WEB-INF/views/index.jsp이동
-	 }
+	@RequestMapping("/main")
+	public String main() {
+		return "main";// /WEB-INF/views/index.jsp이동
+	}
+	
+	@RequestMapping("/shop")
+	public void shop() {}
+	
+	@RequestMapping("/login")
+	public void login() {}
 }

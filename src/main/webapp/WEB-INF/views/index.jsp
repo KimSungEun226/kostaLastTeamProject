@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>spring boot 시작하기</h1>
+<h1>spring boot 시작</h1>
 </body>
 </html>
