@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String main() {
-		return "main";// /WEB-INF/views/index.jsp이동
+		return "board/main";// /WEB-INF/views/index.jsp이동
 	}
 	
 	@RequestMapping("/shop")
-	public void shop() {}
+	public String shop() {
+		return "shop/shop";
+	}
 	
 	@RequestMapping("/login")
 	public void login() {}
