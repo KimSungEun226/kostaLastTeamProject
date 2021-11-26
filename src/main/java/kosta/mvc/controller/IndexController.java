@@ -17,5 +17,12 @@ public class IndexController {
 	}
 	
 	@RequestMapping("/login")
-	public void login() {}
+	public String login() {
+		return "board/login";
+	}
+	
+	@RequestMapping("/signup")
+	public String signup() {
+		return "board/signup";
+	}
 }
