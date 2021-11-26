@@ -22,25 +22,22 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductQuestion {
-    
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_question_no_seq")
-	@SequenceGenerator(sequenceName = "product_question_no_seq", allocationSize = 1, name = "product_question_no_seq")
-	private Long productQuestionNo;
-	
-	@ManyToOne 
-	@JoinColumn(name = "product_no")   //productQuestion테이블에 product_no라는 필드 추가되고 fk설정
-	private Product product;
+public class UserOrder {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_order_no_seq")
+	@SequenceGenerator(sequenceName = "user_order_no_seq", allocationSize = 1, name = "user_order_no_seq")
+	private Long userOrderNo;  
+	
 	@ManyToOne 
 	@JoinColumn(name = "member_no")   //productQuestion테이블에 member_no라는 필드 추가되고 fk설정
 	private Member member;
-		
-	private String productQuestionTitle;
-    private String productQuestionContent;
-    
+	
 	@CreationTimestamp
-	private LocalDateTime product_question_date;
+	private LocalDateTime orderDate;
+	
+	private String orderAddr;
+	private String receiverName;
+	private String receiverPhone;
 	
 }
