@@ -35,7 +35,7 @@
               <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
                 <!-- Intro -->
                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                  <a href="${pageContext.request.contextPath}/shop" class="g-color-primary nav-link g-py-7 g-px-0">이짐샵 바로가기</a>
+                  <a href="${pageContext.request.contextPath}/shop" class="g-color-primary nav-link g-py-7 g-px-0">이짐샵</a>
                 </li>
                 <!-- End Intro -->
 

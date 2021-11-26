@@ -4,7 +4,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 
 <body>
@@ -702,53 +703,6 @@
         }, 200);
       });
   </script>
-
-  <div id="resolutionCaution" class="text-left g-max-width-600 g-bg-white g-pa-20" style="display: none;">
-    <button type="button" class="close" onclick="Custombox.modal.close();">
-      <i class="hs-icon hs-icon-close"></i>
-    </button>
-    <h4 class="g-mb-20">Screen resolution less than 1400px</h4>
-  </div>
-
-  <div id="copyModal" class="text-left modal-demo g-bg-white g-color-black g-pa-20" style="display: none;"></div>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/prism/themes/prism.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/custombox/custombox.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/spectrum.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/themes/sp-dark.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/style-switcher.css">
-  <!-- End CSS -->
-
-  <!-- Scripts -->
-  <script src="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/custombox/custombox.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/clipboard/dist/clipboard.min.js"></script>
-
-  <!-- Prism -->
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/prism.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-markup.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-css.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-clike.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-javascript.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/plugins/toolbar/prism-toolbar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
-  <!-- End Prism -->
-
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.select.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.modal-window.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.markup-copy.js"></script>
-
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/vendor/cookiejs/jquery.cookie.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/spectrum.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/style-switcher.js"></script>
-  <!-- End Scripts -->
-  <!-- End Style Switcher -->
 
 </body>
 
