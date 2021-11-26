@@ -11,30 +11,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Reply {
-    
+@AllArgsConstructor
+public class NonuserOrder {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reply_rno_seq")
-	@SequenceGenerator(sequenceName = "reply_rno_seq", allocationSize = 1, name="reply_rno_seq")
-	private Long rno; //글번호
-	private String content; //내용
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nonuser_order_no_seq")
+	@SequenceGenerator(sequenceName = "nonuser_order_no_seq", allocationSize = 1, name = "nonuser_order_no_seq")
+	private Long nonuserOrderNo;  
+	
 	
 	@CreationTimestamp
-	private LocalDateTime regDate; //등록일
+	private LocalDateTime orderDate;
 	
-	@ManyToOne 
-	@JoinColumn(name = "free_bno")   //Reply테이블에 free_bno라는 필드 추가되고 fk설정
-	private FreeBoard freeBoard;
+	private String orderAddr;
+	private String receiverName;
+	private String receiverPhone;
 	
 }

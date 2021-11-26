@@ -1,6 +1,5 @@
 package kosta.mvc.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,40 +12,40 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class FreeBoard {
+@AllArgsConstructor
+public class Member {
 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "free_bno_seq")
-	@SequenceGenerator(sequenceName = "free_bno_seq", allocationSize = 1, name = "free_bno_seq")
-	private Long bno;//글번호
-	private String subject;//제목
-	private String writer;//작성자
-	private String content;//내용
-	private String password;//비번
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_no_seq")
+	@SequenceGenerator(sequenceName = "member_no_seq", allocationSize = 1, name = "member_no_seq")
+	private Long memberNo; //회원번호
+	private String memberId; //회원아이디
+	private String memberPwd;
+	private String memberName;
+	private String memberNickname;
+	private int memberGender;
+	private String memberEmail;
+	private String memberBirth; //생년월일????
 	
 	@CreationTimestamp
-	private LocalDateTime writeDay;
+	private LocalDateTime memberJoindate;
 	
-	@UpdateTimestamp
-	private LocalDateTime updateDay;
-	
-	
-	private int readnum; //조회수
+	private String profileImage; //프로필 이미지
+	private String memberMessgae; //다짐메시지
+	private String memberStatus; //회원활동상태
+
 	
 	//댓글은 여러개
 	/**
@@ -55,6 +54,7 @@ public class FreeBoard {
 	 *           ex) 부모의 글이 삭제되면 참조되고 있는 자식레코드도 함께 삭제된다.
 	 * */
 	//@OneToMany(mappedBy = "freeBoard", cascade= CascadeType.REMOVE, orphanRemoval = true) // 1 : 다 / 지연로딩 : replyList가 필요할때만 꺼낸다.
-	@OneToMany(mappedBy = "freeBoard", cascade= CascadeType.ALL)
-	private List<Reply> replyList; 
+//	@OneToMany(mappedBy = "member", cascade= CascadeType.ALL)
+//	private List<ProductQuestion> productQuestionList; 
+	
 }

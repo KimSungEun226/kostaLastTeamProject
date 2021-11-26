@@ -4,7 +4,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 
 <body>
@@ -50,7 +51,7 @@
                   <i class="icon-communication-081 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">칼로리처방 받기</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">칼로리를 알고 다이어트 하자!!</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
@@ -62,7 +63,7 @@
                   <i class="icon-finance-086 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">나의 BMI 지수는?</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">나는 얼마나 날씬할까?</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
@@ -74,7 +75,7 @@
                   <i class="icon-communication-057 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">커뮤니티 바로가기</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">좋은 정보는 공유하자</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
@@ -702,53 +703,6 @@
         }, 200);
       });
   </script>
-
-  <div id="resolutionCaution" class="text-left g-max-width-600 g-bg-white g-pa-20" style="display: none;">
-    <button type="button" class="close" onclick="Custombox.modal.close();">
-      <i class="hs-icon hs-icon-close"></i>
-    </button>
-    <h4 class="g-mb-20">Screen resolution less than 1400px</h4>
-  </div>
-
-  <div id="copyModal" class="text-left modal-demo g-bg-white g-color-black g-pa-20" style="display: none;"></div>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/prism/themes/prism.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/custombox/custombox.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/spectrum.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/themes/sp-dark.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style-switcher/style-switcher.css">
-  <!-- End CSS -->
-
-  <!-- Scripts -->
-  <script src="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/custombox/custombox.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/clipboard/dist/clipboard.min.js"></script>
-
-  <!-- Prism -->
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/prism.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-markup.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-css.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-clike.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/components/prism-javascript.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/plugins/toolbar/prism-toolbar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
-  <!-- End Prism -->
-
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.select.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.modal-window.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/js/components/hs.markup-copy.js"></script>
-
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/vendor/cookiejs/jquery.cookie.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/vendor/spectrum/spectrum.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/style-switcher/style-switcher.js"></script>
-  <!-- End Scripts -->
-  <!-- End Style Switcher -->
 
 </body>
 
