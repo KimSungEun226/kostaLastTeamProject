@@ -227,10 +227,10 @@
                     <li class="dropdown-item ">
                       <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">공지사항</a>
                     </li><!-- End 고객센터 - 공지사항 -->
-                    <!-- 고객센터 - 마이페이지 -->
+                    <!-- 고객센터 - Q&A -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">마이페이지</a>
-                    </li><!-- End 고객센터 - 마이페이지 -->
+                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">Q&A</a>
+                    </li><!-- End 고객센터 - Q&A -->
                   </ul>
                 </li><!-- End 고객센터 -->
               </ul>
