@@ -2,14 +2,30 @@ package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Challenge {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "challenge_no_seq")
+	@SequenceGenerator(sequenceName = "challenge_no_seq", allocationSize = 1, name = "challenge_no_seq")
 	private Long challengeNo;	//챌린지 번호
 	@CreationTimestamp
 	private LocalDateTime challenageDate;	//챌린지 시작날짜
@@ -27,6 +43,7 @@ public class Challenge {
 	
 	
 	//@OneToMany(mappedBy = "board")
+	//@JoinColummn(name="Board_NO") 단방향일 경우 
 	//private List<Board> boards;
 	
 	
