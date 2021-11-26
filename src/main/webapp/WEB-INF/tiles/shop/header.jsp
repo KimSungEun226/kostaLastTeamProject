@@ -38,7 +38,7 @@
                <ul class="navbar-nav ml-auto">
                  <!-- Home - Submenu -->
                  <li class="nav-item g-mx-10--lg g-mx-15--xl">
-                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/main"><b>EGYM 바로가기</b></a>
+                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/"><b>EGYM 바로가기</b></a>
                  </li>
 
                  <!-- Pages - Submenu -->
