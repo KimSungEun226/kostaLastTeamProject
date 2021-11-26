@@ -11,27 +11,26 @@
     <div id="contacts-section" class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 g-py-60">
       <div class="container">
         <div class="row">
-          <!-- Footer Content -->
+          <!-- 고객센터 -->
           <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
             <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">About Us</h2>
+              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">고객센터</h2>
             </div>
+            <p>파이널 프로젝트 3조</p>
+            <p>wjjeon91@gmail.com</p>
+          </div><!-- End 고객센터 -->
 
-            <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-          </div>
-          <!-- End Footer Content -->
-
-          <!-- Footer Content -->
+          <!-- 이짐 정보 -->
           <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
             <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Latest Posts</h2>
+              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">이짐 정보</h2>
             </div>
 
             <article>
               <h3 class="h6 g-mb-2">
             <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Incredible template</a>
           </h3>
-              <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
+              <div class="small g-color-white-opacity-0_6">Nov 1, 2021</div>
             </article>
 
             <hr class="g-brd-white-opacity-0_1 g-my-10">
@@ -52,7 +51,7 @@
               <div class="small g-color-white-opacity-0_6">September 15, 2017</div>
             </article>
           </div>
-          <!-- End Footer Content -->
+          <!-- End 이짐 정보 -->
 
           <!-- Footer Content -->
           <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
@@ -94,8 +93,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
-          <!-- End Footer Content -->
+          </div><!-- End Footer Content -->
 
           <!-- Footer Content -->
           <div class="col-lg-3 col-md-6">
@@ -112,8 +110,7 @@
               </span>
             </div>
             <p class="mb-0">795 Folsom Ave, Suite 600, <br> San Francisco, CA 94107 795</p>
-          </div>
-          <!-- End Location -->
+          </div><!-- End Location -->
 
           <!-- Phone -->
           <div class="d-flex g-mb-20">
@@ -123,8 +120,7 @@
               </span>
             </div>
             <p class="mb-0">(+123) 456 7890 <br> (+123) 456 7891</p>
-          </div>
-          <!-- End Phone -->
+          </div><!-- End Phone -->
 
           <!-- Email and Website -->
           <div class="d-flex g-mb-20">
@@ -138,14 +134,11 @@
               <br>
               <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">www.htmlstream.com</a>
             </p>
-          </div>
-          <!-- End Email and Website -->
+          </div><!-- End Email and Website -->
         </address>
-          </div>
-          <!-- End Footer Content -->
+          </div><!-- End Footer Content -->
         </div>
       </div>
-    </div>
-    <!-- End Footer -->
+    </div><!-- End Footer -->
 </body>
 </html>

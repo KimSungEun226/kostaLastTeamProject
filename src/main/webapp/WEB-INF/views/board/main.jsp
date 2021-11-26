@@ -51,7 +51,7 @@
                   <i class="icon-communication-081 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">칼로리처방 받기</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">칼로리를 알고 다이어트 하자!!</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
@@ -63,7 +63,7 @@
                   <i class="icon-finance-086 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">나의 BMI 지수는?</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">나는 얼마나 날씬할까?</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
@@ -75,7 +75,7 @@
                   <i class="icon-communication-057 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">커뮤니티 바로가기</h3>
-              <p class="mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
+              <p class="mb-0">좋은 정보는 공유하자</p>
             </div>
             <!-- End Icon Blocks -->
           </div>
