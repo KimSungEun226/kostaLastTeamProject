@@ -1,11 +1,13 @@
 package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -33,18 +35,7 @@ public class Challenge {
 	private int challengeState;	//진행상태(0:도전중, 1:실패, 2:도전성공)
 	private int challengeCategory;	//챌린지 카테고리(1.아침밥, 2.유산소, 3.프랭크, 4.전신운동)
 	
-	/*
-	 * board랑 다대일인데 
-	 * member쪽에서 Challenge challenge가 있어야 한다.
-	 * challengeNo가 pk로   
-	 * 
-	 * @ManyToOne인 board가 연관관계의 주인 
-	 */
-	
-	
-	//@OneToMany(mappedBy = "board")
-	//@JoinColummn(name="Board_NO") 단방향일 경우 
-	//private List<Board> boards;
-	
-	
+	@OneToMany
+	@JoinColumn(name = "BOARD_ID")
+	private List<Board> boards;	
 }

@@ -6,12 +6,20 @@ package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 public class Board {
+	@Id
+	@GeneratedValue
+	@Column(name = "BOARD_NO")
 	private Long boardNo; //게시판 번호(게시판 카테고리)
 	
 	private String boardTitle; //제목
@@ -34,7 +42,10 @@ public class Board {
 	
 	//회원번호 다 : 다
 	
-	//챌린지번호 다 : 1? 
+	//챌린지번호 다 : 1?
+	@ManyToOne
+	@JoinColumn(name = "CHALLENGE_ID")
+	Challenge challenge;
 		
 	//private String memberNickname; //회원 닉네임 다 : 1
 }
