@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -56,5 +58,9 @@ public class Member {
 	//@OneToMany(mappedBy = "freeBoard", cascade= CascadeType.REMOVE, orphanRemoval = true) // 1 : 다 / 지연로딩 : replyList가 필요할때만 꺼낸다.
 //	@OneToMany(mappedBy = "member", cascade= CascadeType.ALL)
 //	private List<ProductQuestion> productQuestionList; 
+	
+	@OneToOne
+	@JoinColumn(name="Info_ID")
+	private Info info;
 	
 }
