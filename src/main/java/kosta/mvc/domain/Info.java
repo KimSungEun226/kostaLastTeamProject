@@ -23,8 +23,7 @@ public class Info {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "info_no_seq")
 	@SequenceGenerator(sequenceName = "info_no_seq", allocationSize = 1, name = "info_no_seq")
-	@Column(name = "Info_ID")
-	private int id; 
+	private int infoNo; 
 	private int attendNo;
 	private int contentNo;
 	private int memberExp;

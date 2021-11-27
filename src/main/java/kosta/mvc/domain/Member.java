@@ -60,7 +60,10 @@ public class Member {
 //	private List<ProductQuestion> productQuestionList; 
 	
 	@OneToOne
-	@JoinColumn(name="Info_ID")
+	@JoinColumn(name="Info_No")
 	private Info info;
 	
+	@OneToOne
+	@JoinColumn(name="Address_No")
+	private Address address;
 }
