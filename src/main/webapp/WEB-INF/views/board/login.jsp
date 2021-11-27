@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="g-bg-primary">&nbsp</div>
   <main>
   <!-- Login -->
     <section class="container g-py-150">
