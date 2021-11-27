@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -57,4 +59,11 @@ public class Member {
 //	@OneToMany(mappedBy = "member", cascade= CascadeType.ALL)
 //	private List<ProductQuestion> productQuestionList; 
 	
+	@OneToOne
+	@JoinColumn(name="Info_No")
+	private Info info;
+	
+	@OneToOne
+	@JoinColumn(name="Address_No")
+	private Address address;
 }
