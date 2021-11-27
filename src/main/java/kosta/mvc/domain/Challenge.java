@@ -3,6 +3,7 @@ package kosta.mvc.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +36,6 @@ public class Challenge {
 	private int challengeState;	//진행상태(0:도전중, 1:실패, 2:도전성공)
 	private int challengeCategory;	//챌린지 카테고리(1.아침밥, 2.유산소, 3.프랭크, 4.전신운동)
 	
-	@OneToMany
-	@JoinColumn(name = "BOARD_ID")
+	@OneToMany(mappedBy = "board", cascade= CascadeType.REMOVE, orphanRemoval = true) // 1 : 다 / 지연로딩 : replyList가 필요할때만 꺼낸다.
 	private List<Board> boards;	
 }
