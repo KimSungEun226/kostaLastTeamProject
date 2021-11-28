@@ -4,16 +4,35 @@
  * */
 package kosta.mvc.domain;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tag {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tag_no_seq")
+    @SequenceGenerator(sequenceName = "tag_no_seq" , allocationSize = 1 , name = "tag_no_seq")
 	private Long tagrelNo; //태그 번호
 	
 	private String tegContent; //태그 내용
 	
 	//하나의 지역 태그에는 여러개의 게시물
-	@OneToMany
-	@JoinColumn(name = "board_no") //Tag테이블에 board_no라는 필드가 추가되고 fk설정
-	private Board board;
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	private List<Board> boardList;
 }

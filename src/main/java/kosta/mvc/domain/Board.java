@@ -5,14 +5,17 @@
 package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,14 +25,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Board {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_no_seq")
+	@SequenceGenerator(sequenceName = "board_no_seq", allocationSize = 1, name = "board_no_seq")
 	@Column(name = "BOARD_NO")
 	private Long boardNo; //게시판 번호(게시판 카테고리)
 	
@@ -51,12 +57,19 @@ public class Board {
 	private int boardRecommend; //추천수 
 	
 	
-	//회원번호 다 : 다
+	//회원번호 다 : 1
+	@ManyToOne
+	@JoinColumn(name = "member_no")
+	private Member member;
 	
 	//챌린지번호 다 : 1?
 	@ManyToOne
 	@JoinColumn(name = "CHALLENGE_ID")
-	Challenge challenge;
+	private Challenge challenge;
 		
-	//private String memberNickname; //회원 닉네임 다 : 1
+	private String memberNickname; //회원 닉네임 다 : 1
+	
+	@ManyToOne
+	@JoinColumn(name = "tag_no")
+	private Tag tag;
 }
