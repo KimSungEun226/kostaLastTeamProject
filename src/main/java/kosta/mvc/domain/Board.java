@@ -7,6 +7,7 @@ package kosta.mvc.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,6 +17,16 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Board {
 	@Id
 	@GeneratedValue
