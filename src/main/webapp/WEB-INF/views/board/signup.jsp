@@ -44,83 +44,53 @@ $(function(){
 	  }); */
 </script>
 
-<script>
-var start_year="1970";// 시작할 년도 
-var today = new Date(); 
-var today_year= today.getFullYear(); 
-var index=0; 
-for(var y=today_year; y>=start_year; y--){ //start_year ~ 현재 년도 
-	document.getElementById('select_year').options[index] = new Option(y, y); 
-	index++; 
-} 
-index=0; 
-for(var m=1; m<=12; m++){ 
-	document.getElementById('select_month').options[index] = new Option(m, m); index++; 
-} 
-
-lastday();
-
-function lastday(){
-	var Year=document.getElementById('select_year').value;
-	var Month=document.getElementById('select_month').value;
-	var day=new Date(new Date(Year,Month,1)-86400000).getDate();
-	/* = new Date(new Date(Year,Month,0)).getDate(); */
-	var dayindex_len=document.getElementById('select_day').length;
-	if(day>dayindex_len){ 
-		for(var i=(dayindex_len+1); i<=day; i++){ 
-	  		document.getElementById('select_day').options[i-1] = new Option(i, i);
-	  	} 
-	} else if(day<dayindex_len){ 
-		for(var i=dayindex_len; i>=day; i--){ 
-			document.getElementById('select_day').options[i]=null; 
-		} 
-	}
-}
-</script>
-
 <script type="text/javascript">
 $(function(){
 	$("#sendPhoneNumber").click(function(){
 		//alert(11)
 		let phoneNumber = $("#inputPhoneNumber").val();
 		//alert(phoneNumber);
-		alert("인증번호 발송 완료!");
-        $("#inputCertificationNumber").show();
-        $("#phoneCheck").show();
-        
-		$.ajax({
-			  url: "/check/sendSMS",  //서버요청주소
-			  type: "get", //요청방식(get, post, put,delete, patch)
-			  dataType:"text", //서버가 응답해주는 데이터 타입(text, html, xml, json)
-			  data: {
-			    "phoneNumber" : phoneNumber
-			  },
-			  
-			  success: function(result){
-				  //alert(result);
-				  $("#display").html("<h3>"+result +"</h3>");
+		if (phoneNumber == "") {
+			alert("휴대폰 번호를 입력해주세요.");
+		}else{
+			alert("인증번호가 발송되었습니다.");
+			$("#inputCertificationNumber").show();
+			$("#phoneCheck").show();
+			
+			$.ajax({
+				  url: "/check/sendSMS",  //서버요청주소
+				  type: "get", //요청방식(get, post, put,delete, patch)
+				  dataType:"text", //서버가 응답해주는 데이터 타입(text, html, xml, json)
+				  data: {
+				    "phoneNumber" : phoneNumber
+				  },
 				  
-				  $('#membershipCompleted').click(function(){
-                      if($.trim(result) == $("#inputCertificationNumber").val()){
-                          alert("휴대폰 인증이 정상적으로 완료되었습니다.");
-
-                          /* $.ajax({
-                              type: "GET",
-                              url: "/update/phone",
-                              data: {
-                                  "phoneNumber" : $('#inputPhoneNumber').val()
-                              }
-                          }) */
-                          document.location.href="/";
-                      }else{
-                          alert("인증번호가 올바르지 않습니다.");
-                      }
-                  })
-			  },
-			  error : function(err){
-				  alert(err+"오류 발생했습니다.");
-			  }
-		  });
+				  success: function(result){
+					  //alert(result);
+					  //$("#display").html("<h3>"+result +"</h3>");
+					  
+					  $('#membershipCompleted').click(function(){
+	                      if($.trim(result) == $("#inputCertificationNumber").val()){
+	                          alert("휴대폰 인증이 정상적으로 완료되었습니다.");
+	
+	                          /* $.ajax({
+	                              type: "GET",
+	                              url: "/update/phone",
+	                              data: {
+	                                  "phoneNumber" : $('#inputPhoneNumber').val()
+	                              }
+	                          }) */
+	                          document.location.href="/";
+	                      }else{
+	                          alert("인증번호가 올바르지 않습니다.");
+	                      }
+	                  })
+				  },
+				  error : function(err){
+					  alert(err+"오류 발생했습니다.");
+				  }
+			  });
+		}
 	})
 })
 
@@ -143,6 +113,7 @@ $(function(){
             
             <!-- Form -->
             <form class="g-py-15">
+              
               <div class="row">
                 <div class="col g-mb-15">
                   <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 아이디</label>
@@ -159,12 +130,6 @@ $(function(){
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="nicknameCheck" style="display:none">※ 한글(2~8자), 영문(4~16자) 이내 입력</div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idDuplicateCheck" style="display:none">※ 이미 사용중인 닉네임입니다.</div>
               
-              <div class="g-mb-15">
-                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이메일</label>
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
-              </div>
-              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheck" style="display:none">※ 올바른 형식의 이메일 주소</div>
-
               <div class="g-mb-10">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 비밀번호</label>
                 <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 입력">
@@ -174,6 +139,18 @@ $(function(){
                 <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 다시 한번 입력">
               </div>
                 
+              <div class="row">
+              <div class="col g-mb-15">
+                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이름</label>
+                <input id="name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
+              </div>
+              </div>
+               <div class="g-mb-15">
+                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이메일</label>
+                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
+              </div>
+              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheck" style="display:none">※ 올바른 형식의 이메일 주소</div>
+              
               <div class="form-group g-mb-20">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">성별</label>
                 <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
@@ -203,7 +180,7 @@ $(function(){
                   <input id="inputPhoneNumber" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15" type="tel" placeholder="휴대전화 번호 입력">
                 </div>
                 <div class="col-5 align-self-center text-right g-mb-10">
-                  <button id="sendPhoneNumber" class="btn btn-block u-btn-primary rounded g-py-13" type="button">인증번호 받기</button>
+                  <button id="sendPhoneNumber" class="btn btn-block u-btn-outline-primary rounded g-py-13" type="button">인증번호 받기</button>
                 </div>
               </div>
               <div class="g-mb-20">
@@ -273,6 +250,38 @@ $(function(){
     </section>
     <!-- End Call to Action -->
     
-    
+<script>
+var start_year="1970";// 시작할 년도 
+var today = new Date(); 
+var today_year= today.getFullYear(); 
+var index=0; 
+for(var y=today_year; y>=start_year; y--){ //start_year ~ 현재 년도 
+	document.getElementById('select_year').options[index] = new Option(y, y); 
+	index++; 
+} 
+index=0; 
+for(var m=1; m<=12; m++){ 
+	document.getElementById('select_month').options[index] = new Option(m, m); index++; 
+} 
+
+lastday();
+
+function lastday(){
+	var Year=document.getElementById('select_year').value;
+	var Month=document.getElementById('select_month').value;
+	var day=new Date(new Date(Year,Month,1)-86400000).getDate();
+	/* = new Date(new Date(Year,Month,0)).getDate(); */
+	var dayindex_len=document.getElementById('select_day').length;
+	if(day>dayindex_len){ 
+		for(var i=(dayindex_len+1); i<=day; i++){ 
+	  		document.getElementById('select_day').options[i-1] = new Option(i, i);
+	  	} 
+	} else if(day<dayindex_len){ 
+		for(var i=dayindex_len; i>=day; i--){ 
+			document.getElementById('select_day').options[i]=null; 
+		} 
+	}
+}
+</script>
 </body>
 </html>

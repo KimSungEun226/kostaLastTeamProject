@@ -40,13 +40,39 @@ public class ProductController {
 		
 	    String path = session.getServletContext().getRealPath("/WEB-INF/save");
 
-     
+        
 		
 		List<MultipartFile> uploadFileList = multipartHttpServletRequest.getFiles("file");
 		List<ProductImage> imageList = new ArrayList<ProductImage>();
 		
 	    for(MultipartFile file : uploadFileList) {
-	    	ProductImage productImage = ProductImage.builder().productImageName(file.getOriginalFilename()).productImageSize(file.getSize()).product(product).build();
+	    	
+	    	File tempFile = new File(path+"/" + file.getOriginalFilename());
+	    	String fileName = file.getOriginalFilename();
+	    	if(tempFile.isFile()) {
+	    		String saveFileName = "";
+	    		String fileCutName = fileName.substring(0, fileName.lastIndexOf("."));
+	    		String fileExt = fileName.substring(fileName.lastIndexOf(".")+1);
+	    		
+	    		boolean _exist = true;
+	    		int index = 0;
+	    		//동일한 파일명이 존재하지 않을때까지 반복한다.
+	    		while(_exist) {
+	    			index++;
+	    			saveFileName = fileCutName + "(" + index + ")." +fileExt;
+	    			
+	    			_exist = new File(path+"/"+saveFileName).isFile();
+	    			if(!_exist) fileName = saveFileName;
+	    		}
+	    	}
+	    	
+	    	 try {
+			      file.transferTo(new File(path+"/" + fileName));
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	
+	    	ProductImage productImage = ProductImage.builder().productImageName(fileName).productImageSize(file.getSize()).product(product).build();
 	    	imageList.add(productImage);
 	    }
 	    
@@ -54,13 +80,13 @@ public class ProductController {
 	    
 	    productService.insert(product);
 	    
-	    try {
-		      for(MultipartFile file : uploadFileList) {
-			        file.transferTo(new File(path+"/" + file.getOriginalFilename()));
-		      }
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+//	    try {
+//		      for(MultipartFile file : uploadFileList) {
+//			        file.transferTo(new File(path+"/" + file.getOriginalFilename()));
+//		      }
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			}
 	    
 		return "shop/shop";
 	}
