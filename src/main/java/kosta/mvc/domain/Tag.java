@@ -33,6 +33,6 @@ public class Tag {
 	private String tegContent; //태그 내용
 	
 	//하나의 지역 태그에는 여러개의 게시물
-	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
 	private List<Board> boardList;
 }
