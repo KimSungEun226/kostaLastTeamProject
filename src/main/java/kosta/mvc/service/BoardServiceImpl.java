@@ -33,8 +33,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insert(Board board) {
-		// TODO Auto-generated method stub
-
+		Board b = boardRepository.save(board);
+		System.out.println(b.getBoardNo()+ " | "+b.getBoardContent());
 	}
 
 	@Override

@@ -17,22 +17,18 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class ChallengeServiceImpl implements ChallengeService{
 
-	private final BoardRepository boardRepository;
+	//private final BoardRepository boardRepository;
 	private final ChallengeRepository challengeRepository;
 	
 	@Override
 	public Challenge selectChallenge(int challengeCategory, Long memberNo) {
-		return null;
-		//return challengeRepository.findChallenge(challengeCategory, memberNo);
-	}
-	
-	@Override
-	public void insert(Board board) {
 		
-		
-		
+		return challengeRepository.findChallenge(challengeCategory, memberNo);
 	}
 
-	
-	
+	@Override
+	public void insert(Challenge challenge) {
+		Challenge c = challengeRepository.save(challenge);
+		System.out.println(c.getChallengeNo()+" | "+c.getChallengeCategory()+" | "+c.getChallengeState());	
+	}
 }
