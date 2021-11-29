@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -162,8 +165,9 @@
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
+            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
               <img class="img-fluid" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
-
+            </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="#">New Arrival</a>
               </figcaption>
@@ -173,12 +177,12 @@
               <!-- Product Info -->
               <div class="d-flex flex-column">
                 <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
+                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
                    ${product.productName}
                   </a>
                 </h4>
                 <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
-                <span class="d-block g-color-black g-font-size-17">${product.price}</span>
+                <span class="d-block g-color-black g-font-size-17"><fmt:formatNumber value="${product.price}"/>원</span>
               </div>
               <!-- End Product Info -->
 
@@ -205,7 +209,6 @@
             </div>
             <!-- End Product -->
           </div>
-          
           </c:forEach>
 		</c:otherwise>
        </c:choose>

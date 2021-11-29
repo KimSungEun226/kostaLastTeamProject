@@ -37,4 +37,9 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.selectByCateCode(cateCode);
 	}
 
+	@Override
+	public Product selectByNo(Long productNo) {
+		return productRepository.findById(productNo).orElse(null);
+	}
+
 }

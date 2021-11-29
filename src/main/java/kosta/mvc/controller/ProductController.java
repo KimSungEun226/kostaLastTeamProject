@@ -90,13 +90,22 @@ public class ProductController {
 	 * 카테고리별 select
 	 * */
 	@RequestMapping("select/{cateCode}")
-	public ModelAndView select(@PathVariable int cateCode) {
+	public ModelAndView selectCate(@PathVariable int cateCode) {
 		
 		
 		List<Product> listByCateCode = productService.selectByCateCode(cateCode);
-	
-		
 		return new ModelAndView("shop/itemView", "list", listByCateCode);
 	}
+	
+	/**
+	 * single product select
+	 * */
+	@RequestMapping("select/single/{productNo}")
+	public ModelAndView selectSingle(@PathVariable Long productNo) {
+		Product product = productService.selectByNo(productNo);
+		//System.out.println(product.getProductName());
+		return new ModelAndView("shop/single", "product", product);
+	}
+	
 	
 }

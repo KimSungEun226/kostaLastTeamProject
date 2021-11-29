@@ -46,6 +46,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
+  
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
@@ -66,7 +67,7 @@
     	  
     	  $("#btnAdd").click(function(){
     		  
-    		  if (count <= 4) { 
+    		  if (count <= 2) { 
 	    		  $(".addFile").append(
 	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
 	    	  
@@ -79,7 +80,7 @@
 	    		  
 	    		  count+=1;
     		  }else{
-    			  alert("이미지는 최대 5장");
+    			  alert("이미지는 최대 3장");
     		  }
     	  });
     	  
@@ -228,6 +229,7 @@
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
                           <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
                         </tr>
+                        
                         
                         <script>
 							$('#summernote').summernote({
