@@ -21,8 +21,9 @@ public class ChallengeServiceImpl implements ChallengeService{
 	private final ChallengeRepository challengeRepository;
 	
 	@Override
-	public Challenge selectChallenge(int challengeCategory, Long memberNo) { 
-		return challengeRepository.findChallenge(challengeCategory, memberNo);
+	public Challenge selectChallenge(int challengeCategory, Long memberNo) {
+		return null;
+		//return challengeRepository.findChallenge(challengeCategory, memberNo);
 	}
 	
 	@Override
