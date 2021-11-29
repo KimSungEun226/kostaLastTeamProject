@@ -1,13 +1,19 @@
 package kosta.mvc.controller;
 
+import java.util.Map;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kosta.mvc.service.CertificationService;
+import kosta.mvc.service.EmailCertificationService;
 import lombok.RequiredArgsConstructor;
 
 
@@ -40,6 +46,21 @@ public class IndexController {
 		return "board/tos";
 	}
 	
+	@RequestMapping("/findId")
+	public String findId() {
+		return "board/findId";
+	}
+	
+	@RequestMapping("/findIdByPhone")
+	public String findIdByPhone() {
+		return "board/findIdByPhone";
+	}
+	
+	@RequestMapping("/findIdByEmail")
+	public String findIdByEmail() {
+		return "board/findIdByEmail";
+	}
+	
 	//회원가입 휴대전화 인증
 	private final CertificationService certificationService;
 	
@@ -60,10 +81,33 @@ public class IndexController {
 		
 		return numStr;
     }
-	
-	@RequestMapping(value = "/ajax" , produces ="text/html;charset=UTF-8" )
-    public String ajax(String name) {
+
+	//아이디 찾기 이메일 인증
+	@Autowired
+	EmailCertificationService emailCertificationService;
+	 
+	 //private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	 
+		@PostMapping("/check/sendEmail")
+		@ResponseBody
+		public void emailConfirm(String userEmail)throws Exception{
+			//logger.info("post emailConfirm");
+			System.out.println("전달 받은 이메일 : "+userEmail);
+			emailCertificationService.sendSimpleMessage(userEmail);	
+		}
 		
-		return name+"입니다";
-	}
+//		@PostMapping("/verifyCode")
+//		@ResponseBody
+//		public int verifyCode(String code) {
+//			//logger.info("Post verifyCode");
+//			
+//			int result = 0;
+//			System.out.println("code : "+code);
+//			System.out.println("code match : "+ EmailCertificationService.ePw.equals(code));
+//			if(EmailCertificationService.ePw.equals(code)) {
+//				result =1;
+//			}
+//			
+//			return result;
+//		}
 }
