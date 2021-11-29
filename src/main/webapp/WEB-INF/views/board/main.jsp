@@ -37,47 +37,46 @@
           </div>
         </div>
       </div>
-    </section>
-    <!-- End Promo Block -->
+    </section><!-- End Promo Block -->
 
     <!-- Icon Blocks -->
     <section class="g-py-100">
       <div class="container">
         <div class="row no-gutters">
+          
           <div class="col-lg-4 g-px-40 g-mb-50 g-mb-0--lg">
-            <!-- Icon Blocks -->
-            <div class="text-center">
+            <!-- 칼로리처방 받기 -->
+            <div class="text-center" onclick="location.href='목적지 링크주소(URL)'" style="cursor:pointer;">
               <span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle g-mb-30">
                   <i class="icon-communication-081 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">칼로리처방 받기</h3>
               <p class="mb-0">칼로리를 알고 다이어트 하자!!</p>
-            </div>
-            <!-- End Icon Blocks -->
+            </div><!-- 칼로리처방 받기 -->
           </div>
 
           <div class="col-lg-4 g-brd-left--lg g-brd-gray-light-v4 g-px-40 g-mb-50 g-mb-0--lg">
-            <!-- Icon Blocks -->
-            <div class="text-center">
+            <!-- 나의 BMI 지수는? -->
+            <div class="text-center" onclick="location.href='${pageContext.request.contextPath}/bmi'" style="cursor:pointer;">
               <span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle g-mb-30">
                   <i class="icon-finance-086 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">나의 BMI 지수는?</h3>
               <p class="mb-0">나는 얼마나 날씬할까?</p>
             </div>
-            <!-- End Icon Blocks -->
+            <!-- End 나의 BMI 지수는? -->
           </div>
 
           <div class="col-lg-4 g-brd-left--lg g-brd-gray-light-v4 g-px-40">
-            <!-- Icon Blocks -->
-            <div class="text-center">
+            <!-- 커뮤니티 바로가기 -->
+            <div class="text-center" onclick="location.href='목적지 링크주소(URL)'" style="cursor:pointer;">
               <span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle g-mb-30">
                   <i class="icon-communication-057 u-line-icon-pro"></i>
                 </span>
               <h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mb-3">커뮤니티 바로가기</h3>
               <p class="mb-0">좋은 정보는 공유하자</p>
             </div>
-            <!-- End Icon Blocks -->
+            <!-- End 커뮤니티 바로가기 -->
           </div>
         </div>
       </div>
