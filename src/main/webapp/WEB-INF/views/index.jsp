@@ -8,6 +8,5 @@
 </head>
 <body>
 <h1>spring boot 시작</h1>
-원재
 </body>
 </html>
