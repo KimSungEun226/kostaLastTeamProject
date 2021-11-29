@@ -23,7 +23,7 @@
             <!-- End Responsive Toggle Button -->
 
 			<!-- Logo -->
-            <a class="navbar-brand" href="home-page-1.html">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/">
               <img src="${pageContext.request.contextPath}/e-commerce/assets/img/logo/logo.png" alt="Image Description">
             </a>
             <!-- End Logo -->

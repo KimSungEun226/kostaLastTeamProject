@@ -6,7 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
+
+
 <!-- Header -->
 <header id="js-header" class="u-header u-header--static u-shadow-v19">
        <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
@@ -38,7 +41,7 @@
                <ul class="navbar-nav ml-auto">
                  <!-- Home - Submenu -->
                  <li class="nav-item g-mx-10--lg g-mx-15--xl">
-                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/main"><b>EGYM 바로가기</b></a>
+                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/"><b>EGYM 바로가기</b></a>
                  </li>
 
                  <!-- Pages - Submenu -->
@@ -354,162 +357,33 @@
                  <!-- End Pages - Submenu -->
 
                  <!-- Categories - Mega Menu -->
-                 <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-15--xl"
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
                      data-position="right">
                    <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false">
                      <b>닭가슴살</b>
-                     <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-7"></i>
                    </a>
 
                    <!-- Mega Menu -->
-                   <div class="w-100 hs-mega-menu u-shadow-v11 g-text-transform-none g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-pa-30 g-mt-17" aria-labelledby="mega-menu-label-3">
-                     <div class="row">
-                       <div class="col-sm-6 col-lg-2 g-mb-30 g-mb-0--md">
-                         <!-- Links -->
-                         <div class="mb-5">
-                           <span class="d-block g-font-weight-500 text-uppercase mb-2">Home Decor</span>
-
-                           <ul class="list-unstyled">
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Wall Decor</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Pillows &amp; Throws</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Window Treatments</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Mirrors</a>
-                             </li>
-                           </ul>
-                         </div>
-                         <!-- End Links -->
-
-                         <!-- Links -->
-                         <span class="d-block g-font-weight-500 text-uppercase mb-2">Industrial Decor</span>
-
-                         <ul class="list-unstyled">
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Letter Block</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Glass Sconce</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Risa Storage Jar</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Model Plane</a>
-                           </li>
-                         </ul>
-                         <!-- End Links -->
-                       </div>
-
-                       <div class="col-sm-6 col-lg-3 g-mb-30 g-mb-0--md">
-                         <!-- Links -->
-                         <div class="mb-5">
-                           <span class="d-block g-font-weight-500 text-uppercase mb-2">Kitchen &amp; Tabletop</span>
-
-                           <ul class="list-unstyled">
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Coffee &amp; Tea</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Cooking &amp; Baking</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Cutlery &amp; Cutting</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Serving</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Food Storage</a>
-                             </li>
-                           </ul>
-                         </div>
-                         <!-- End Links -->
-
-                         <div class="mb-5 g-mb-0--lg">
-                           <!-- Links -->
-                           <span class="d-block g-font-weight-500 text-uppercase mb-2">Office</span>
-
-                           <ul class="list-unstyled">
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Writing Instruments</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Bookcases</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Filing Cabinets</a>
-                             </li>
-                           </ul>
-                           <!-- End Links -->
-                         </div>
-                       </div>
-
-                       <div class="col-sm-6 col-lg-3 g-mb-30 g-mb-0--md">
-                         <!-- Links -->
-                         <div class="mb-5">
-                           <span class="d-block g-font-weight-500 text-uppercase mb-2">Modern Lighting</span>
-
-                           <ul class="list-unstyled">
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Bridgers 59" Floor Lamp</a>
-                             </li>
-                             <li>
-                               <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Miltiades 27" Table Lamp</a>
-                             </li>
-                           </ul>
-                         </div>
-                         <!-- End Links -->
-
-                         <!-- Links -->
-                         <span class="d-block g-font-weight-500 text-uppercase mb-2">Coastal Living Room Furniture</span>
-
-                         <ul class="list-unstyled">
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Washington Console Table</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Anfield Coffee Table</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Banbury 2 Drawer End Table</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Landsdowne 53" Tv Stand</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Sevan Swivel Barrel Chair</a>
-                           </li>
-                           <li>
-                             <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="#">Enfield Credenza</a>
-                           </li>
-                         </ul>
-                         <!-- End Links -->
-                       </div>
-
-                       <div class="col-md-6 col-lg-4 g-mb-30 g-mb-0--md">
-                         <article class="g-pos-rel">
-                           <img class="img-fluid" src="assets/img-temp/700x700/img1.jpg" alt="Image Description">
-
-                           <div class="g-pos-abs g-bottom-30 g-left-30">
-                             <span class="d-block g-color-gray-dark-v4 mb-2">Modern Lighting</span>
-                             <span class="d-block h4">Desk Clock 65" Table Lamp</span>
-                             <span class="d-block g-color-gray-dark-v3 g-font-size-16 mb-4">$156.00</span>
-                             <a class="btn u-btn-primary u-shadow-v29 g-font-size-12 text-uppercase g-py-10 g-px-20" href="#">Add to Cart</a>
-                           </div>
-                         </article>
-                       </div>
-                     </div>
-                   </div>
+                   
                    <!-- End Mega Menu -->
                  </li>
+                 
+
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
+                     data-animation-in="fadeIn"
+                     data-animation-out="fadeOut"
+                     data-position="right">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/write" aria-haspopup="true" aria-expanded="false">
+                     <b>등록하기 폼</b>
+                   </a>
+
+                   <!-- Mega Menu -->
+                   
+                   <!-- End Mega Menu -->
+                 </li>                 
+                 
                  <!-- End Categories - Mega Menu -->
 
                  <!-- Watch - Mega Menu -->
