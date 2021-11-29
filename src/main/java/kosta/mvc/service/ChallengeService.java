@@ -1,5 +1,7 @@
 package kosta.mvc.service;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Board;
@@ -8,8 +10,14 @@ import kosta.mvc.domain.Challenge;
 public interface ChallengeService {
 	
 	/**
+	 * 진행중인 챌린지 조회
+	 */
+	Challenge selectChallenge(int challengeCategory,Long memberNo);
+	
+	/**
 	 * 조회
 	 */
+	
 	
 	/**
 	 * 등록폼

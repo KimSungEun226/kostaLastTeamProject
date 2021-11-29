@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.service.BoardService;
 import kosta.mvc.service.ChallengeService;
 
 @Controller
 @RequestMapping("/challenge")
 public class ChallengeController {
 	
-	@Autowired 
-	ChallengeService challengeService;
+	/*
+	 * @Autowired ChallengeService challengeService;
+	 * 
+	 * @Autowired BoardService boardService;
+	 */
 	
 	/**
 	 * 조회
@@ -35,11 +39,27 @@ public class ChallengeController {
 	 * 등록하기
 	 */
 	@RequestMapping("/insert")
-	public String insert(Board board) {
+	public String insert(Board board, int challengeCategory) {
 		
-		board.getBoardContent().replace("<", "&lt;");
-		
-		challengeService.insert(board);
+		/*
+		 * board.getBoardContent().replace("<", "&lt;");
+		 * 
+		 * //진행중인 challenge조회 Challenge ischallenge =
+		 * challengeService.selectChallenge(challengeCategory,
+		 * board.getMember().getMemberNo()); if(ischallenge!=null) { //진행중인 챌린지가 있다.
+		 * 
+		 * board.setChallenge(ischallenge); //boardChallengeUpdate로 Service에서 해야하나??
+		 * 
+		 * boardService.insert(board); } else { //진행중인 챌린지가 없으니 challenge생성하고 board
+		 * insert
+		 * 
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * challengeService.insert(board);
+		 */
 		
 		return "redirect:/challenge/list";
 	}

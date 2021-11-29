@@ -21,6 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +33,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_no_seq")
@@ -45,6 +47,8 @@ public class Board {
 	private String boardContent; // 글내용
 	
 	private int boardKind; //종류 - 게시판 카테고리 자기자신의 기본키를 참조하는 외래키여야 하지 않을까?
+	
+	private String password;
 	
 	@CreationTimestamp
 	private LocalDateTime boardRegdate; //등록일
