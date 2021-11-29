@@ -120,7 +120,7 @@
 		            return false;
 		        }
 	
-		    	if ( itemStock.value == "" || itemStock.value.length>3) {
+		    	if ( itemStock.value == "" || itemStock.value.length>7) {
 		            alert( "상품 재고수를 확인 주세요." );
 		            itemStock.focus();
 		            return false;

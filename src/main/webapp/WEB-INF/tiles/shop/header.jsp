@@ -361,7 +361,7 @@
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
                      data-position="right">
-                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/select/1" aria-haspopup="true" aria-expanded="false">
                      <b>닭가슴살</b>
                    </a>
 
