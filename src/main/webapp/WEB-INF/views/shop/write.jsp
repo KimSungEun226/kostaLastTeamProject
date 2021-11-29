@@ -60,17 +60,46 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
     <script type="text/javascript">
-	    function form_check() {
+      $(document).ready(function(){
+    	  
+    	  let count = 1;
+    	  
+    	  $("#btnAdd").click(function(){
+    		  
+    		  if (count <= 4) { 
+	    		  $(".addFile").append(
+	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
 	    	  
+	    		  $(".btnRemove").on("click", function(){
+	        		  $(this).prev().remove();
+	        		  $(this).next().remove();
+	        		  $(this).remove();
+	        		  count-=1;
+	        	  });
+	    		  
+	    		  count+=1;
+    		  }else{
+    			  alert("이미지는 최대 5장");
+    		  }
+    	  });
+    	  
+    	  
+    	  
+    	  
+      });
+    </script>
+    
+    <script type="text/javascript">
+    
+    
+	    function form_check() {
 	    	  var itemName = document.getElementById("productName");
 	    	  var categoryNo = $("#cateCode option:selected");
 	    	  var itemPrice = document.getElementById("price");
 	    	  var itemStock = document.getElementById("stock");	    	
 	    	  var itemDescription = document.getElementById("summernote");
-	    	
-	    	  var mainImg = document.getElementById("mainImg");
-	    	  var detailImg = document.getElementById("detailImg");
-	    	  
+	    	  var mainImg = document.getElementsByName("file");
+
 	    	  
 		    	if ( itemName.value == "" ) {
 		    	    alert( "상품이름을 확인해주세요." );
@@ -103,16 +132,14 @@
 		            return false;
 		        }
 
+	
 		    	
-/* 		    	if ( mainImg.value == "" ) {
-		            alert( "메인 이미지를 넣어주세요." );
-		            return false;
-		        }
-		    	
-		    	if ( detailImg.value == "" ) {
-		            alert( "상품 상세 이미지를 넣어주세요." );
-		            return false;
-		        } */
+		    	for(var i = 0; i < mainImg.length; i++) {
+			    	 if ( mainImg[i].value == "" ) {
+			            alert( "메인 이미지를 넣어주세요." );
+			            return false;
+			         }
+		    	}
 		    	
 		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
 
@@ -210,21 +237,20 @@
 							});
 						</script>
                         
-                        <tr>
-							<td>상품메인이미지 : <input type="file" name="file" id="mainImg" maxlength="60" size="40" accept="image/jpeg, image/png, image/jpg"></td>
-						</tr>
+                       
 
-                        <tr>
-							<td>상품메인이미지 : <input type="file" name="file" id="detailImg" maxlength="60" size="40" accept="image/jpeg, image/png, image/jpg"></td>
-						</tr>
-						
-						
                         
 						
                         <!-- End Item-->
 
                       </tbody>
                     </table>
+                    <br>
+                      <div class="addFile">
+                         <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
+						</div>
+                    <br>
+                    <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
                     
                     <div class="col-md-8 g-mb-30">
 		              
