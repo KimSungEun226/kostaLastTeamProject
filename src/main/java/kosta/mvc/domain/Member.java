@@ -70,8 +70,4 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Board> boardList;
 	
-	
-	
-	
-	
 }
