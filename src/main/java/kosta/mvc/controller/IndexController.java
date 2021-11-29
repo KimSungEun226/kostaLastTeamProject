@@ -40,6 +40,11 @@ public class IndexController {
 	public String signup() {
 		return "board/signup";
 	}
+
+	@RequestMapping("/bmi")
+	public String bmi() {
+		return "board/bmiInput";
+	}
 	
 	@RequestMapping("/tos")
 	public String tos() {
