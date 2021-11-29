@@ -7,12 +7,13 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.product.Product;
 import kosta.mvc.domain.product.ProductImage;
@@ -36,11 +37,12 @@ public class ProductController {
 	 * 등록
 	 * */
 	@RequestMapping("/insert")
-	public String insert(Product product, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) {
+	public String insert(Product product, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) throws Exception{
 		
-	    String path = session.getServletContext().getRealPath("/WEB-INF/save");
+	    String path = session.getServletContext().getRealPath("/save");
 
-        
+ 
+	    System.out.println(path);
 		
 		List<MultipartFile> uploadFileList = multipartHttpServletRequest.getFiles("file");
 		List<ProductImage> imageList = new ArrayList<ProductImage>();
@@ -79,16 +81,22 @@ public class ProductController {
 	    product.setProductImageList(imageList);
 	    
 	    productService.insert(product);
-	    
-//	    try {
-//		      for(MultipartFile file : uploadFileList) {
-//			        file.transferTo(new File(path+"/" + file.getOriginalFilename()));
-//		      }
-//			}catch (Exception e) {
-//				e.printStackTrace();
-//			}
+
 	    
 		return "shop/shop";
+	}
+	
+	/**
+	 * 카테고리별 select
+	 * */
+	@RequestMapping("select/{cateCode}")
+	public ModelAndView select(@PathVariable int cateCode) {
+		
+		
+		List<Product> listByCateCode = productService.selectByCateCode(cateCode);
+	
+		
+		return new ModelAndView("shop/itemView", "list", listByCateCode);
 	}
 	
 }
