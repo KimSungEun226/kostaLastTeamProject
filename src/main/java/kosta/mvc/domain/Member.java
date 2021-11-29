@@ -67,11 +67,7 @@ public class Member {
 	@JoinColumn(name="Address_No")
 	private Address address;
 	
-	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Board> boardList;
-	
-	
-	
-	
 	
 }
