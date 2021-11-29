@@ -46,6 +46,9 @@ public class Board {
 	@Lob
 	private String boardContent; // 글내용
 	
+	/**
+	 * 1. 일기(운동/식단) | 2.  질문 및 답변  | 3. 자유 | 4. 지역 | 5. 30일 챌린지
+	 * */
 	private int boardKind; //종류 - 게시판 카테고리 자기자신의 기본키를 참조하는 외래키여야 하지 않을까?
 	
 	private String password;

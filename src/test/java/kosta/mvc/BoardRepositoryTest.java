@@ -53,12 +53,14 @@ public class BoardRepositoryTest {
 	 */
 	@Test
 	void insert() {
-		for (int i = 0; i < 4; i++) {
-			// rep.save(new FreeBoard(null, null, null, null, null, null, null, i));
-			Board board = Board.builder().boardTitle("제목" + i).boardContent("들어가나요?" + i).boardKind(i).build();
-
-			rep.save(board);
-		}
+		//자유게시판 등록 (boardKind - 3)
+		
+		  for (int i = 0; i < 5; i++) { 
+			  // rep.save(new FreeBoard(null, null, null, null, null, null, null, i));
+			  Board board = Board.builder().boardTitle("제목" +i).boardContent("자유내용자유내용" + i).boardKind(3).password("1234").build();
+		  
+		  rep.save(board); }
+		 
 	}
 	
 	/**
