@@ -28,8 +28,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Page<Board> selectAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return boardRepository.findAll(pageable);
 	}
 
 	@Override
