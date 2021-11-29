@@ -20,9 +20,9 @@ public interface ChallengeService {
 	
 	
 	/**
-	 * 등록폼
+	 * 챌린지 등록하기 
 	 */
-	void insert(Board board);
+	void insert(Challenge challenge);
 	
 	/**
 	 * 등록하기

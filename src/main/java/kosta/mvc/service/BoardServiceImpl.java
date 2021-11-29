@@ -3,13 +3,23 @@ package kosta.mvc.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
+	private final BoardRepository boardRepository;
+	
 	@Override
 	public List<Board> selectAll() {
 		// TODO Auto-generated method stub
@@ -24,8 +34,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insert(Board board) {
-		// TODO Auto-generated method stub
-
+		Board b = boardRepository.save(board);
+		System.out.println(b.getBoardNo()+ " | "+b.getBoardContent());
 	}
 
 	@Override

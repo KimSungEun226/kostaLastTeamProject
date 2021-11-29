@@ -8,16 +8,18 @@ import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
 import kosta.mvc.service.BoardService;
 import kosta.mvc.service.ChallengeService;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/challenge")
+@RequiredArgsConstructor
 public class ChallengeController {
 	
-	/*
-	 * @Autowired ChallengeService challengeService;
-	 * 
-	 * @Autowired BoardService boardService;
-	 */
+	private final ChallengeService challengeService;
+	  
+	private final BoardService boardService;
+	 
+	 
 	
 	/**
 	 * 조회
@@ -31,8 +33,8 @@ public class ChallengeController {
 	 * 등록폼
 	 */
 	@RequestMapping("/write")
-	public void write() {
-		
+	public String write() {
+		return "board/challenge/write";
 	}
 	
 	/**
@@ -41,27 +43,24 @@ public class ChallengeController {
 	@RequestMapping("/insert")
 	public String insert(Board board, int challengeCategory) {
 		
-		/*
-		 * board.getBoardContent().replace("<", "&lt;");
-		 * 
-		 * //진행중인 challenge조회 Challenge ischallenge =
-		 * challengeService.selectChallenge(challengeCategory,
-		 * board.getMember().getMemberNo()); if(ischallenge!=null) { //진행중인 챌린지가 있다.
-		 * 
-		 * board.setChallenge(ischallenge); //boardChallengeUpdate로 Service에서 해야하나??
-		 * 
-		 * boardService.insert(board); } else { //진행중인 챌린지가 없으니 challenge생성하고 board
-		 * insert
-		 * 
-		 * 
-		 * 
-		 * }
-		 * 
-		 * 
-		 * challengeService.insert(board);
-		 */
-		
-		return "redirect:/challenge/list";
+		  board.getBoardContent().replace("<", "&lt;");
+		  Long memberNo = board.getMember().getMemberNo();
+		  
+		  //진행중인 challenge조회 
+		  Challenge ischallenge =
+				  challengeService.selectChallenge(challengeCategory, memberNo);
+		  if(ischallenge!=null) { 
+			  //진행중인 챌린지가 있다.
+			  board.setChallenge(ischallenge);
+			  boardService.insert(board); 
+		  } else {
+			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
+			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
+			  challengeService.insert(challenge);
+			  board.setChallenge(challenge);
+			  boardService.insert(board);
+		  }
+		return "challenge/list";
 	}
 	
 	/**
