@@ -93,12 +93,17 @@
                     
                     <!-- 커뮤니티 - 전체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-pricing-1.html">전체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/list">전체</a>
                     </li><!-- End 커뮤니티 - 전체 -->
 
+					<!-- 커뮤니티 - 글쓰기 -->
+                    <li class="dropdown-item">
+                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/write" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">글쓰기</a>
+                    </li><!-- End 커뮤니티 - 글쓰기 -->
+	
                     <!-- 커뮤니티 - 일기 -->
                     <li class="dropdown-item">
-                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">일기</a>
+                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/diaryBoard" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">일기</a>
                     </li><!-- End 커뮤니티 - 일기 -->
 
                     <!-- 커뮤니티 - 질문 게시판 -->
