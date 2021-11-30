@@ -1,5 +1,7 @@
 package kosta.mvc.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +30,16 @@ public class ProductServiceImpl implements ProductService {
 			productImageRepository.save(image);
 		}
 
+	}
+
+	@Override
+	public List<Product> selectByCateCode(int cateCode) {
+		return productRepository.selectByCateCode(cateCode);
+	}
+
+	@Override
+	public Product selectByNo(Long productNo) {
+		return productRepository.findById(productNo).orElse(null);
 	}
 
 }

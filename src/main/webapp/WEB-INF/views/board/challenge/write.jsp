@@ -46,7 +46,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
-  
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
@@ -61,88 +60,35 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
     <script type="text/javascript">
-      $(document).ready(function(){
-    	  
-    	  let count = 1;
-    	  
-    	  $("#btnAdd").click(function(){
-    		  
-    		  if (count <= 2) { 
-	    		  $(".addFile").append(
-	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
-	    	  
-	    		  $(".btnRemove").on("click", function(){
-	        		  $(this).prev().remove();
-	        		  $(this).next().remove();
-	        		  $(this).remove();
-	        		  count-=1;
-	        	  });
-	    		  
-	    		  count+=1;
-    		  }else{
-    			  alert("이미지는 최대 3장");
-    		  }
-    	  });
-    	  
-    	  
-    	  
-    	  
-      });
+
     </script>
     
     <script type="text/javascript">
     
     
 	    function form_check() {
-	    	  var itemName = document.getElementById("productName");
-	    	  var categoryNo = $("#cateCode option:selected");
-	    	  var itemPrice = document.getElementById("price");
-	    	  var itemStock = document.getElementById("stock");	    	
-	    	  var itemDescription = document.getElementById("summernote");
-	    	  var mainImg = document.getElementsByName("file");
-
-	    	  
-		    	if ( itemName.value == "" ) {
-		    	    alert( "상품이름을 확인해주세요." );
-		    	    itemName.focus();
+	    	  var boardTitle = document.getElementById("boardTitle");
+	    	  var password = document.getElementById("password");    	
+	    	  var boardContent = document.getElementById("summernote"); 	  
+		    	if ( boardTitle.value == "" ) {
+		    	    alert( "제목을 입력해주세요." );
+		    	    boardTitle.focus();
 		    		return false;
 		        }
-	
-		    	if ( categoryNo.val() == "0" ) {
-		            alert( "카테고리를 선택해주세요." );
-		            cateCode.focus();
-		            return false;
-		        }
 		    	
-		    	
-		    	if ( itemPrice.value == "" || itemPrice.value.length>9) {
-		            alert( "상품 가격을 확인 주세요." );
-		            itemPrice.focus();
+		    	if ( password.value == "" || password.value.length>4) {
+		            alert( "비밀번호를 4자이하로 작성해주세요." );
+		            password.focus();
 		            return false;
 		        }
 	
-		    	if ( itemStock.value == "" || itemStock.value.length>7) {
-		            alert( "상품 재고수를 확인 주세요." );
-		            itemStock.focus();
+		    	if ( boardContent.value == "") {
+		            alert( "내용을 입력해주세요." );
+		            boardContent.focus();
 		            return false;
 		        }
 
-		    	if ( itemDescription.value == "" ) {
-		            alert( "상품 설명 확인 주세요." );
-		            itemDescription.focus();
-		            return false;
-		        }
-
-	
-		    	
-		    	for(var i = 0; i < mainImg.length; i++) {
-			    	 if ( mainImg[i].value == "" ) {
-			            alert( "메인 이미지를 넣어주세요." );
-			            return false;
-			         }
-		    	}
-		    	
-		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
+		    	document.challengeInsert_form.submit(); //유효성 검사의 포인트 
 
 	    }
     </script>
@@ -160,15 +106,15 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">요거 묵어봤는감?</a>
+              <a class="u-link-v5 g-color-text" href="30일챌린지 전체조회">30일 챌린지</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">고객센터</a>
+              <a class="u-link-v5 g-color-text" href="해당카테고리 전체조회">해당 카테고리</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템등록</span>
+              <span>글쓰기</span>
             </li>
           </ul>
         </div>
@@ -176,11 +122,11 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/insert" enctype="multipart/form-data">
+      <form name="challengeInsert_form" method="post" action="${pageContext.request.contextPath}/challenge/insert" enctype="multipart/form-data">
 
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">아이템등록</h2>
+          <h2 class="mb-5">30일 챌린지 작성</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -195,29 +141,11 @@
                         <tr>
                         <th>
                           <!-- End Products Block -->
-		                  
-		                  
+		                                    
 		                  <div class="input-group mb-1">
-		                    <input id="productName" name="productName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="상품명">
-		                    <select id="cateCode" name="cateCode" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
-		                      <option value="0">카테고리</option>
-		                      <option value="1">닭가슴살</option>
-		                      <option value="2">샐러드</option>
-		                      <option value="3">프로틴</option>
-		                      
-		                    </select>
-		
-				       
-		                   
-		                  </div>
-		                  
-		                  
-		                  <div class="input-group mb-1">
-		                    <input id="price" name="price" placeholder="가격(원 단위)" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >
-		                    <input id="stock" name="stock" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="재고량">
-		                                       
+		                    <input id="boardTitle" name="boardTitle" placeholder="제목" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:100%;" type="text" >
+		                    <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="수정하거나 삭제할때 사용할 비밀번호">    
 		                  </div>                  	                  
-		                  
                         <br>
                         </th>
                         </tr>
@@ -227,9 +155,8 @@
                         <!-- Item-->
                         
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
+                          <td><textarea id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" placeholder="내용"></textarea></td> 
                         </tr>
-                        
                         
                         <script>
 							$('#summernote').summernote({
@@ -248,19 +175,19 @@
                       </tbody>
                     </table>
                     <br>
-                      <div class="addFile">
-                         <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
-						</div>
-                    <br>
-                    <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
-                    
-                    <div class="col-md-8 g-mb-30">
-		              
-		            </div>
+    
                   </div>
                   <!-- End Products Block -->
-
                   
+                  <div class="input-group mb-1">      
+		            <select id="challengeCategory" name="challengeCategory" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:50%;">
+		            <option value="0">카테고리</option>
+		            <option value="1">아침밥챙기기</option>
+		            <option value="2">유산소운동하기</option>
+		            <option value="3">플랭크하기</option>
+		            <option value="4">전신운동하기</option>
+		          </select>
+		 
                 </div>
                 <!-- End Accordion -->
                <!-- Contact Form -->

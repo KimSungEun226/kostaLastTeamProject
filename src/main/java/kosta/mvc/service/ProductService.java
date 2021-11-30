@@ -1,5 +1,7 @@
 package kosta.mvc.service;
 
+import java.util.List;
+
 import kosta.mvc.domain.product.Product;
 
 public interface ProductService {
@@ -9,4 +11,13 @@ public interface ProductService {
 	 * */
 	void insert(Product product);
 	
+	/**
+	 * 번호에 따른 검색
+	 * */
+	Product selectByNo(Long productNo);
+	
+	/**
+	 * 카테고리별 검색
+	 * */
+	List<Product> selectByCateCode(int cateCode);
 }

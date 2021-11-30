@@ -63,6 +63,11 @@ public class IndexController {
 		return "board/findIdByEmail";
 	}
 	
+	@RequestMapping("/myPage")
+	public String myPage() {
+		return "board/myPage";
+	}
+	
 	//회원가입 휴대전화 인증
 	private final CertificationService certificationService;
 	

@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import kosta.mvc.domain.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,5 +54,6 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade= CascadeType.ALL)
 	private List<ProductImage> productImageList; 
 	
-	
+	@OneToMany(mappedBy = "product", cascade= CascadeType.ALL)
+	private List<Review> productReviewList;
 }

@@ -108,7 +108,7 @@
                     
                     <!-- 커뮤니티 - 자유 게시판 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">자유 게시판</a>
+                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/board/list" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">자유 게시판</a>
                     </li><!-- End 커뮤니티 - 자유 게시판 -->
 
                     <!-- 커뮤니티 - 지역 게시판 -->
