@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import kosta.mvc.domain.product.Product;
+import kosta.mvc.domain.product.ProductImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,13 +25,21 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_no_seq")
 	@SequenceGenerator(sequenceName = "cart_no_seq", allocationSize = 1, name = "cart_no_seq")
-	private Long cart_no; //장바구니번호
+	private Long cartNo; //장바구니번호
 	
-	private String cartValue;//아이디/비회원 식별값
-	private int cart_count;
+	private String cartValue;//비회원 식별값
+	private int cartCount;//상품 수량
 	
 	@ManyToOne
 	@JoinColumn(name="product_no")
-	private Product product; //상품번호
+	private Product product; //상품정보 -상품번호
+	
+	@ManyToOne
+	@JoinColumn(name="product_image_no")
+	private ProductImage productImage; //상품이미지정보 -상품이미지번호
+	
+	@ManyToOne
+	@JoinColumn(name="member_no") 
+	private Member member; //회원정보 -회원번호
 
 }
