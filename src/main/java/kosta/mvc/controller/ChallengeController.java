@@ -7,8 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
@@ -87,7 +89,20 @@ public class ChallengeController {
 	/**
 	 * 상세보기
 	 */
-	
+	@RequestMapping("/detail/{boardNo}")
+	public ModelAndView detail(@PathVariable Long boardNo, String flag) {
+		boolean state = flag == null;
+		
+		Board board = boardService.selectBy(boardNo, state);
+		Challenge challenge = board.getChallenge();
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/challenge/detail");
+		mv.addObject("board", board);
+		mv.addObject("challenge", challenge);
+		
+		return mv;
+	}
 	
 	/**
 	 * 수정폼
