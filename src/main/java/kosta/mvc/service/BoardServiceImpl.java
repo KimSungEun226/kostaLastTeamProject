@@ -63,4 +63,12 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
+	/**
+	 * 카테고리별 검색
+	 * */
+	@Override
+	public Page<Board> findByBoardKind(int boardKind, Pageable pageable) {
+		return boardRepository.findByBoardKind(boardKind, pageable);
+	}
+
 }
