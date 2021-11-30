@@ -63,11 +63,11 @@ $('#theForm').submit(function(event){
             <form class="g-py-15">
             
 	          <div class="form-group g-mb-20">
-	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
+	            <label id="gender" class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
 	              <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
 	                <option>선택</option>
-	                <option value="First Option">남성</option>
-	                <option value="Second Option">여성</option>
+	                <option value="male">남성</option>
+	                <option value="female">여성</option>
 	              </select>
 	          </div>
               

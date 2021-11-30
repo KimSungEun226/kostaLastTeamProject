@@ -36,10 +36,10 @@ $(document).ready(function(){
             
 	          <div class="form-group g-mb-20">
 	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
-	              <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
+	              <select id="gender" name="gender" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
 	                <option>-</option>
-	                <option value="First Option">남성</option>
-	                <option value="Second Option">여성</option>
+	                <option value="남성">남성</option>
+	                <option value="여성">여성</option>
 	              </select>
 	          </div>
               
@@ -47,24 +47,24 @@ $(document).ready(function(){
               <div class="row">
      			  
      			  <div class="col-sm-6 g-mb-20"><!-- 년 -->
-                    <select id="select_year" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
+                    <select id="select_year" name="year" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
                   </div>
                   <div class="col g-mb-20"><!-- 월 -->
-                    <select id="select_month" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
+                    <select id="select_month" name="month" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
                   </div>
                   <div class="col g-mb-20"><!-- 일 -->
-                    <select id="select_day" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
+                    <select id="select_day" name="day" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
                   </div>
               </div>
               
               <div class="g-mb-20">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 키</label>
-                <input id="height" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="키 입력">
+                <input id="height" name="height" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="키 입력">
               </div>
 				
 			  <div class="g-mb-20">
 			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 몸무게</label>
-                <input id="weight" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="몸무게 입력">
+                <input id="weight" name="weight" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="몸무게 입력">
               </div>
               
 			  <hr class="g-brd-gray-light-v3 mb-3">

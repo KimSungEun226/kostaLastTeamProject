@@ -102,27 +102,27 @@
 
           <tbody class="text-center">
             <tr>
-              <td class="g-width-70 g-color-gray-dark-v4 g-font-weight-600 g-py-15" style="width: 30%">성별</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">성별</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">* 남자</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.gender}</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-70 g-color-gray-dark-v4 g-font-weight-600 g-py-15">연령</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">연령</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">* 1991년 10월 1일</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.year}년 ${cal.month}월 ${cal.day}일</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-70 g-color-gray-dark-v4 g-font-weight-600 g-py-15">키</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">키</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">* 173 cm</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.height}cm</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-70 g-color-gray-dark-v4 g-font-weight-600 g-py-15">몸무게</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">몸무게</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">* 75 kg</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.weight}kg</h4>
               </td>
             </tr>
           </tbody>
@@ -138,7 +138,9 @@
               <li class="text-center my-1">
 				<div class="container"> 
 				  <div class="progress" style="height: 20px">
-					<div class="progress-bar" style="width: 80%; height: 20px"></div>				  
+					<div class="progress-bar" style="width: 55%; height: 20px">			  
+					  <div class="progress-text" style="height: 20px" text-center>${cal.bmi }</div>	
+					</div>				  
 				  </div> 
 				</div>
               </li>
@@ -149,13 +151,13 @@
       <div class="row justify-content-between">
         
 
-        <div class="col-md-7 col-lg-4 align-self-center g-mb-30">
-          <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-right text-uppercase py-4 g-pr-50 mb-3">
-            <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">당신의 비만도(BMI) 지수는 25.1로 “비만” 입니다.</h4>
+        <div class="col-md-7 align-self-center g-mb-30">
+          <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-center text-uppercase py-4 g-pr-50 mb-3" style="width: 80%">
+            <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">당신의 비만도(BMI) 지수는 ${cal.bmi}로 “${cal.group}” 입니다.</h4>
           </div>
         </div>
         <div class="col-md-4 align-self-center g-hidden-sm-down g-mb-30">
-            <button class="btn btn-md u-btn-primary g-font-size-default rounded-0 g-py-10" type="button">메인으로</button>
+            <button class="btn btn-md u-btn-primary g-font-size-default rounded-0 g-py-10" type="button" onclick="location.href='${pageContext.request.contextPath}/'">메인으로</button>
         </div>
       </div><!-- End Total -->
     </section><!-- End Table Striped Rows -->
