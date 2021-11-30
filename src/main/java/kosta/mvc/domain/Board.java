@@ -39,17 +39,18 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_no_seq")
 	@SequenceGenerator(sequenceName = "board_no_seq", allocationSize = 1, name = "board_no_seq")
 	@Column(name = "BOARD_NO")
-	private Long boardNo; //게시판 번호(게시판 카테고리)
+	private Long boardNo; //게시물 번호
+	
+	/**
+	 * 1. 일기(운동/식단) | 2.  질문 및 답변  | 3. 자유 | 4. 지역 | 5. 30일 챌린지 | 6. 운동
+	 * */
+	private int boardKind; 
 	
 	private String boardTitle; //제목
 	
 	@Lob
 	private String boardContent; // 글내용
 	
-	/**
-	 * 1. 일기(운동/식단) | 2.  질문 및 답변  | 3. 자유 | 4. 지역 | 5. 30일 챌린지
-	 * */
-	private int boardKind; //종류 - 게시판 카테고리 자기자신의 기본키를 참조하는 외래키여야 하지 않을까?
 	
 	private String password;
 	
