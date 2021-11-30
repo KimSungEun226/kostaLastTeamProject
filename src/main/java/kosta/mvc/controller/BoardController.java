@@ -1,6 +1,12 @@
 package kosta.mvc.controller;
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,9 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.product.Product;
+import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -22,9 +32,26 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	private final BoardService boardService;
 	
+	/**
+	 * 등록폼
+	 * */
 	@RequestMapping("/write")
 	public void writeForm() {
 		
+	}
+	
+	/**
+	 * 등록하기 
+	 * */
+	@RequestMapping("/insert")
+	public String insert(Board board) {
+		
+		//등록 전에 입력한 데이터에 유효하지 않는 특수문자, script태그 등이 있으면 태그가 아닌 문자열로 변경한다. - 실무에서 filter 적용
+		board.getBoardContent().replace("<", "&lt;");
+				
+		boardService.insert(board);
+				
+		return "redirect:/board/list";
 	}
 	
 	/**

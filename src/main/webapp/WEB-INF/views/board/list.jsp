@@ -7,7 +7,7 @@
 
 <head>
   <!-- Title -->
-  <title>자유게시판</title>
+  <title>커뮤니티 > 전체</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -103,7 +103,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">자유 게시판</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
@@ -115,7 +115,7 @@
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-color-primary">
-            <span>자유게시판</span>
+            <span>전체</span>
           </li>
         </ul>
       </div>
@@ -175,34 +175,7 @@
 
 		
 
-            <!-- Pagination -->
-            <nav id="stickyblock-end" class="text-center" aria-label="Page Navigation">
-              <ul class="list-inline">
-                <li class="list-inline-item float-left g-hidden-xs-down">
-                  <a class="u-pagination-v1__item u-pagination-v1-4 g-brd-gray-light-v3 g-brd-primary--hover g-rounded-50 g-pa-7-16" href="#" aria-label="Previous">
-                    <span aria-hidden="true">
-                      <i class="fa fa-angle-left g-mr-5"></i> Previous
-                    </span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="u-pagination-v1__item u-pagination-v1-4 u-pagination-v1-4--active g-rounded-50 g-pa-7-14" href="#">1</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-14" href="#">2</a>
-                </li>
-                <li class="list-inline-item float-right g-hidden-xs-down">
-                  <a class="u-pagination-v1__item u-pagination-v1-4 g-brd-gray-light-v3 g-brd-primary--hover g-rounded-50 g-pa-7-16" href="#" aria-label="Next">
-                    <span aria-hidden="true">
-                      Next <i class="fa fa-angle-right g-ml-5"></i>
-                    </span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <!-- End Pagination -->
+           
           </div>
         </div>
 
