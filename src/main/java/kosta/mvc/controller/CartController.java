@@ -44,11 +44,15 @@ public class CartController {
 	/**
 	 * 장바구니에 상품 등록
 	 * */
-	/*
-	 * @RequestMapping("/insertCart") public String insertCart(HttpSession session,
-	 * Cart cart) { //회원번호/식별번호, 상품번호 String id = session.getId();
-	 * cartService.insertCart(id, cart); return "redirect:/shop/selectCart"; }
-	 */
+	
+	 @RequestMapping("/insertCart") 
+	 public String insertCart(HttpSession session, Cart cart) { //회원번호/식별번호, 상품번호, 상품수량
+		String id = session.getId();
+		cartService.insertCart(id, cart); 
+
+		return "redirect:/shop/selectCart"; 
+	}
+	 
 	
 	/**
 	 * 장바구니에서 상품번호에 해당하는 상품 삭제
@@ -59,4 +63,5 @@ public class CartController {
 	 * 
 	 * return "redirect:/shop/selectCart"; }
 	 */
+	 
 }

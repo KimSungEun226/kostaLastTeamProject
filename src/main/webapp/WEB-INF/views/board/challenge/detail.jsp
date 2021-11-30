@@ -15,27 +15,101 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/fancybox/jquery.fancybox.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line/css/simple-line-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
 
   <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-core.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-components.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+  
+  <!-- fullCalendar -->
+  <link href='${pageContext.request.contextPath}/fullcalendar/main.css' rel='stylesheet' />
+    
+    <style type="text/css">
+    	.event-image_url{
+    		width:24px;
+    	}
+
+
+    </style>
+    
+    <script src='${pageContext.request.contextPath}/fullcalendar/main.js'></script>
+    
+    <!-- fulllCalendar -->
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          events: [
+            {
+              title: 'smile',
+              start: '2021-11-16',
+              image_url: '${pageContext.request.contextPath}/img/smile.jpg',
+            },
+            {
+              title: '',
+              start: '2021-11-15',
+              image_url: '${pageContext.request.contextPath}/img/x.png',
+            },
+            {
+              title: 'Event',
+              start: '2021-11-17',
+              image_url: '${pageContext.request.contextPath}/img/check.png',
+            },
+            {
+              title: '',
+              start: '2020-09-19',
+              image_url: 'images/demo/event-calendar-3.png',
+            },
+            {
+              title: 'Hello',
+              start: '2020-09-28'
+            },
+          ],
+          eventContent: function(arg) {
+            let arrayOfDomNodes = []
+            // title event
+            let titleEvent = document.createElement('div')
+            if(arg.event._def.title) {
+              titleEvent.innerHTML = arg.event._def.title
+              titleEvent.classList = "fc-event-title fc-sticky"
+            }
+
+            // image event
+            let imgEventWrap = document.createElement('div')
+            if(arg.event.extendedProps.image_url) {
+              let imgEvent = '<img src="'+arg.event.extendedProps.image_url+'" >'
+              imgEventWrap.classList = "fc-event-img"
+              imgEventWrap.innerHTML = imgEvent;
+            }
+
+            arrayOfDomNodes = [ titleEvent,imgEventWrap ]
+
+            return { domNodes: arrayOfDomNodes }
+          },
+        });
+        calendar.render();
+
+     });
+      
+    </script>
 </head>
 
 <body>
@@ -43,7 +117,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">게시물종류/</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">30일 챌린지</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
@@ -55,7 +129,7 @@
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-color-primary">
-            <span>해당 카테고리 챌린지</span>
+            <span>${requestScope.challenge.challengeCategory}</span>
           </li>
         </ul>
       </div>
@@ -71,16 +145,9 @@
             <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2">H</span>${requestScope.board.boardContent}</p>
           </div>
 
-          <div class="row">
-            <div class="col-md-6 g-mb-60">
-              <h3 class="h4 g-color-black g-font-weight-600"><span class="g-font-size-25">01.</span> Mr. Robot</h3>
-              <p>Well, duh. USA's Mr. Robot is probably the most accurate and detailed dramatic portrayal ever made of current hacking practices and hacker culture. Its depiction of the cybersecurity community and its broader meditation on the relationship
-                between humans and technology isn't perfect. (Not to mention that Season 2, which aired this year, had some narrative issues.) But overall the show is compelling and full of delightful references and winks to the cybersecurity subculture.</p>
-            </div>
-            <div class="col-md-6 g-mb-60">
-              <img class="img-fluid" src="../../assets/img-temp/400x270/img3.jpg" alt="Image Description">
-            </div>
-          </div>
+          <!-- fullCalendar start -->
+          <div id='calendar'></div>          
+          <!-- fullCalendar end -->
 
           <div class="row">
             <div class="col-md-6 flex-md-unordered g-mb-60">
