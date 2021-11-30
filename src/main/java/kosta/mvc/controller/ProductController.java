@@ -8,9 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,11 +95,16 @@ public class ProductController {
 	 * 카테고리별 select
 	 * */
 	@RequestMapping("select/{cateCode}")
-	public ModelAndView selectCate(@PathVariable int cateCode) {
+	public ModelAndView selectCate(@PathVariable int cateCode, @RequestParam(defaultValue = "1") int nowPage) {
+		
+		Pageable pageable = PageRequest.of(nowPage-1,3, Direction.DESC, "productDate" );
+		Page<Product> pageList = productService.selectByCateCode(cateCode, pageable);
+		
+		System.out.println(pageList.getSize());
 		
 		
-		List<Product> listByCateCode = productService.selectByCateCode(cateCode);
-		return new ModelAndView("shop/itemView", "list", listByCateCode);
+		return new ModelAndView("shop/itemView", "list", pageList);
+
 	}
 	
 	/**
