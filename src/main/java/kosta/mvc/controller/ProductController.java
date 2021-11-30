@@ -97,14 +97,24 @@ public class ProductController {
 	@RequestMapping("select/{cateCode}")
 	public ModelAndView selectCate(@PathVariable int cateCode, @RequestParam(defaultValue = "1") int nowPage) {
 		
-		Pageable pageable = PageRequest.of(nowPage-1,3, Direction.DESC, "productDate" );
+		Pageable pageable = PageRequest.of(nowPage-1,16, Direction.DESC, "productDate" );
 		Page<Product> pageList = productService.selectByCateCode(cateCode, pageable);
 		
-		System.out.println(pageList.getSize());
+		//상수로 잡자
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("list", pageList);
+		mv.setViewName("shop/itemView");
 		
-		
-		return new ModelAndView("shop/itemView", "list", pageList);
+		return mv;
 
+		
+		
 	}
 	
 	/**
