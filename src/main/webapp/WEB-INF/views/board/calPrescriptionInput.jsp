@@ -14,7 +14,35 @@ $(document).ready(function(){
 	$("#weight").on("keyup", function() {
 		$(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
+	$("#target_weight").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
+	$("#target_weight_date").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
 });
+$('#theForm').submit(function(event){ 
+	event.preventDefault(); 
+	var isSubmit = false; 
+	$.ajax({ 
+		url:'[주소]', 
+		type:'post', 
+		data:$('form').serialize(), 
+		dataType:'json', 
+		async: false, 
+		success:function(data) { 
+			var message = data.message; 
+			if ( message == 'Success' ) { isSubmit = true; } 
+			else { isSubmit = false; } 
+		}, 
+		error:function(request, status, error) { 
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+			isSubmit = false; 
+		}
+		}
+	if ( isSubmit ) this.submit(); 
+});
+
 </script>
 </head>
 <body>
@@ -24,7 +52,7 @@ $(document).ready(function(){
         <div class="col-lg-5 flex-lg-unordered g-mb-80">
           <div class="g-brd-around g-bg-white rounded g-px-30 g-py-50 mb-4">
             <header class="text-center mb-4">
-              <h1 class="h3 g-color-black g-font-weight-400 text-capitalize">나의 BMI 지수 확인</h1>
+              <h1 class="h3 g-color-black g-font-weight-400 text-capitalize">칼로리 처방 받기</h1>
             </header>
 			
 			<hr class="g-brd-gray-light-v3 mb-1">
@@ -32,12 +60,12 @@ $(document).ready(function(){
 			<p align="right" class="g-color-gray-dark-v2 g-font-weight-500">별표(*)는 필수항목입니다.</p>
             
             <!-- Form -->
-            <form class="g-py-15" action="${pageContext.request.contextPath}/bmiOutput" method="post">
+            <form class="g-py-15">
             
 	          <div class="form-group g-mb-20">
 	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
 	              <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-	                <option>-</option>
+	                <option>선택</option>
 	                <option value="First Option">남성</option>
 	                <option value="Second Option">여성</option>
 	              </select>
@@ -66,21 +94,35 @@ $(document).ready(function(){
 			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 몸무게</label>
                 <input id="weight" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="몸무게 입력">
               </div>
+
+			  <div class="g-mb-20">
+			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 목표 몸무게</label>
+                <input id="target_weight" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="목표몸무게 입력">
+              </div>
+
+			  <div class="g-mb-20">
+			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 체중감량 기간</label>
+                <input id="target_weight_date" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="체중감량 개월">
+              </div>
+              
+              <div class="form-group g-mb-20">
+	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 평소 활동량</label>
+	              <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
+	                <option>선택</option>
+	                <option value="Option1">활동안함 (운동을 전혀 안 해요.)</option><br>
+	                <option value="Option2">가벼운 활동 (평소 가벼운 운동이나 스포츠를 즐겨요)</option>
+	                <option value="Option3">보통 활동 (평소 적당한 운동이나 스포츠를 즐겨요.)</option>
+	                <option value="Option4">많은 활동 (평소 강렬한 운동이나 스포츠를 즐겨요.)</option>
+	                <option value="Option5">격심한 활동 (평소 매우 심한 운동을 하거나 육체를 쓰는 직업이예요.)</option>
+	              </select>
+	          </div>
               
 			  <hr class="g-brd-gray-light-v3 mb-3">
 
-              <button class="btn btn-block u-btn-primary rounded g-py-13" type="submit">확인</button>
+              <button class="btn btn-block u-btn-primary rounded g-py-13" type="button">확인</button>
             </form><!-- End Form -->
           </div>
-
-          <div class="text-left">
-            <p class="g-color-gray-dark-v5 mb-0">
-            	비만도 측정(BMI) 이란?<br>
-				나이, 신장(cm)과 체중(kg)만으로 비만을 판정하는 비만 지수
-            </p>
-          </div>
         </div>
-
       </div>
     </section><!-- End Signup -->
 

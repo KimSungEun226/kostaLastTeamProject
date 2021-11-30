@@ -46,7 +46,7 @@
           
           <div class="col-lg-4 g-px-40 g-mb-50 g-mb-0--lg">
             <!-- 칼로리처방 받기 -->
-            <div class="text-center" onclick="location.href='목적지 링크주소(URL)'" style="cursor:pointer;">
+            <div class="text-center" onclick="location.href='${pageContext.request.contextPath}/calPreInput'" style="cursor:pointer;">
               <span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle g-mb-30">
                   <i class="icon-communication-081 u-line-icon-pro"></i>
                 </span>
@@ -57,7 +57,7 @@
 
           <div class="col-lg-4 g-brd-left--lg g-brd-gray-light-v4 g-px-40 g-mb-50 g-mb-0--lg">
             <!-- 나의 BMI 지수는? -->
-            <div class="text-center" onclick="location.href='${pageContext.request.contextPath}/bmi'" style="cursor:pointer;">
+            <div class="text-center" onclick="location.href='${pageContext.request.contextPath}/bmiInput'" style="cursor:pointer;">
               <span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle g-mb-30">
                   <i class="icon-finance-086 u-line-icon-pro"></i>
                 </span>

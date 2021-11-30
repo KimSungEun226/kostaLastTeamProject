@@ -160,7 +160,7 @@
         
         
           <c:otherwise>
-			<c:forEach items="${requestScope.list}" var="product">
+			<c:forEach items="${requestScope.list.content}" var="product">
         
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->

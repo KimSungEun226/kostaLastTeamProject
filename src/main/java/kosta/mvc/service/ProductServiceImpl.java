@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.product.Product;
@@ -33,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> selectByCateCode(int cateCode) {
-		return productRepository.selectByCateCode(cateCode);
+	public Page<Product> selectByCateCode(int cateCode, Pageable pageable) {
+		return productRepository.findByCateCode(cateCode, pageable);
 	}
 
 	@Override
