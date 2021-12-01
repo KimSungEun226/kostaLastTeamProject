@@ -489,7 +489,7 @@
                       <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
                     </a>
                   </div>
-
+				
                   <div id="basket-bar" class="u-basket__bar u-dropdown--css-animation g-text-transform-none g-bg-white g-brd-around g-brd-gray-light-v4 u-dropdown--hidden" aria-labelledby="basket-bar-invoker" style="animation-duration: 300ms;">
                     <div class="g-brd-bottom g-brd-gray-light-v4 g-pa-15 g-mb-10">
                       <span class="d-block h6 text-center text-uppercase mb-0">장바구니</span>
@@ -497,20 +497,20 @@
                     <div class="js-scrollbar g-height-200 mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
                       <!-- Product 장바구니에 담긴 상품 정보 필요 : 썸네일, 상품이름, 상품번호, 가격, 수량, 전체금액 -->
                       <!-- 장바구니 상품 반복문 시작 -->
-                 <%--    <c:choose> --%>
+                    <c:choose>
                     
                      <!-- 장바구니에 담은 상품이 없으면 -->
-				    <%-- <c:when test="${empty requestScope.cartList}">
+				    <c:when test="${empty requestScope.cartList}">
 				       <p align="center"><b><span style="font-size:9pt;">장바구니에 상품이 없습니다.</span></b></p>
-				    </c:when> --%>
+				    </c:when>
 				    
 				     <!-- 장바구니에 상품이 존재하면  -->
-				   <%--  <c:otherwise> 
-                      <c:forEach items="${requestScope.cartList}" var="cart"> --%>
+				    <c:otherwise> 
+                      <c:forEach items="${requestScope.cartList}" var="cart">
                       <div class="u-basket__product g-brd-none g-px-20">
                         <div class="row no-gutters g-pb-5">
                           <div class="col-4 pr-3">
-                            <a class="u-basket__product-img" href="#">
+                            <a class="u-basket__product-img" href="#"><!-- 상품에 해당하는 상세페이지로 이동 -->
                               <img class="img-fluid mCS_img_loaded" src="../assets/img-temp/150x150/img1.jpg" alt="Image Description">
                             </a>
                           </div>
@@ -520,18 +520,19 @@
                             <!-- 상품상세보기로 이동 -->
                               <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#"><%-- ${cartList.productName} --%></a>
                             </h6>
-                            <small class="g-color-primary g-font-size-12">${cartList.cartCount} x ${cartList.price}<%-- ${cart.price} --%></small>
+                            <small class="g-color-primary g-font-size-12">${cart.cartCount} x ${cart.price}<%-- ${cart.price} --%></small>
                           </div>
                         </div>
                         <!-- 상품 장바구니에서 삭제 -->
-                       <%--  <form action="${pageContext.request.contextPath}/shop/deleteCart" method="get"> --%>
+                        <%-- <form action="${pageContext.request.contextPath}/shop/deleteCart" method="get"> --%>
                           <button type="button" class="u-basket__product-remove" <%-- value="${cart.productNo}" --%>>×</button>
-                        <!-- </form> -->
+                       <!--  </form> -->
                       </div>
                       <!-- End Product -->
-                      <%-- </c:forEach>
+                      </c:forEach>
                       </c:otherwise>
-                      </c:choose> --%>
+                      </c:choose>
+                      
                       <!-- 장바구니 상품 반복문 끝 -->
 
                     </div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 91px; max-height: 166px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>

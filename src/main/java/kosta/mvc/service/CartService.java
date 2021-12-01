@@ -13,9 +13,9 @@ public interface CartService {
 	List<Cart> selectCart(String sessionId);
 	
 	/**
-	 * 회원/식별번호에 해당하는 장바구니에 상품등록
+	 * 회원/식별번호에 해당하는 장바구니에 상품 추가
 	 * */
-	void insertCart(String id, Cart cart);
+	void insertCart(String id, Long productNo, int qty);
 
 
 }

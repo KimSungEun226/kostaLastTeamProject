@@ -52,7 +52,7 @@
             </li>
             <li class="list-inline-item g-mr-5">
               <a class="u-link-v5 g-color-text" href="page-checkout-1.html">장바구니</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+             
             </li>
           </ul>
         </div>
@@ -215,7 +215,7 @@
                 <div class="col-md-4 g-mb-30">
                   <!-- Summary -->
                   <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
-                    <h4 class="h6 text-uppercase mb-3">Summary</h4>
+                    <h4 class="h6 text-uppercase mb-3">계산서</h4>
 
                     <!-- Accordion -->
                     <div id="accordion-01" class="mb-4" role="tablist" aria-multiselectable="true">
@@ -242,26 +242,31 @@
                     </div>
                     <!-- End Accordion -->
 
-                    <div class="d-flex justify-content-between mb-2">
-                      <span class="g-color-black">Subtotal</span>
-                      <span class="g-color-black g-font-weight-300">$454.00</span>
+                    <div class="d-flex justify-content-between mb-2 ">
+                      <span class="g-color-black">배송비</span>
+                      <span class="g-color-black g-font-weight-300">3,000원</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                      <span class="g-color-black">Order Total</span>
-                      <span class="g-color-black g-font-weight-300">$454.00</span>
+                      <span class="g-color-black">전체 상품 금액</span>
+                      <span class="g-color-black g-font-weight-300">45,000원</span>
+                    </div>
+                    <p>
+                    <div class="d-flex justify-content-between g-brd-y g-brd-gray-light-v2 py-3"> <!-- g-brd-y g-brd-gray-light-v2 py-3 선으로 테이블 그리기 -->
+                    <span class="g-color-black">예상 결제 금액</span>
+                      <span class="g-color-black g-font-weight-300">48,000원</span>
                     </div>
                   </div>
                   <!-- End Summary -->
 
-                  <button class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button">Update Shopping Cart</button>
-                  <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">Proceed to Checkout</button>
-
-                  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
+                  <button class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
+                  <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
+					
+                 <!--  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
                     <i class="mr-2 fa fa-info-circle"></i>Delivery
-                  </a>
+                  </a> -->
 
                   <!-- Accordion -->
-                  <div id="accordion-02" role="tablist" aria-multiselectable="true">
+                  <!-- <div id="accordion-02" role="tablist" aria-multiselectable="true">
                     <div id="accordion-02-heading-02" role="tab">
                       <h5 class="g-font-weight-400 g-font-size-default mb-0">
                         <a class="g-color-black g-text-underline--none--hover" href="#accordion-02-body-02" data-toggle="collapse" data-parent="#accordion-02" aria-expanded="false" aria-controls="accordion-02-body-02">Apply discount code
@@ -276,7 +281,7 @@
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- End Accordion -->
                 </div>
               </div>
