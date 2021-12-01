@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.sql.Timestamp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,32 +60,22 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
-          events: [
-            {
-              title: 'smile',
-              start: '2021-11-16',
-              image_url: '${pageContext.request.contextPath}/img/smile.jpg',
-            },
-            {
-              title: '',
-              start: '2021-11-15',
-              image_url: '${pageContext.request.contextPath}/img/x.png',
-            },
-            {
-              title: 'Event',
-              start: '2021-11-17',
-              image_url: '${pageContext.request.contextPath}/img/check.png',
-            },
-            {
-              title: '',
-              start: '2020-09-19',
-              image_url: 'images/demo/event-calendar-3.png',
-            },
-            {
-              title: 'Hello',
-              start: '2020-09-28'
-            },
+          events: [ 	  
+        	  //2021-11-30T07:10:32
+        	  <fmt:parseDate var="cntday" value="${requestScope.challenge.challenageDate}" pattern="yyyy-MM-dd"/> 
+        	  //Tue Nov 30 00:00:00 KST 2021
+              <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyyMMdd"/>
+              //2021-11-30
+                                                   
+        	  <c:forEach var='i' begin="0" end="${requestScope.challenge.challengeCnt}" step="1">          	  
+              {
+              	title: '',
+              	start: '${day+i}',
+              	image_url: '${pageContext.request.contextPath}/img/check.png',
+              },
+              </c:forEach>
           ],
+          
           eventContent: function(arg) {
             let arrayOfDomNodes = []
             // title event
@@ -117,7 +110,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">30일 챌린지</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">${day}</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
