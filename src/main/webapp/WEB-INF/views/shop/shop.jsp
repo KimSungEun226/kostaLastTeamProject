@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -443,7 +446,7 @@
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <h2 class="h1 mb-0">닭가슴살</h2>
             </div>
-            <a class="u-link-v2" href="#"></a>
+            <a class="u-link-v2" href="${pageContext.request.contextPath}/shop/select/1"></a>
           </article>
         </div>
 
@@ -452,9 +455,9 @@
             <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/saladmain.png" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <span class="d-block g-color-black">Collections</span>
-              <h2 class="h1 mb-0">Children</h2>
+              <h2 class="h1 mb-0">샐러드</h2>
             </div>
-            <a class="u-link-v2" href="#"></a>
+            <a class="u-link-v2" href="${pageContext.request.contextPath}/shop/select/2"></a>
           </article>
         </div>
 
@@ -465,7 +468,7 @@
               <span class="d-block g-color-black">Collections</span>
               <h2 class="h1 mb-0">프로틴</h2>
             </div>
-            <a class="u-link-v2" href="#"></a>
+            <a class="u-link-v2" href="${pageContext.request.contextPath}/shop/select/3"></a>
           </article>
         </div>
       </div>
@@ -475,21 +478,77 @@
     <!-- Products -->
     <div class="container g-pb-100">
       <div class="text-center mx-auto g-max-width-600 g-mb-50">
-        <h2 class="g-color-black mb-4">Featured Products</h2>
+        <h2 class="g-color-black mb-4">인기 상품</h2>
         <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
       </div>
 
       <div id="carouselCus1" class="js-carousel g-pb-100 g-mx-minus-10"
-           data-infinite="true"
+           data-infinite="false"
            data-slides-show="4"
            data-lazy-load="ondemand"
            data-arrows-classes="u-arrow-v1 g-pos-abs g-bottom-0 g-width-45 g-height-45 g-color-gray-dark-v5 g-bg-secondary g-color-white--hover g-bg-primary--hover rounded"
            data-arrow-left-classes="fa fa-angle-left g-left-10"
            data-arrow-right-classes="fa fa-angle-right g-right-10"
            data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-20 text-center">
-        <div class="js-slide">
+        
+          <c:forEach items="${readNumList}" var="product" >
+          
+          <div class="js-slide">
           <div class="g-px-10">
             <!-- Product -->
+            <figure class="g-pos-rel g-mb-20">
+              <img class="img-fluid" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+
+              <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
+                <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">New Arrival</a>
+              </figcaption>
+            </figure>
+
+            <div class="media">
+              <!-- Product Info -->
+              <div class="d-flex flex-column">
+                <h4 class="h6 g-color-black mb-1">
+                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+                    ${product.productName}
+                  </a>
+                </h4>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
+                <span class="d-block g-color-black g-font-size-17">
+                 <fmt:formatNumber value="${product.price}"/>원
+                </span>
+              </div>
+              <!-- End Product Info -->
+
+              <!-- Products Icons -->
+              <ul class="list-inline media-body text-right">
+                <li class="list-inline-item align-middle mx-0">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
+                     data-toggle="tooltip"
+                     data-placement="top"
+                     title="Add to Cart">
+                    <i class="icon-finance-100 u-line-icon-pro"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item align-middle mx-0">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
+                     data-toggle="tooltip"
+                     data-placement="top"
+                     title="Add to Wishlist">
+                    <i class="icon-medical-022 u-line-icon-pro"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Products Icons -->
+            </div>
+            <!-- End Product -->
+          </div>
+        </div>
+          
+          </c:forEach>
+        
+        <!-- <div class="js-slide">
+          <div class="g-px-10">
+            Product
             <figure class="g-pos-rel g-mb-20">
               <img class="img-fluid" data-lazy="assets/img-temp/480x700/img1.jpg" alt="Image Description">
 
@@ -499,7 +558,7 @@
             </figure>
 
             <div class="media">
-              <!-- Product Info -->
+              Product Info
               <div class="d-flex flex-column">
                 <h4 class="h6 g-color-black mb-1">
                   <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
@@ -509,9 +568,9 @@
                 <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
                 <span class="d-block g-color-black g-font-size-17">$52.00</span>
               </div>
-              <!-- End Product Info -->
+              End Product Info
 
-              <!-- Products Icons -->
+              Products Icons
               <ul class="list-inline media-body text-right">
                 <li class="list-inline-item align-middle mx-0">
                   <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
@@ -530,417 +589,26 @@
                   </a>
                 </li>
               </ul>
-              <!-- End Products Icons -->
+              End Products Icons
             </div>
-            <!-- End Product -->
+            End Product
           </div>
-        </div>
+        </div> -->
 
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img2.jpg" alt="Image Description">
-
-              <span class="u-ribbon-v1 g-width-40 g-height-40 g-color-white g-bg-primary g-font-size-13 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">-40%</span>
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Stylish shirt
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Woman</a>
-                <span class="d-block g-color-black g-font-size-17">$99.00</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img3.jpg" alt="Image Description">
-
-              <figcaption class="w-100 g-bg-lightred text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
-                <span class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1">Sold Out</span>
-              </figcaption>
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Classic jacket
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
-                <span class="d-block g-color-black g-font-size-17">$49.99</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img4.jpg" alt="Image Description">
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Wool lined parka
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Woman</a>
-                <span class="d-block g-color-black g-font-size-17">$82.37</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img5.jpg" alt="Image Description">
-
-              <figcaption class="w-100 g-bg-lightred text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
-                <span class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1">Sold Out</span>
-              </figcaption>
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Hooded jeans
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
-                <span class="d-block g-color-black g-font-size-17">$35.99</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img6.jpg" alt="Image Description">
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Waterproof jacket
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Woman</a>
-                <span class="d-block g-color-black g-font-size-17">$105.99</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img7.jpg" alt="Image Description">
-
-              <span class="u-ribbon-v1 g-width-40 g-height-40 g-color-white g-bg-primary g-font-size-13 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">-40%</span>
-
-              <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
-                <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="#">New Arrival</a>
-              </figcaption>
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Classic T-shirt
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
-                <span class="d-block g-color-black g-font-size-17">$11.00</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
-
-        <div class="js-slide">
-          <div class="g-px-10">
-            <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="assets/img-temp/480x700/img8.jpg" alt="Image Description">
-            </figure>
-
-            <div class="media">
-              <!-- Product Info -->
-              <div class="d-flex flex-column">
-                <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">
-                    Blue skirt
-                  </a>
-                </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Woman</a>
-                <span class="d-block g-color-black g-font-size-17">$34.00</span>
-              </div>
-              <!-- End Product Info -->
-
-              <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Products Icons -->
-            </div>
-            <!-- End Product -->
-          </div>
-        </div>
+        
+        
       </div>
     </div>
     <!-- End Products -->
 
     <!-- Promo Block -->
-    <section class="g-bg-secondary g-pos-rel">
-      <div class="container g-pt-100 g-pb-70">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-md-8 col-lg-6 order-md-2 g-mb-30">
-            <div class="g-pos-rel">
-              <img class="img-fluid w-100" src="assets/img-temp/725x725/img1.png" alt="Image Description">
-              <span class="u-icon-v1 g-width-85 g-height-85 g-brd-3 g-brd-white g-color-white g-bg-primary g-font-weight-300 g-font-size-22 rounded-circle g-pos-abs g-top-100 g-left-0 g-brd-around">
-                <i class="g-font-style-normal">$60
-                  <span class="g-font-size-16">.00</span>
-                </i>
-              </span>
-            </div>
-          </div>
-
-          <div class="col-md-4 order-md-1 g-mb-30">
-            <div class="g-mb-30">
-              <h1 class="g-color-primary g-font-weight-400 g-font-size-40 mb-0">Leather</h1>
-              <h2 class="g-color-dark g-font-weight-300 g-font-size-75 g-line-height-1 mb-4">Gloves</h2>
-              <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth.</p>
-            </div>
-
-            <a class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25 g-mb-70" href="#">Shop Now</a>
-
-            <!-- Countdown -->
-            <div class="text-uppercase">
-              <div class="js-countdown u-countdown-v3 g-line-height-1_3 g-color-black"
-                   data-end-date="2020/12/31"
-                   data-month-format="%m"
-                   data-days-format="%D"
-                   data-hours-format="%H"
-                   data-minutes-format="%M"
-                   data-seconds-format="%S">
-                <div class="d-inline-block text-center g-mx-15 mb-3">
-                  <div class="js-cd-days g-color-lightred g-font-weight-500 g-font-size-15">12</div>
-                  <span class="g-color-gray-dark-v4 g-font-size-11">Days</span>
-                </div>
-
-                <div class="hidden-down d-inline-block align-top g-font-size-15">:</div>
-
-                <div class="d-inline-block text-center g-mx-15 mb-3">
-                  <div class="js-cd-hours g-font-weight-500 g-font-size-15">01</div>
-                  <span class="g-color-gray-dark-v4 g-font-size-11">Hours</span>
-                </div>
-
-                <div class="hidden-down d-inline-block align-top g-font-size-15">:</div>
-
-                <div class="d-inline-block text-center g-mx-15 mb-3">
-                  <div class="js-cd-minutes g-font-weight-500 g-font-size-15">52</div>
-                  <span class="g-color-gray-dark-v4 g-font-size-11">Minutes</span>
-                </div>
-
-                <div class="hidden-down d-inline-block align-top g-font-size-15">:</div>
-
-                <div class="d-inline-block text-center g-mx-15 mb-3">
-                  <div class="js-cd-seconds g-font-weight-500 g-font-size-15">52</div>
-                  <span class="g-color-gray-dark-v4 g-font-size-11">Seconds</span>
-                </div>
-              </div>
-            </div>
-            <!-- End Countdown -->
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- End Promo Block -->
 
     <!-- New Arrivals -->
     <section class="container g-py-100">
       <div class="text-center mx-auto g-max-width-600 g-mb-50">
-        <h2 class="g-color-black mb-4">New Arrivals</h2>
+        <h2 class="g-color-black mb-4">신제품</h2>
         <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
       </div>
 

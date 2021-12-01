@@ -1,8 +1,8 @@
 package kosta.mvc.service;
 
+import java.io.File;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -32,7 +32,39 @@ public class ProductServiceImpl implements ProductService {
 			image.getProduct().setProductNo(dbProduct.getProductNo());
 			productImageRepository.save(image);
 		}
+	}
+	
+	@Override
+	public void update(Product product, String path) {
+        Product dbProduct = productRepository.findById(product.getProductNo()).orElse(null);
+		
+		if(dbProduct==null) throw new RuntimeException("글번호 오류로 수정될 수 없습니다.");
+		
+		
+		
+		//정보수정
+		//dbBoard.setContent(board.getContent().replace("<", "&lt;"));
 
+		dbProduct.setProductName(product.getProductName());
+		dbProduct.setProductContent(product.getProductContent());
+		dbProduct.setPrice(product.getPrice());
+		dbProduct.setStock(product.getStock());
+		
+		//기존에 있던 image들 삭제
+		for(ProductImage image : dbProduct.getProductImageList()) {
+			productImageRepository.deleteById(image.getProductImageNo());
+			new File(path+"/"+image.getProductImageName()).delete();
+		}
+		
+		//새로운이미지 테이블에 등록
+		for(ProductImage image : product.getProductImageList()) {
+			image.getProduct().setProductNo(dbProduct.getProductNo());
+			productImageRepository.save(image);
+		}
+		
+		
+		dbProduct.setProductImageList(product.getProductImageList());
+		
 	}
 
 	@Override
@@ -50,5 +82,13 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productRepository.findById(productNo).orElse(null);
 	}
+
+	@Override
+	public List<Product> selectByReadNum() {
+		List<Product> list = productRepository.selectByReadNum();
+		return list;
+	}
+
+	
 
 }

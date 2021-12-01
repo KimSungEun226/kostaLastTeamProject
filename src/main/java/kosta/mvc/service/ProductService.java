@@ -15,6 +15,11 @@ public interface ProductService {
 	void insert(Product product);
 	
 	/**
+	 * 수정
+	 * */
+	void update(Product product, String path);
+	
+	/**
 	 * 번호에 따른 검색
 	 * :조회수 - state가 true이면 조회수 증가
 	 * */
@@ -26,5 +31,8 @@ public interface ProductService {
 	//List<Product> selectByCateCode(int cateCode);
 	Page<Product> selectByCateCode(int cateCode, Pageable pageable);
 	
-	
+	/**
+	 * 조회수 상위 10개 검색
+	 * */
+	List<Product> selectByReadNum();
 }

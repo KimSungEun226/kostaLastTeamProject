@@ -24,4 +24,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Modifying
 	int readnumUpdate(Long productNo);
 	
+	
+	/**
+	 * 조회수 상위 10개만 가져오기
+	 * */
+	@Query("select p from Product p where rownum<=10 order by p.readNum desc")
+	List<Product> selectByReadNum();
 }
