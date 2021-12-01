@@ -92,7 +92,7 @@ public class ProductController {
 	}
 	
 	/**
-	 * 카테고리별 select
+	 * category select
 	 * */
 	@RequestMapping("select/{cateCode}")
 	public ModelAndView selectCate(@PathVariable int cateCode, @RequestParam(defaultValue = "1") int nowPage) {
@@ -118,12 +118,12 @@ public class ProductController {
 	}
 	
 	/**
-	 * single product select
+	 * single product select(조회수 증가)
 	 * */
 	@RequestMapping("select/single/{productNo}")
 	public ModelAndView selectSingle(@PathVariable Long productNo) {
-		Product product = productService.selectByNo(productNo);
-		//System.out.println(product.getProductName());
+		Product product = productService.selectByNo(productNo, true);
+		
 		return new ModelAndView("shop/single", "product", product);
 	}
 	

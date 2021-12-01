@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>Insert title here</title>
@@ -399,7 +399,7 @@
             <div class="media g-px-50--lg">
               <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 icon-real-estate-048 u-line-icon-pro"></i>
               <div class="media-body">
-                <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">Free Shipping</span>
+                <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">무료 배송</span>
                 <span class="d-block g-color-gray-dark-v4">In 2-3 Days</span>
               </div>
             </div>
@@ -411,7 +411,7 @@
             <div class="media g-px-50--lg">
               <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 icon-real-estate-040 u-line-icon-pro"></i>
               <div class="media-body">
-                <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">Free Returns</span>
+                <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">무료 반품</span>
                 <span class="d-block g-color-gray-dark-v4">No Questions Asked</span>
               </div>
             </div>
@@ -439,10 +439,9 @@
       <div class="row g-mx-minus-10">
         <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
           <article class="u-block-hover">
-            <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="assets/img-temp/650x850/img1.jpg" alt="Image Description">
+            <img class="img-fluid u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/chickenmain.jpg" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
-              <span class="d-block g-color-black">Collections</span>
-              <h2 class="h1 mb-0">Women</h2>
+              <h2 class="h1 mb-0">닭가슴살</h2>
             </div>
             <a class="u-link-v2" href="#"></a>
           </article>
@@ -450,7 +449,7 @@
 
         <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
           <article class="u-block-hover">
-            <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="assets/img-temp/650x850/img2.jpg" alt="Image Description">
+            <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/saladmain.png" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <span class="d-block g-color-black">Collections</span>
               <h2 class="h1 mb-0">Children</h2>
@@ -461,10 +460,10 @@
 
         <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
           <article class="u-block-hover">
-            <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="assets/img-temp/650x850/img3.jpg" alt="Image Description">
+            <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/proteinmain.jpg" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <span class="d-block g-color-black">Collections</span>
-              <h2 class="h1 mb-0">Men</h2>
+              <h2 class="h1 mb-0">프로틴</h2>
             </div>
             <a class="u-link-v2" href="#"></a>
           </article>

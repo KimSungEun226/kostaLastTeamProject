@@ -2,6 +2,7 @@ package kosta.mvc.service;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -40,7 +41,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product selectByNo(Long productNo) {
+	public Product selectByNo(Long productNo, boolean state) {
+		if (state) {
+			if (productRepository.readnumUpdate(productNo) ==0) {
+				throw new RuntimeException("번호 오류로 조회수 증가 실패");
+			}
+		}
+		
 		return productRepository.findById(productNo).orElse(null);
 	}
 

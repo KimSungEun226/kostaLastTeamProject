@@ -425,14 +425,7 @@
       <!-- Details -->
       <div id="details" class="container-fluid g-px-0 g-py-1">
         <div class="row no-gutters g-min-height-100vh justify-content-center">
-          <!-- <div class="col-md-6 align-self-center">
-            <div class="g-width-60x mx-auto g-px-50--lg g-py-100">
-              <span class="d-block g-font-size-12 text-uppercase mb-5">The Details</span>
-              <h2 class="mb-4">High Quality Materials</h2>
-              <p>Dress is the "rain mac" version of our beloved essential the Unify Parka. Crafted from a water resistant fluid memory fabric to create an elegant draped effect when thrown on, this lightweight shell will take you from season to season and protect you from that unexpected shower.</p>
-            </div>
-          </div>
- -->
+          
          <!--   <div class="col-md-6 g-bg-size-cover g-min-height-300" data-bg-img-src="${pageContext.request.contextPath}/save/치즈뿌링클1.jpg"></div> -->
          <span><b><pre>${product.productContent}</pre></b></span></td>
          
@@ -440,12 +433,83 @@
         <img class="img-fluid w-60 g-py-50" src="${pageContext.request.contextPath}/save/defaultimg1.png" alt="Image Description">
         <img class="img-fluid w-60" src="${pageContext.request.contextPath}/save/defaultimg2.png" alt="Image Description">
         
-<%--          <div class="col-md-6 order-md-1 g-bg-size-cover g-min-height-300" data-bg-img-src="${pageContext.request.contextPath}/save/defaultimg1.png"></div>
-         <div class="col-md-6 order-md-1 g-bg-size-cover g-min-height-300" data-bg-img-src="${pageContext.request.contextPath}/save/defaultimg2.png"></div>
- --%>         
-         
+
         </div>
       </div>
+      
+      <!-- Review -->
+      <div class="container">
+        <div class="g-brd-y g-brd-gray-light-v4 g-py-100">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <h2 class="h4 mb-5">Review</h2>
+
+              <!-- Review -->
+              <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
+                <!-- Media -->
+                <div class="media g-mb-30">
+                  <div class="media-body">
+                    <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
+                      <div class="d-block">
+                        <h5 class="h6">James Coolman</h5>
+
+                        <!-- Rating -->
+                        <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+                          <li class="g-color-primary g-line-height-1_4">
+                            <i class="fa fa-star"></i>
+                          </li>
+                          <li class="g-color-primary g-line-height-1_4">
+                            <i class="fa fa-star"></i>
+                          </li>
+                          <li class="g-color-primary g-line-height-1_4">
+                            <i class="fa fa-star"></i>
+                          </li>
+                          <li class="g-color-primary g-line-height-1_4">
+                            <i class="fa fa-star"></i>
+                          </li>
+                          <li class="g-color-primary g-line-height-1_4">
+                            <i class="fa fa-star"></i>
+                          </li>
+                        </ul>
+                        <!-- End Rating -->
+
+                        <span class="d-block g-color-gray-dark-v5 g-font-size-11">June 7, 2017</span>
+                      </div>
+                      <div class="ml-auto">
+                        <a class="u-link-v5 g-color-black g-color-primary--hover g-font-size-12 text-uppercase" href="#">Reply</a>
+                      </div>
+                    </div>
+
+                    <p>The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels. Whether through commerce or just an experience to tell your brand's story, the time has come to start using development languages that fit your projects needs.</p>
+
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-medical-022 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 5
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 1
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- End Review -->
+
+              
+              <!-- End Comment Form -->
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Review -->
+      
       <!-- End Details -->
 
       <!-- Craftmanship -->

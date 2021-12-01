@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.product.Product;
@@ -15,4 +16,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 *  JPQL문법을 이용해서 자바객체기반으로 쿼리를 작성한다.
 	 * */
 	Page<Product> findByCateCode(int cateCode, Pageable pageable);
+	
+	/**
+	 * 조회수 증가
+	 * */
+	@Query("update Product p set p.readNum=p.readNum+1 where p.productNo=?1")
+	@Modifying
+	int readnumUpdate(Long productNo);
+	
 }

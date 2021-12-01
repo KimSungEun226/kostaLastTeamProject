@@ -16,12 +16,15 @@ public interface ProductService {
 	
 	/**
 	 * 번호에 따른 검색
+	 * :조회수 - state가 true이면 조회수 증가
 	 * */
-	Product selectByNo(Long productNo);
+	Product selectByNo(Long productNo, boolean state);
 	
 	/**
 	 * 카테고리별 검색
 	 * */
 	//List<Product> selectByCateCode(int cateCode);
 	Page<Product> selectByCateCode(int cateCode, Pageable pageable);
+	
+	
 }
