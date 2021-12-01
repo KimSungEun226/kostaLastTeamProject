@@ -20,6 +20,12 @@ public interface BoardService {
 		Page<Board> selectAll(Pageable pageable);
 		
 		/**
+		 * 카테고리별 select
+		 * */
+		Page<Board> findByBoardKind(int boardKind, Pageable pageable);
+		
+		
+		/**
 		 * 등록
 		 * */
 		void insert(Board board);

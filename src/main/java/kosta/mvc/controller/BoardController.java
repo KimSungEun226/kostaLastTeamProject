@@ -1,12 +1,5 @@
 package kosta.mvc.controller;
 
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,13 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
-import kosta.mvc.domain.product.Product;
-import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -51,11 +40,11 @@ public class BoardController {
 				
 		boardService.insert(board);
 				
-		return "redirect:/board/list";
+		return "redirect:/board/boardView";
 	}
 	
 	/**
-	 * 게시판 종류별 검색 - 자유게시판
+	 * 전체 커뮤니티 게시물 조회
 	 * */
 	@RequestMapping("/list")
 	public void list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
@@ -73,6 +62,29 @@ public class BoardController {
 		model.addAttribute("blockCount", blockCount);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
+		
+	}
+	
+	/**
+	 * 카테고리별 select 
+	 * */
+	@RequestMapping("/select/{boardKind}")
+	public ModelAndView list(@PathVariable int boardKind, @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
+		
+		//상수로 잡자
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("pageList", boardList);
+		mv.setViewName("board/boardView");
+		//System.out.println(boardList.getSize());
+		return mv;
 		
 	}
 	

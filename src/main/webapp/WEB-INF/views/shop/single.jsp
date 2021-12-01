@@ -41,6 +41,35 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+ <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
+ <script type="text/javascript">
+   $(function(){
+	   
+	   var qty=parseInt($('input[name=pcount]').val());
+	   
+	   $("button[name=addToCart]").click(function(){
+		   $("input[name=quantity]").val(qty);
+		   //alert($("input[name=quantity]").val());
+		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/insertCart");
+		   $("#requestForm").submit();
+		   //alert($('input[name=productNo]').val());
+		   //alert($('input[name=quantity]').val());
+		   alert($("input[name=quantity]").val()+"개가 장바구니에 담겼습니다.");
+	   });
+	   
+ 	   $("i[name=plusQuantity]").click(function(){
+
+			qty+=1;
+	   });
+	   
+	   $("i[name=minusQuantity]").click(function(){
+			qty-=1;
+	   }); 
+	   
+	   
+	   
+   })
+ </script>
   </head>
 
   <body>
@@ -220,28 +249,37 @@
               </div>
               <!-- End Size -->
 
-              <!-- Quantity -->
+              <!-- Quantity 여기랑-->
+              <c:set var="productCount" value="1"/>
+              <fmt:parseNumber value = "${productCount}" integerOnly = "true" var = "pcount"/>
               <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3 g-mb-30" role="tab">
                 <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Quantity</h5>
 
+				
                 <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
-                  <input class="js-result form-control text-center g-font-size-13 rounded-0" type="text" value="1" readonly>
+                  <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0" type="text" value="${pcount}" readonly>
 
                   <div class="input-group-addon d-flex align-items-center g-brd-gray-light-v2 g-width-30 g-bg-white g-font-size-13 rounded-0 g-pa-5">
-                    <i class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
-                    <i class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
+                        
+                        <i name="plusQuantity" class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
+                    	<i name="minusQuantity" class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
                   </div>
                 </div>
               </div>
               <!-- End Quantity -->
 
-              <!-- Buttons -->
+              <!-- Buttons 여기 하는 중.. -->
               <div class="row g-mx-minus-5 g-mb-20">
                 <div class="col g-px-5 g-mb-10">
-                  <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">
+                 <form  name="requestForm" method="post" id="requestForm"> 
+	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
+					 <input type=hidden name="quantity" value=""><!-- quatity -->
+                  <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="addToCart">
                     Add to Cart <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
+                </form>
                 </div>
+                
                 <div class="col g-px-5 g-mb-10">
                   <button class="btn btn-block u-btn-outline-black g-brd-gray-dark-v5 g-brd-black--hover g-color-gray-dark-v4 g-color-white--hover g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">
                     Add to Wishlist <i class="align-middle ml-2 icon-medical-022 u-line-icon-pro"></i>

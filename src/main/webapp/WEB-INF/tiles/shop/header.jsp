@@ -789,9 +789,9 @@
                           <div class="col-8">
                             <h6 class="g-font-weight-400 g-font-size-default">
                             <!-- 상품상세보기로 이동 -->
-                              <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#"><%-- ${cart.productName} --%></a>
+                              <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#"><%-- ${cartList.productName} --%></a>
                             </h6>
-                            <small class="g-color-primary g-font-size-12">${cart.cartCount} x 4000<%-- ${cart.price} --%></small>
+                            <small class="g-color-primary g-font-size-12">${cartList.cartCount} x ${cartList.price}<%-- ${cart.price} --%></small>
                           </div>
                         </div>
                         <!-- 상품 장바구니에서 삭제 -->
