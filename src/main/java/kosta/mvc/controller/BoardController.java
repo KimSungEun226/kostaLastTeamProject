@@ -66,7 +66,7 @@ public class BoardController {
 	}
 	
 	/**
-	 * 카테고리별 select 
+	 * 카테고리별 게시판 이동
 	 * */
 	@RequestMapping("/select/{boardKind}")
 	public ModelAndView list(@PathVariable int boardKind, @RequestParam(defaultValue = "1") int nowPage) {

@@ -141,21 +141,21 @@
           <div class="g-pl-20--lg">
             <!-- Blog Minimal Blocks -->
             <c:forEach items="${requestScope.pageList.content}" var="board">
-            <article class="g-mb-100">
+            <article class="g-mb-50">
               <div class="g-mb-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
-                <h2 class="h4 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">${board.boardTitle}</a>
+                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">${board.boardRegdate}</span>
+                <h2 class="h4 g-color-black g-font-weight-600 mb-3"> 
+                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
                   </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer, you have probably gotten an email from Clark or from InVision at one time or another, but if you’re not familiar with the company.</p>
-                <a class="g-font-size-13" href="#">Read more...</a>
+                <!-- <p class="g-color-gray-dark-v4 g-line-height-1_8"></p> --><!-- 글내용 -->
+                <a class="g-font-size-13" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">Read more...</a>
               </div>
 
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
                       <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                      Alex Teseira
+                      작성자
                     </span>
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
@@ -166,8 +166,8 @@
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
                   <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
-                    <i class="align-middle g-font-size-default mr-1 icon-medical-022 u-line-icon-pro"></i>
-                    57 Likes
+                    <i class="align-middle g-font-size-default mr-1 icon-medical-054 u-line-icon-pro"></i>
+                    ${board.boardReadnum} Views
                   </a>
                 </li>
               </ul>
@@ -232,8 +232,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
-            
-            
+            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
             
           </ul>
         </nav>
@@ -247,25 +246,52 @@
 
         <div class="col-lg-3 order-lg-1 g-brd-right--lg g-brd-gray-light-v4 g-mb-80">
           <div class="g-pr-20--lg">
+          <!-- Start 나의 BMI 지수는? -->
+              <div class="g-mb-50">
+                <!-- <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3> -->
+                <!-- Strat BMI button -->
+                <div class="input-group g-mb-10">
+                    <span class="input-group-btn">
+                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
+                        <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
+                      </button>
+                    </span>
+                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">내 BMI지수 계산하기</button>
+                </div>
+                <!-- End BMI button -->
+                <!-- Strat BMI button -->
+                <div class="input-group">
+                    <span class="input-group-btn">
+                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
+                        <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
+                      </button>
+                    </span>
+                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">칼로리 처방받기</button>
+                </div>
+                <!-- End BMI button -->
+                
+              </div>
+            <!-- End 나의 BMI 지수는? -->
+            <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
             <div class="g-mb-50">
-              <h3 class="h5 g-color-black g-font-weight-600 mb-4">Links</h3>
+              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
               <ul class="list-unstyled g-font-size-13 mb-0">
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> People</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> News Publications</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Marketing &amp; IT</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Business Strategy</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <!-- End Links -->
@@ -343,20 +369,7 @@
               <!-- End Tags -->
 
               <hr class="g-brd-gray-light-v4 g-my-50">
-
-              <!-- Newsletter -->
-              <div class="g-mb-50">
-                <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3>
-                <div class="input-group">
-                  <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-communication-062 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <input class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15" type="email" placeholder="Enter your email ...">
-                </div>
-              </div>
-              <!-- End Newsletter -->
+              
             </div>
           </div>
         </div>

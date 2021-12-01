@@ -4,6 +4,7 @@
  * */
 package kosta.mvc.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class Board {
 	private String password;
 	
 	@CreationTimestamp
-	private LocalDateTime boardRegdate; //등록일
+	private LocalDate boardRegdate; //등록일
 	
 	@UpdateTimestamp
 	private LocalDateTime boardUpdate; //55수정일
