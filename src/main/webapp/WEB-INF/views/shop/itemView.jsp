@@ -146,7 +146,7 @@
         <div class="row g-pt-30 g-mb-50">
         
          <c:choose>
-			<c:when test="${empty requestScope.list}">
+			<c:when test="${empty requestScope.list.content}">
 			  <div class="container text-center g-py-100">
         		<div class="mb-5">
           		<span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">
@@ -165,7 +165,7 @@
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
-            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+            <a href="${pageContext.request.contextPath}/shop/select/singleAdmin/${product.productNo}">
               <img class="img-fluid" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
