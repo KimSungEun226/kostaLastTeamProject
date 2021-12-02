@@ -30,4 +30,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * */
 	@Query("select p from Product p where rownum<=10 order by p.readNum desc")
 	List<Product> selectByReadNum();
+	
+	
+	/**
+	 * 등록일 기준 상위 9개만 가져오기
+	 * */
+	@Query("select p from Product p where rownum<=9 order by p.productDate desc")
+	List<Product> selectByDate();
 }

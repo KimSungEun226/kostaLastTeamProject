@@ -127,6 +127,35 @@
 		    	document.boardWriteForm.submit(); //유효성 검사의 포인트 
 
 	    }
+	    
+	    <!-- 지역게시판 선택시 지역카테고리 나오게  -->
+		$(function(){
+		    
+		    // 질문유형을 선택한다.
+		    chnQnaType('1' , '11');
+		});
+		
+		function chnQnaType(type , select) {
+		    
+		    $('#tagrelNo').empty();
+		    
+		    if(type == '4') { // 지역방 선택
+		    	$('#tagrelNo').append("<option value='2' >서울</option>");
+		        $('#tagrelNo').append("<option value='3' >경기·인천</option>");
+		        $('#tagrelNo').append("<option value='4' >강원도</option>");
+		        $('#tagrelNo').append("<option value='5' >충청도</option>");
+		        $('#tagrelNo').append("<option value='6' >전라도</option>");
+		        $('#tagrelNo').append("<option value='7' >경상도</option>");
+		        $('#tagrelNo').append("<option value='8' >제주도</option>");
+		    } 
+		    document.getElementById("tagrelNo").style.display = "";
+		    
+		    if ($.trim(select) != "") {
+		        $('#boardKind').val(type);
+		        $('#tagrelNo').val(select);
+		    }
+		}
+
     </script>
   </head>
 
@@ -181,16 +210,14 @@
 		                  
 		                  <div class="input-group mb-1">
 		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="제목을 입력하세요.">
-		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onChange="chnQnaType(this.value)">
 		                      <option value="0">카테고리</option>
 		                      <option value="1">일기</option>
 		                      <option value="4">지역방</option>
 		                      <option value="3">자유게시판</option>
-		                      
 		                    </select>
-		
-				       
-		                   
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    </select>
 		                  </div>
                   
 		                  

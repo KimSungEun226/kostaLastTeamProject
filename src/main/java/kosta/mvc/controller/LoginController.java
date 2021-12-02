@@ -22,6 +22,8 @@ public class LoginController {
     public String dispSignup() {
     	return "board/signup";
     }
+    
+    
 
     // 회원가입 처리
     @PostMapping("/signup")
@@ -34,7 +36,14 @@ public class LoginController {
     // 로그인 페이지
     @GetMapping("/login")
     public String dispLogin() {
+    	System.out.println("LgingControllerdㅡ ㅣㅐ햐ㅜ...................");
         return "board/login";
+    }
+    
+    // 쇼핑몰 로그인 페이지
+    @GetMapping("shop/login")
+    public String shopLogin() {
+        return "shop/login";
     }
 
     // 로그인 결과 페이지

@@ -35,8 +35,9 @@ public class ProductController {
 	/**
 	 * 등록폼
 	 * */
-	@RequestMapping("/write")
-	public void write() {
+	@RequestMapping("/admin/write")
+	public String write() {
+		return "shop/write";
 	}
 	
 	/**
