@@ -41,7 +41,7 @@
                <ul class="navbar-nav ml-auto">
                  <!-- Home - Submenu -->
                  <li class="nav-item g-mx-10--lg g-mx-15--xl">
-                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/"><b>EGYM 바로가기</b></a>
+                   <a class="nav-link text-uppercase g-color-primary g-px-15 g-py-20" href="${pageContext.request.contextPath}/main"><b>EGYM 바로가기</b></a>
                  </li>
                  
                  <!-- Categories - Mega Menu -->
@@ -462,7 +462,7 @@
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
                      data-position="right">
-                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/write" aria-haspopup="true" aria-expanded="false">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/write" aria-haspopup="true" aria-expanded="false">
                      <b>등록하기 폼</b>
                    </a>
 
@@ -475,7 +475,7 @@
                  
 			  
                  <li class="nav-item g-ml-10--lg">
-                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/index.html">로그인</a>
+                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/login">로그인</a>
                  </li>
                  
                  <!-- 장바구니 : 회원/비회원 모두 사용 가능 -->  
