@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Board;
-import kosta.mvc.domain.product.Product;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
@@ -20,4 +19,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	
 	
 	Page<Board> findByBoardKind(int boardKind, Pageable pageable);
+	
+	Page<Board> findByTag(Long tagrelNo, Pageable pageable);
+	
 }
