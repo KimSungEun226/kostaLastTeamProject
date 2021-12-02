@@ -93,27 +93,17 @@
                     
                     <!-- 커뮤니티 - 전체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-pricing-1.html">전체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/list">전체</a>
                     </li><!-- End 커뮤니티 - 전체 -->
 
-                    <!-- 커뮤니티 - 일기 -->
-                    <li class="dropdown-item">
-                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">일기</a>
-                    </li><!-- End 커뮤니티 - 일기 -->
-
-                    <!-- 커뮤니티 - 질문 게시판 -->
+					<!-- 커뮤니티 - 자유 게시판 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">질문 게시판</a>
-                    </li><!-- End 커뮤니티 - 질문 게시판 -->
-                    
-                    <!-- 커뮤니티 - 자유 게시판 -->
-                    <li class="dropdown-item ">
-                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">자유 게시판</a>
+                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/board/select/3" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">자유 게시판</a>
                     </li><!-- End 커뮤니티 - 자유 게시판 -->
-
-                    <!-- 커뮤니티 - 지역 게시판 -->
+		
+					<!-- 커뮤니티 - 지역 게시판 -->
                     <li class="dropdown-item hs-has-sub-menu ">
-                      <a id="nav-link--pages--services" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--services">지역 게시판</a>
+                      <a id="nav-link--pages--services" class="nav-link" href="${pageContext.request.contextPath}/board/select/4" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--services">지역 게시판</a>
 
                       <!-- Submenu (level 2) -->
                       <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--services" aria-labelledby="nav-link--pages--services">
@@ -142,7 +132,24 @@
                           <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">해외</a>
                         </li>
                       </ul><!-- End Submenu (level 2) -->
-                    </li><!-- End 커뮤니티 - 지역 게시판 -->
+                    </li><!-- End 커뮤니티 - 지역 게시판 -->	
+
+					<!-- 커뮤니티 - 질문 게시판 -->
+                    <li class="dropdown-item ">
+                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">질문 게시판</a>
+                    </li><!-- End 커뮤니티 - 질문 게시판 -->
+	
+                    <!-- 커뮤니티 - 일기 -->
+                    <li class="dropdown-item">
+                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/select/1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">일기</a>
+                    </li><!-- End 커뮤니티 - 일기 -->
+                    
+                    <!-- 커뮤니티 - 글쓰기 -->
+                    <li class="dropdown-item">
+                      <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/write" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">글쓰기</a>
+                    </li><!-- End 커뮤니티 - 글쓰기 -->
+
+                    
                   </ul>
                 </li><!-- End 커뮤니티 -->
 

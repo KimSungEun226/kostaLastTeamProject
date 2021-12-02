@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -7,13 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kosta.mvc.domain.product.Product;
 import kosta.mvc.service.CertificationService;
 import kosta.mvc.service.EmailCertificationService;
+import kosta.mvc.service.ProductService;
 import lombok.RequiredArgsConstructor;
 
 
@@ -21,13 +25,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IndexController {
 
+	@Autowired
+	ProductService productService;
+	
 	@RequestMapping("/main")
 	public String main() {
 		return "board/main";// /WEB-INF/views/index.jsp이동
 	}
 	
 	@RequestMapping("/shop")
-	public String shop() {
+	public String shop(Model model) {
+		
+		List<Product> list =  productService.selectByReadNum();
+		
+		
+		
+		model.addAttribute("readNumList", list);
 		return "shop/shop";
 	}
 
@@ -49,6 +62,11 @@ public class IndexController {
 	@RequestMapping("/findIdByEmail")
 	public String findIdByEmail() {
 		return "board/findIdByEmail";
+	}
+	
+	@RequestMapping("/myPage")
+	public String myPage() {
+		return "board/myPage";
 	}
 	
 	//회원가입 휴대전화 인증

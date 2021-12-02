@@ -74,6 +74,7 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Board> boardList;
 	
+
 	//회원가입할때
 	@Builder
     public Member(Long memberNo, String memberId, String memberPwd, String memberName, 
@@ -88,4 +89,11 @@ public class Member {
         this.memberBirth = memberBirth;
         this.memberPhone = memberPhone;
     }
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Challenge> challengeList; 
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Reply> replyList; 
+
 }

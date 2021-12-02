@@ -3,24 +3,37 @@ package kosta.mvc.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Reply {
 	
 	@Id
-	private Long replyNum;
-	private String memberNickname;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reply_no_seq")
+	@SequenceGenerator(sequenceName = "reply_no_seq", allocationSize = 1, name = "reply_no_seq")
+	private Long replyNo;
 	private String replyContent;
+	@CreationTimestamp
 	private LocalDateTime replyRegdate;
-	//수정일이 필요할까...?
-	private LocalDateTime replyUpdatedate;
 	private int replyState;
 	private int replyDepth;
 	private int bundleId;
 	private int bundleOrder;
 	private int replySecret;
 	
-	//게시물이랑은 다:1 
-	//회원번호.....??
+	//게시물이랑 다:1
+	@ManyToOne
+	@JoinColumn(name = "board_no")
+	private Board board;
+	//회원번호랑 다:1
+	@ManyToOne
+	@JoinColumn(name = "member_no")
+	private Member member;
 }

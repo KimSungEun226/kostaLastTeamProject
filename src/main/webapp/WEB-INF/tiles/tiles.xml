@@ -19,8 +19,8 @@
  </definition>
  
  
- <!--  뷰의정보가 board/* 인경우 -->
- <definition extends="boardLayout" name="board/*">
+ <!--  뷰의정보가 board/* 인경우 boardLayout.jsp모양으로... -->
+ <definition extends="boardLayout" name="board/**">
    <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp"/>
  </definition>
  

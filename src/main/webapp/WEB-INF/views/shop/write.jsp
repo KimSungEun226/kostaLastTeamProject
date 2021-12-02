@@ -46,6 +46,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
+  
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
@@ -60,17 +61,46 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
     <script type="text/javascript">
-	    function form_check() {
+      $(document).ready(function(){
+    	  
+    	  let count = 1;
+    	  
+    	  $("#btnAdd").click(function(){
+    		  
+    		  if (count <= 2) { 
+	    		  $(".addFile").append(
+	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
 	    	  
+	    		  $(".btnRemove").on("click", function(){
+	        		  $(this).prev().remove();
+	        		  $(this).next().remove();
+	        		  $(this).remove();
+	        		  count-=1;
+	        	  });
+	    		  
+	    		  count+=1;
+    		  }else{
+    			  alert("이미지는 최대 3장");
+    		  }
+    	  });
+    	  
+    	  
+    	  
+    	  
+      });
+    </script>
+    
+    <script type="text/javascript">
+    
+    
+	    function form_check() {
 	    	  var itemName = document.getElementById("productName");
 	    	  var categoryNo = $("#cateCode option:selected");
 	    	  var itemPrice = document.getElementById("price");
 	    	  var itemStock = document.getElementById("stock");	    	
 	    	  var itemDescription = document.getElementById("summernote");
-	    	
-	    	  var mainImg = document.getElementById("mainImg");
-	    	  var detailImg = document.getElementById("detailImg");
-	    	  
+	    	  var mainImg = document.getElementsByName("file");
+
 	    	  
 		    	if ( itemName.value == "" ) {
 		    	    alert( "상품이름을 확인해주세요." );
@@ -91,7 +121,7 @@
 		            return false;
 		        }
 	
-		    	if ( itemStock.value == "" || itemStock.value.length>3) {
+		    	if ( itemStock.value == "" || itemStock.value.length>7) {
 		            alert( "상품 재고수를 확인 주세요." );
 		            itemStock.focus();
 		            return false;
@@ -103,16 +133,15 @@
 		            return false;
 		        }
 
+	
 		    	
-/* 		    	if ( mainImg.value == "" ) {
-		            alert( "메인 이미지를 넣어주세요." );
-		            return false;
-		        }
+		    	for(var i = 0; i < mainImg.length; i++) {
+			    	 if ( mainImg[i].value == "" ) {
+			            alert( "메인 이미지를 넣어주세요." );
+			            return false;
+			         }
+		    	}
 		    	
-		    	if ( detailImg.value == "" ) {
-		            alert( "상품 상세 이미지를 넣어주세요." );
-		            return false;
-		        } */
 		    	
 		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
 
@@ -149,7 +178,7 @@
 
       <!-- Help -->
       <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/insert" enctype="multipart/form-data">
-
+      
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
           <h2 class="mb-5">아이템등록</h2>
@@ -202,6 +231,7 @@
                           <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
                         </tr>
                         
+                        
                         <script>
 							$('#summernote').summernote({
 							placeholder: 'Hello Bootstrap 4',
@@ -210,21 +240,20 @@
 							});
 						</script>
                         
-                        <tr>
-							<td>상품메인이미지 : <input type="file" name="file" id="mainImg" maxlength="60" size="40" accept="image/jpeg, image/png, image/jpg"></td>
-						</tr>
+                       
 
-                        <tr>
-							<td>상품메인이미지 : <input type="file" name="file" id="detailImg" maxlength="60" size="40" accept="image/jpeg, image/png, image/jpg"></td>
-						</tr>
-						
-						
                         
 						
                         <!-- End Item-->
 
                       </tbody>
                     </table>
+                    <br>
+                      <div class="addFile">
+                         <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
+						</div>
+                    <br>
+                    <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
                     
                     <div class="col-md-8 g-mb-30">
 		              
