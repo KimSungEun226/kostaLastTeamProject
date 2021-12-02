@@ -28,7 +28,7 @@ public interface BoardService {
 		/**
 		 * 지역방 지역 카테고리별 select
 		 * */
-		/*Page<Board> findByTag(Long tagrelNo, Pageable pageable);*/
+		Page<Board> findByTag(Long tagrel_no, Pageable pageable);
 		
 		
 		/**

@@ -75,7 +75,7 @@ public class Board {
 	
 	//챌린지번호 다 : 1?
 	@ManyToOne
-	@JoinColumn(name = "challenge_no")
+	@JoinColumn(name = "CHALLENGE_NO")
 	private Challenge challenge;
 		
 	private String memberNickname; //회원 닉네임 다 : 1
