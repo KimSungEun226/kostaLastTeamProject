@@ -34,93 +34,98 @@
 
   <!-- CSS Customization -->
   <link rel="stylesheet" href="../../assets/css/custom.css">
-  <!-- 페이징 css -->
-  <style type="text/css">
-  	.pagination-container {
-		margin: 100px auto;
-		text-align: center;
-	}	
-
-	.pagination {
-		position: relative;
-	}
-	
-	.pagination a {
-		position: relative;
-		display: inline-block;
-		color: #2c3e50;
-		text-decoration: none;
-		font-size: 1.2rem;
-		padding: 8px 16px 10px;
-	}
-	
-	.pagination a:before {
-		z-index: -1;
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		content: "";
-		top: 0;
-		left: 0;
-		background-color: #2c3e50;
-		border-radius: 24px;
-		-webkit-transform: scale(0);
-		transform: scale(0);
-		transition: all 0.2s;
-	}
-	
-	.pagination a:hover, .pagination a .pagination-active {
-		color: #fff;
-	}
-	
-	.pagination a:hover:before, .pagination a .pagination-active:before {
-		-webkit-transform: scale(1);
-		transform: scale(1);
-	}
-	
-	.pagination .pagination-active {
-		color: #fff;
-	}
-	
-	.pagination .pagination-active:before {
-		-webkit-transform: scale(1);
-		transform: scale(1);
-	}
-	
-	.pagination-newer {
-		margin-right: 50px;
-	}
-	
-	.pagination-older {
-		margin-left: 50px;
-	}
-  </style>
+  
 </head>
 
 <body>
   <main>
-
-    <!-- Breadcrumbs -->
-    <section class="g-bg-gray-light-v5 g-py-80">
-      <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
-
-        <ul class="u-list-inline">
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-color-primary">
-            <span>전체</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- End Breadcrumbs -->
+  
+	<c:choose>
+	<c:when test="${boardKind==1}">
+		<section class="g-bg-gray-light-v5 g-py-80">
+	      <div class="container text-center">
+	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 일기</h2>
+	
+	        <ul class="u-list-inline">
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-color-primary">
+	            <span>일기</span>
+	          </li>
+	        </ul>
+	      </div>
+   	   </section>
+	</c:when>
+	<c:when test="${boardKind==3}">
+		<section class="g-bg-gray-light-v5 g-py-80">
+	      <div class="container text-center">
+	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 자유게시판</h2>
+	
+	        <ul class="u-list-inline">
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-color-primary">
+	            <span>자유게시판</span>
+	          </li>
+	        </ul>
+	      </div>
+   	   </section>
+	</c:when>
+	<c:when test="${boardKind==4}">
+		<section class="g-bg-gray-light-v5 g-py-80">
+	      <div class="container text-center">
+	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 지역게시판</h2>
+	
+	        <ul class="u-list-inline">
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-color-primary">
+	            <span>지역게시판</span>
+	          </li>
+	        </ul>
+	      </div>
+   	   </section>
+	</c:when>
+	<c:otherwise>
+		<section class="g-bg-gray-light-v5 g-py-80">
+		      <div class="container text-center">
+		        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
+		
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>전체</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+	</c:otherwise>
+	</c:choose>
 
 	<!-- 게시물 리스트 start -->
 	<c:choose>
@@ -136,21 +141,21 @@
           <div class="g-pl-20--lg">
             <!-- Blog Minimal Blocks -->
             <c:forEach items="${requestScope.pageList.content}" var="board">
-            <article class="g-mb-100">
+            <article class="g-mb-50">
               <div class="g-mb-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
-                <h2 class="h4 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">${board.boardTitle}</a>
+                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">${board.boardRegdate}</span>
+                <h2 class="h4 g-color-black g-font-weight-600 mb-3"> 
+                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
                   </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer, you have probably gotten an email from Clark or from InVision at one time or another, but if you’re not familiar with the company.</p>
-                <a class="g-font-size-13" href="#">Read more...</a>
+                <!-- <p class="g-color-gray-dark-v4 g-line-height-1_8"></p> --><!-- 글내용 -->
+                <a class="g-font-size-13" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">Read more...</a>
               </div>
 
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
                       <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                      Alex Teseira
+                      작성자
                     </span>
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
@@ -161,8 +166,8 @@
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
                   <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
-                    <i class="align-middle g-font-size-default mr-1 icon-medical-022 u-line-icon-pro"></i>
-                    57 Likes
+                    <i class="align-middle g-font-size-default mr-1 icon-medical-054 u-line-icon-pro"></i>
+                    ${board.boardReadnum} Views
                   </a>
                 </li>
               </ul>
@@ -172,34 +177,121 @@
             </c:choose>
             <!-- End Blog Minimal Blocks -->
             <!-- 게시물 리스트 End -->
-
+            
+            
+		 <!-- Pagination -->
+        <nav class="g-mb-100" aria-label="Page Navigation">
+        <ul class="list-inline mb-0">
+         
+          	<c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/board/select?nowPage=${startPage-1}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+            
+		    </c:if>
+          
+          
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+				  
+					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					       <c:set var="doneLoop" value="true"/>
+					    </c:if> 
+				    
+				  <c:if test="${not doneLoop}" >
+				  
+				      <li class="list-inline-item hidden-down">
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/board/select/${boardKind}?nowPage=${i}">${i}</a> 
+		            </li>
+		         </c:if>
+            </c:forEach>
+            
+            
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/board/select/${boardKind}?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+			
+			
+            <!-- <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li> -->
+            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
+            
+          </ul>
+        </nav>
+        <!-- End Pagination -->
 		
 
            
           </div>
         </div>
+        
 
         <div class="col-lg-3 order-lg-1 g-brd-right--lg g-brd-gray-light-v4 g-mb-80">
           <div class="g-pr-20--lg">
+          <!-- Start 나의 BMI 지수는? -->
+              <div class="g-mb-50">
+                <!-- <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3> -->
+                <!-- Strat BMI button -->
+                <div class="input-group g-mb-10">
+                    <span class="input-group-btn">
+                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
+                        <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
+                      </button>
+                    </span>
+                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">내 BMI지수 계산하기</button>
+                </div>
+                <!-- End BMI button -->
+                <!-- Strat BMI button -->
+                <div class="input-group">
+                    <span class="input-group-btn">
+                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
+                        <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
+                      </button>
+                    </span>
+                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">칼로리 처방받기</button>
+                </div>
+                <!-- End BMI button -->
+                
+              </div>
+            <!-- End 나의 BMI 지수는? -->
+            <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
             <div class="g-mb-50">
-              <h3 class="h5 g-color-black g-font-weight-600 mb-4">Links</h3>
+              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
               <ul class="list-unstyled g-font-size-13 mb-0">
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> People</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> News Publications</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Marketing &amp; IT</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
                 </li>
                 <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Business Strategy</a>
+                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <!-- End Links -->
@@ -277,20 +369,7 @@
               <!-- End Tags -->
 
               <hr class="g-brd-gray-light-v4 g-my-50">
-
-              <!-- Newsletter -->
-              <div class="g-mb-50">
-                <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3>
-                <div class="input-group">
-                  <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-communication-062 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <input class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15" type="email" placeholder="Enter your email ...">
-                </div>
-              </div>
-              <!-- End Newsletter -->
+              
             </div>
           </div>
         </div>
@@ -301,43 +380,6 @@
     
 
 
-   	<!-- 페이징 start -->
-			${pageList.hasPrevious()}  /  ${pageList.hasNext()}
-		<div style="text-align: center">
-		
-		<!-- 이전, 다음 표시하기 (한블럭당 페이지 개수 제한) -->
-		<c:set var="doneLoop" value="false"/>
-			\${doneLoop} = ${doneLoop}<p>
-				<!--  블럭당  -->
-		 <nav class="pagination-container">
-			<div class="pagination">
-			<c:set var="doneLoop" value="false"/>
-				
-				  <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
-				      <a class="pagination-newer" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage-1}">PREV</a>
-				  </c:if>
-				  
-						<span class="pagination-inner"> 
-						  <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-						  
-							    <c:if test="${(i-1)>=pageList.getTotalPages()}">
-							       <c:set var="doneLoop" value="true"/>
-							    </c:if> 
-						    
-						  <c:if test="${not doneLoop}" >
-						         <a class="${i==nowPage?'pagination-active':page}" href="${pageContext.request.contextPath}/board/list?nowPage=${i}">${i}</a> 
-						  </c:if>
-						   
-						</c:forEach>
-						</span> 
-						 <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-						     <a class="pagination-older" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage+blockCount}">NEXT</a>
-						 </c:if>
-		
-				</div>
-			</nav>  
-			\${doneLoop} = ${doneLoop}<p>
-			<!-- 페이징 end -->
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
      "bottom": 15,
      "right": 15

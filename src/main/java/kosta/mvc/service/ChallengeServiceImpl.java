@@ -31,4 +31,5 @@ public class ChallengeServiceImpl implements ChallengeService{
 		Challenge c = challengeRepository.save(challenge);
 		System.out.println(c.getChallengeNo()+" | "+c.getChallengeCategory()+" | "+c.getChallengeState());	
 	}
+
 }

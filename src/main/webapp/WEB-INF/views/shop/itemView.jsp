@@ -146,7 +146,7 @@
         <div class="row g-pt-30 g-mb-50">
         
          <c:choose>
-			<c:when test="${empty requestScope.list}">
+			<c:when test="${empty requestScope.list.content}">
 			  <div class="container text-center g-py-100">
         		<div class="mb-5">
           		<span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">
@@ -160,12 +160,12 @@
         
         
           <c:otherwise>
-			<c:forEach items="${requestScope.list}" var="product">
+			<c:forEach items="${requestScope.list.content}" var="product">
         
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
-            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+            <a href="${pageContext.request.contextPath}/shop/select/singleAdmin/${product.productNo}">
               <img class="img-fluid" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
@@ -217,39 +217,74 @@
 
         <hr class="g-mb-60">
 
+
+
+
         <!-- Pagination -->
         <nav class="g-mb-100" aria-label="Page Navigation">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item hidden-down">
-              <a class="active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5" href="#">1</a>
-            </li>
-            <li class="list-inline-item hidden-down">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#">2</a>
-            </li>
-            <li class="list-inline-item g-hidden-xs-down">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#">3</a>
-            </li>
-            <li class="list-inline-item hidden-down">
-              <span class="g-width-30 g-height-30 g-color-gray-dark-v5 g-font-size-12 rounded-circle g-pa-5">...</span>
-            </li>
-            <li class="list-inline-item g-hidden-xs-down">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5" href="#">15</a>
-            </li>
+        <ul class="list-inline mb-0">
+         
+          	<c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/select?nowPage=${startPage-1}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-right"></i>
                 </span>
                 <span class="sr-only">Next</span>
               </a>
             </li>
-            <li class="list-inline-item float-right">
-              <span class="u-pagination-v1__item-info g-color-gray-dark-v4 g-font-size-12 g-pa-5">Page 1 of 15</span>
+            
+		    </c:if>
+          
+          
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+				  
+					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					       <c:set var="doneLoop" value="true"/>
+					    </c:if> 
+				    
+				  <c:if test="${not doneLoop}" >
+				  
+				      <li class="list-inline-item hidden-down">
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/shop/select/${cateCode}?nowPage=${i}">${i}</a> 
+		            </li>
+		         </c:if>
+            </c:forEach>
+            
+            
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/select/${cateCode}?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
             </li>
+			</c:if>
+			
+			
+            <!-- <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li> -->
+            
+            
+            
           </ul>
         </nav>
         <!-- End Pagination -->
-      </div>
+        
+        
+        
+        
+        
+        
       <!-- End Products -->
 
       <!-- Call to Action -->

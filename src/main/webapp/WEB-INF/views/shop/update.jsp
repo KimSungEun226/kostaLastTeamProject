@@ -16,7 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
 
 
     <!-- Favicon -->
@@ -42,27 +43,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
 	
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
-  
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote-lite.css">
-  <!--  -->
-  
-  
+   <!--  -->
+    
     <!-- CSS Unify Theme -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/e-commerce/assets/css/styles.e-commerce.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
+    
+    
+    
     <script type="text/javascript">
       $(document).ready(function(){
-    	  
+    	 
     	  let count = 1;
     	  
     	  $("#btnAdd").click(function(){
@@ -85,10 +87,32 @@
     	  });
     	  
     	  
-    	  
-    	  
       });
     </script>
+    
+   
+
+    
+    <script type="text/javascript">
+    
+	     $(document).ready(function(){
+	    	 $('#summernote').summernote({
+	    			 tabsize: 1,
+			  			height:400
+	    	 }
+	    			 );
+
+	    	var cate = ["닭가슴살", "샐러드", "프로틴"];
+	    	$("#cateCode2").val(cate["${product.cateCode}"-1]);
+	    	
+	    	
+	    	
+	    });
+      
+	  
+    </script>
+    
+    
     
     <script type="text/javascript">
     
@@ -127,7 +151,7 @@
 		            return false;
 		        }
 
-		    	if ( itemDescription.value == "" ) {
+		    	if ( itemDescription.innerHTML == "" ) {
 		            alert( "상품 설명 확인 주세요." );
 		            itemDescription.focus();
 		            return false;
@@ -142,15 +166,20 @@
 			         }
 		    	}
 		    	
+		    	document.getElementById("productContent").value = $('#summernote').summernote('code');
 		    	
-		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
+		    	
+		    	document.itemUpdate_form.submit(); //유효성 검사의 포인트 
 
 	    }
+	
     </script>
   </head>
 
   <body>
 
+
+    
   
     <main>
       <!-- Header -->
@@ -161,27 +190,24 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">요거 묵어봤는감?</a>
+              <a class="u-link-v5 g-color-text" href="#">이짐샵</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">고객센터</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+              <a class="u-link-v5 g-color-text" href="#">아이템 수정</a>
             </li>
-            <li class="list-inline-item g-color-primary">
-              <span>아이템등록</span>
-            </li>
+            
           </ul>
         </div>
       </section>
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/insert" enctype="multipart/form-data">
-      
+      <form name="itemUpdate_form" method="post" action="${pageContext.request.contextPath}/shop/update" enctype="multipart/form-data">
+      <input type="hidden" name="productNo" value="${product.productNo}"/>
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">아이템등록</h2>
+          <h2 class="mb-5">아이템수정</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -199,23 +225,21 @@
 		                  
 		                  
 		                  <div class="input-group mb-1">
-		                    <input id="productName" name="productName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="상품명">
-		                    <select id="cateCode" name="cateCode" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
-		                      <option value="0">카테고리</option>
-		                      <option value="1">닭가슴살</option>
-		                      <option value="2">샐러드</option>
-		                      <option value="3">프로틴</option>
+		                    <input id="productName" name="productName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:70%;" type="text" value="${product.productName}">
+		                    
+
+		                   <input id="cateCode2" name="cateCode2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:15%;" type="text" readonly="readonly" 
+		                   value="${product.cateCode}">
 		                      
-		                    </select>
-		
-				       
-		                   
+		                   <input type="hidden" id="cateCode" name="cateCode" value="${product.cateCode}" />
 		                  </div>
 		                  
 		                  
 		                  <div class="input-group mb-1">
-		                    <input id="price" name="price" placeholder="가격(원 단위)" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >
-		                    <input id="stock" name="stock" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="재고량">
+		                  
+		                  
+		                  <b class="h5 g-color-black my-1">상품 가격:&nbsp;&nbsp;&nbsp;</b>   <input id="price" name="price" value="${product.price}" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >
+		                  <b class="h5 g-color-black my-1">재고량:&nbsp;&nbsp;&nbsp;</b>   <input id="stock" name="stock" value="${product.stock}" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text">
 		                                       
 		                  </div>                  	                  
 		                  
@@ -228,19 +252,17 @@
                         <!-- Item-->
                         
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
+                          <td>
+                          <div id="summernote" >
+                          ${product.productContent}
+                          </div>
+                          </td> 
                         </tr>
+		                <input type="hidden" id="productContent" name="productContent" value=""/>
                         
                         
-                        <script>
-							$('#summernote').summernote({
-							placeholder: 'Hello Bootstrap 4',
-							tabsize: 1,
-							height:200
-							});
-						</script>
-                        
-                       
+                   
+                     
 
                         
 						
@@ -267,7 +289,7 @@
                <!-- Contact Form -->
 		            
 		                <div class="text-center">
-		                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
+		                  <button id="check" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
 		                </div>
 		              
 		              <!-- End Contact Form -->

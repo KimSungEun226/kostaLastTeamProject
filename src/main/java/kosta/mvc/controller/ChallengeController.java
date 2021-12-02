@@ -1,8 +1,16 @@
 package kosta.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
@@ -22,11 +30,26 @@ public class ChallengeController {
 	 
 	
 	/**
-	 * 조회
+	 * 전체 챌린지 
+	 * boardKind == 5
 	 */
-	@RequestMapping("/list/{category}")
-	public void list() {
+	@RequestMapping("/list")
+	public String list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
 		
+		Pageable pageable = PageRequest.of(nowPage-1, 10, Direction.DESC, "boardNo");
+		Page<Board> pageList = boardService.selectAll(pageable);
+		
+		model.addAttribute("pageList", pageList); //뷰쪽으로 전달될 데이터정보
+		
+		int blockCount = 3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage-temp;
+		
+		model.addAttribute("blockCount", blockCount);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+		
+		return "board/challenge/list";
 	}
 	
 	/**
@@ -66,6 +89,20 @@ public class ChallengeController {
 	/**
 	 * 상세보기
 	 */
+	@RequestMapping("/detail/{boardNo}")
+	public ModelAndView detail(@PathVariable Long boardNo, String flag) {
+		boolean state = flag == null;
+		
+		Board board = boardService.selectBy(boardNo, state);
+		Challenge challenge = board.getChallenge();
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/challenge/detail");
+		mv.addObject("board", board);
+		mv.addObject("challenge", challenge);
+		
+		return mv;
+	}
 	
 	/**
 	 * 수정폼
