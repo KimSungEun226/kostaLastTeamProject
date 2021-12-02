@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("#id").focus(function(){
+	$("#memberId").focus(function(){
 		$("#idCheck").show();
 	});
-	$("#nickname").focus(function(){
+	$("#memberNickname").focus(function(){
 		$("#nicknameCheck").show();
 	});
 })
@@ -48,7 +48,7 @@ $(function(){
 $(function(){
 	$("#sendPhoneNumber").click(function(){
 		//alert(11)
-		let phoneNumber = $("#inputPhoneNumber").val();
+		let phoneNumber = $("#memberPhone").val();
 		//alert(phoneNumber);
 		if (phoneNumber == "") {
 			alert("휴대폰 번호를 입력해주세요.");
@@ -77,7 +77,7 @@ $(function(){
 	                              type: "GET",
 	                              url: "/update/phone",
 	                              data: {
-	                                  "phoneNumber" : $('#inputPhoneNumber').val()
+	                                  "phoneNumber" : $('#memberPhone').val()
 	                              }
 	                          }) */
 	                          document.location.href="/";
@@ -112,12 +112,12 @@ $(function(){
 			<p align="right" class="g-color-gray-dark-v2 g-font-weight-500">별표(*)는 필수항목입니다.</p>
             
             <!-- Form -->
-            <form class="g-py-15">
+            <form class="g-py-15" th:action="@{/signup}" method="post">
               
               <div class="row">
                 <div class="col g-mb-15">
                   <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 아이디</label>
-                  <input id="id" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="아이디 입력" autocomplete="off">
+                  <input id="memberId" name="memberId" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="아이디 입력" autocomplete="off">
                 </div>
               </div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idCheck" style="display:none">※ 5~20자의 영문 소문자, 숫자만 사용 가능</div>
@@ -125,43 +125,44 @@ $(function(){
 				
 			  <div class="g-mb-15">
 			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 닉네임</label>
-                <input id="nickname" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="닉네임 입력" autocomplete="off">
+                <input id="memberNickname" name="memberNickname" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="닉네임 입력" autocomplete="off">
               </div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="nicknameCheck" style="display:none">※ 한글(2~8자), 영문(4~16자) 이내 입력</div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idDuplicateCheck" style="display:none">※ 이미 사용중인 닉네임입니다.</div>
               
               <div class="g-mb-10">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 비밀번호</label>
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 입력">
+                <input id="memberPwd" name="memberPwd" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 입력">
               </div>
 
               <div class="g-mb-20">
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 다시 한번 입력">
+                <input id="pwdConfirm" name="pwdConfirm" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 다시 한번 입력">
               </div>
                 
               <div class="row">
               <div class="col g-mb-15">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이름</label>
-                <input id="name" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
+                <input id="memberName" name="memberName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
               </div>
               </div>
                <div class="g-mb-15">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이메일</label>
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
+                <input name="memberEmail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
               </div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheck" style="display:none">※ 올바른 형식의 이메일 주소</div>
               
               <div class="form-group g-mb-20">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">성별</label>
-                <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                  <option>-</option>
-                  <option value="First Option">남성</option>
-                  <option value="Second Option">여성</option>
-                  <option value="Third Option">선택안함</option>
+                <select name="memberGender" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
+                  <option value="0">-</option>
+                  <option value="1">남성</option>
+                  <option value="2">여성</option>
+                  <option value="3">선택안함</option>
                 </select>
               </div>
 
  			  <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">생년월일</label>
+ 			  <input type="hidden" id="memberBirth" name="memberBirth" value=""/>
               <div class="row">
      			  <div class="col-sm-6 g-mb-20">
                     <select id="select_year" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
@@ -170,14 +171,15 @@ $(function(){
                     <select id="select_month" onchange="javascript:lastday();" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
                   </div>
                   <div class="col g-mb-20">
-                    <select id="select_day" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
+                    <select id="select_day" onchange="javascript:onBirth()" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up"></select>
                   </div>
+                  
               </div>
               
               <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 휴대전화</label>
               <div class="row">
                 <div class="col g-mb-10">
-                  <input id="inputPhoneNumber" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15" type="tel" placeholder="휴대전화 번호 입력">
+                  <input id="memberPhone" name="memberPhone" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15" type="tel" placeholder="휴대전화 번호 입력">
                 </div>
                 <div class="col-5 align-self-center text-right g-mb-10">
                   <button id="sendPhoneNumber" class="btn btn-block u-btn-outline-primary rounded g-py-13" type="button">인증번호 받기</button>
@@ -214,17 +216,17 @@ $(function(){
                 </label>
               </div>
 
-              <button id="membershipCompleted" class="btn btn-block u-btn-primary rounded g-py-13" type="button">회원가입</button>
+              <button type="submit" id="membershipCompleted" class="btn btn-block u-btn-primary rounded g-py-13" type="button">회원가입</button>
             </form>
             <!-- End Form -->
           </div>
 
+		<button id="test" onclick="javascript:test();">확인</button>
           <div class="text-center">
             <p class="g-color-gray-dark-v5 mb-0">이미 회원이신가요? <a class="g-font-weight-600" href="page-login-12.html">로그인</a>
             </p>
           </div>
         </div>
-
       </div>
     </section>
     <!-- End Signup -->
@@ -249,14 +251,16 @@ $(function(){
       </div>
     </section>
     <!-- End Call to Action -->
-    
+
+<!-- 생년월일 함수 -->
 <script>
 var start_year="1970";// 시작할 년도 
 var today = new Date(); 
 var today_year= today.getFullYear(); 
 var index=0; 
+var memberBirth = "";
 for(var y=today_year; y>=start_year; y--){ //start_year ~ 현재 년도 
-	document.getElementById('select_year').options[index] = new Option(y, y); 
+	document.getElementById('select_year').options[index] = new Option(y, y); //<option value="1970">1970</option>
 	index++; 
 } 
 index=0; 
@@ -267,21 +271,55 @@ for(var m=1; m<=12; m++){
 lastday();
 
 function lastday(){
-	var Year=document.getElementById('select_year').value;
-	var Month=document.getElementById('select_month').value;
-	var day=new Date(new Date(Year,Month,1)-86400000).getDate();
+	var year=document.getElementById('select_year').value;
+	var month=document.getElementById('select_month').value;
+	var day=new Date(new Date(year,month,1)-86400000).getDate();
 	/* = new Date(new Date(Year,Month,0)).getDate(); */
-	var dayindex_len=document.getElementById('select_day').length;
-	if(day>dayindex_len){ 
-		for(var i=(dayindex_len+1); i<=day; i++){ 
+	let dayIndex_len=document.getElementById('select_day').length;
+	if(day>dayIndex_len){ 
+		for(var i=(dayIndex_len+1); i<=day; i++){ 
 	  		document.getElementById('select_day').options[i-1] = new Option(i, i);
 	  	} 
-	} else if(day<dayindex_len){ 
-		for(var i=dayindex_len; i>=day; i--){ 
+	} else if(day<dayIndex_len){ 
+		for(var i=dayIndex_len; i>=day; i--){ 
 			document.getElementById('select_day').options[i]=null; 
-		} 
+		}
 	}
+	
 }
+
+function onBirth(){
+	var year=document.getElementById('select_year').value;
+	var month=document.getElementById('select_month').value;
+	var day=document.getElementById('select_day').value;
+	
+	document.getElementById('memberBirth').value = year + "/" + month + "/" + day;
+	
+	//console.log(document.getElementById('memberBirth').value);
+}
+
 </script>
+
+<!-- 휴대전화 자동 하이픈(-) 함수 -->
+<script>
+$('#memberPhone').keydown(function(event) {
+    var key = event.charCode || event.keyCode || 0;
+    $text = $(this);
+    if (key !== 8 && key !== 9) {
+        if ($text.val().length === 3) {
+            $text.val($text.val() + '-');
+        }
+        if ($text.val().length === 8) {
+            $text.val($text.val() + '-');
+        }
+    }
+ 
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
+});
+</script>
+
+
+
+
 </body>
 </html>

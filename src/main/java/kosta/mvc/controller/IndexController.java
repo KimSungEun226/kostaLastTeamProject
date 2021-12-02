@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IndexController {
 
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String main() {
 		return "board/main";// /WEB-INF/views/index.jsp이동
 	}
@@ -30,17 +30,7 @@ public class IndexController {
 	public String shop() {
 		return "shop/shop";
 	}
-	
-	@RequestMapping("/login")
-	public String login() {
-		return "board/login";
-	}
-	
-	@RequestMapping("/signup")
-	public String signup() {
-		return "board/signup";
-	}
-	
+
 	@RequestMapping("/tos")
 	public String tos() {
 		return "board/tos";
