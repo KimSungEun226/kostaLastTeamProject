@@ -25,9 +25,9 @@ public class CalorieController {
 	@RequestMapping("/bmiOutput")
 	public ModelAndView bmiOutput(Calorie cal) {
 		System.out.println(cal);
-		Calorie reesult = calorieService.bmiOutput(cal);
+		Calorie result = calorieService.bmiOutput(cal);
 		
-		return new ModelAndView("board/bmiOutput","cal",reesult);
+		return new ModelAndView("board/bmiOutput","cal",result);
 	}
 
 	@RequestMapping("/calPreInput")
@@ -36,8 +36,11 @@ public class CalorieController {
 	}
 
 	@RequestMapping("/calPreOutput")
-	public String calPreOutput() {
-		return "board/calPrescriptionOutput";
+	public ModelAndView calPreOutput(Calorie cal) {
+		System.out.println(cal);
+		Calorie result = calorieService.calPreOutput(cal);
+		
+		return new ModelAndView("board/bmiOutput","cal",result);
 	}
 
 }

@@ -138,8 +138,8 @@
               <li class="text-center my-1">
 				<div class="container"> 
 				  <div class="progress" style="height: 20px">
-					<div class="progress-bar" style="width: 55%; height: 20px">			  
-					  <div class="progress-text" style="height: 20px" text-center>${cal.bmi }</div>	
+					<div class="progress-bar" style="width:${100/35*cal.bmi}%; height: 20px">			  
+					  <div class="progress-text" style="height: 20px" text-center>${cal.bmi}</div>	
 					</div>				  
 				  </div> 
 				</div>

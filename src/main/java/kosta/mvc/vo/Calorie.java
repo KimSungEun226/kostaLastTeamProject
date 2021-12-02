@@ -16,6 +16,9 @@ public class Calorie {
 	private int day;
 	private int height;
 	private int weight;
+	private int targetWeight;
+	private String targetWeightDate;
+	private double activity;
 	
 	private String bmi;
 	private String group;

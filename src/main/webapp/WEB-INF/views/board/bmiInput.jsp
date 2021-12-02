@@ -6,13 +6,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$("#height").on("keyup", function() {
 		$(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
+	
 	$("#weight").on("keyup", function() {
 		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
+	
+	$("button").on("click", function() {
+		let gender = document.querySelector("#gender");
+		let year = document.querySelector("#select_year");
+		let month = document.querySelector("#select_month");
+		let day = document.querySelector("#select_day");
+		let height = document.querySelector("#height");
+		let weight = document.querySelector("#weight");
+	
+		let validateItems = [gender, year, month, day, height, weight];
+		
+		let state=true;
+		$.each(validateItems, function(index, item){
+			if(item.value ===null || item.value ==="" || item.value ==="-"){
+				alert(item.parentNode.querySelector("label").innerHTML+"를 입력해주세요");
+				item.focus();
+				state=false;
+				return false; 
+			}
+		});
+		if(state)$("#bmiSubmit").submit();//전
 	});
 });
 </script>
@@ -32,12 +57,12 @@ $(document).ready(function(){
 			<p align="right" class="g-color-gray-dark-v2 g-font-weight-500">별표(*)는 필수항목입니다.</p>
             
             <!-- Form -->
-            <form class="g-py-15" action="${pageContext.request.contextPath}/bmiOutput" method="post">
+            <form class="g-py-15" id="bmiSubmit" action="${pageContext.request.contextPath}/bmiOutput" method="post">
             
 	          <div class="form-group g-mb-20">
 	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
 	              <select id="gender" name="gender" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-	                <option>-</option>
+	                <option value="-">선택</option>
 	                <option value="남성">남성</option>
 	                <option value="여성">여성</option>
 	              </select>
@@ -66,10 +91,14 @@ $(document).ready(function(){
 			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 몸무게</label>
                 <input id="weight" name="weight" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="몸무게 입력">
               </div>
+              <input type="hidden" name="targetWeight" value="0">
+              <input type="hidden" name="targetWeightDate" value="0">
+              <input type="hidden" name="activity" value="0">
               
 			  <hr class="g-brd-gray-light-v3 mb-3">
 
-              <button class="btn btn-block u-btn-primary rounded g-py-13" type="submit">확인</button>
+              <button class="btn btn-block u-btn-primary rounded g-py-13" type="button">확인</button>
+              
             </form><!-- End Form -->
           </div>
 
