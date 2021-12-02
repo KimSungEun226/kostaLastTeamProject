@@ -30,28 +30,55 @@ public class ChallengeController {
 	 
 	
 	/**
-	 * 전체 챌린지 
+	 * 전체 챌린지 조회
 	 * boardKind == 5
 	 */
 	@RequestMapping("/list")
-	public String list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
+	public ModelAndView list(@RequestParam(defaultValue = "1") int nowPage) {
+		int boardKind = 5;
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
 		
-		Pageable pageable = PageRequest.of(nowPage-1, 10, Direction.DESC, "boardNo");
-		Page<Board> pageList = boardService.selectAll(pageable);
-		
-		model.addAttribute("pageList", pageList); //뷰쪽으로 전달될 데이터정보
-		
-		int blockCount = 3;
+		//상수로 잡자
+		int blockCount=3;
 		int temp = (nowPage-1)%blockCount;
-		int startPage = nowPage-temp;
-		
-		model.addAttribute("blockCount", blockCount);
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		
-		return "board/challenge/list";
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("pageList", boardList);
+		mv.setViewName("board/boardView");
+		return mv;
 	}
 	
+	/**
+	 * 카테고리별 게시판 이동 
+	 * 1. 30일 아침밥 챙기기 | 2. 30일 유산소 운동 | 3. 30일 플랭크 | 4. 30일 전신운동
+	 */
+	@RequestMapping("/select/{challengeCategory}")
+	public ModelAndView categoryList(@PathVariable int challengeCategory, @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1, 5, Direction.DESC, "boardNo" );
+		
+	
+		//Board boardList = challengeService.findByCallengeCategory(challengeCategory, pageable);
+		Page<Board> boardList = challengeService.findByCallengeCategory(challengeCategory, pageable);
+		
+		//상수로 잡자
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("pageList", boardList);
+		mv.setViewName("board/boardView");
+		//System.out.println(boardList.getSize());
+		return mv;
+	}
+	
+	                                                                         
 	/**
 	 * 등록폼
 	 */
@@ -67,6 +94,7 @@ public class ChallengeController {
 	public String insert(Board board, int challengeCategory) {
 		
 		  board.getBoardContent().replace("<", "&lt;");
+		  //Long memberNo = (long)41;
 		  Long memberNo = board.getMember().getMemberNo();
 		  
 		  //진행중인 challenge조회 
@@ -74,11 +102,14 @@ public class ChallengeController {
 				  challengeService.selectChallenge(challengeCategory, memberNo);
 		  if(ischallenge!=null) { 
 			  //진행중인 챌린지가 있다.
+			  int challengeCnt=ischallenge.getChallengeCnt()+1;
+			  ischallenge.setChallengeCnt(challengeCnt);
 			  board.setChallenge(ischallenge);
 			  boardService.insert(board); 
+			  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
-			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
+			  Challenge challenge = new Challenge(null, null, 1, 0, challengeCategory, null, board.getMember());
 			  challengeService.insert(challenge);
 			  board.setChallenge(challenge);
 			  boardService.insert(board);
@@ -87,7 +118,7 @@ public class ChallengeController {
 	}
 	
 	/**
-	 * 상세보기
+	 * 해당 게시물 조회
 	 */
 	@RequestMapping("/detail/{boardNo}")
 	public ModelAndView detail(@PathVariable Long boardNo, String flag) {

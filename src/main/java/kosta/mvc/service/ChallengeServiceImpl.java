@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
@@ -25,11 +27,20 @@ public class ChallengeServiceImpl implements ChallengeService{
 		
 		return challengeRepository.findChallenge(challengeCategory, memberNo);
 	}
-
+	
 	@Override
 	public void insert(Challenge challenge) {
 		Challenge c = challengeRepository.save(challenge);
 		System.out.println(c.getChallengeNo()+" | "+c.getChallengeCategory()+" | "+c.getChallengeState());	
 	}
-
+	
+	/**
+	 * 챌린지 카테고리별 검색
+	 * */
+	
+	  @Override
+	  public Page<Board> findByCallengeCategory(int challengeCategory, Pageable pageable) { 
+		  return challengeRepository.findByChallengeCategory(challengeCategory, pageable); 
+	  }
+	 
 }

@@ -2,6 +2,8 @@ package kosta.mvc.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Board;
@@ -17,6 +19,13 @@ public interface ChallengeService {
 	/**
 	 * 조회
 	 */
+	
+
+	/**
+	 * 챌린지 카테고리별 검색
+	 * */
+	Page<Board> findByCallengeCategory(int challengeCategory, Pageable pageable);
+	
 	
 	/**
 	 * 챌린지 등록하기 
