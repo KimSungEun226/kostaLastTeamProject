@@ -18,5 +18,12 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 	@Modifying //DDL, DML 문장
 	List<Cart> selectCart(String sessionId);
 	
+	/**
+	 * 같은 상품번호에 해당하는 cart 정보가 있는지 조회
+	 * */
+	@Query("select c.cartNo from Cart c inner join c.product p where c.cartValue=?1 and p.productNo=?2")
+	Long doubleCheck(String sessionId, Long productNo);
+	 
+	
 
 }

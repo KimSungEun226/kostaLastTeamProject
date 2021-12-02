@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,6 +38,48 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="../assets/css/custom.css">
+ <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
+ <script type="text/javascript">
+   $(function(){
+	   
+	   var qty=parseInt($('input[name=pcount]').val());
+	   
+/* 	   $("button[name=cartInfo]").click(function(){
+		   $("input[name=quantity]").val(qty);
+		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/insertCart");
+		   $("#requestForm").submit();
+
+	   }); */
+	   
+	   //상품별 합계 구하기
+	   var arr = $('span[name=price]').get();
+	   
+	   for (var i = 0; i <arr.length; i++) {
+		   var price=parseInt($('span[name=price]').html());
+		   alert(arr[i]);
+		   $("span[name=sum]").html(price*qty);
+		   
+
+		   
+		 };
+		 
+		   //수량 변경하면 합계도 같이 변경
+	 	   $("i[name=plusQuantity]").click(function(){
+	 		  	
+				qty+=1;
+				$("span[name=sum]").html(price*qty); 
+		   });
+		   
+		   $("i[name=minusQuantity]").click(function(){
+			    
+				qty-=1;
+				$("span[name=sum]").html(price*qty);
+		   }); 
+		   
+	   
+   })
+ </script>
+    
   </head>
 
   <body>
@@ -51,7 +94,7 @@
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="page-checkout-1.html">장바구니</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/cart">장바구니</a>
              
             </li>
           </ul>
@@ -100,112 +143,81 @@
                   <!-- Products Block -->
                   <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
                     <table class="text-center w-100">
-                      <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                     
+                      
+                      
+                        <!-- Item-->
+                        <!-- 장바구니에 담은 상품이 없으면 -->
+                        <c:choose>
+				    <c:when test="${empty requestScope.cartList}">
+				     <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                        <tr>
+                          <th class="g-font-weight-400 text-left g-pb-20"></th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20"></th>
+                          <th class="g-font-weight-400 g-width-50 g-pb-20"></th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20"></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+				       <p align="center"><b><span style="font-size:9pt;">장바구니에 상품이 없습니다.</span></b></p>
+				    </c:when>
+				    
+				    <c:otherwise> 
+                     
+                      
+                         <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
                         <tr>
                           <th class="g-font-weight-400 text-left g-pb-20">상품</th>
                           <th class="g-font-weight-400 g-width-130 g-pb-20">가격</th>
                           <th class="g-font-weight-400 g-width-50 g-pb-20">수량</th>
-                          <th class="g-font-weight-400 g-width-130 g-pb-20">Total</th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20">합계</th>
                           <th></th>
                         </tr>
                       </thead>
-
-                      <tbody>
-                        <!-- Item-->
+ 					<c:forEach items="${requestScope.cartList}" var="cart">
+                      <tbody name="productList">
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
                           <td class="text-left g-py-25">
-                            <img class="d-inline-block g-width-100 mr-4" src="assets/img-temp/150x150/img6.jpg" alt="Image Description">
+				    
+				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
+                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.productImage.productImageName}" alt="Image Description">
+                            </a>
                             <div class="d-inline-block align-middle">
-                              <h4 class="h6 g-color-black">Sneaker</h4>
+                              <h4 class="h6 g-color-black">${cart.product.productName}</h4>
                               <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
-                                <li>Color: Black</li>
-                                <li>Size: MD</li>
+                                <li>재고량: ${cart.product.stock}</li>
+                                <fmt:parseDate value="${cart.product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                <li>등록일: <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/> </li>
                               </ul>
                             </div>
                           </td>
-                          <td class="g-color-gray-dark-v2 g-font-size-13">$ 87.00</td>
+                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price">${cart.product.price}</span></td>
                           <td>
                             <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
-                              <input class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="text" value="1" readonly>
-
+                            
+                            <c:set var="productCount" value="1"/>
+             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
+                            
+                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="text" value="${pcount}" readonly>
                               <div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
-                                <i class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
-                                <i class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
+                                <i name="plusQuantity" class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
+                                <i name="minusQuantity" class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
                               </div>
                             </div>
                           </td>
                           <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4">$ 87.00</span>
+                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"></span>
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
                               <i class="mt-auto fa fa-trash"></i>
                             </span>
                           </td>
-                        </tr>
+                       
                         <!-- End Item-->
-
-                        <!-- Item-->
-                        <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td class="text-left g-py-25">
-                            <img class="d-inline-block g-width-100 mr-4" src="assets/img-temp/150x150/img3.jpg" alt="Image Description">
-                            <div class="d-inline-block align-middle">
-                              <h4 class="h6 g-color-black">Chukka Shoes</h4>
-                              <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
-                                <li>Color: Black</li>
-                                <li>Size: MD</li>
-                              </ul>
-                            </div>
-                          </td>
-                          <td class="g-color-gray-dark-v2 g-font-size-13">$ 160.00</td>
-                          <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
-                              <input class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="text" value="2" readonly>
-
-                              <div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
-                                <i class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
-                                <i class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4">$ 320.00</span>
-                            <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
-                              <i class="mt-auto fa fa-trash"></i>
-                            </span>
-                          </td>
-                        </tr>
-                        <!-- End Item-->
-
-                        <!-- Item-->
-                        <tr>
-                          <td class="text-left g-pt-25">
-                            <img class="d-inline-block g-width-100 mr-4" src="assets/img-temp/150x150/img7.jpg" alt="Image Description">
-                            <div class="d-inline-block align-middle">
-                              <h4 class="h6 g-color-black">Desk Clock</h4>
-                              <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
-                                <li>Color: Brown Wood</li>
-                                <li>Type: Desk</li>
-                              </ul>
-                            </div>
-                          </td>
-                          <td class="g-color-gray-dark-v2 g-font-size-13">$ 47.00</td>
-                          <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
-                              <input class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="text" value="1" readonly>
-
-                              <div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
-                                <i class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
-                                <i class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4">$ 47.00</span>
-                            <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
-                              <i class="mt-auto fa fa-trash"></i>
-                            </span>
-                          </td>
-                        </tr>
-                        <!-- End Item -->
+                        </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
+						 </tr>
+                       
                       </tbody>
                     </table>
                   </div>
@@ -257,8 +269,14 @@
                     </div>
                   </div>
                   <!-- End Summary -->
-
-                  <button class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
+					
+					
+				  <form  name="requestForm" method="post" id="requestForm"> 
+	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
+					 <input type=hidden name="quantity" value=""><!-- quantity -->	
+                  <button name="cartInfo" class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
+                  </form>
+                  
                   <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
 					
                  <!--  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
@@ -296,14 +314,14 @@
                   <div class="row">
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">First Name</label>
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">주문자명</label>
                         <input id="inputGroup4" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="firstName" type="text" placeholder="Alexander" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
 
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Last Name</label>
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">받는 분</label>
                         <input id="inputGroup5" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="lastName" type="text" placeholder="Teseira" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
@@ -312,358 +330,75 @@
                   <div class="row">
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Email Address</label>
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">메일주소</label>
                         <input id="inputGroup6" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="email" type="email" placeholder="alex@gmail.com" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
-
+                    
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Company</label>
-                        <input id="inputGroup7" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="company" type="text" placeholder="Pixeel Ltd.">
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">연락처</label>
+                        <input id="inputGroup10" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="phoneNumber" type="text" placeholder="+01 (00) 555 666 77" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
                   </div>
 
+
                   <div class="row">
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">State/Province</label>
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">지역</label>
                         <input id="inputGroup8" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="stateProvince" type="text" placeholder="London" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
 
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Zip/Postal Code</label>
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">우편번호</label>
                         <input id="inputGroup9" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="zip" type="text" placeholder="AB123" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Country</label>
-                        <select class="js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-light-v1 g-py-12" style="width: 100%;" data-placeholder="Choose your Country" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                          <option></option>
-                          <option value="AF">Afghanistan</option>
-                          <option value="AX">Åland Islands</option>
-                          <option value="AL">Albania</option>
-                          <option value="DZ">Algeria</option>
-                          <option value="AS">American Samoa</option>
-                          <option value="AD">Andorra</option>
-                          <option value="AO">Angola</option>
-                          <option value="AI">Anguilla</option>
-                          <option value="AQ">Antarctica</option>
-                          <option value="AG">Antigua and Barbuda</option>
-                          <option value="AR">Argentina</option>
-                          <option value="AM">Armenia</option>
-                          <option value="AW">Aruba</option>
-                          <option value="AU">Australia</option>
-                          <option value="AT">Austria</option>
-                          <option value="AZ">Azerbaijan</option>
-                          <option value="BS">Bahamas</option>
-                          <option value="BH">Bahrain</option>
-                          <option value="BD">Bangladesh</option>
-                          <option value="BB">Barbados</option>
-                          <option value="BY">Belarus</option>
-                          <option value="BE">Belgium</option>
-                          <option value="BZ">Belize</option>
-                          <option value="BJ">Benin</option>
-                          <option value="BM">Bermuda</option>
-                          <option value="BT">Bhutan</option>
-                          <option value="BO">Bolivia, Plurinational State of</option>
-                          <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                          <option value="BA">Bosnia and Herzegovina</option>
-                          <option value="BW">Botswana</option>
-                          <option value="BV">Bouvet Island</option>
-                          <option value="BR">Brazil</option>
-                          <option value="IO">British Indian Ocean Territory</option>
-                          <option value="BN">Brunei Darussalam</option>
-                          <option value="BG">Bulgaria</option>
-                          <option value="BF">Burkina Faso</option>
-                          <option value="BI">Burundi</option>
-                          <option value="KH">Cambodia</option>
-                          <option value="CM">Cameroon</option>
-                          <option value="CA">Canada</option>
-                          <option value="CV">Cape Verde</option>
-                          <option value="KY">Cayman Islands</option>
-                          <option value="CF">Central African Republic</option>
-                          <option value="TD">Chad</option>
-                          <option value="CL">Chile</option>
-                          <option value="CN">China</option>
-                          <option value="CX">Christmas Island</option>
-                          <option value="CC">Cocos (Keeling) Islands</option>
-                          <option value="CO">Colombia</option>
-                          <option value="KM">Comoros</option>
-                          <option value="CG">Congo</option>
-                          <option value="CD">Congo, the Democratic Republic of the</option>
-                          <option value="CK">Cook Islands</option>
-                          <option value="CR">Costa Rica</option>
-                          <option value="CI">Côte d'Ivoire</option>
-                          <option value="HR">Croatia</option>
-                          <option value="CU">Cuba</option>
-                          <option value="CW">Curaçao</option>
-                          <option value="CY">Cyprus</option>
-                          <option value="CZ">Czech Republic</option>
-                          <option value="DK">Denmark</option>
-                          <option value="DJ">Djibouti</option>
-                          <option value="DM">Dominica</option>
-                          <option value="DO">Dominican Republic</option>
-                          <option value="EC">Ecuador</option>
-                          <option value="EG">Egypt</option>
-                          <option value="SV">El Salvador</option>
-                          <option value="GQ">Equatorial Guinea</option>
-                          <option value="ER">Eritrea</option>
-                          <option value="EE">Estonia</option>
-                          <option value="ET">Ethiopia</option>
-                          <option value="FK">Falkland Islands (Malvinas)</option>
-                          <option value="FO">Faroe Islands</option>
-                          <option value="FJ">Fiji</option>
-                          <option value="FI">Finland</option>
-                          <option value="FR">France</option>
-                          <option value="GF">French Guiana</option>
-                          <option value="PF">French Polynesia</option>
-                          <option value="TF">French Southern Territories</option>
-                          <option value="GA">Gabon</option>
-                          <option value="GM">Gambia</option>
-                          <option value="GE">Georgia</option>
-                          <option value="DE">Germany</option>
-                          <option value="GH">Ghana</option>
-                          <option value="GI">Gibraltar</option>
-                          <option value="GR">Greece</option>
-                          <option value="GL">Greenland</option>
-                          <option value="GD">Grenada</option>
-                          <option value="GP">Guadeloupe</option>
-                          <option value="GU">Guam</option>
-                          <option value="GT">Guatemala</option>
-                          <option value="GG">Guernsey</option>
-                          <option value="GN">Guinea</option>
-                          <option value="GW">Guinea-Bissau</option>
-                          <option value="GY">Guyana</option>
-                          <option value="HT">Haiti</option>
-                          <option value="HM">Heard Island and McDonald Islands</option>
-                          <option value="VA">Holy See (Vatican City State)</option>
-                          <option value="HN">Honduras</option>
-                          <option value="HK">Hong Kong</option>
-                          <option value="HU">Hungary</option>
-                          <option value="IS">Iceland</option>
-                          <option value="IN">India</option>
-                          <option value="ID">Indonesia</option>
-                          <option value="IR">Iran, Islamic Republic of</option>
-                          <option value="IQ">Iraq</option>
-                          <option value="IE">Ireland</option>
-                          <option value="IM">Isle of Man</option>
-                          <option value="IL">Israel</option>
-                          <option value="IT">Italy</option>
-                          <option value="JM">Jamaica</option>
-                          <option value="JP">Japan</option>
-                          <option value="JE">Jersey</option>
-                          <option value="JO">Jordan</option>
-                          <option value="KZ">Kazakhstan</option>
-                          <option value="KE">Kenya</option>
-                          <option value="KI">Kiribati</option>
-                          <option value="KP">Korea, Democratic People's Republic of</option>
-                          <option value="KR">Korea, Republic of</option>
-                          <option value="KW">Kuwait</option>
-                          <option value="KG">Kyrgyzstan</option>
-                          <option value="LA">Lao People's Democratic Republic</option>
-                          <option value="LV">Latvia</option>
-                          <option value="LB">Lebanon</option>
-                          <option value="LS">Lesotho</option>
-                          <option value="LR">Liberia</option>
-                          <option value="LY">Libya</option>
-                          <option value="LI">Liechtenstein</option>
-                          <option value="LT">Lithuania</option>
-                          <option value="LU">Luxembourg</option>
-                          <option value="MO">Macao</option>
-                          <option value="MK">Macedonia, the former Yugoslav Republic of</option>
-                          <option value="MG">Madagascar</option>
-                          <option value="MW">Malawi</option>
-                          <option value="MY">Malaysia</option>
-                          <option value="MV">Maldives</option>
-                          <option value="ML">Mali</option>
-                          <option value="MT">Malta</option>
-                          <option value="MH">Marshall Islands</option>
-                          <option value="MQ">Martinique</option>
-                          <option value="MR">Mauritania</option>
-                          <option value="MU">Mauritius</option>
-                          <option value="YT">Mayotte</option>
-                          <option value="MX">Mexico</option>
-                          <option value="FM">Micronesia, Federated States of</option>
-                          <option value="MD">Moldova, Republic of</option>
-                          <option value="MC">Monaco</option>
-                          <option value="MN">Mongolia</option>
-                          <option value="ME">Montenegro</option>
-                          <option value="MS">Montserrat</option>
-                          <option value="MA">Morocco</option>
-                          <option value="MZ">Mozambique</option>
-                          <option value="MM">Myanmar</option>
-                          <option value="NA">Namibia</option>
-                          <option value="NR">Nauru</option>
-                          <option value="NP">Nepal</option>
-                          <option value="NL">Netherlands</option>
-                          <option value="NC">New Caledonia</option>
-                          <option value="NZ">New Zealand</option>
-                          <option value="NI">Nicaragua</option>
-                          <option value="NE">Niger</option>
-                          <option value="NG">Nigeria</option>
-                          <option value="NU">Niue</option>
-                          <option value="NF">Norfolk Island</option>
-                          <option value="MP">Northern Mariana Islands</option>
-                          <option value="NO">Norway</option>
-                          <option value="OM">Oman</option>
-                          <option value="PK">Pakistan</option>
-                          <option value="PW">Palau</option>
-                          <option value="PS">Palestinian Territory, Occupied</option>
-                          <option value="PA">Panama</option>
-                          <option value="PG">Papua New Guinea</option>
-                          <option value="PY">Paraguay</option>
-                          <option value="PE">Peru</option>
-                          <option value="PH">Philippines</option>
-                          <option value="PN">Pitcairn</option>
-                          <option value="PL">Poland</option>
-                          <option value="PT">Portugal</option>
-                          <option value="PR">Puerto Rico</option>
-                          <option value="QA">Qatar</option>
-                          <option value="RE">Réunion</option>
-                          <option value="RO">Romania</option>
-                          <option value="RU">Russian Federation</option>
-                          <option value="RW">Rwanda</option>
-                          <option value="BL">Saint Barthélemy</option>
-                          <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
-                          <option value="KN">Saint Kitts and Nevis</option>
-                          <option value="LC">Saint Lucia</option>
-                          <option value="MF">Saint Martin (French part)</option>
-                          <option value="PM">Saint Pierre and Miquelon</option>
-                          <option value="VC">Saint Vincent and the Grenadines</option>
-                          <option value="WS">Samoa</option>
-                          <option value="SM">San Marino</option>
-                          <option value="ST">Sao Tome and Principe</option>
-                          <option value="SA">Saudi Arabia</option>
-                          <option value="SN">Senegal</option>
-                          <option value="RS">Serbia</option>
-                          <option value="SC">Seychelles</option>
-                          <option value="SL">Sierra Leone</option>
-                          <option value="SG">Singapore</option>
-                          <option value="SX">Sint Maarten (Dutch part)</option>
-                          <option value="SK">Slovakia</option>
-                          <option value="SI">Slovenia</option>
-                          <option value="SB">Solomon Islands</option>
-                          <option value="SO">Somalia</option>
-                          <option value="ZA">South Africa</option>
-                          <option value="GS">South Georgia and the South Sandwich Islands</option>
-                          <option value="SS">South Sudan</option>
-                          <option value="ES">Spain</option>
-                          <option value="LK">Sri Lanka</option>
-                          <option value="SD">Sudan</option>
-                          <option value="SR">Suriname</option>
-                          <option value="SJ">Svalbard and Jan Mayen</option>
-                          <option value="SZ">Swaziland</option>
-                          <option value="SE">Sweden</option>
-                          <option value="CH">Switzerland</option>
-                          <option value="SY">Syrian Arab Republic</option>
-                          <option value="TW">Taiwan, Province of China</option>
-                          <option value="TJ">Tajikistan</option>
-                          <option value="TZ">Tanzania, United Republic of</option>
-                          <option value="TH">Thailand</option>
-                          <option value="TL">Timor-Leste</option>
-                          <option value="TG">Togo</option>
-                          <option value="TK">Tokelau</option>
-                          <option value="TO">Tonga</option>
-                          <option value="TT">Trinidad and Tobago</option>
-                          <option value="TN">Tunisia</option>
-                          <option value="TR">Turkey</option>
-                          <option value="TM">Turkmenistan</option>
-                          <option value="TC">Turks and Caicos Islands</option>
-                          <option value="TV">Tuvalu</option>
-                          <option value="UG">Uganda</option>
-                          <option value="UA">Ukraine</option>
-                          <option value="AE">United Arab Emirates</option>
-                          <option value="GB">United Kingdom</option>
-                          <option value="US">United States</option>
-                          <option value="UM">United States Minor Outlying Islands</option>
-                          <option value="UY">Uruguay</option>
-                          <option value="UZ">Uzbekistan</option>
-                          <option value="VU">Vanuatu</option>
-                          <option value="VE">Venezuela, Bolivarian Republic of</option>
-                          <option value="VN">Viet Nam</option>
-                          <option value="VG">Virgin Islands, British</option>
-                          <option value="VI">Virgin Islands, U.S.</option>
-                          <option value="WF">Wallis and Futuna</option>
-                          <option value="EH">Western Sahara</option>
-                          <option value="YE">Yemen</option>
-                          <option value="ZM">Zambia</option>
-                          <option value="ZW">Zimbabwe</option>
-                        </select>
-                      </div>
-                    </div>
+                  
 
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">Phone Number</label>
-                        <input id="inputGroup10" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="phoneNumber" type="text" placeholder="+01 (00) 555 666 77" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                      </div>
-                    </div>
-                  </div>
+
 
                   <hr class="g-mb-50">
 
-                  <h4 class="h6 text-uppercase mb-5">Shipping method</h4>
+                  <h4 class="h6 text-uppercase mb-5">배송 상세 정보</h4>
 
                   <!-- Shipping Mehtod -->
                   <table class="mb-5">
                     <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-gray-dark-v3 g-font-size-13">
                       <tr>
-                        <th class="g-width-70 g-font-weight-500 g-pa-0 g-pb-10">Destination</th>
-                        <th class="g-width-110 g-font-weight-500 g-pa-0 g-pb-10">Delivery type</th>
-                        <th class="g-width-150 g-font-weight-500 g-pa-0 g-pb-10">Delivery time</th>
-                        <th class="g-width-70 g-font-weight-500 text-right g-pa-0 g-pb-10">Cost</th>
+                        <th class="g-width-70 g-font-weight-500 g-pa-0 g-pb-10">배송지</th>
+                        <th class="g-width-150 g-font-weight-500 g-pa-0 g-pb-10">배송 소요시간</th>
+                        <th class="g-width-70 g-font-weight-500 text-right g-pa-0 g-pb-10">배송비</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">UK</td>
-                        <td class="align-top g-py-10">Standard delivery</td>
-                        <td class="align-top g-py-10">2-3 Working days</td>
-                        <td class="align-top text-right g-py-10">$5.5</td>
+                        <td class="align-top g-py-10">서울·경기</td>
+                        <td class="align-top g-py-10">2-3일 소요</td>
+                        <td class="align-top text-right g-py-10"><fmt:formatNumber>2500</fmt:formatNumber></td>
                       </tr>
                       <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10"></td>
-                        <td class="align-top g-py-10">Next day</td>
-                        <td class="align-top g-py-10">Order before 12pm monday - thursday and receive it the next day</td>
-                        <td class="align-top text-right g-py-10">$9.5</td>
-                      </tr>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10"></td>
-                        <td class="align-top g-py-10">Saturday delivery</td>
-                        <td class="align-top g-py-10">Saturday delivery for orders placed before 12pm on friday</td>
-                        <td class="align-top text-right g-py-10">$12.00</td>
-                      </tr>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">Europe</td>
-                        <td class="align-top g-py-10">Standard delivery</td>
-                        <td class="align-top g-py-10">3-9 Working days</td>
-                        <td class="align-top text-right g-py-10">$20.00</td>
-                      </tr>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">America</td>
-                        <td class="align-top g-py-10">Standard delivery</td>
-                        <td class="align-top g-py-10">3-9 Working days</td>
-                        <td class="align-top text-right g-py-10">$25.00</td>
+                        <td class="align-top g-py-10">제주·산간지역</td>
+                        <td class="align-top g-py-10">3-5일 소요</td>
+                        <td class="align-top text-right g-py-10"><fmt:formatNumber>3000</fmt:formatNumber></td>
                       </tr>
                     </tbody>
                   </table>
                   <!-- End Shipping Mehtod -->
 
-                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step3">Proceed to Payment</button>
+                 
                 </div>
 
                 <div class="col-md-4 g-mb-30">
                   <!-- Order Summary -->
                   <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
-                    <h4 class="h6 text-uppercase mb-3">Order summary</h4>
+                    <h4 class="h6 text-uppercase mb-3">주문 요약</h4>
 
                     <!-- Accordion -->
                     <div id="accordion-03" class="mb-4" role="tablist" aria-multiselectable="true">
@@ -727,19 +462,26 @@
                     <!-- End Accordion -->
 
                     <div class="d-flex justify-content-between mb-2">
-                      <span class="g-color-black">Subtotal</span>
-                      <span class="g-color-black g-font-weight-300">$454.00</span>
+                      <span class="g-color-black">배송비</span>
+                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber>3000</fmt:formatNumber></span>
                     </div>
                     <div class="d-flex justify-content-between">
-                      <span class="g-color-black">Order Total</span>
+                      <span class="g-color-black">결제 금액</span>
                       <span class="g-color-black g-font-weight-300">$459.5</span>
                     </div>
+                 
                   </div>
+                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step3">결제하러 가기</button>
+                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
                   <!-- End Order Summary -->
                 </div>
+                 
+                
               </div>
             </div>
             <!-- End Shipping -->
+            
+            
 
             <!-- Payment & Review -->
             <div id="step3">

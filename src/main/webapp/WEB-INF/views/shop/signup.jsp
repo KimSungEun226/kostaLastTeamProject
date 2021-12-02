@@ -6,258 +6,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<style>
-  #idDuplicateCheckOk, #nicknameDuplicateCheckOk, #pwdCheckOk, #pwdConfirmCheckOk {
-    color : green;
-    display : none;
-  }
-  #idDuplicateCheckFail, #nicknameDuplicateCheckFail, #pwdConfirmCheckFail, #nameCheckFail {
-    color : red;
-    display : none;
-  }
-</style>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(function(){
 	$("#memberId").focus(function(){
-		$("#memberId").css("outline", "1px solid red");
 		$("#idCheck").show();
 	});
-	$("#memberId").blur(function(){
-		$("#memberId").css("outline", "none");
-	});
 	$("#memberNickname").focus(function(){
-		$("#memberNickname").css("outline", "1px solid red");
 		$("#nicknameCheck").show();
 	});
-	$("#memberNickname").blur(function(){
-		$("#memberNickname").css("outline", "none");
-	});
-	$("#memberPwd").focus(function(){
-		$("#memberPwd").css("outline", "1px solid red");
-		$("#pwdCheck").show();
-	});
-	$("#memberPwd").blur(function(){
-		$("#memberPwd").css("outline", "none");
-	});
-	$("#memberPwdConfirm").focus(function(){
-		$("#memberPwdConfirm").css("outline", "1px solid red");
-	});
-	$("#memberPwdConfirm").blur(function(){
-		$("#memberPwdConfirm").css("outline", "none");
-	});
-	$("#memberName").focus(function(){
-		$("#memberName").css("outline", "1px solid red");
-	});
-	$("#memberName").blur(function(){
-		memberName = $("#memberName").val();	
-	
-		$("#memberName").css("outline", "none");
-		
-		var nameChk = /^()[가-힣a-zA-Z\s]{3,16}$/;
-		if(memberName == ""){
-			$("#nameCheckFail").hide();
-		}else{
-			if(!nameChk.test(memberName)){
-				$("#nameCheckFail").show();
-			}else{
-				$("#nameCheckFail").hide();
-			}
-		}
-		
-		
-	});
-	
-	
-	$("#memberId").on("propertychange change keyup paste input", function(){
-
-		//console.log("keyup 테스트");	
-		var memberId = $("#memberId").val();
-		var idChk = /^[a-zA-Z0-9]{5,20}$/;
-
-		if(memberId == ""){
-			$("#idCheck").css("color", "black");
-		}else{
-			$.ajax({
-				type : "post",
-				url : "/member/memberIdChk",
-				data : {
-					"memberId" : memberId
-				},
-				success : function(result){
-					//console.log(result);
-					if(idChk.test(memberId)){
-						$("#idCheck").css("color", "green");
-						if(result != "fail"){
-							$("#idDuplicateCheckOk").css("display", "inline-block");
-							$("#idDuplicateCheckFail").css("display", "none");
-						}else{
-							$("#idDuplicateCheckOk").css("display", "none");
-							$("#idDuplicateCheckFail").css("display", "inline-block");
-						}
-					}else{
-						$("#idCheck").css("color", "red");
-						$("#idDuplicateCheckOk").css("display", "none");
-						$("#idDuplicateCheckFail").css("display", "none");
-					}
-					
-				}
-			});
-		}
-	});
-	$("#memberNickname").on("propertychange change keyup paste input", function(){
-
-		//console.log("keyup 테스트");	
-		var memberNickname = $("#memberNickname").val();
-		var nicknameChk = /^[가-힣ㄱ-ㅎㅏ-ㅣ]{2,8}|[a-zA-Z0-9]{4,16}$/;
-
-		if(memberNickname == ""){
-			$("#nicknameCheck").css("color", "black");
-		}else{
-			$.ajax({
-				type : "post",
-				url : "/member/memberNicknameChk",
-				data : {
-					"memberNickname" : memberNickname
-				},
-				success : function(result){
-					//console.log(result);
-					if(nicknameChk.test(memberNickname)){
-						$("#nicknameCheck").css("color", "green");
-						if(result != "fail"){
-							$("#nicknameDuplicateCheckOk").css("display", "inline-block");
-							$("#nicknameDuplicateCheckFail").css("display", "none");
-						}else{
-							$("#nicknameDuplicateCheckOk").css("display", "none");
-							$("#nicknameDuplicateCheckFail").css("display", "inline-block");
-						}
-					}else{
-						$("#nicknameCheck").css("color", "red");
-						$("#nicknameDuplicateCheckOk").css("display", "none");
-						$("#nicknameDuplicateCheckFail").css("display", "none");
-					}
-					
-				}
-			});
-		}
-	});
-	
-	$("#memberPwd").on("propertychange change keyup paste input", function(){
-
-		//console.log("keyup 테스트");	
-		var memberPwd = $("#memberPwd").val();
-		var pwdChk = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
-
-		if(memberPwd == ""){
-			$("#pwdCheck").css("color", "black");
-		}else{
-			if(pwdChk.test(memberPwd)){
-				$("#pwdCheck").css("color", "green");
-			}else{
-				$("#pwdCheck").css("color", "red");
-			}
-		}
-	});
-	
-	$("#memberPwdConfirm").on("propertychange change keyup paste input", function(){
-		var memberPwd = $("#memberPwd").val();
-		var memberPwdConfirm = $("#memberPwdConfirm").val();
-
-		if(memberPwdConfirm == ""){
-			$("#pwdConfirmCheckOk").css("display", "none");
-			$("#pwdConfirmCheckFail").css("display", "none");
-		}else{
-			if(memberPwd == null || memberPwdConfirm != memberPwd){
-				$("#pwdConfirmCheckOk").css("display", "none");
-				$("#pwdConfirmCheckFail").css("display", "inline-block").css("color", "red");
-			}else{
-				$("#pwdConfirmCheckFail").css("display", "none");
-				$("#pwdConfirmCheckOk").css("display", "inline-block").css("color", "green");
-			}
-		}
-		
-		
-			
-	});
-	
-
-
-	
-});
+})
 /* $(function(){
-	$("#memberId").focus(function(){
-		$("#memberId").css("outline", "1px solid red");
-		$("#idCheck").show();
-	});
-	$("#memberId").blur(function(){
-		$("#memberId").css("outline", "none");
-		
-	});
-	$("#memberNickname").focus(function(){
-		$("#nicknameCheck").show();
-	});
-}) */
-</script> -->
-
-<script type="text/javascript">
-  function checks(){
-	var getCheck = RegExp(/^[a-z0-9]{5,20}$/);
-	var getName  = RegExp(/^[가-힣]+$/);
-	  
-	//아이디 공백 확인 
-	if($("#memberId").val() == ""){ 
-	  alert("아이디를 입력해주세요."); 
-	  $("#memberId").focus(); 
-	  return false; 
-	}
-	
-	//비밀번호 공백 확인 
-	if($("#memberPwd").val() == ""){ 
-	  alert("패스워드를 입력해주세요."); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
-
-	//아이디 비밀번호 같음 확인 
-	if($("#memberId").val() == $("#memberPwd").val()){ 
-	  alert("아이디와 비밀번호가 같습니다."); 
-	  $("#memberPwd").val(""); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
-
-	//비밀번호 확인란 공백 확인 
-	if($("#memberPwdConfirm").val() == ""){ 
-	  alert("패스워드 확인란을 입력해주세요."); 
-	  $("#memberPwdConfirm").focus(); 
-	  return false; 
-	}
-
-	//비밀번호 서로확인 
-	if($("#memberPwd").val() != $("#memberPwdConfirm").val()){ 
-	  alert("비밀번호가 상이합니다"); 
-	  $("#memberPwd").val(""); 
-	  $("#memberPwdConfirm").val(""); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
-	
-	//이메일 공백 확인 
-	if($("#memberEmail").val() == ""){ 
-	  alert("이메일을 입력해주세요."); 
-	  $("#memberEmail").focus(); 
-	  return false; 
-	}
-
-	//이름 공백 검사 
-	if($("#memberName").val() == ""){ 
-	  alert("이름을 입력해주세요"); 
-	  $("#memberName").focus(); 
-	  return false; 
-	}
-
-
-  }
+	$("#id").keyup(function(){
+		  
+		  if($(this).val()=="") {
+			  $("#dupleCheck").html("");
+			  return;  //함수를 빠져나가라.
+		  }
+		  
+		  $.ajax({
+		    url: "../../idCheck",         //서버요청주소
+		    type: "post",                        //method방식(get,post,put,delete)
+		    dataType: "text",                    //서버가 응답해주는 데이터의 type(text, html, xml, json)
+		    data:{id:$(this).val(), info:"customer"} ,       //서버에게 보낼 parameter정보
+		   
+		    success: function(result){    //개수|단어,단어,단어,단어...
+		       //alert(result);
+		       //console.log("result : " + result);
+		       $("#dupleCheck").html(result);
+		       
+		   },//성공했을때 callback함수      
+		    //실패했을때 함수
+		   error: function(err){
+			   alert(err+"발생했어요")
+		   }
+		   
+	   });//ajax끝
+	  }); */
 </script>
+
 <script type="text/javascript">
 $(function(){
 	$("#sendPhoneNumber").click(function(){
@@ -307,6 +93,7 @@ $(function(){
 		}
 	})
 })
+
 </script>
 </head>
 <body>
@@ -325,49 +112,42 @@ $(function(){
 			<p align="right" class="g-color-gray-dark-v2 g-font-weight-500">별표(*)는 필수항목입니다.</p>
             
             <!-- Form -->
-            <form class="g-py-15" th:action="@{/signup}" method="post" onsubmit="return checks()">
+            <form class="g-py-15" th:action="@{/signup}" method="post">
               
-              
-                <div class="g-mb-15">
+              <div class="row">
+                <div class="col g-mb-15">
                   <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 아이디</label>
                   <input id="memberId" name="memberId" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="아이디 입력" autocomplete="off">
                 </div>
-              
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="idCheck" style="display:none;">※ 5~20자 영문 대/소문자, 숫자만 사용 가능</span><p>
-              <span class="g-font-weight-500 g-font-size-13" id="idDuplicateCheckOk">※ 사용 가능한 아이디입니다.</span>
-			  <span class="g-font-weight-500 g-font-size-13" id="idDuplicateCheckFail">※ 이미 사용중인 아이디입니다.</span>
+              </div>
+              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idCheck" style="display:none">※ 5~20자의 영문 소문자, 숫자만 사용 가능</div>
+			  <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idDuplicateCheck" style="display:none">※ 이미 사용중인 아이디입니다.</div>	
 				
 			  <div class="g-mb-15">
 			    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 닉네임</label>
                 <input id="memberNickname" name="memberNickname" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="닉네임 입력" autocomplete="off">
               </div>
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="nicknameCheck" style="display:none">※ 한글(2~8자), 영문(4~16자), 숫자 입력</span><p>
-              <span class="g-font-weight-500 g-font-size-13" id="nicknameDuplicateCheckOk">※ 사용 가능한 닉네임입니다.</span>
-              <span class="g-font-weight-500 g-font-size-13" id="nicknameDuplicateCheckFail">※ 이미 사용중인 닉네임입니다.</span>
+              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="nicknameCheck" style="display:none">※ 한글(2~8자), 영문(4~16자) 이내 입력</div>
+              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="idDuplicateCheck" style="display:none">※ 이미 사용중인 닉네임입니다.</div>
               
               <div class="g-mb-10">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 비밀번호</label>
                 <input id="memberPwd" name="memberPwd" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 입력">
               </div>
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdCheck" style="display:none">※ 8~16자 영문, 숫자, 특수문자 모두 포함하여 입력</span><p>
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdCheckOk">※ 사용 가능한 비밀번호입니다.</span>
 
-              <div class="g-mb-15">
-                <input id="memberPwdConfirm" name="memberPwdConfirm" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 다시 한번 입력">
+              <div class="g-mb-20">
+                <input id="pwdConfirm" name="pwdConfirm" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="password" placeholder="비밀번호 다시 한번 입력">
               </div>
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdConfirmCheckOk">※ 비밀번호가 일치합니다.</span>
-              <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdConfirmCheckFail">※ 비밀번호가 일치하지 않습니다.</span>
                 
-              
-              <div class="g-mb-15">
+              <div class="row">
+              <div class="col g-mb-15">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이름</label>
                 <input id="memberName" name="memberName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
               </div>
-              <p><span class="g-font-weight-500 g-font-size-13" id="nameCheckFail">※ 이름이 적절하지 않습니다.</span></p>
-              
-              <div class="g-mb-15">
+              </div>
+               <div class="g-mb-15">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이메일</label>
-                <input id="memberEmail" name="memberEmail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
+                <input name="memberEmail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
               </div>
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheck" style="display:none">※ 올바른 형식의 이메일 주소</div>
               
@@ -441,6 +221,7 @@ $(function(){
             <!-- End Form -->
           </div>
 
+		<button id="test" onclick="javascript:test();">확인</button>
           <div class="text-center">
             <p class="g-color-gray-dark-v5 mb-0">이미 회원이신가요? <a class="g-font-weight-600" href="page-login-12.html">로그인</a>
             </p>

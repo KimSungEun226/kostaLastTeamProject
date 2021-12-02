@@ -1,8 +1,12 @@
 package kosta.mvc.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kosta.mvc.dto.MemberDto;
 import kosta.mvc.service.MemberService;
@@ -19,6 +23,12 @@ public class LoginController {
     	return "board/signup";
     }
     
+
+    // 회원가입 페이지
+    @GetMapping("shop/signup")
+    public String shopSignup() {
+    	return "shop/signup";
+    }
     
 
     // 회원가입 처리
@@ -28,11 +38,18 @@ public class LoginController {
 
         return "redirect:/login";
     }
+    
+    // 쇼핑몰 회원가입 처리
+    @PostMapping("shop/signup")
+    public String shopSignup(MemberDto memberDto) {
+        memberService.joinUser(memberDto);
+
+        return "redirect:/shop/login";
+    }
 
     // 로그인 페이지
     @GetMapping("/login")
     public String dispLogin() {
-    	System.out.println("LgingControllerdㅡ ㅣㅐ햐ㅜ...................");
         return "board/login";
     }
     
@@ -42,6 +59,13 @@ public class LoginController {
         return "shop/login";
     }
 
+   // 쇼핑몰 로그인 결과 페이지
+    @GetMapping("/shop/main")
+    public String shopLoginResult() {
+    	System.out.println("로그인성공");
+        return "redirect:/shop";
+    }
+    
     // 로그인 결과 페이지
     @GetMapping("/user/main")
     public String dispLoginResult() {
@@ -57,7 +81,7 @@ public class LoginController {
     // 접근 거부 페이지
     @GetMapping("/user/denied")
     public String dispDenied() {
-        return "/denied";
+        return "/error/errorView";
     }
 
     // 내 정보 페이지
@@ -70,5 +94,31 @@ public class LoginController {
     @GetMapping("/admin")
     public String dispAdmin() {
         return "/admin";
+    }
+    
+    // 아이디 중복검사
+    @RequestMapping(value = "/member/memberIdChk", method = RequestMethod.POST)
+    @ResponseBody
+    public String memberIdChk(String memberId) throws Exception {
+    	boolean result = memberService.idCheck(memberId);
+    	if(!result) {
+    		return "success";
+    	}else {
+    		return "fail";
+    	}
+    	
+    }
+    
+    // 닉네임 중복검사
+    @RequestMapping(value = "/member/memberNicknameChk", method = RequestMethod.POST)
+    @ResponseBody
+    public String memberNicknameChk(String memberNickname) throws Exception {
+    	boolean result = memberService.nicknameCheck(memberNickname);
+    	if(!result) {
+    		return "success";
+    	}else {
+    		return "fail";
+    	}
+    	
     }
 }
