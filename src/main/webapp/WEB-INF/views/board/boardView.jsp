@@ -286,7 +286,7 @@
 		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>경기인천</a>
 		                </li>
 		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
+		                  <a name="tagrelNo" class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
 		                </li>
 		                <li>
 		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>머시기</a>

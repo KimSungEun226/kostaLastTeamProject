@@ -20,6 +20,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	
 	Page<Board> findByBoardKind(int boardKind, Pageable pageable);
 	
-	Page<Board> findByTag(Long tagrelNo, Pageable pageable);
+	Page<Board> findByTag(Long tagrel_no, Pageable pageable);
 	
 }
