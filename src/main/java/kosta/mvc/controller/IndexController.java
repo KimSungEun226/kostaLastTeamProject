@@ -42,7 +42,7 @@ public class IndexController {
 		
 		model.addAttribute("readNumList", readNumList);
 		model.addAttribute("dateList", dateList);
-		return "shop/shop";
+		return "shop/main";
 	}
 
 	@RequestMapping("/tos")

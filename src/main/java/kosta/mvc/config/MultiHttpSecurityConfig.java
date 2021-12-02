@@ -50,21 +50,16 @@ public class MultiHttpSecurityConfig {
 	    protected void configure(HttpSecurity http) throws Exception {
 	        System.out.println("ShopSecurityConfig configure 메소드");
 	        http
-	        .antMatcher("/shop/user/**")
-	        .antMatcher("/shop/admin/**")
+	        .antMatcher("/shop/**")  //반드시 antMatcher
+
 	        .authorizeRequests()
-	        //.antMatchers("/shop/user/write").hasRole("ADMIN")
-	        .anyRequest().authenticated()
-	                // 페이지 권한 설정
-	               // .antMatchers("/shop/admin/write").hasRole("ADMIN")
-	                //.antMatchers("/user/main").hasRole("MEMBER")
-	                //.antMatchers("/shop/user/**").hasRole("MEMBER")
-	                //.antMatchers("/**").permitAll()
+	        .antMatchers("/shop/admin/**").hasRole("ADMIN")
+
 	            .and() // 로그인 설정
 	                .formLogin()
 	                //.loginPage("/login")
 	                .loginPage("/shop/login")
-	                .defaultSuccessUrl("/shop")
+	                .defaultSuccessUrl("/shop/main")
 	                .permitAll()
 	                
 	            .and() // 로그아웃 설정
@@ -83,9 +78,10 @@ public class MultiHttpSecurityConfig {
 
 	    @Override
 	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.userDetailsService(memberService);//.passwordEncoder(passwordEncoder());
+	        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 	    }
 	}
+
 	
 	//@Order(2)
 	@Configuration
@@ -108,8 +104,8 @@ public class MultiHttpSecurityConfig {
 	    	//http.requestMatchers()
 	    	http.authorizeRequests()
 	                // 페이지 권한 설정
-	                //.antMatchers("/admin/**").hasRole("ADMIN")
-	                .antMatchers("/user/main").hasRole("MEMBER")
+	                .antMatchers("/admin/**").hasRole("ADMIN")
+	                .antMatchers("/user/**").hasRole("MEMBER")
 	                //.antMatchers("/shop/**").hasRole("MEMBER")
 	                //.antMatchers("/**").permitAll()
 	            .and() // 로그인 설정
@@ -132,7 +128,7 @@ public class MultiHttpSecurityConfig {
 
 	    @Override
 	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.userDetailsService(memberService);//.passwordEncoder(passwordEncoder());
+	        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 	    }
 	}
 	

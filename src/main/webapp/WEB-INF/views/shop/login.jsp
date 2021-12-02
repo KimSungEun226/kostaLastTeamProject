@@ -35,7 +35,7 @@
             </header>
 
             <!-- Form -->
-              <form class="g-py-15" action="/login" method="post">
+              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/login" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- csrf 토큰 값 -->
                 <div class="mb-2">
                   <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
@@ -68,7 +68,7 @@
               <!-- End Form -->
 
             <footer class="text-center">
-                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">아직 계정이 없으신가요? <a class="g-font-weight-600" href="${pageContext.request.contextPath}/signup">회원가입</a>
+                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">아직 계정이 없으신가요? <a class="g-font-weight-600" href="${pageContext.request.contextPath}/shop/signup">회원가입</a>
                 </p>
               </footer>
           </div>
