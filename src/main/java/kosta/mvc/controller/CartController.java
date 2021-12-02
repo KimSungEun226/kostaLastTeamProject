@@ -25,10 +25,15 @@ public class CartController {
 	 * */
 	@RequestMapping("/selectCart")
 	public ModelAndView selectCart(HttpSession session) {
-		System.out.println("카트 컨트롤러");
-		//System.out.println(session.getId());
+		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
 		List<Cart> cartList=cartService.selectCart(session.getId());
+		
+		for(Cart c : cartList) {
+			System.out.println(c.getProduct().getProductName());
+		}
+		
+		
 		return new ModelAndView("shop/cart","cartList", cartList);
 
 	}

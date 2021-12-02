@@ -1,5 +1,6 @@
 package kosta.mvc.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class Cart {
 	@JoinColumn(name="product_no")
 	private Product product; //상품정보 -상품번호
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="product_image_no")
 	private ProductImage productImage; //상품이미지정보 -상품이미지번호
 	

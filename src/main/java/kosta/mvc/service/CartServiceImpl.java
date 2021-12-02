@@ -45,6 +45,9 @@ public class CartServiceImpl implements CartService {
 	public void insertCart(String id, Long productNo, int qty) {
 		
 		Product product= productRepository.getById(productNo);
+		//상품 이름, 상품 가격 조회하기
+		System.out.println(product.getProductName()+", "+product.getPrice()+"원");
+		
 		List<String> list = new ArrayList<String>();
 		//상품번호에 해당하는 상품이미지 꺼내오기
 		List<ProductImage> imgList = product.getProductImageList();
@@ -54,16 +57,26 @@ public class CartServiceImpl implements CartService {
 		}
 		//썸네일
 		String thumbnail = list.get(0);
-		System.out.println(thumbnail);
 		ProductImage thumbImg = new ProductImage(null, product, thumbnail, null, null); 
-		//조회한 db정보로 Cart 생성
-		Cart cart = new Cart(null, id, qty, product, thumbImg, null);
-		cartRepository.save(cart);
+		
+		//중복되는 상품번호 조회
+		Long cartNo= cartRepository.doubleCheck(id, productNo);
+		
+		//만약 상품 번호에 해당하는 데이터가 존재한다면(조회) 수량만 업데이트
+		  if(cartNo==null) { 
+			  //아니면 등록
+			  //조회한 db정보로 Cart 생성
+			  Cart cartSave = new Cart(null, id, qty, product, thumbImg, null);
+			  cartRepository.save(cartSave);
+		  }else{
+			  Cart dbCart= cartRepository.getById(cartNo);
+			  int result=(dbCart.getCartCount())+qty;
+			  dbCart.setCartCount(result); 
+		  }
+		
+		 
 		
 	}
-	
-	
-	
 	
 	
 }
