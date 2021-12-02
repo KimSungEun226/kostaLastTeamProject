@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.junit.Test;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -49,5 +50,20 @@ public class MemberService implements UserDetailsService {
         }
 
         return new User(userEntity.getMemberId(), userEntity.getMemberPwd(), authorities);
+    }
+    
+    
+    public boolean idCheck(String memberId) throws Exception {
+    	boolean idDuplicateChk = memberRepository.existsByMemberId(memberId);
+    	
+    	return idDuplicateChk;
+    	
+    }
+    
+    public boolean nicknameCheck(String memberNickname) throws Exception {
+    	boolean nicknameDuplicateChk = memberRepository.existsByMemberNickname(memberNickname);
+    	
+    	return nicknameDuplicateChk;
+    	
     }
 }

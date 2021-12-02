@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -79,6 +81,9 @@ public class Board {
 	private String memberNickname; //회원 닉네임 다 : 1
 	
 	@ManyToOne
-	@JoinColumn(name = "tag_no")
+	@JoinColumn(name = "tagrel_no")
 	private Tag tag;
+	
+	@OneToMany(mappedBy = "board", cascade= CascadeType.ALL)
+	private List<BoardImage> boardImageList; 
 }

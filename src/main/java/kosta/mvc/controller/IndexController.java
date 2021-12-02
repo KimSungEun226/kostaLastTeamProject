@@ -36,12 +36,13 @@ public class IndexController {
 	@RequestMapping("/shop")
 	public String shop(Model model) {
 		
-		List<Product> list =  productService.selectByReadNum();
+		List<Product> readNumList =  productService.selectByReadNum();
 		
+		List<Product> dateList = productService.selectByDate();
 		
-		
-		model.addAttribute("readNumList", list);
-		return "shop/shop";
+		model.addAttribute("readNumList", readNumList);
+		model.addAttribute("dateList", dateList);
+		return "shop/main";
 	}
 
 	@RequestMapping("/tos")

@@ -274,26 +274,52 @@
             <!-- End 나의 BMI 지수는? -->
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
-            <div class="g-mb-50">
-              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
-              <ul class="list-unstyled g-font-size-13 mb-0">
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
-                </li>
-                <!-- <li>
-                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-                </li> -->
-              </ul>
-            </div>
+            <c:choose>
+            	<c:when test="${boardKind==4}">
+            		<div class="g-mb-50">
+		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">지역게시판</h3>
+		              <ul class="list-unstyled g-font-size-13 mb-0">
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/3"><i class="mr-2 fa fa-angle-right"></i>서울</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>경기인천</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>머시기</a>
+		                </li>
+		                <!-- <li>
+		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
+		                </li> -->
+		              </ul>
+            		</div>
+            	</c:when>
+            	<c:otherwise>
+            		<div class="g-mb-50">
+		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
+		              <ul class="list-unstyled g-font-size-13 mb-0">
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
+		                </li>
+		                <!-- <li>
+		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
+		                </li> -->
+		              </ul>
+            		</div>
+            	</c:otherwise>
+            </c:choose>
             <!-- End Links -->
 
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">

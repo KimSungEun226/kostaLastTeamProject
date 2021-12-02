@@ -40,38 +40,64 @@
 
 <body>
   <main>
-    <!-- Breadcrumbs -->
-    <section class="g-bg-gray-light-v5 g-py-80">
-      <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">게시물종류/</h2>
-
-        <ul class="u-list-inline">
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/">Home</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일챌린지</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-color-primary">
-            <span>해당 카테고리 챌린지</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- End Breadcrumbs -->
-
+    <!-- Start BoardKind 게시판 카테고리 -->
+    <c:choose>
+    	<c:when test="${requestScope.board.boardKind==1}">
+	    	<section class="g-bg-gray-light-v5 g-py-40">
+		      <div class="container text-center">
+		        <h2 class="h3 g-color-black g-font-weight-600">일기게시판</h3>
+		      </div>
+	   	   </section>
+    	</c:when>
+    	<c:when test="${requestScope.board.boardKind==3}">
+	    	<section class="g-bg-gray-light-v5 g-py-40">
+		      <div class="container text-center">
+		        <h2 class="h3 g-color-black g-font-weight-600">자유게시판</h3>
+		      </div>
+	   	   </section>
+    	</c:when>
+    	<c:when test="${requestScope.board.boardKind==4}">
+	    	<section class="g-bg-gray-light-v5 g-py-40">
+		      <div class="container text-center">
+		        <h2 class="h3 g-color-black g-font-weight-600">지역게시판</h3>
+		      </div>
+	   	   </section>
+    	</c:when>
+    </c:choose>
+    <!-- End BoardKind 게시판 카테고리 -->
+    
     <!-- Blog Single Item Info -->
-    <section class="container g-pt-100 g-pb-60">
+    <article class="container g-pt-40 g-pb-60">
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="g-mb-60">
-            <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">${requestScope.board.boardTitle}</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2">H</span>${requestScope.board.boardContent}</p>
+            <h4 class="g-color-black g-font-weight-600 text-left ">${requestScope.board.boardTitle}</h4>
+            <hr>
+            <!-- Start 작성자, 조회수, 날짜 -->
+          <div class="g-mb-40">
+            <ul class="u-list-inline mb-5 float-right">
+              <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
+                    <i class="align-middle g-font-size-default mr-1 icon-education-200 u-line-icon-pro"></i>
+                    ${board.memberNickname}작성자
+              </a>
+              <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
+                    <i class="align-middle g-font-size-default mr-1 icon-communication-128 u-line-icon-pro"></i>
+                    ${board.boardRegdate}
+              </a>
+              <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
+                    <i class="align-middle g-font-size-default mr-1 icon-medical-054 u-line-icon-pro"></i>
+                    ${board.boardReadnum} Views
+              </a>
+            </ul>
           </div>
+          <!-- End 작성자, 조회수, 날자 -->
+          <!--  Start 글내용 -->
+            <div class="d-inline-block float-left g-width-60 g-color-black g-font-size-14 text-center g-pa-7 g-mt-40 mr-2">${requestScope.board.boardContent}</div>
+          <!--  End 글내용 -->
+          </div>
+          
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-6 g-mb-60">
               <h3 class="h4 g-color-black g-font-weight-600"><span class="g-font-size-25">01.</span> Mr. Robot</h3>
               <p>Well, duh. USA's Mr. Robot is probably the most accurate and detailed dramatic portrayal ever made of current hacking practices and hacker culture. Its depiction of the cybersecurity community and its broader meditation on the relationship
@@ -104,19 +130,19 @@
             <div class="col-md-6 g-mb-60">
               <img class="img-fluid" src="../../assets/img-temp/400x270/img17.jpg" alt="Image Description">
             </div>
-          </div>
+          </div> -->
 
-          <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">Selecting the Right Movie</h2>
+          <!-- <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">Selecting the Right Movie</h2>
           <p>It's important to stay detail oriented with every project we tackle. Staying focused allows us to turn every project we complete into something we love. We strive to embrace and drive change in our industry which allows us to keep our clients
             relevant and ready to adapt. As creatives, it's important that we strive to do work outside of obligation. This lets us stay ahead of the curve for our clients and internal projects. At the end of the day, it's important to not let being busy
-            distract us from having fun. Smiling, laughing, and hanging helps us work together to achieve this.</p>
+            distract us from having fun. Smiling, laughing, and hanging helps us work together to achieve this.</p> -->
         </div>
       </div>
-    </section>
+
     <!-- End Blog Single Item Info -->
 
     <!-- Blog Single Item Video -->
-    <section class="container-fluid">
+    <!-- <section class="container-fluid">
       <div class="g-bg-cover g-bg-size-cover g-bg-pos-center g-bg-white-gradient-opacity-v1--after" data-bg-img-src="../../assets/img-temp/1920x800/img12.jpg">
         <div class="row d-flex justify-content-center align-content-end flex-wrap g-min-height-450 g-pos-rel g-z-index-1 g-pb-50">
           <div class="col-sm-8 col-md-7 col-lg-4 px-5 px-sm-0 mt-auto">
@@ -137,11 +163,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Blog Single Item Video -->
 
     <!-- Blog Single Item Info -->
-    <section class="container g-pt-100 g-pb-50">
+    <!-- <section class="container g-pt-100 g-pb-50">
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="g-mb-60">
@@ -204,14 +230,14 @@
             in 2012 about a National Security Agency whistleblower very similar to Edward Snowden.</p>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Blog Single Item Info -->
 
     <!-- Blog Single Item Author -->
-    <section class="container">
+    <!-- <section class="container">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <!-- Tags -->
+          Tags
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
               <li class="list-inline-item g-mb-10">
@@ -225,9 +251,9 @@
               </li>
             </ul>
           </div>
-          <!-- End Tags -->
+          End Tags
 
-          <!-- Social Icons -->
+          Social Icons
           <div class="text-center">
             <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-3">Share:</h3>
             <ul class="list-inline g-mb-60">
@@ -257,9 +283,9 @@
               </li>
             </ul>
           </div>
-          <!-- End Social Icons -->
+          End Social Icons
 
-          <!-- Author -->
+          Author
           <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
             <div class="row justify-content-between">
               <div class="media">
@@ -272,20 +298,20 @@
               </div>
             </div>
           </div>
-          <!-- End Author -->
+          End Author
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Blog Single Item Author -->
 
     <!-- Related Posts -->
-    <section class="g-bg-gray-light-v5">
+    <!-- <section class="g-bg-gray-light-v5">
       <div class="container g-pt-100 g-pb-70">
         <h3 class="h5 g-color-black g-font-weight-600 text-center text-uppercase g-mb-60">Related Posts</h3>
 
         <div class="row">
           <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
+            Blog Classic Blocks
             <article class="u-shadow-v19 g-bg-white">
               <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img9.jpg" alt="Image Description">
               <div class="g-bg-white g-pa-30">
@@ -296,11 +322,11 @@
                 <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer...</p>
               </div>
             </article>
-            <!-- End Blog Classic Blocks -->
+            End Blog Classic Blocks
           </div>
 
           <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
+            Blog Classic Blocks
             <article class="u-shadow-v19 g-bg-white">
               <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img2.jpg" alt="Image Description">
               <div class="g-bg-white g-pa-30">
@@ -311,11 +337,11 @@
                 <p class="g-color-gray-dark-v4 g-line-height-1_8">At Wake, our mission has always been focused on bringing openness...</p>
               </div>
             </article>
-            <!-- End Blog Classic Blocks -->
+            End Blog Classic Blocks
           </div>
 
           <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
+            Blog Classic Blocks
             <article class="u-shadow-v19 g-bg-white">
               <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img3.jpg" alt="Image Description">
               <div class="g-bg-white g-pa-30">
@@ -326,18 +352,18 @@
                 <p class="g-color-gray-dark-v4 g-line-height-1_8">In an attempt to answer those questions, I poured over the biggest collections...</p>
               </div>
             </article>
-            <!-- End Blog Classic Blocks -->
+            End Blog Classic Blocks
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Related Posts -->
 
     <!-- Blog Single Item Comments -->
-    <section class="container g-py-100">
+    <section class="container g-py-20">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <!-- Blog Single Item Comments -->
+
           <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
             <div class="g-brd-y g-brd-gray-light-v4 g-py-30 mb-5">
               <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-0">3 Comments</h3>
@@ -434,7 +460,7 @@
               </div>
             </div>
           </div>
-          <!-- End Blog Single Item Comments -->
+          End Blog Single Item Comments
 
           <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">Add Comment</h3>
 
@@ -460,6 +486,7 @@
       </div>
     </section>
     <!-- End Blog Single Item Comments -->
+    </article>
     
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
      "bottom": 15,

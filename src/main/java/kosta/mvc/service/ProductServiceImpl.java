@@ -89,6 +89,12 @@ public class ProductServiceImpl implements ProductService {
 		return list;
 	}
 
+	@Override
+	public List<Product> selectByDate() {
+		
+		return productRepository.selectByDate();
+	}
+
 	
 
 }
