@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -14,15 +14,11 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item">
-              <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Home</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
-            </li>
-            <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+              <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">EGYM</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>Login</span>
+              <span>로그인</span>
             </li>
           </ul>
         </div>
@@ -39,13 +35,14 @@
             </header>
 
             <!-- Form -->
-              <form class="g-py-15">
+              <form class="g-py-15" action="/login" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- csrf 토큰 값 -->
                 <div class="mb-2">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
+                  <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
                 </div>
 
                 <div class="g-mb-35">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
+                  <input name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
                   <div class="row justify-content-between">
                     <div class="col align-self-center">
                       <label class="form-check-inline u-check g-color-gray-dark-v4 g-font-size-12 g-pl-25 mb-0">
@@ -65,7 +62,7 @@
                 </div>
 
                 <div class="mb-4">
-                  <button class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">로그인</button>
+                  <button type="submit" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">로그인</button>
                 </div>
               </form>
               <!-- End Form -->
