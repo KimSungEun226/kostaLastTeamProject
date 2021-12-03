@@ -64,7 +64,7 @@ public class MultiHttpSecurityConfig {
 	                
 	            .and() // 로그아웃 설정
 	                .logout()
-	                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	                .logoutRequestMatcher(new AntPathRequestMatcher("/shop/logout"))
 	                .logoutSuccessUrl("/shop")
 	                .invalidateHttpSession(true)
 	            .and()

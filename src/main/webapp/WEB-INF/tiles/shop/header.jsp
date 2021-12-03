@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,6 +150,9 @@
                  <!-- End New Arrivals - Mega Menu -->
                  
                    <!-- Pages - Submenu -->
+                   
+               <sec:authorize access="hasRole('MEMBER')">
+               
                  <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
                    <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#"
                       aria-haspopup="true"
@@ -155,308 +160,36 @@
                       aria-controls="nav-submenu--pages">
                      <b>마이페이지</b>
                    </a>
-
+               </sec:authorize>
+               
+               
                    <!-- Submenu -->
                    <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages"
                        aria-labelledby="nav-link--pages">
                      <!-- Grid Filter -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--grid-filter" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--grid-filter">
-                         Grid Filter
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--grid-filter" class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--grid-filter">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-left-sidebar-1.html">Left Sidebar</a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-right-sidebar-1.html">Right Sidebar
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-no-sidebar-1.html">No Sidebar 1
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-no-sidebar-2.html">No Sidebar 2
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-no-sidebar-3.html">No Sidebar 3
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-grid-filter-no-sidebar-4.html">No Sidebar 4
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
-                     <!-- Grid Filter -->
-
-                     <!-- List Filter -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--list-filter" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--list-filter">
-                         List Filter
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--list-filter" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--list-filter">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-left-sidebar-1.html">Left Sidebar</a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-right-sidebar-1.html">Right Sidebar
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-no-sidebar-1.html">No Sidebar 1
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-no-sidebar-2.html">No Sidebar 2
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-no-sidebar-3.html">No Sidebar 3
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-list-filter-no-sidebar-4.html">No Sidebar 4
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
-                     <!-- List Filter -->
-
-                     <!-- Left/Right Category -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--left-right-category" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--left-right-category">
-                         Left/Right Category
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--left-right-category" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--left-right-category">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-left-sidebar-1.html">Left Sidebar
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-right-sidebar-1.html">Right Sidebar
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-no-sidebar-1.html">No Sidebar 1
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-no-sidebar-2.html">No Sidebar 2
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-no-sidebar-3.html">No Sidebar 3
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-category-no-sidebar-4.html">No Sidebar 4
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
-                     <!-- Left/Right Category -->
-
-                     <!-- Single Product -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--single-product" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--single-product">
-                         Single Product
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--single-product" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--single-product">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-single-product-1.html">Single Product</a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-single-product-2.html">Single Product 2
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-single-product-3.html">Single Product 3
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
-                     <!-- Single Product -->
-
-                     <!-- Checkout -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--checkout" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--checkout">
-                         Checkout
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--checkout" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--checkout">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-checkout-1.html">Checkout</a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-order-completed-1.html">Order Completed
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-empty-cart-1.html">Empty Cart
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-gift-card-1.html">Gift Card
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
-                     <!-- Checkout -->
-
-                     <!-- Account -->
-                     <li class="dropdown-item hs-has-sub-menu">
-                       <a id="nav-link--pages--account" class="nav-link g-color-gray-dark-v4" href="#"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          aria-controls="nav-submenu--pages--account">
-                         Account
-                       </a>
-
-                       <!-- Submenu (level 2) -->
-                       <ul id="nav-submenu--pages--account" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-                           aria-labelledby="nav-link--pages--account">
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-wallet-1.html">Your Wallet
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-orders-1.html">Your Orders
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-open-orders-1.html">Open Orders
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-cancelled-orders-1.html">Cancelled Orders
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-wishlist-1.html">Wishlist
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-addresses-1.html">Addresses
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-payment-options-1.html">Payment Options
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-login-security-1.html">Login &amp; Security
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                         <li class="dropdown-item">
-                           <a class="nav-link g-color-gray-dark-v4" href="page-notifications-1.html">Notifications
-                             <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                           </a>
-                         </li>
-                       </ul>
-                       <!-- End Submenu (level 2) -->
-                     </li>
+                     
                      <!-- Account -->
 
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-login-1.html">Login</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="page-login-1.html">장바구니</a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">Signup</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-password-recovery-1.html">Password Recovery
-                         <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
+                       <a class="nav-link g-color-gray-dark-v4" href="page-password-recovery-1.html">개인정보내역
                        </a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-help-1.html">Help
-                         <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
+                       <a class="nav-link g-color-gray-dark-v4" href="page-help-1.html">배송지 관리
                        </a>
                      </li>
-                     <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-coming-soon-1.html">Coming Soon
-                         <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                       </a>
-                     </li>
-                     <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-contact-1.html">Contact Us
-                         <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                       </a>
-                     </li>
-                     <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-our-stores-1.html">Our Stores
-                         <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-py-3 g-pos-rel g-top-minus-1 g-ml-5">New</span>
-                       </a>
-                     </li>
+                     
                    </ul>
                    <!-- End Submenu -->
                  </li>
+                 
+                <sec:authorize access="hasRole('ADMIN')">
                  
                  <li class="nav-item g-mx-10--lg g-mx-15--xl"
                      data-animation-in="fadeIn"
@@ -470,22 +203,29 @@
                    
                    <!-- End Mega Menu -->
                  </li> 
-                 
+                 </sec:authorize>
                  <!-- End Pages - Submenu -->
                  
-			  
+			    <sec:authorize access="isAnonymous()">
                  <li class="nav-item g-ml-10--lg">
                    <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/login">로그인</a>
                  </li>
-                 
+                </sec:authorize>
+                
+                <sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
+                 <li class="nav-item g-ml-10--lg">
+                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/logout">로그아웃</a>
+                 </li>
+                
+                </sec:authorize>
+                
+                <sec:authorize access="!hasRole('ADMIN')">
                  <!-- 장바구니 : 회원/비회원 모두 사용 가능 -->  
                   <li class="nav-item g-ml-10--lg">       
                  <div class="u-basket d-inline-block g-z-index-3">
                   <div class="g-py-10 g-px-6">
                     <!-- CartController로 이동 -->
                     <a href="${pageContext.request.contextPath}/shop/selectCart" id="basket-bar-invoker" class="u-icon-v1 g-color-primary--hover g-font-size-17 g-text-underline--none--hover" aria-controls="basket-bar" aria-haspopup="true" aria-expanded="false" data-dropdown-event="hover" data-dropdown-target="#basket-bar" data-dropdown-type="css-animation" data-dropdown-duration="300" data-dropdown-hide-on-scroll="false" data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
-                      <span class="u-badge-v1--sm g-color-white g-bg-primary g-font-size-11 g-line-height-1_4 g-rounded-50x g-pa-4" 
-                      style="top: 7px !important; right: 3px !important;">4</span> <!-- 장바구니 상품 개수 -->
                       <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
                     </a>
                   </div>
@@ -558,8 +298,12 @@
                       <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="page-checkout-1.html">바로 구매</a>
                     </div>
                   </div>
+                  
+                  
                 </div>
                  </li>
+            </sec:authorize>
+                 
                 <!-- header의 장바구니 아이콘 끝 -->        
                 
                </ul>
