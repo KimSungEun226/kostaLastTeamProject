@@ -177,7 +177,7 @@
                        <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-password-recovery-1.html">개인정보내역
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/myPage">개인정보내역
                        </a>
                      </li>
                      <li class="dropdown-item">

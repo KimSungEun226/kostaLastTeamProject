@@ -12,6 +12,7 @@ public class MyPageController {
 	
 	@RequestMapping("/")
 	public String myPage() {
+		
 		return "board/myPage/main";
 	}
 	

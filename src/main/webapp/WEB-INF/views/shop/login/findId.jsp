@@ -1,91 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-<!-- 로그인이 된 사용자는 들어오면 안 된다!! -->
-
-  <sec:authorize access="isAuthenticated()">
-     <script>
-     location.href="${pageContext.request.contextPath}/shop"
-     
-     </script>
-   </sec:authorize>
-<!-- Breadcrumbs -->
 <div class="g-bg-primary">&nbsp</div>
-
-      <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
-        <div class="container">
-          <ul class="u-list-inline">
-            <li class="list-inline-item">
-              <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">EGYM</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
-            </li>
-            <li class="list-inline-item g-color-primary">
-              <span>로그인</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <!-- End Breadcrumbs -->
   <main>
-  <!-- Login -->
-    <section class="container g-py-150">
-      <div class="row justify-content-center">
-        <div class="col-sm-8 col-lg-5">
-          <div class="g-brd-around g-brd-gray-light-v4 rounded g-py-40 g-px-30">
-            <header class="text-center mb-4">
-              <h2 class="h2 g-color-black g-font-weight-400">로그인</h2>
-            </header>
+  <!-- Icon Blocks -->
+    <section>
+      <div class="container g-pt-100 g-pb-130" style="">
+        <!-- Icon Blocks -->
+        <div class="row no-gutters">
+          <div class="col-sm-6 col-lg-3">
+            <div class="g-pr-40 g-mt-20">
+              <div class="g-mb-30">
+                <h3 class="h3 g-color-black g-font-weight-500 g-line-height-1_2 mb-4">아이디 찾기</h3>
+              </div>
+            </div>
+          </div>
 
-            <!-- Form -->
-              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/login" method="post">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- csrf 토큰 값 -->
-                <div class="mb-2">
-                  <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
-                </div>
-
-                <div class="g-mb-35">
-                  <input name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
-                  <div class="row justify-content-between">
-                    <div class="col align-self-center">
-                      <label class="form-check-inline u-check g-color-gray-dark-v4 g-font-size-12 g-pl-25 mb-0">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                        <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </div>
-                        로그인 상태 유지
-                      </label>
-                    </div>
-                    <div class="col align-self-center text-right">
-                      <a class="g-font-size-12" href="${pageContext.request.contextPath}/findId">아이디</a>
-                      <a class="g-font-size-12" href="#"> / </a>
-                      <a class="g-font-size-12" href="#">비밀번호 찾기</a>
-                    </div>
+          <div class="col-lg-9">
+                <!-- Icon Blocks -->
+                <div onclick="location.href='${pageContext.request.contextPath}/findIdByPhone';" class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                  <div class="mb-4">
+                    <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
+                        <i class="icon-education-087 u-line-icon-pro"></i>
+                      </span>
+                    <h3 class="h5 g-color-black g-font-weight-600 mb-3">휴대폰 인증</h3>
+                    <p>회원정보에 등록한 휴대폰으로 인증합니다.</p>
                   </div>
                 </div>
-
-                <div class="mb-4">
-                  <button type="submit" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">로그인</button>
+                <!-- End Icon Blocks -->
+              
+                <!-- Icon Blocks -->
+                <div onclick="location.href='${pageContext.request.contextPath}/findIdByEmail';" class="mb-4  u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                  <div class="mb-4">
+                    <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
+                        <i class="icon-education-035 u-line-icon-pro"></i>
+                      </span>
+                    <h3 class="h5 g-color-black g-font-weight-600 mb-3">이메일 인증</h3>
+                    <p>회원정보에 등록한 이메일로 인증합니다.</p>
+                  </div>
                 </div>
-              </form>
-              <!-- End Form -->
-
-            <footer class="text-center">
-                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">아직 계정이 없으신가요? <a class="g-font-weight-600" href="${pageContext.request.contextPath}/shop/signup">회원가입</a>
-                </p>
-              </footer>
+                <!-- End Icon Blocks -->
+            </div>
           </div>
+          <a style="float: right" class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="#">비밀번호 찾기 >></a>
+        </div>
+        <!-- End Icon Blocks -->
+		
+	
+    </section>
+    <!-- End Icon Blocks -->
+  
+    <!-- <section class="g-py-150">
+      <div class="container">
+        <header class="text-center mb-4">
+          <h2 class="h2 g-color-black g-font-weight-400">아이디 찾기</h2>
+        </header>
+
+        <div class="row g-mb-30 row justify-content-center">
+          <div class="col-lg-4 g-mb-40 g-mb-0--lg">
+            <ul class="list-unstyled mb-0">
+              <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
+                <div class="d-flex align-self-center g-mt-3 g-mr-15">
+                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img6.png" alt="Image Description">
+                </div>
+                <div class="media-body">
+                  <a class="d-block u-link-v5 g-color-main g-color-primary--hover g-font-weight-600 g-mb-3" href="">휴대폰 인증</a>
+                  <span class="g-font-size-13 g-color-gray-dark-v4 g-mr-15">
+                      회원정보에 등록한 휴대폰으로 인증
+                    </span>
+                </div>
+              </li>
+              <!-- <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
+                <div class="d-flex align-self-center g-mt-3 g-mr-15">
+                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img5.png" alt="Image Description">
+                </div>
+                <div class="media-body align-self-center">
+                  <a class="d-block u-link-v5 g-color-main g-font-weight-600" href="">회원 정보에 등록한 휴대폰 인증</a>
+                  
+                </div>
+                <div class="d-flex align-self-center g-mt-3 g-mr-15">
+                  <i class="fa fa-angle-right"></i>
+                </div>
+              </li> -->
+
+              <!-- <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
+                <div class="d-flex align-self-center g-mt-3 g-mr-15">
+                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img6.png" alt="Image Description">
+                </div>
+                <div class="media-body">
+                  <a class="d-block u-link-v5 g-color-main g-color-primary--hover g-font-weight-600 g-mb-3" href="">이메일 인증</a>
+                  <span class="g-font-size-13 g-color-gray-dark-v4 g-mr-15">
+                      회원정보에 등록한 이메일로 인증
+                    </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="text-center">
+          <a class="btn btn-xl u-btn-outline-primary text-uppercase g-font-weight-600 g-font-size-12" href="#">View More Jobs</a>
         </div>
       </div>
-    </section>
-    <!-- End Login -->
+    </section> -->
+    <!-- End Popular Jobs -->
 
     <!-- Copyright Footer -->
     <footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20">

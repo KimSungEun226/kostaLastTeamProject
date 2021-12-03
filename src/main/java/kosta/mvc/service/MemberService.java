@@ -66,4 +66,10 @@ public class MemberService implements UserDetailsService {
     	return nicknameDuplicateChk;
     	
     }
+    
+    public Member selectByMemberId(String memberId) {
+    	return memberRepository.selectByMemberId(memberId);
+    }
+
+    
 }

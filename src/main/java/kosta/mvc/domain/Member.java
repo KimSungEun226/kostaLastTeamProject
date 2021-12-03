@@ -30,6 +30,22 @@ import lombok.Setter;
 public class Member {
 
 	
+	
+	//회원가입할때
+		@Builder
+	    public Member(Long memberNo, String memberId, String memberPwd, String memberName, 
+	    		String memberNickname, int memberGender, String memberEmail, String memberBirth, String memberPhone) {
+	        this.memberNo = memberNo;
+	        this.memberId = memberId;
+	        this.memberPwd = memberPwd;
+	        this.memberName = memberName;
+	        this.memberNickname = memberNickname;
+	        this.memberGender = memberGender;
+	        this.memberEmail = memberEmail;
+	        this.memberBirth = memberBirth;
+	        this.memberPhone = memberPhone;
+	    }
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_no_seq")
 	@SequenceGenerator(sequenceName = "member_no_seq", allocationSize = 1, name = "member_no_seq")
@@ -75,20 +91,7 @@ public class Member {
 	private List<Board> boardList;
 	
 
-	//회원가입할때
-	@Builder
-    public Member(Long memberNo, String memberId, String memberPwd, String memberName, 
-    		String memberNickname, int memberGender, String memberEmail, String memberBirth, String memberPhone) {
-        this.memberNo = memberNo;
-        this.memberId = memberId;
-        this.memberPwd = memberPwd;
-        this.memberName = memberName;
-        this.memberNickname = memberNickname;
-        this.memberGender = memberGender;
-        this.memberEmail = memberEmail;
-        this.memberBirth = memberBirth;
-        this.memberPhone = memberPhone;
-    }
+	
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Challenge> challengeList; 
@@ -96,4 +99,5 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Reply> replyList; 
 
+	
 }
