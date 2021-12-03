@@ -203,7 +203,7 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemUpdate_form" method="post" action="${pageContext.request.contextPath}/shop/update" enctype="multipart/form-data">
+      <form name="itemUpdate_form" method="post" action="${pageContext.request.contextPath}/shop/admin/update" enctype="multipart/form-data">
       <input type="hidden" name="productNo" value="${product.productNo}"/>
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
@@ -260,12 +260,6 @@
                         </tr>
 		                <input type="hidden" id="productContent" name="productContent" value=""/>
                         
-                        
-                   
-                     
-
-                        
-						
                         <!-- End Item-->
 
                       </tbody>

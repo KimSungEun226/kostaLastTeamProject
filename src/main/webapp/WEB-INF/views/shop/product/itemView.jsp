@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 
 <!DOCTYPE html>
@@ -162,10 +163,15 @@
           <c:otherwise>
 			<c:forEach items="${requestScope.list.content}" var="product">
         
+          <c:set var="readnumCheck" value="1"/>
+            <sec:authorize access="hasRole('ADMIN')">
+          		<c:set var="readnumCheck" value="0"/>
+           </sec:authorize> 
+          
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
-            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
               <img class="img-fluid" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
@@ -177,7 +183,7 @@
               <!-- Product Info -->
               <div class="d-flex flex-column">
                 <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
                    ${product.productName}
                   </a>
                 </h4>

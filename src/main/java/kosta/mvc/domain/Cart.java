@@ -35,9 +35,6 @@ public class Cart {
 	@JoinColumn(name="product_no")
 	private Product product; //상품정보 -상품번호
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="product_image_no")
-	private ProductImage productImage; //상품이미지정보 -상품이미지번호
 	
 	//private String thumbnail; //상품이미지 - 상품 썸네일
 	

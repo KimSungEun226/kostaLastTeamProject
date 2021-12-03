@@ -158,7 +158,7 @@ public class ProductController {
 	    productService.update(product, path);
 
 	    
-		return "redirect:";
+		return "redirect:shop";
 	}
 
 	
@@ -188,14 +188,15 @@ public class ProductController {
 	/**
 	 * single product select(조회수 증가)
 	 * */
-	@RequestMapping("select/single/{productNo}")
-	public ModelAndView selectSingle(@PathVariable Long productNo, Principal principal) {
+	@RequestMapping("select/single/{productNo}/{readnumCheck}")
+	public ModelAndView selectSingle(@PathVariable Long productNo, @PathVariable int readnumCheck) {
+		System.out.println(readnumCheck);
 		boolean stat = true;
 
 		//관리자가 선택했을경우엔 조회수 증가 안한다.
-		if("admin".equals(principal.getName())) stat = false;
+		if (readnumCheck==0) stat = false;
 		
-		Product product = productService.selectByNo(productNo, true);
+		Product product = productService.selectByNo(productNo, stat);
 		
 		return new ModelAndView("shop/product/single", "product", product);
 	}

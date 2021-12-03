@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -269,23 +270,46 @@
               <!-- End Quantity -->
 
               <!-- Buttons 여기 하는 중.. -->
+              
+              
+               <sec:authorize access="!hasRole('ADMIN')">
+                  
+                  <c:set var="mapping" value="user/addToCart"/>
+                </sec:authorize>
+                
+                <sec:authorize access="hasRole('ADMIN')">  
+                  
+                  <c:set var="mapping" value="admin/updateForm"/>
+                </sec:authorize>
+              
               <div class="row g-mx-minus-5 g-mb-20">
                 <div class="col g-px-5 g-mb-10">
-                 <form  name="requestForm" method="post" id="requestForm"> 
+                 <form  name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/shop/${mapping}"> 
 	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
 					 <input type=hidden name="quantity" value=""><!-- quatity -->
-      
+      			  
+      		    <sec:authorize access="!hasRole('ADMIN')">
                   <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="addToCart">
                     Add to Cart <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
+                  <c:set var="mapping" value="user/addToCart"/>
+                </sec:authorize>
+                
+                <sec:authorize access="hasRole('ADMIN')">  
+                  <button type="submit" class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="updateProduct">
+                    수정하기<i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+                  </button>
+                  <c:set var="mapping" value="admin/updateForm"/>
+                </sec:authorize>
+                
                 </form>
                 </div>
                 
-                <div class="col g-px-5 g-mb-10">
+                <!-- <div class="col g-px-5 g-mb-10">
                   <button class="btn btn-block u-btn-outline-black g-brd-gray-dark-v5 g-brd-black--hover g-color-gray-dark-v4 g-color-white--hover g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">
                     Add to Wishlist <i class="align-middle ml-2 icon-medical-022 u-line-icon-pro"></i>
                   </button>
-                </div>
+                </div> -->
               </div>
               <!-- End Buttons -->
 
