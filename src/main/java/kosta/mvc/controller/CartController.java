@@ -14,7 +14,7 @@ import kosta.mvc.domain.Cart;
 import kosta.mvc.service.CartService;
 
 @Controller
-@RequestMapping("/shop")
+@RequestMapping("/shop/user")
 public class CartController {
 
 	@Autowired
