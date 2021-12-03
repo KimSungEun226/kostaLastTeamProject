@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,10 +26,15 @@ public class CartController {
 	 * */
 	@RequestMapping("/selectCart")
 	public ModelAndView selectCart(HttpSession session) {
-		System.out.println("카트 컨트롤러");
-		//System.out.println(session.getId());
+		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
 		List<Cart> cartList=cartService.selectCart(session.getId());
+		
+		for(Cart c : cartList) {
+			System.out.println(c.getProduct().getProductName());
+		}
+		
+		
 		return new ModelAndView("shop/cart","cartList", cartList);
 
 	}
@@ -58,17 +64,36 @@ public class CartController {
 	/**
 	 * 장바구니에서 상품번호에 해당하는 상품 삭제
 	 * */
-	/*
-	 * @RequestMapping("/deleteCart") 
-	 * public String deleteCart(HttpSession session, Cart cart) {
-	 * 
-	 * return "redirect:/shop/selectCart"; 
-	 * }
-	 */
+	
+	  @RequestMapping("/deleteCart/{pno}") 
+	  public String deleteCart(HttpSession session, @PathVariable Long pno) {
+		  System.out.println("삭제할 상품번호 : " +pno);
+		  //세션 아이디와 pno로 조회한 해당 장바구니에서 상품 삭제
+		  String id = session.getId();
+		  cartService.deleteCart(id, pno);
+		  
+	  return "redirect:/shop/selectCart"; 
+	  }
 	 
-	 /**
-	  * 식별번호에 해당하는 상품 개수 조회
-	  * */
+	  
+	  /**
+	   * 장바구니에 담긴 상품금액 조회
+	   * */
+	  @RequestMapping("/")
+	  public ModelAndView sumCart(HttpSession session) {
+		  int sum=0;
+		  List<Cart> cartList=cartService.selectCart(session.getId());
+		  for(Cart c : cartList) {
+			  int price = c.getProduct().getPrice();
+			  sum += (price*c.getCartCount());
+			  
+		  }
+		  System.out.println("합계:"+sum);
+		  
+		  return new ModelAndView("shop/cart", "sum", sum);
+	  }
+	  
+	 
 	 
 	 
 }

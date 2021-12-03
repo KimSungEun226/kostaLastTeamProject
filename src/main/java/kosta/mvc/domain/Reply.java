@@ -32,6 +32,7 @@ public class Reply {
 	@ManyToOne
 	@JoinColumn(name = "board_no")
 	private Board board;
+	
 	//회원번호랑 다:1
 	@ManyToOne
 	@JoinColumn(name = "member_no")

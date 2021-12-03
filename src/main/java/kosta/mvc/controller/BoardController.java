@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Page;
@@ -107,9 +108,10 @@ public class BoardController {
 	 * 지역방 카테고리별 게시판 이동
 	 * */
 	
-	/*@RequestMapping("/selectByTag/{tagrelNo}")
+	@RequestMapping("/selectByTag/{tagrelNo}")
 	public ModelAndView selectByTag(@PathVariable Long tagrelNo, @RequestParam(defaultValue = "1") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "tagrelNo" );
+		System.out.println("tagrelNo : " + tagrelNo);
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
 		Page<Board> boardList = boardService.findByTag(tagrelNo, pageable);
 		
 		//상수로 잡자
@@ -122,9 +124,8 @@ public class BoardController {
 		mv.addObject("startPage", startPage);
 		mv.addObject("pageList", boardList);
 		mv.setViewName("board/boardView");
-		//System.out.println(boardList.getSize());
 		return mv;
-	}*/
+	}
 	
 	
 	/**

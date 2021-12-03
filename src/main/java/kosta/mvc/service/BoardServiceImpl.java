@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.BoardImage;
+import kosta.mvc.domain.Tag;
 import kosta.mvc.domain.product.Product;
 import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.repository.BoardImageRepository;
@@ -79,9 +80,13 @@ public class BoardServiceImpl implements BoardService {
 	/**
 	 * 지역방 지역카테고리별 검색
 	 * */
-	/*@Override
-	public Page<Board> findByTag(Long tagrelNo, Pageable pageable) {
-		return boardRepository.findByTag(tagrelNo, pageable);
-	}*/
+	@Override
+	public Page<Board> findByTag(Long tagrel_no, Pageable pageable) {
+		//Tag tag = Tag.builder().tagrelNo(tagrel_no).build();
+		System.out.println("service........");
+		Page<Board> p = boardRepository.selectByTag(tagrel_no, pageable);;
+		System.out.println("end ---------------");
+		return p;
+	}
 
 }

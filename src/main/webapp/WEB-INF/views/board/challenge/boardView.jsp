@@ -7,7 +7,7 @@
 
 <head>
   <!-- Title -->
-  <title>커뮤니티 > 전체</title>
+  <title>챌린지</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -15,36 +15,55 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
 
   <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-core.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-components.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
   
 </head>
 
 <body>
-  <main>
-  
+  <main>  
 	<c:choose>
-	<c:when test="${boardKind==1}">
+	<c:when test="${challengeCategory == 1}">
 		<section class="g-bg-gray-light-v5 g-py-80">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 일기</h2>
+	        <h2 class="h2 g-color-black g-font-weight-600">30일 아침밥 챙기기</h2>
+	        <ul class="u-list-inline">
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-mr-5">
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+	          </li>
+	          <li class="list-inline-item g-color-primary">
+	            <span>30일 아침밥 챙기기</span>
+	          </li>
+	        </ul>
+	      </div>
+   	   </section>
+	</c:when>
+	<c:when test="${challengeCategory == 2}">
+		<section class="g-bg-gray-light-v5 g-py-80">
+	      <div class="container text-center">
+	        <h2 class="h2 g-color-black g-font-weight-600">30일 유산소 운동하기</h2>
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
@@ -52,20 +71,20 @@
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
-	            <span>일기</span>
+	            <span>30일 유산소 운동하기</span>
 	          </li>
 	        </ul>
 	      </div>
    	   </section>
 	</c:when>
-	<c:when test="${boardKind==3}">
+	<c:when test="${challengeCategory == 3}">
 		<section class="g-bg-gray-light-v5 g-py-80">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 자유게시판</h2>
+	        <h2 class="h2 g-color-black g-font-weight-600">30일 플랭크하기</h2>
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
@@ -73,20 +92,20 @@
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
-	            <span>자유게시판</span>
+	            <span>30일 플랭크하기</span>
 	          </li>
 	        </ul>
 	      </div>
    	   </section>
 	</c:when>
-	<c:when test="${boardKind==4}">
+	<c:when test="${challengeCategory == 4}">
 		<section class="g-bg-gray-light-v5 g-py-80">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 지역게시판</h2>
+	        <h2 class="h2 g-color-black g-font-weight-600">30일 전신운동하기</h2>
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
@@ -94,20 +113,21 @@
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
-	            <span>지역게시판</span>
+	            <span>30일 전신운동하기</span>
 	          </li>
 	        </ul>
 	      </div>
    	   </section>
 	</c:when>
+	
 	<c:otherwise>
 		<section class="g-bg-gray-light-v5 g-py-80">
 		      <div class="container text-center">
-		        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
+		        <h2 class="h2 g-color-black g-font-weight-600">30일 챌린지</h2>
 		
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
@@ -115,7 +135,7 @@
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -145,7 +165,7 @@
               <div class="g-mb-30">
                 <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">${board.boardRegdate}</span>
                 <h2 class="h4 g-color-black g-font-weight-600 mb-3"> 
-                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
+                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/detail/${board.boardNo}">${board.boardTitle}</a>
                   </h2>
                 <!-- <p class="g-color-gray-dark-v4 g-line-height-1_8"></p> --><!-- 글내용 -->
                 <a class="g-font-size-13" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">Read more...</a>
@@ -274,52 +294,23 @@
             <!-- End 나의 BMI 지수는? -->
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
-            <c:choose>
-            	<c:when test="${boardKind==4}">
-            		<div class="g-mb-50">
-		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">지역게시판</h3>
-		              <ul class="list-unstyled g-font-size-13 mb-0">
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/3"><i class="mr-2 fa fa-angle-right"></i>서울</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>경기인천</a>
-		                </li>
-		                <li>
-		                  <a name="tagrelNo" class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>머시기</a>
-		                </li>
-		                <!-- <li>
-		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-		                </li> -->
-		              </ul>
-            		</div>
-            	</c:when>
-            	<c:otherwise>
-            		<div class="g-mb-50">
-		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
-		              <ul class="list-unstyled g-font-size-13 mb-0">
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
-		                </li>
-		                <!-- <li>
-		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-		                </li> -->
-		              </ul>
-            		</div>
-            	</c:otherwise>
-            </c:choose>
+              <div class="g-mb-50">
+		      	<h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">30일 챌린지</h3>
+		        <ul class="list-unstyled g-font-size-13 mb-0">
+		        	<li>
+		        		<a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/challenge/select/1"><i class="mr-2 fa fa-angle-right"></i>30일 아침밥 챙기기</a>
+		            </li>
+		            <li>
+		            	<a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/challenge/select/2"><i class="mr-2 fa fa-angle-right"></i>30일 유산소 운동하기</a>
+		            </li>
+		            <li>
+		            	<a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/challenge/select/3"><i class="mr-2 fa fa-angle-right"></i>30일 플랭크하기</a>
+		            </li>
+		            <li>
+		            	<a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/challenge/select/4"><i class="mr-2 fa fa-angle-right"></i>30일 전신운동하기</a>
+		            </li>
+		      	</ul>
+              </div>
             <!-- End Links -->
 
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">

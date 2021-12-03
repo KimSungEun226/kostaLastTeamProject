@@ -8,17 +8,17 @@
   <put-attribute name="footer" value="/WEB-INF/tiles/board/footer.jsp"/>
  </definition>
  
- <definition name="board/user/*" extends="boardLayout">     
-  <put-attribute name="header" value="/WEB-INF/tiles/board/user/header.jsp"/>
-  <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp"/>
- </definition>
- 
  <definition name="shopLayout" template="/WEB-INF/tiles/shop/layout.jsp">
    <put-attribute name="header" value="/WEB-INF/tiles/shop/header.jsp"/>
    <put-attribute name="aside" value="/WEB-INF/tiles/shop/aside.jsp"/>
    <put-attribute name="footer" value="/WEB-INF/tiles/shop/footer.jsp"/>
  </definition>
  
+ 
+ <definition  extends="boardLayout" name="board/user/*">     
+  <put-attribute name="header" value="/WEB-INF/tiles/board/user/header.jsp"/>
+  <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp"/>
+ </definition>
  
  <!--  뷰의정보가 board/* 인경우 boardLayout.jsp모양으로... -->
  <definition extends="boardLayout" name="board/**">

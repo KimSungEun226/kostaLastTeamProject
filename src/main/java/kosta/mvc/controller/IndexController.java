@@ -36,12 +36,12 @@ public class IndexController {
 	@RequestMapping("/shop")
 	public String shop(Model model) {
 		
-		List<Product> readNumList =  productService.selectByReadNum();
+		//List<Product> readNumList =  productService.selectByReadNum();
 		
-		List<Product> dateList = productService.selectByDate();
+		//List<Product> dateList = productService.selectByDate();
 		
-		model.addAttribute("readNumList", readNumList);
-		model.addAttribute("dateList", dateList);
+		//model.addAttribute("readNumList", readNumList);
+		//model.addAttribute("dateList", dateList);
 		return "shop/main";
 	}
 
@@ -64,12 +64,7 @@ public class IndexController {
 	public String findIdByEmail() {
 		return "board/findIdByEmail";
 	}
-	
-	@RequestMapping("/myPage")
-	public String myPage() {
-		return "board/myPage";
-	}
-	
+		
 	//회원가입 휴대전화 인증
 	private final CertificationService certificationService;
 	

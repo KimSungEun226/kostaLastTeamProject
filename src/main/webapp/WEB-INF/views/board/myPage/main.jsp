@@ -132,14 +132,14 @@
 
               <!-- My Projects -->
               <a href="page-profile-projects-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i> My Projects</span>
+                <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
                 <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10">9</span>
               </a>
               <!-- End My Projects -->
 
               <!-- Comments -->
               <a href="page-profile-comments-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i> Comments</span>
+                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
                 <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8">24</span>
               </a>
               <!-- End Comments -->
@@ -552,7 +552,7 @@
                 <div class="card border-0">
                   <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                     <h3 class="h6 mb-0">
-                        <i class="icon-list g-pos-rel g-top-1 g-mr-5"></i> Notifications
+                        <i class="icon-list g-pos-rel g-top-1 g-mr-5"></i> 최근 댓글
                       </h3>
                     <div class="dropdown g-mb-10 g-mb-0--md">
                       <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -697,11 +697,11 @@
               </div>
 
               <div class="col-lg-6">
-                <!-- News Feeds -->
+                <!-- Activities Panel -->
                 <div class="card border-0">
                   <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                     <h3 class="h6 mb-0">
-                        <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Activities
+                        <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> 나의 활동 내역
                       </h3>
                     <div class="dropdown g-mb-10 g-mb-0--md">
                       <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -730,87 +730,91 @@
                     </div>
                   </div>
 
-                  <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-300 g-pa-0">
-                    <!-- Article -->
-                    <article class="media g-mb-20">
-                      <a class="d-flex mr-3" href="#">
-                        <img class="rounded-circle g-width-40 g-height-40" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                      </a>
+                  <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
+                    <ul class="list-unstyled">
+                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                        <div class="g-mt-2">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
+                        </div>
+                        <div class="align-self-center g-px-10">
+                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                              <span class="g-mr-5">James Coolman</span>
+                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
+                            </h5>
+                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
+                        </div>
+                      </li>
 
-                      <div class="media-body">
-                        <h3 class="h6">
-                            <span class="g-color-black g-font-weight-600">Htmlstream</span>
-                            <a class="g-color-gray-dark-v4 g-mr-5" href="#">@Htmlstream</a>
-                            <span class="g-color-gray-dark-v4">26m</span>
-                          </h3>
-                        <p class="g-color-gray-dark-v4 g-mb-5">Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
-                        <a href="#">https://goo.gl/Zjd6Bj</a>
-                      </div>
-                    </article>
-                    <!-- End Article -->
+                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                        <div class="g-mt-2">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                        </div>
+                        <div class="align-self-center g-px-10">
+                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                              <span class="g-mr-5">Alberta Watson</span>
+                              <small class="g-font-size-12 g-color-pink">5k+ earned</small>
+                            </h5>
+                          <p class="m-0">Hac consectetur habitasse platea dictumst</p>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                          <span class="u-label u-label--sm g-bg-pink g-rounded-20 g-px-10">$32 / hr</span>
+                        </div>
+                      </li>
 
-                    <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-20">
+                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                        <div class="g-mt-2">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
+                        </div>
+                        <div class="align-self-center g-px-10">
+                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                              <span class="g-mr-5">David Lee</span>
+                              <small class="g-font-size-12 g-color-teal">3k+ earned</small>
+                            </h5>
+                          <p class="m-0">Curabitur hendrerit dolor sit amet consectetur</p>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                          <span class="u-label u-label--sm g-bg-teal g-rounded-20 g-px-10">$28 / hr</span>
+                        </div>
+                      </li>
 
-                    <!-- Article -->
-                    <article class="media g-mb-20">
-                      <a class="d-flex mr-3" href="#">
-                        <img class="rounded-circle g-width-40 g-height-40" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                      </a>
+                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                        <div class="g-mt-2">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
+                        </div>
+                        <div class="align-self-center g-px-10">
+                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                              <span class="g-mr-5">Alberta Heller</span>
+                              <small class="g-font-size-12 g-color-darkpurple">4k+ earned</small>
+                            </h5>
+                          <p class="m-0">Adipiscing elitut leosit amet, consectetur eleifend</p>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                          <span class="u-label u-label--sm g-bg-darkpurple g-rounded-20 g-px-10">$35 / hr</span>
+                        </div>
+                      </li>
 
-                      <div class="media-body">
-                        <h3 class="h6">
-                            <span class="g-color-black g-font-weight-600">Pixeel</span>
-                            <a class="g-color-gray-dark-v4 g-mr-5" href="#">@PixeelStudio</a>
-                            <span class="g-color-gray-dark-v4">3h</span>
-                          </h3>
-                        <p class="g-color-gray-dark-v4 g-mb-5">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
-                        <a href="#">https://goo.gl/Zjd6Bj</a>
-                      </div>
-                    </article>
-                    <!-- End Article -->
-
-                    <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-20">
-
-                    <!-- Article -->
-                    <article class="media g-mb-20">
-                      <a class="d-flex mr-3" href="#">
-                        <img class="rounded-circle g-width-40 g-height-40" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
-                      </a>
-
-                      <div class="media-body">
-                        <h3 class="h6">
-                            <span class="g-color-black g-font-weight-600">Wrapbootstrap</span>
-                            <a class="g-color-gray-dark-v4 g-mr-5" href="#">@Wrapbootstrap</a>
-                            <span class="g-color-gray-dark-v4">54m</span>
-                          </h3>
-                        <p class="g-color-gray-dark-v4 g-mb-5">Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
-                        <a href="#">https://goo.gl/Zjd6Bj</a>
-                      </div>
-                    </article>
-                    <!-- End Article -->
-
-                    <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-20">
-
-                    <!-- Article -->
-                    <article class="media g-mb-20">
-                      <a class="d-flex mr-3" href="#">
-                        <img class="rounded-circle g-width-40 g-height-40" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                      </a>
-
-                      <div class="media-body">
-                        <h3 class="h6">
-                            <span class="g-color-black g-font-weight-600">Karina</span>
-                            <a class="g-color-gray-dark-v4 g-mr-5" href="#">@Karina</a>
-                            <span class="g-color-gray-dark-v4">7h</span>
-                          </h3>
-                        <p class="g-color-gray-dark-v4 g-mb-5">Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
-                        <a href="#">https://goo.gl/Zjd6Bj</a>
-                      </div>
-                    </article>
-                    <!-- End Article -->
+                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                        <div class="g-mt-2">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
+                        </div>
+                        <div class="align-self-center g-px-10">
+                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                              <span class="g-mr-5">James Coolman</span>
+                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
+                            </h5>
+                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-                <!-- End News Feeds -->
+                <!-- End Activities Panel -->
               </div>
             </div>
             <!-- End Projects & News Feeds Panels -->
