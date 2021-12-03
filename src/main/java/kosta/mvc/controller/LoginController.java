@@ -18,7 +18,11 @@ public class LoginController {
     private MemberService memberService;
 
 
-
+    // 회원가입 페이지
+    @GetMapping("/signup")
+    public String shopSignup() {
+    	return "board/signup";
+    }
     
 
     // 회원가입 처리
