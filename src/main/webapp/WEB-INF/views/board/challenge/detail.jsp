@@ -62,16 +62,19 @@
           initialView: 'dayGridMonth',
           events: [ 	  
         	  //2021-11-30T07:10:32
-        	  <fmt:parseDate var="cntday" value="${requestScope.challenge.challenageDate}" pattern="yyyy-MM-dd"/> 
+        	  <fmt:parseDate var="cntday" value="${requestScope.challenge.challengeDate}" pattern="yyyy-MM-dd"/> 
         	  //Tue Nov 30 00:00:00 KST 2021
               <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyyMMdd"/>
               //2021-11-30
                                                    
         	  <c:forEach var='i' begin="0" end="${requestScope.challenge.challengeCnt}" step="1">          	  
               {
-              	title: '',
+              	title: '${i+1}일차 도전',
               	start: '${day+i}',
-              	image_url: '${pageContext.request.contextPath}/img/check.png',
+              	image_url: '${pageContext.request.contextPath}/img/smile.png',
+              	backgroundColor: "rgb(255, 255, 255)",
+              	textColor : "#000000",
+              	borderColor : "rgba(255, 255, 255, 0)",
               },
               </c:forEach>
           ],

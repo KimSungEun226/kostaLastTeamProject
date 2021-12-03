@@ -1,6 +1,7 @@
 package kosta.mvc.controller;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,19 +36,20 @@ public class ProductController {
 	/**
 	 * 등록폼
 	 * */
-	@RequestMapping("/write")
-	public void write() {
+	@RequestMapping("/admin/write")
+	public String write() {
+		return "shop/product/write";
 	}
 	
 	/**
 	 * 수정폼
 	 * */
-	@RequestMapping("/updateForm")
+	@RequestMapping("/admin/updateForm")
 	public String update(Long productNo, Model model) {
 		
 		Product product = productService.selectByNo(productNo, false);
 		model.addAttribute("product", product);
-		return "shop/update";
+		return "shop/product/update";
 	}
 	
 	
@@ -56,7 +58,7 @@ public class ProductController {
 	/**
 	 * 등록
 	 * */
-	@RequestMapping("/insert")
+	@RequestMapping("/admin/insert")
 	public String insert(Product product, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) throws Exception{
 		
 	    String path = session.getServletContext().getRealPath("/save");
@@ -110,7 +112,7 @@ public class ProductController {
 	/**
 	 * 수정
 	 * */
-	@RequestMapping("/update")
+	@RequestMapping("/admin/update")
 	public String update(Product product, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) throws Exception{
 		
 		
@@ -156,7 +158,7 @@ public class ProductController {
 	    productService.update(product, path);
 
 	    
-		return "redirect:";
+		return "redirect:/shop";
 	}
 
 	
@@ -178,7 +180,7 @@ public class ProductController {
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("list", pageList);
-		mv.setViewName("shop/itemView");
+		mv.setViewName("shop/product/itemView");
 		
 		return mv;
 	}
@@ -186,11 +188,17 @@ public class ProductController {
 	/**
 	 * single product select(조회수 증가)
 	 * */
-	@RequestMapping("select/single/{productNo}")
-	public ModelAndView selectSingle(@PathVariable Long productNo) {
-		Product product = productService.selectByNo(productNo, true);
+	@RequestMapping("select/single/{productNo}/{readnumCheck}")
+	public ModelAndView selectSingle(@PathVariable Long productNo, @PathVariable int readnumCheck) {
+		System.out.println(readnumCheck);
+		boolean stat = true;
+
+		//관리자가 선택했을경우엔 조회수 증가 안한다.
+		if (readnumCheck==0) stat = false;
 		
-		return new ModelAndView("shop/single", "product", product);
+		Product product = productService.selectByNo(productNo, stat);
+		
+		return new ModelAndView("shop/product/single", "product", product);
 	}
 	
 	/**
@@ -200,7 +208,7 @@ public class ProductController {
 	public ModelAndView selectSingleAdmin(@PathVariable Long productNo) {
 		Product product = productService.selectByNo(productNo, false);
 		
-		return new ModelAndView("shop/single-admin", "product", product);
+		return new ModelAndView("shop/product/single-admin", "product", product);
 	}
 	
 	

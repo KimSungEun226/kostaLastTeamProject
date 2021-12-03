@@ -10,6 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.BoardImage;
+import kosta.mvc.domain.Tag;
+import kosta.mvc.domain.product.Product;
+import kosta.mvc.domain.product.ProductImage;
+import kosta.mvc.repository.BoardImageRepository;
 import kosta.mvc.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
+	private final BoardImageRepository boardImageRepository;
 	
 	@Override
 	public List<Board> selectAll() {
@@ -34,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insert(Board board) {
 		Board b = boardRepository.save(board);
-		System.out.println(b.getBoardNo()+ " | "+b.getBoardContent());
+		
 	}
 
 	@Override
@@ -69,6 +75,18 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Page<Board> findByBoardKind(int boardKind, Pageable pageable) {
 		return boardRepository.findByBoardKind(boardKind, pageable);
+	}
+
+	/**
+	 * 지역방 지역카테고리별 검색
+	 * */
+	@Override
+	public Page<Board> findByTag(Long tagrel_no, Pageable pageable) {
+		//Tag tag = Tag.builder().tagrelNo(tagrel_no).build();
+		System.out.println("service........");
+		Page<Board> p = boardRepository.selectByTag(tagrel_no, pageable);;
+		System.out.println("end ---------------");
+		return p;
 	}
 
 }

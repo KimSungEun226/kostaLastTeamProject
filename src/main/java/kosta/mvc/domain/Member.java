@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,22 @@ import lombok.Setter;
 public class Member {
 
 	
+	
+	//회원가입할때
+		@Builder
+	    public Member(Long memberNo, String memberId, String memberPwd, String memberName, 
+	    		String memberNickname, int memberGender, String memberEmail, String memberBirth, String memberPhone) {
+	        this.memberNo = memberNo;
+	        this.memberId = memberId;
+	        this.memberPwd = memberPwd;
+	        this.memberName = memberName;
+	        this.memberNickname = memberNickname;
+	        this.memberGender = memberGender;
+	        this.memberEmail = memberEmail;
+	        this.memberBirth = memberBirth;
+	        this.memberPhone = memberPhone;
+	    }
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_no_seq")
 	@SequenceGenerator(sequenceName = "member_no_seq", allocationSize = 1, name = "member_no_seq")
@@ -39,7 +56,8 @@ public class Member {
 	private String memberNickname;
 	private int memberGender;
 	private String memberEmail;
-	private String memberBirth; //생년월일????
+	private String memberBirth; //생년월일
+	private String memberPhone;
 	
 	@CreationTimestamp
 	private LocalDateTime memberJoindate;
@@ -47,6 +65,8 @@ public class Member {
 	private String profileImage; //프로필 이미지
 	private String memberMessgae; //다짐메시지
 	private String memberStatus; //회원활동상태
+	
+	
 
 	
 	//댓글은 여러개
@@ -63,16 +83,21 @@ public class Member {
 	@JoinColumn(name="Info_No")
 	private Info info;
 	
-	@OneToOne
-	@JoinColumn(name="Address_No")
-	private Address address;
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Board> boardList;
 	
+
+	
+
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Challenge> challengeList; 
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Reply> replyList; 
+
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Address> addressList; 
+	
 }

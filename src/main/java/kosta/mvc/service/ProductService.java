@@ -35,4 +35,9 @@ public interface ProductService {
 	 * 조회수 상위 10개 검색
 	 * */
 	List<Product> selectByReadNum();
+	
+	/**
+	 * 최신날짜 9개 검색
+	 * */
+	List<Product> selectByDate();
 }

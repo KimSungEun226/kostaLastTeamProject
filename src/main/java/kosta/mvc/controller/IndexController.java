@@ -28,7 +28,7 @@ public class IndexController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String main() {
 		return "board/main";// /WEB-INF/views/index.jsp이동
 	}
@@ -36,26 +36,15 @@ public class IndexController {
 	@RequestMapping("/shop")
 	public String shop(Model model) {
 		
-		List<Product> list =  productService.selectByReadNum();
+		//List<Product> readNumList =  productService.selectByReadNum();
 		
+		//List<Product> dateList = productService.selectByDate();
 		
-		
-		model.addAttribute("readNumList", list);
-		return "shop/shop";
-	}
-	
-	@RequestMapping("/login")
-	public String login() {
-		return "board/login";
-	}
-	
-	@RequestMapping("/signup")
-	public String signup() {
-		return "board/signup";
+		//model.addAttribute("readNumList", readNumList);
+		//model.addAttribute("dateList", dateList);
+		return "shop/main";
 	}
 
-	
-	
 	@RequestMapping("/tos")
 	public String tos() {
 		return "board/tos";
@@ -75,12 +64,7 @@ public class IndexController {
 	public String findIdByEmail() {
 		return "board/findIdByEmail";
 	}
-	
-	@RequestMapping("/myPage")
-	public String myPage() {
-		return "board/myPage";
-	}
-	
+		
 	//회원가입 휴대전화 인증
 	private final CertificationService certificationService;
 	

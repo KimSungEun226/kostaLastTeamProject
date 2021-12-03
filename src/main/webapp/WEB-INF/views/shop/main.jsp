@@ -13,7 +13,7 @@
 <body>
   <main>
     <!-- Revolution Slider -->
-    <div class="g-overflow-hidden">
+    <%-- <div class="g-overflow-hidden">
       <div id="rev_slider_1014_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="typewriter-effect" data-source="gallery" style="background-color:transparent;padding:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
         <div id="rev_slider_1014_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
@@ -390,7 +390,7 @@
           <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
         </div>
       </div>
-    </div>
+    </div> --%>
     <!-- End Revolution Slider -->
 
     <!-- Features -->
@@ -613,24 +613,58 @@
       </div>
 
       <div class="row g-mx-minus-10 g-mb-50">
-        <div class="col-md-6 col-lg-4 g-px-10">
+      
+      <c:forEach items="${dateList}" var="product" >
+
+       <div class="col-md-6 col-lg-4 g-px-10">
           <!-- Article -->
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
             <!-- Article Image -->
             <div class="g-max-width-100 g-mr-15">
-              <img class="d-flex w-100" src="assets/img-temp/150x150/img1.jpg" alt="Image Description">
+              <img class="d-flex w-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </div>
             <!-- End Article Image -->
 
             <!-- Article Info -->
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
-                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Glasses</a>
+                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">${product.productName}</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
               <!-- End Article Info -->
 
               <!-- Article Footer -->
+              <footer class="d-flex justify-content-between g-font-size-16">
+                <span class="g-color-black g-line-height-1"><fmt:formatNumber value="${product.price}"/>원</span>
+                
+              </footer>
+              <!-- End Article Footer -->
+            </div>
+          </article>
+          <!-- End Article -->
+        </div>
+       
+       </c:forEach>
+       
+       
+        <!-- <div class="col-md-6 col-lg-4 g-px-10">
+          Article
+          <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
+            Article Image
+            <div class="g-max-width-100 g-mr-15">
+              <img class="d-flex w-100" src="assets/img-temp/150x150/img1.jpg" alt="Image Description">
+            </div>
+            End Article Image
+
+            Article Info
+            <div class="media-body align-self-center">
+              <h4 class="h5 g-mb-7">
+                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Glasses</a>
+              </h4>
+              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
+              End Article Info
+
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$22.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -650,30 +684,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img2.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Gloves</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -693,30 +727,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img3.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Chukka Shoes</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Footwear</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -736,30 +770,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img4.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Shoes</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Footwear</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -779,30 +813,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Content -->
+              End Article Content
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img5.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Sneaker</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Footwear</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -822,30 +856,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Content -->
+              End Article Content
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img6.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Sneaker</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Footwear</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -865,30 +899,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img7.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Desk Clock</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Hi-Tech</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -908,30 +942,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
+          End Article
         </div>
 
         <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img8.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Alarm Clock</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Hi-Tech</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -951,30 +985,30 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
-        </div>
+          End Article
+        </div> -->
 
-        <div class="col-md-6 col-lg-4 g-px-10">
-          <!-- Article -->
+        <!-- <div class="col-md-6 col-lg-4 g-px-10">
+          Article
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-            <!-- Article Image -->
+            Article Image
             <div class="g-max-width-100 g-mr-15">
               <img class="d-flex w-100" src="assets/img-temp/150x150/img9.jpg" alt="Image Description">
             </div>
-            <!-- End Article Image -->
+            End Article Image
 
-            <!-- Article Info -->
+            Article Info
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">Desk Clock</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Hi-Tech</a>
-              <!-- End Article Info -->
+              End Article Info
 
-              <!-- Article Footer -->
+              Article Footer
               <footer class="d-flex justify-content-between g-font-size-16">
                 <span class="g-color-black g-line-height-1">$55.00</span>
                 <ul class="list-inline g-color-gray-light-v2 g-font-size-14 g-line-height-1">
@@ -994,11 +1028,11 @@
                   </li>
                 </ul>
               </footer>
-              <!-- End Article Footer -->
+              End Article Footer
             </div>
           </article>
-          <!-- End Article -->
-        </div>
+          End Article
+        </div> -->
       </div>
 
       <div class="text-center">
@@ -1008,31 +1042,7 @@
     <!-- End New Arrivals -->
 
     <!-- Categories -->
-    <div class="container-fluid px-0">
-      <div class="row align-items-center no-gutters">
-        <div class="col-md-7 col-lg-8 u-block-hover g-bg-size-cover g-min-height-500 g-flex-centered" data-bg-img-src="assets/img-temp/1200x800/img1.jpg">
-          <div class="g-flex-centered-item text-right g-pa-50">
-            <h2 class="g-color-white g-font-weight-700 g-font-size-50 text-uppercase g-line-height-1 mb-4">Summer
-              <br>
-              Collection
-            </h2>
-            <span class="u-link-v5 g-color-black g-color-primary--hover g-font-size-18">Shop Now</span>
-          </div>
-
-          <a class="u-link-v2" href="#"></a>
-        </div>
-
-        <div class="col-md-5 col-lg-4 u-block-hover g-bg-size-cover g-min-height-500 g-flex-centered" data-bg-img-src="assets/img/bg/secondary.png">
-          <div class="text-center">
-            <img class="img-fluid mb-3" src="assets/img-temp/500x320/img1.png" alt="Image Description">
-            <h3 class="h5 u-link-v5 g-color-primary--hover g-font-weight-400 mb-3">Sneaker Shoes for Man</h3>
-            <span class="g-color-primary g-font-weight-700 g-font-size-20">$45.00</span>
-          </div>
-
-          <a class="u-link-v2" href="#"></a>
-        </div>
-      </div>
-    </div>
+    
     <!-- End Categories -->
 
     <!-- News -->
