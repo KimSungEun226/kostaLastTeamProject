@@ -39,8 +39,8 @@ public class ChallengeServiceImpl implements ChallengeService{
 	 * */
 	
 	  @Override
-	  public Page<Board> findByCallengeCategory(int challengeCategory, Pageable pageable) { 
-		  return challengeRepository.findByChallengeCategory(challengeCategory, pageable); 
+	  public Page<Board> findByCallengeCategory(int challenge_Category, Pageable pageable) { 
+		  return challengeRepository.findByChallengeCategory(challenge_Category, pageable); 
 	  }
 	 
 }
