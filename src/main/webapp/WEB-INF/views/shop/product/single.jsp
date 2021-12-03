@@ -273,7 +273,7 @@
               
                <sec:authorize access="!hasRole('ADMIN')">
                   
-                  <c:set var="mapping" value="user/addToCart"/>
+                  <c:set var="mapping" value="addToCart"/>
                 </sec:authorize>
                 
                 <sec:authorize access="hasRole('ADMIN')">  

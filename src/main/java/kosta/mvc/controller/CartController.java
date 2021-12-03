@@ -1,5 +1,7 @@
 package kosta.mvc.controller;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +16,7 @@ import kosta.mvc.domain.Cart;
 import kosta.mvc.service.CartService;
 
 @Controller
-@RequestMapping("/shop/user")
+@RequestMapping("/shop")
 public class CartController {
 
 	@Autowired
@@ -25,10 +27,12 @@ public class CartController {
 	 *  : 상품이름, 가격, 이미지파일이름, 상품수량, 상품번호
 	 * */
 	@RequestMapping("/selectCart")
-	public ModelAndView selectCart(HttpSession session) {
+	public ModelAndView selectCart(HttpSession session, Principal principal) {
 		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
-		List<Cart> cartList=cartService.selectCart(session.getId());
+		List<Cart> cartList = new ArrayList<Cart>();
+		if(principal!=null) cartList=cartService.selectCart(principal.getName());
+		else cartList=cartService.selectCart(session.getId());
 		
 		for(Cart c : cartList) {
 			System.out.println(c.getProduct().getProductName());
@@ -52,11 +56,14 @@ public class CartController {
 	 * 장바구니에 상품 추가(등록)
 	 * */
 	 @RequestMapping("/addToCart") 
-	 public String insertCart(HttpSession session, Long productNo, String quantity) { //회원번호/식별번호, 상품번호, 상품수량
+	 public String insertCart(HttpSession session, Long productNo, String quantity,Principal principal) { //회원번호/식별번호, 상품번호, 상품수량
 		String id = session.getId();
+		//System.out.println("principal: " + principal);
 		int qty = Integer.parseInt(quantity);
 		System.out.println(productNo+"번 상품의 개수 : "+qty);
-		cartService.insertCart(id, productNo, qty); 
+		
+		if (principal!=null) cartService.insertCart(principal.getName(), productNo, qty);
+		else cartService.insertCart(id, productNo, qty); 
 
 		return "redirect:/shop/select/single/"+productNo+"/0";
 	}
