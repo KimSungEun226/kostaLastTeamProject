@@ -8,6 +8,7 @@
   <head>
   
   
+	  
     <!-- Title -->
     <title>챌린지 작성폼</title>
 
@@ -291,7 +292,7 @@
     <script>
       $(function(){
     	 $("#cancel").click(function(){
-    		 confirm("취소하시겠습니까?") ? location.href="${path}/front" : "취소";
+    		 confirm("취소하시겠습니까?") ? history.go(-1) : "취소";
     	 }) 
       });
     </script>

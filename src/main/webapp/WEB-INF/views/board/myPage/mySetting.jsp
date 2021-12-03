@@ -138,396 +138,567 @@
             <!-- End Sidebar Navigation -->
           </div>
           <!-- End Profile Sidebar -->
-
           <!-- Profle Content -->
           <div class="col-lg-9">
-            <!-- Latest Projects Panel -->
-            <div class="card border-0 g-mb-40">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 1)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
+            <!-- Nav tabs -->
+            <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+              <li class="nav-item">
+                <a class="nav-link g-py-10 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">Edit Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--2" role="tab">Security Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--3" role="tab">Payment Options</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--4" role="tab">Notification Settings</a>
+              </li>
+            </ul>
+            <!-- End Nav tabs -->
 
-                    <div class="dropdown-divider"></div>
+            <!-- Tab panes -->
+            <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+              <!-- Edit Profile -->
+              <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
+                <h2 class="h4 g-font-weight-300">Manage your Name, ID and Email Addresses</h2>
+                <p>Below are name, email addresse, contacts and more on file for your account.</p>
 
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
-
-              <!-- Panel Body -->
-              <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                <ul class="list-unstyled">
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
+                <ul class="list-unstyled g-mb-30">
+                  <!-- Name -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Name</strong>
+                      <span class="align-top">John Doe</span>
                     </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">Unify Template</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
-                      </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">AnhularJS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
-                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
                   </li>
+                  <!-- End Name -->
 
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                  <!-- Your ID -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Your ID</strong>
+                      <span class="align-top">FKJ-032440</span>
                     </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">UX/UI Design and Backend</h5>
-                        <span class="small text-nowrap g-color-pink">16 min ago</span>
-                      </div>
-                      <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-color-black g-rounded-20 g-px-10">JavaScript</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">Ruby</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ASP.NET</span>
-                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
                   </li>
+                  <!-- End Your ID -->
 
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-black-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
+                  <!-- Company Name -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Company name</strong>
+                      <span class="align-top">Htmlstream</span>
                     </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">React Native App</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
-                      </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ReactJS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
                   </li>
+                  <!-- End Company Name -->
+
+                  <!-- Position -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Position</strong>
+                      <span class="align-top">Project Manager</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Position -->
+
+                  <!-- Primary Email Address -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Primary email address</strong>
+                      <span class="align-top">john.doe@htmlstream.com</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Primary Email Address -->
+
+                  <!-- Linked Account -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Linked account</strong>
+                      <span class="align-top">Facebook</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Linked Account -->
+
+                  <!-- Website -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Website</strong>
+                      <span class="align-top">https://htmlstream.com</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Website -->
+
+                  <!-- Phone Number -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Phone number</strong>
+                      <span class="align-top">(+123) 456 7890</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Phone Number -->
+
+                  <!-- Office Number -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Office number</strong>
+                      <span class="align-top">(+123) 456 7891</span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Office Number -->
+
+                  <!-- Address -->
+                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                    <div class="g-pr-10">
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Address</strong>
+                      <span class="align-top">795 Folsom Ave, Suite 600, San Francisco CA, US </span>
+                    </div>
+                    <span>
+                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+                      </span>
+                  </li>
+                  <!-- End Address -->
                 </ul>
+
+                <div class="text-sm-right">
+                  <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
+                  <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                </div>
               </div>
-              <!-- End Panel Body -->
-            </div>
-            <!-- End Latest Projects Panel -->
+              <!-- End Edit Profile -->
 
-            <!-- Activities Panel -->
-            <div class="card border-0 g-mb-40">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 2)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
+              <!-- Security Settings -->
+              <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--2" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
+                <h2 class="h4 g-font-weight-300">Security Settings</h2>
+                <p class="g-mb-25">Reset your password, change verifications and so on.</p>
 
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
+                <form>
+                  <!-- Current Password -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Current password</label>
+                    <div class="col-sm-9">
+                      <div class="input-group g-brd-primary--focus">
+                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Current password">
+                        <div class="input-group-append">
+                          <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
+                  <!-- End Current Password -->
 
-              <!-- Panel Content -->
-              <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                <ul class="list-unstyled">
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">UX Project</h5>
-                      <span class="ml-auto small g-color-blue g-px-10">Dropbox Inc</span>
-                    </div>
-                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-blue g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">5+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-blue g-rounded-50" href="#">Follow</a>
+                  <!-- New Password -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">New password</label>
+                    <div class="col-sm-9">
+                      <div class="input-group g-brd-primary--focus">
+                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="New password">
+                        <div class="input-group-append">
+                          <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
+                        </div>
                       </div>
                     </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Python Algorithm</h5>
-                      <span class="ml-auto small g-color-pink g-px-10">Google I/O</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img8.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-pink g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">17+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-pink g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-primary-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Unify Tempalte</h5>
-                      <span class="ml-auto small g-color-primary g-px-10">Htmlstream</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img12.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-primary g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">9+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-primary g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Panel Content -->
-            </div>
-            <!-- End Activities Panel -->
-
-            <!-- Activities Panel -->
-            <div class="card border-0">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 3)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
                   </div>
-                </div>
+                  <!-- End New Password -->
+
+                  <!-- Verify Password -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Verify password</label>
+                    <div class="col-sm-9">
+                      <div class="input-group g-brd-primary--focus">
+                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Verify password">
+                        <div class="input-group-append">
+                          <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Verify Password -->
+
+                  <!-- Login Verification -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Login verification</label>
+                    <div class="col-sm-9">
+                      <label class="form-check-inline u-check g-pl-25">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                          <i class="fa" data-check-icon="&#xf00c"></i>
+                        </div>
+                        Verify login requests
+                      </label>
+                      <small class="d-block text-muted">You need to add a phone to your profile account to enable this feature.</small>
+                    </div>
+                  </div>
+                  <!-- End Login Verification -->
+
+                  <!-- Password Reset -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Password reset</label>
+                    <div class="col-sm-9">
+                      <label class="form-check-inline u-check g-pl-25">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                          <i class="fa" data-check-icon="&#xf00c"></i>
+                        </div>
+                        Require personal information to reset my password
+                      </label>
+                      <small class="d-block text-muted">When you check this box, you will be required to verify additional information before you can request a password reset with just your email address.</small>
+                    </div>
+                  </div>
+                  <!-- End Password Reset -->
+
+                  <!-- Save Password -->
+                  <div class="form-group row g-mb-25">
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Save password</label>
+                    <div class="col-sm-9">
+                      <label class="form-check-inline u-check mx-0">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="savePassword" type="checkbox">
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </label>
+                      <small class="d-block text-muted">When you check this box, you will be saved automatically login to your profile account. Also, you will be always logged in all our services.</small>
+                    </div>
+                  </div>
+                  <!-- End Save Password -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-25">
+
+                  <div class="text-sm-right">
+                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
+                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                  </div>
+                </form>
               </div>
-              <!-- End Panel Header -->
+              <!-- End Security Settings -->
 
-              <!-- Panel Content -->
-              <div class="card-block g-pa-0">
-                <div class="table-responsive">
-                  <table class="table table-bordered u-table--v2">
-                    <thead class="text-uppercase g-letter-spacing-1">
-                      <tr>
-                        <th class="g-font-weight-300 g-color-black">Companies</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Project Description</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-130">Status</th>
-                        <th class="g-font-weight-300 g-color-black">Rating</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Locations</th>
-                      </tr>
-                    </thead>
+              <!-- Payment Options -->
+              <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--3" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
+                <h2 class="h4 g-font-weight-300">Manage your Payment Settings</h2>
+                <p class="g-mb-25">Below are the payment options for your account.</p>
 
-                    <tbody>
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img3.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pixeel Ltd" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Nulla ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="4" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>389ZA2 DeClaudine, CA, USA</span>
-                          </div>
-                        </td>
-                      </tr>
+                <form>
+                  <!-- Payment Options -->
+                  <div class="row">
+                    <!-- Visa Card -->
+                    <div class="col-md-3">
+                      <label class="u-check w-100 g-mb-25">
+                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Visa card</strong>
+                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments" checked="">
 
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Htmlstream" alt="Image Description">
-                        </td>
-                        <td class="align-middle">In consectetur adipiscing hac habitasse platea dictumst, curabitur hendrerit.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-cyan" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="4.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>738AD Lorena Spur, London, UK</span>
-                          </div>
-                        </td>
-                      </tr>
+                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
+                          <div class="media g-pa-12">
+                            <div class="media-body align-self-center g-color-blue">
+                              <i class="fa fa-cc-visa g-font-size-30 align-self-center mx-auto"></i>
+                            </div>
 
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Starbucks" alt="Image Description">
-                        </td>
-                        <td class="align-middle">To a general advertiser outdoor advertising is worthy of consideration..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-purple" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="d-flex align-self-center g-width-20 g-ml-15">
+                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
+                              </div>
+                            </div>
                           </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="2.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>044C1 Port Dickson, BC, Canada</span>
-                          </div>
-                        </td>
-                      </tr>
+                        </div>
+                      </label>
+                    </div>
+                    <!-- End Visa Card -->
 
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img2.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Wrapbootstrap" alt="Image Description">
-                        </td>
-                        <td>Create a list with all possible keywords that fit to your product, service or business..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-lightred" role="progressbar" style="width: 86%" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>07W2 Donell Lodge, NY, USA</span>
-                          </div>
-                        </td>
-                      </tr>
+                    <!-- Master Card -->
+                    <div class="col-md-3">
+                      <label class="u-check w-100 g-mb-25">
+                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Master card</strong>
+                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
 
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Ulla consectetur ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-darkpurple" role="progressbar" style="width: 62%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
+                          <div class="media g-pa-12">
+                            <div class="media-body align-self-center g-color-lightred">
+                              <i class="fa fa-cc-mastercard g-font-size-30 align-self-center mx-auto"></i>
+                            </div>
+
+                            <div class="d-flex align-self-center g-width-20 g-ml-15">
+                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
+                              </div>
+                            </div>
                           </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="3.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>1A9WA4 Wanderben, Berlin, Germany</span>
+                        </div>
+                      </label>
+                    </div>
+                    <!-- End Master Card -->
+
+                    <!-- Amazon Payments -->
+                    <div class="col-md-3">
+                      <label class="u-check w-100 g-mb-25">
+                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Amazon payments</strong>
+                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
+
+                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
+                          <div class="media g-pa-12">
+                            <div class="media-body align-self-center g-color-orange">
+                              <i class="fa fa-amazon g-font-size-30 align-self-center mx-auto"></i>
+                            </div>
+
+                            <div class="d-flex align-self-center g-width-20 g-ml-15">
+                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
+                              </div>
+                            </div>
                           </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                        </div>
+                      </label>
+                    </div>
+                    <!-- End Amazon Payments -->
+
+                    <!-- Paypal -->
+                    <div class="col-md-3">
+                      <label class="u-check w-100 g-mb-25">
+                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Paypal</strong>
+                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
+
+                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
+                          <div class="media g-pa-12">
+                            <div class="media-body align-self-center g-color-darkblue">
+                              <i class="fa fa-paypal g-font-size-30 align-self-center mx-auto"></i>
+                            </div>
+
+                            <div class="d-flex align-self-center g-width-20 g-ml-15">
+                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <!-- End Paypal -->
+                  </div>
+                  <!-- End Payment Options -->
+
+                  <!-- Card Name and Number -->
+                  <div class="row">
+                    <!-- Card Name -->
+                    <div class="col-md-6">
+                      <div class="form-group g-mb-20">
+                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Name on card</label>
+                        <div class="input-group g-brd-primary--focus">
+                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="John Doe">
+                          <div class="input-group-append">
+                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-user"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Card Name -->
+
+                    <!-- Card Number -->
+                    <div class="col-md-6">
+                      <div class="form-group g-mb-20">
+                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Card number</label>
+                        <div class="input-group g-brd-primary--focus">
+                          <input id="inputGroup1_3" class="form-control form-control-md g-brd-right-none rounded-0 g-py-13" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" data-mask="9999-9999-9999-9999">
+                          <div class="input-group-append">
+                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-credit-card"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Card Number -->
+                  </div>
+                  <!-- End Card Name and Number -->
+
+                  <!-- Card Expiration Dates and CVV Code -->
+                  <div class="row">
+                    <!-- Expiration Month -->
+                    <div class="col-md-4">
+                      <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Expiration month</label>
+                      <select class="js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-dark-v5 w-100 g-pt-11 g-pb-10" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
+                        <option selected="">Month</option>
+                        <option value="1">January</option>
+                        <option value="1">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                    <!-- End Expiration Month -->
+
+                    <!-- Expiration Year -->
+                    <div class="col-md-4">
+                      <div class="form-group g-mb-20">
+                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Expiration year</label>
+                        <div class="input-group g-brd-primary--focus">
+                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="2021">
+                          <div class="input-group-append">
+                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-calendar"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Expiration Year -->
+
+                    <!-- CVV Code -->
+                    <div class="col-md-4">
+                      <div class="form-group g-mb-20">
+                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">CVV code</label>
+                        <div class="input-group g-brd-primary--focus">
+                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="2021">
+                          <div class="input-group-append">
+                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End CVV Code -->
+                  </div>
+                  <!-- End Card Expiration Dates and CVV Code -->
+
+                  <!-- Billing Address -->
+                  <div class="form-group">
+                    <label class="d-block g-color-gray-dark-v2 g-font-weight-700 1text-sm-right g-mb-10">Billing address</label>
+                    <label class="u-check g-pl-25 mb-0">
+                      <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                      <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                        <i class="fa" data-check-icon="&#xf00c"></i>
+                      </div>
+                      Same as shipping address?
+                    </label>
+                  </div>
+                  <!-- End Billing Address -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-25">
+
+                  <div class="text-sm-right">
+                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
+                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                  </div>
+                </form>
               </div>
-              <!-- End Panel Content -->
+              <!-- End Payment Options -->
+
+              <!-- Notification Settings -->
+              <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--4" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
+                <h2 class="h4 g-font-weight-300">Manage your Notifications</h2>
+                <p class="g-mb-25">Below are the notifications you may manage.</p>
+
+                <form>
+                  <!-- Email Notification -->
+                  <div class="form-group">
+                    <label class="d-flex align-items-center justify-content-between">
+                      <span>Email notification</span>
+                      <div class="u-check">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="emailNotification" type="checkbox" checked>
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- End Email Notification -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-20">
+
+                  <!-- Comments Notification -->
+                  <div class="form-group">
+                    <label class="d-flex align-items-center justify-content-between">
+                      <span>Send me email notification when a user comments on my blog</span>
+                      <div class="u-check">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="commentNotification" type="checkbox">
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- End Comments Notification -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-20">
+
+                  <!-- Update Notification -->
+                  <div class="form-group">
+                    <label class="d-flex align-items-center justify-content-between">
+                      <span>Send me email notification for the latest update</span>
+                      <div class="u-check">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="updateNotification" type="checkbox" checked>
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- End Update Notification -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-25">
+
+                  <!-- Message Notification -->
+                  <div class="form-group">
+                    <label class="d-flex align-items-center justify-content-between">
+                      <span>Send me email notification when a user sends me message</span>
+                      <div class="u-check">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="messageNotification" type="checkbox" checked>
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- End Message Notification -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-25">
+
+                  <!-- Newsletter Notification -->
+                  <div class="form-group">
+                    <label class="d-flex align-items-center justify-content-between">
+                      <span>Receive our monthly newsletter</span>
+                      <div class="u-check">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="newsletterNotification" type="checkbox">
+                        <div class="u-check-icon-radio-v7">
+                          <i class="d-inline-block"></i>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- End Newsletter Notification -->
+
+                  <hr class="g-brd-gray-light-v4 g-my-25">
+
+                  <div class="text-sm-right">
+                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
+                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                  </div>
+                </form>
+              </div>
+              <!-- End Notification Settings -->
             </div>
-            <!-- End Activities Panel -->
+            <!-- End Tab panes -->
           </div>
           <!-- End Profle Content -->
         </div>
@@ -768,6 +939,8 @@
   <script src="../../assets/vendor/appear.js"></script>
   <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
   <script src="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="../../assets/vendor/jquery.maskedinput/src/jquery.maskedinput.js"></script>
+  <script src="../../assets/vendor/chosen/chosen.jquery.js"></script>
 
   <!-- JS Unify -->
   <script src="../../assets/js/hs.core.js"></script>
@@ -775,8 +948,11 @@
   <script src="../../assets/js/components/hs.header.js"></script>
   <script src="../../assets/js/components/hs.tabs.js"></script>
   <script src="../../assets/js/components/hs.progress-bar.js"></script>
-  <script src="../../assets/js/components/hs.rating.js"></script>
   <script src="../../assets/js/components/hs.scrollbar.js"></script>
+  <script src="../../assets/js/helpers/hs.not-empty-state.js"></script>
+  <script src="../../assets/js/helpers/hs.focus-state.js"></script>
+  <script src="../../assets/js/components/hs.masked-input.js"></script>
+  <script src="../../assets/js/components/hs.select.js"></script>
   <script src="../../assets/js/components/hs.go-to.js"></script>
 
   <!-- JS Customization -->
@@ -785,16 +961,20 @@
   <!-- JS Plugins Init. -->
   <script>
     $(document).on('ready', function () {
+        $.HSCore.helpers.HSFocusState.init();
+        $.HSCore.helpers.HSNotEmptyState.init();
+
         // initialization of go to
         $.HSCore.components.HSGoTo.init('.js-go-to');
 
         // initialization of tabs
         $.HSCore.components.HSTabs.init('[role="tablist"]');
 
-        // initialization of rating
-        $.HSCore.components.HSRating.init($('.js-rating'), {
-          spacing: 2
-        });
+        // initialization of input masking
+        $.HSCore.components.HSMaskedInput.init('[data-mask]');
+
+        // initialization of custom select
+        $.HSCore.components.HSSelect.init('.js-custom-select');
 
         // initialization of HSScrollBar component
         $.HSCore.components.HSScrollBar.init( $('.js-scrollbar') );
@@ -813,7 +993,7 @@
         });
 
         // initialization of horizontal progress bars
-        setTimeout(function() { // important in this case
+        setTimeout(function () { // important in this case
           var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress-bar', {
             direction: 'horizontal',
             indicatorSelector: '.js-hr-progress-bar-indicator'
@@ -827,6 +1007,7 @@
         }, 200);
       });
   </script>
+
 
 
 
@@ -1276,7 +1457,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/chosen/chosen.css">
+
   <link rel="stylesheet" href="../../assets/vendor/prism/themes/prism.css">
   <link rel="stylesheet" href="../../assets/vendor/custombox/custombox.min.css">
   <link rel="stylesheet" href="../../assets/style-switcher/vendor/spectrum/spectrum.css">
@@ -1285,8 +1466,8 @@
   <!-- End CSS -->
 
   <!-- Scripts -->
-  <script src="../../assets/vendor/chosen/chosen.jquery.js"></script>
-  <script src="../../assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
+
+
   <script src="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
   <script src="../../assets/vendor/custombox/custombox.min.js"></script>
   <script src="../../assets/vendor/clipboard/dist/clipboard.min.js"></script>
@@ -1302,7 +1483,7 @@
   <!-- End Prism -->
 
   <script src="../../assets/js/components/hs.scrollbar.js"></script>
-  <script src="../../assets/js/components/hs.select.js"></script>
+
   <script src="../../assets/js/components/hs.modal-window.js"></script>
   <script src="../../assets/js/components/hs.markup-copy.js"></script>
 

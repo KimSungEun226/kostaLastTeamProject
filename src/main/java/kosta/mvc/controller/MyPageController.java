@@ -34,11 +34,11 @@ public class MyPageController {
 	/**
 	 * 나의 댓글 모아보기 
 	 */
-	@RequestMapping("/comments")
+	@RequestMapping("/reply")
 	public ModelAndView comments() {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/myPage/comments");
+		mv.setViewName("board/myPage/myReply");
 		return mv;
 	}
 	
@@ -49,7 +49,7 @@ public class MyPageController {
 	public ModelAndView setting() {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/myPage/setting");
+		mv.setViewName("board/myPage/mySetting");
 		return mv;
 	}	
 }

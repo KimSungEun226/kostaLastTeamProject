@@ -141,12 +141,12 @@
 
           <!-- Profle Content -->
           <div class="col-lg-9">
-            <!-- Latest Projects Panel -->
+            <!-- Comments (Option 1) -->
             <div class="card border-0 g-mb-40">
               <!-- Panel Header -->
               <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                 <h3 class="h6 mb-0">
-                    <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 1)</small>
+                    <i class="icon-bubbles g-pos-rel g-top-1 g-mr-5"></i> Comments <small>(option 1)</small>
                   </h3>
                 <div class="dropdown g-mb-10 g-mb-0--md">
                   <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -177,68 +177,133 @@
               <!-- End Panel Header -->
 
               <!-- Panel Body -->
-              <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                <ul class="list-unstyled">
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">Unify Template</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
+              <div class="card-block g-pa-0">
+                <div class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
+                  <div class="media-body">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">James Coolman</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>2 days ago</span> / <a href="#">Reply</a>
                       </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">AnhularJS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
                     </div>
-                  </li>
 
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">UX/UI Design and Backend</h5>
-                        <span class="small text-nowrap g-color-pink">16 min ago</span>
-                      </div>
-                      <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-color-black g-rounded-20 g-px-10">JavaScript</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">Ruby</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ASP.NET</span>
-                    </div>
-                  </li>
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
 
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-black-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">React Native App</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 214
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 35
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 52
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-ml-40 g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
+                  <div class="media-body">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">Alberta Watson</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>7 hr ago</span> / <a href="#">Reply</a>
                       </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ReactJS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
                     </div>
-                  </li>
-                </ul>
+
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+
+                    <ul class="list-inline g-mb-10 g-mb-20--md">
+                      <li class="list-inline-item g-mb-10 g-mb-0--md">
+                        <img class="g-width-100 g-height-100" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item g-mb-10 g-mb-0--md">
+                        <img class="g-width-100 g-height-100" src="../../assets/img-temp/100x100/img12.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item g-mb-10 g-mb-0--md">
+                        <img class="g-width-100 g-height-100" src="../../assets/img-temp/100x100/img13.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item u-bg-overlay g-bg-black-opacity-0_5--after">
+                        <img class="g-width-100 g-height-100" src="../../assets/img-temp/100x100/img8.jpg" alt="Image Description">
+                        <a class="u-link-v5 u-bg-overlay__inner g-absolute-centered g-color-white g-color-primary--hover text-center" href="#">
+                          <span class="g-font-size-20">10+</span> Photos
+                        </a>
+                      </li>
+                    </ul>
+
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 637
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 08
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 38
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
+                  <div class="media-body">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">David Lee</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>2 days ago</span> / <a href="#">Reply</a>
+                      </div>
+                    </div>
+
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 178
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 14
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 12
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <a class="btn btn-block u-btn-darkgray rounded-0 g-py-13" href="#">Load More</a>
               </div>
               <!-- End Panel Body -->
             </div>
-            <!-- End Latest Projects Panel -->
+            <!-- End Comments (Option 1) -->
 
-            <!-- Activities Panel -->
+            <!-- Comments (Option 2) -->
             <div class="card border-0 g-mb-40">
               <!-- Panel Header -->
               <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                 <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 2)</small>
+                    <i class="icon-bubbles g-pos-rel g-top-1 g-mr-5"></i> Comments <small>(option 2)</small>
                   </h3>
                 <div class="dropdown g-mb-10 g-mb-0--md">
                   <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -268,266 +333,127 @@
               </div>
               <!-- End Panel Header -->
 
-              <!-- Panel Content -->
-              <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                <ul class="list-unstyled">
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">UX Project</h5>
-                      <span class="ml-auto small g-color-blue g-px-10">Dropbox Inc</span>
-                    </div>
-                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-blue g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">5+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-blue g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Python Algorithm</h5>
-                      <span class="ml-auto small g-color-pink g-px-10">Google I/O</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img8.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-pink g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">17+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-pink g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-primary-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Unify Tempalte</h5>
-                      <span class="ml-auto small g-color-primary g-px-10">Htmlstream</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img12.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-primary g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">9+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-primary g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Panel Content -->
-            </div>
-            <!-- End Activities Panel -->
-
-            <!-- Activities Panel -->
-            <div class="card border-0">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 3)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
-
-              <!-- Panel Content -->
+              <!-- Panel Body -->
               <div class="card-block g-pa-0">
-                <div class="table-responsive">
-                  <table class="table table-bordered u-table--v2">
-                    <thead class="text-uppercase g-letter-spacing-1">
-                      <tr>
-                        <th class="g-font-weight-300 g-color-black">Companies</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Project Description</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-130">Status</th>
-                        <th class="g-font-weight-300 g-color-black">Rating</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Locations</th>
-                      </tr>
-                    </thead>
+                <div class="media g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
+                  <div class="media-body g-brd-around g-brd-gray-light-v4 g-pa-20">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">James Coolman</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>2 days ago</span> / <a href="#">Reply</a>
+                      </div>
+                    </div>
 
-                    <tbody>
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img3.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pixeel Ltd" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Nulla ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="4" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>389ZA2 DeClaudine, CA, USA</span>
-                          </div>
-                        </td>
-                      </tr>
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
 
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Htmlstream" alt="Image Description">
-                        </td>
-                        <td class="align-middle">In consectetur adipiscing hac habitasse platea dictumst, curabitur hendrerit.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-cyan" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="4.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>738AD Lorena Spur, London, UK</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Starbucks" alt="Image Description">
-                        </td>
-                        <td class="align-middle">To a general advertiser outdoor advertising is worthy of consideration..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-purple" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="2.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>044C1 Port Dickson, BC, Canada</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img2.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Wrapbootstrap" alt="Image Description">
-                        </td>
-                        <td>Create a list with all possible keywords that fit to your product, service or business..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-lightred" role="progressbar" style="width: 86%" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>07W2 Donell Lodge, NY, USA</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Ulla consectetur ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-darkpurple" role="progressbar" style="width: 62%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="3.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>1A9WA4 Wanderben, Berlin, Germany</span>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 214
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 35
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 42
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+
+                <div class="media g-ml-40 g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
+                  <div class="media-body g-brd-around g-brd-gray-light-v4 g-pa-20">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">Alberta Watson</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>7 hr ago</span> / <a href="#">Reply</a>
+                      </div>
+                    </div>
+
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+
+                    <ul class="list-inline g-mb-10 g-mb-20--md">
+                      <li class="list-inline-item g-mb-10 g-mb-0--sm">
+                        <img class="g-width-70 g-height-70" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item g-mb-10 g-mb-0--sm">
+                        <img class="g-width-70 g-height-70" src="../../assets/img-temp/100x100/img12.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item g-mb-10 g-mb-0--sm">
+                        <img class="g-width-70 g-height-70" src="../../assets/img-temp/100x100/img13.jpg" alt="Image Description">
+                      </li>
+                      <li class="list-inline-item u-bg-overlay g-bg-black-opacity-0_5--after">
+                        <img class="g-width-70 g-height-70" src="../../assets/img-temp/100x100/img8.jpg" alt="Image Description">
+                        <a class="u-link-v5 u-bg-overlay__inner g-absolute-centered g-color-white g-color-primary--hover text-center" href="#">
+                          <span class="g-font-size-20">10+</span> Photos
+                        </a>
+                      </li>
+                    </ul>
+
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 637
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 08
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 24
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="media g-mb-20">
+                  <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
+                  <div class="media-body g-brd-around g-brd-gray-light-v4 g-pa-20">
+                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
+                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">David Lee</h5>
+                      <div class="text-nowrap g-font-size-12">
+                        <span>2 days ago</span> / <a href="#">Reply</a>
+                      </div>
+                    </div>
+
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 178
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-dislike g-pos-rel g-top-1 g-mr-3"></i> 14
+                        </a>
+                      </li>
+                      <li class="list-inline-item g-mr-20">
+                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 65
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <a class="btn btn-block u-btn-primary rounded-0 g-py-13" href="#">Load More</a>
               </div>
-              <!-- End Panel Content -->
+              <!-- End Panel Body -->
             </div>
-            <!-- End Activities Panel -->
+            <!-- End Comments (Option 2) -->
           </div>
           <!-- End Profle Content -->
         </div>
@@ -774,8 +700,8 @@
   <script src="../../assets/js/helpers/hs.hamburgers.js"></script>
   <script src="../../assets/js/components/hs.header.js"></script>
   <script src="../../assets/js/components/hs.tabs.js"></script>
+  <script src="../../assets/js/components/hs.popup.js"></script>
   <script src="../../assets/js/components/hs.progress-bar.js"></script>
-  <script src="../../assets/js/components/hs.rating.js"></script>
   <script src="../../assets/js/components/hs.scrollbar.js"></script>
   <script src="../../assets/js/components/hs.go-to.js"></script>
 
@@ -790,11 +716,6 @@
 
         // initialization of tabs
         $.HSCore.components.HSTabs.init('[role="tablist"]');
-
-        // initialization of rating
-        $.HSCore.components.HSRating.init($('.js-rating'), {
-          spacing: 2
-        });
 
         // initialization of HSScrollBar component
         $.HSCore.components.HSScrollBar.init( $('.js-scrollbar') );
@@ -813,7 +734,7 @@
         });
 
         // initialization of horizontal progress bars
-        setTimeout(function() { // important in this case
+        setTimeout(function () { // important in this case
           var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress-bar', {
             direction: 'horizontal',
             indicatorSelector: '.js-hr-progress-bar-indicator'
