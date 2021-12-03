@@ -96,64 +96,117 @@
         <table class="table table-striped">
           <thead class="g-color-white g-bg-primary text-center text-uppercase">
             <tr>
-              <th class="g-brd-top-none g-font-weight-500 g-py-15 g-font-size-16" colspan="2">나의 BMI 지수 확인</th>
+              <th class="g-brd-top-none g-font-weight-500 g-py-15 g-font-size-25" colspan="2">칼로리 처방 받기</th>
             </tr>
           </thead>
-
           <tbody class="text-center">
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">성별</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">총 감량기간</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.gender}</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.targetWeightDate} 개월</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">연령</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">현재 체중</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.year}년 ${cal.month}월 ${cal.day}일</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.height} kg</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">키</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">목표 체중</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.height}cm</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.targetWeight} kg</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">몸무게</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">표준 체중</td>
               <td class="g-max-width-300 text-left g-py-15">
-                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.weight}kg</h4>
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.standardWeight} kg</h4>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <!-- Subtotal -->
-      <div class="g-bg-gray-light-v5 mb-2">
-            <ul class="list-unstyled g-font-weight-600 text-uppercase py-4 g-pr-50 mb-0">
-              <li class="text-left my-1">
-                <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">비만도(BMI) 검사 결과</h4>
-              </li>
-              <li class="text-center my-1">
-				<div class="container"> 
-				  <div class="progress" style="height: 20px">
-					<div class="progress-bar" style="width:${100/35*cal.bmi}%; height: 20px">			  
-					  <div class="progress-text" style="height: 20px" text-center>${cal.bmi}</div>	
+        <table class="table table-striped">
+          <thead class="g-color-white g-bg-primary text-center text-uppercase">
+            <tr>
+              <td class="g-width-150 g-font-weight-600 g-py-15 g-font-size-16 text-left" colspan="2">하루 소비 칼로리는 <span style="color:red">${cal.total}kcal</span></td>
+            </tr>
+          </thead>
+            <tbody class="text-center">
+            <tr>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15" colspan="2">
+			    <div class="container"> 
+				  <div class="progress" style="height: 30px">
+					<div class="progress-bar" style="width:${100/(cal.bmr+cal.amr+cal.efd)*cal.bmr}%; height: 30px; background-color:#66FF66">			  
+					  <div class="progress-text text-center" style="height: 30px">${cal.bmr}</div>	
+					</div>				  
+					<div class="progress-bar" style="width:${100/(cal.bmr+cal.amr+cal.efd)*cal.amr}%; height: 30px; background-color:#FFCC33">			  
+					  <div class="progress-text" style="height: 30px">${cal.amr}</div>	
+					</div>				  
+					<div class="progress-bar" style="width:${100/(cal.bmr+cal.amr+cal.efd)*cal.efd}%; height: 30px; background-color:#FF9900">			  
+					  <div class="progress-text text-center" style="height: 30px">${cal.efd}</div>	
 					</div>				  
 				  </div> 
 				</div>
-              </li>
-            </ul>
-      </div><!-- End Subtotal -->
+			  </td>
+            </tr>
+            <tr>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15 text-center" colspan="2">
+                <div class="container"> 
+				  <div class="progress" style="height: 30px">
+					<div class="progress-bar" style="width:18%; height: 20px; background-color:#00ff0000"></div>			  
+					<div class="progress-bar" style="width:21%; height: 20px; background-color:#66FF66">			  
+					  <div class="progress-text" style="height: 20px">기초대사량</div>	
+					</div>				  
+					<div class="progress-bar" style="width:21%; height: 20px; background-color:#FFCC33">			  
+					  <div class="progress-text" style="height: 20px">활동대사량</div>	
+					</div>				  
+					<div class="progress-bar" style="width:21%; height: 20px; background-color:#FF9900">			  
+					  <div class="progress-text" style="height: 20px">소화에 필요한 에너지</div>	
+					</div>				  
+					<div class="progress-bar" style="width:19%; height: 20px; background-color:#00ff0000"></div>			  
+				  </div>
+				  <ul class="text-left">
+				    <li>하루 소비 칼로리는 일상생활을 하는데 기본적으로 소비되는 칼로리입니다.</li>
+					<li>칼로리 처방 시, 선택하는 활동량에 따라 달라질 수 있습니다.</li>
+				  </ul>
+				</div>
+              </td>
+            </tr>
+          </tbody>
+         </table>
+         <table class="table table-striped">
+          <thead class="g-color-white g-bg-primary text-center text-uppercase">
+            <tr>
+              <td class="g-width-150 g-font-weight-600 g-py-15 g-font-size-16 text-left" colspan="2">처방 칼로리</td>
+            </tr>
+          </thead>
+            <tbody class="text-center">
+            <tr>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-1200 g-py-15">하루 동안 섭취해야 할 음식 칼로리</td>
+              <td class="g-max-width-300 text-left g-py-15">
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.dailyEatCal } Kcal</h4>
+              </td>
+            </tr>
+            <tr>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-1200 g-py-15">하루 동안 운동으로 소모해야 할 칼로리</td>
+			  <td class="g-max-width-300 text-left g-py-15">
+                <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.dailyWeightTraining } Kcal</h4>
+              </td>
+            </tr>
+            
+          </tbody>
+         </table>
+      </div>
 
       <!-- Total -->
       <div class="row justify-content-between">
-        
-
         <div class="col-md-7 align-self-center g-mb-30">
           <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-center text-uppercase py-4 g-pr-50 mb-3" style="width: 80%">
-            <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">당신의 비만도(BMI) 지수는 ${cal.bmi}로 “${cal.group}” 입니다.</h4>
+            <ul class="text-left">
+              <li>일일 음식 섭취 칼로리가 1000kcal 이하일 때는 감량 목표를 하향 조절해 주세요.</li>
+              <li>1000kcal 이하의 음식 섭취는 영양 불균형 및 요요 현상의 원인이 될 수 있어요.</li>
+            </ul>
           </div>
         </div>
         <div class="col-md-4 align-self-center g-hidden-sm-down g-mb-30">

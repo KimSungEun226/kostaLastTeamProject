@@ -70,8 +70,8 @@ $(document).ready(function(){
 	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 성별</label>
 	              <select id="gender" name="gender" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
 	                <option value="-">선택</option>
-	                <option value="male">남성</option>
-	                <option value="female">여성</option>
+	                <option value="남성">남성</option>
+	                <option value="여성">여성</option>
 	              </select>
 	          </div>
               
@@ -111,7 +111,7 @@ $(document).ready(function(){
               
               <div class="form-group g-mb-20">
 	            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 평소 활동량</label>
-	              <select id="active" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
+	              <select id="active" name="activity" class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Gender" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
 	                <option value="-">선택</option>
 	                <option value="0.2">활동안함 (운동을 전혀 안 해요.)</option><br>
 	                <option value="0.375">가벼운 활동 (평소 가벼운 운동이나 스포츠를 즐겨요)</option>
