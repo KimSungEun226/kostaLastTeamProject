@@ -196,7 +196,7 @@
                           <td class="text-left g-py-25">
 				    
 				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
-                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.productImage.productImageName}" alt="Image Description">
+                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
                             </a>
                             <div class="d-inline-block align-middle">
                               <h4 class="h6 g-color-black">${cart.product.productName}</h4>

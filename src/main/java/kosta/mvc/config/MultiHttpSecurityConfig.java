@@ -55,7 +55,7 @@ public class MultiHttpSecurityConfig {
 
 	        .authorizeRequests()
 	        .antMatchers("/shop/admin/**").hasRole("ADMIN")
-
+	        .antMatchers("/shop/user/**").hasRole("MEMBER")
 	            .and() // 로그인 설정
 	                .formLogin()
 	                //.loginPage("/login")
@@ -107,7 +107,7 @@ public class MultiHttpSecurityConfig {
 	                .antMatchers("/admin/**").hasRole("ADMIN")
 	                .antMatchers("/user/**").hasRole("MEMBER")
 	                //.antMatchers("/shop/**").hasRole("MEMBER")
-	                .antMatchers("/**").anonymous()
+	                //.antMatchers("/**").anonymous()
 	            .and() // 로그인 설정
 	                .formLogin()
 	                .loginPage("/login")

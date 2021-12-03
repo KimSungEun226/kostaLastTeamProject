@@ -39,13 +39,32 @@
 
 <body>
   <main>
-  
+  	<!-- Start 해당 카테고리 게시판 이름 -->
 	<c:choose>
+	<c:when test="${boardKind==0}">
+		<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 전체</h4>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>전체</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+	</c:when>
 	<c:when test="${boardKind==1}">
-		<section class="g-bg-gray-light-v5 g-py-80">
+		<section class="g-bg-gray-light-v5 g-py-30">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 일기</h2>
-	
+	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 일기</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
 	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
@@ -63,10 +82,9 @@
    	   </section>
 	</c:when>
 	<c:when test="${boardKind==3}">
-		<section class="g-bg-gray-light-v5 g-py-80">
+		<section class="g-bg-gray-light-v5 g-py-30">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 자유게시판</h2>
-	
+	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 자유게시판</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
 	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
@@ -84,10 +102,9 @@
    	   </section>
 	</c:when>
 	<c:when test="${boardKind==4}">
-		<section class="g-bg-gray-light-v5 g-py-80">
+		<section class="g-bg-gray-light-v5 g-py-30">
 	      <div class="container text-center">
-	        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 지역게시판</h2>
-	
+	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 지역게시판</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
 	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
@@ -104,29 +121,157 @@
 	      </div>
    	   </section>
 	</c:when>
-	<c:otherwise>
-		<section class="g-bg-gray-light-v5 g-py-80">
+	</c:choose>
+	<!-- End 해당 카테고리 게시판 이름 -->
+	
+	<!-- Start 지역게시판 > 해당 지역카테고리 게시판 이름 
+			2:서울 3:경기인천 4:강원도 5:충청도 6:전라도 7:경상도 8:제주도
+	-->
+	<c:choose>
+		<c:when test="${tagrelNo==2}">
+			<section class="g-bg-gray-light-v5 g-py-30">
 		      <div class="container text-center">
-		        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
-		
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 서울</h3>
 		        <ul class="u-list-inline">
-		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
-		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-		          </li>
 		          <li class="list-inline-item g-mr-5">
 		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
 		          <li class="list-inline-item g-color-primary">
-		            <span>전체</span>
+		            <span>서울</span>
 		          </li>
 		        </ul>
 		      </div>
 	   	   </section>
-	</c:otherwise>
+		</c:when>
+		<c:when test="${tagrelNo==3}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 경기·인천</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>경기·인천</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
+		<c:when test="${tagrelNo==4}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 강원도</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>강원도</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
+		<c:when test="${tagrelNo==5}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 충청도</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>충청도</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
+		<c:when test="${tagrelNo==6}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 전라도</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>전라도</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
+		<c:when test="${tagrelNo==7}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 경상도</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>경상도</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
+		<c:when test="${tagrelNo==8}">
+			<section class="g-bg-gray-light-v5 g-py-30">
+		      <div class="container text-center">
+		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 제주도</h3>
+		        <ul class="u-list-inline">
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-mr-5">
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+		          </li>
+		          <li class="list-inline-item g-color-primary">
+		            <span>제주도</span>
+		          </li>
+		        </ul>
+		      </div>
+	   	   </section>
+		</c:when>
 	</c:choose>
-
+	<!-- End 지역게시판 > 해당 지역카테고리 게시판 이름 -->
+	
+	
 	<!-- 게시물 리스트 start -->
 	<c:choose>
 	<c:when test="${empty requestScope.pageList}">
@@ -135,7 +280,7 @@
     <c:otherwise>
     
     <!-- Blog Minimal Blocks -->
-    <div class="container g-pt-100 g-pb-20">
+    <div class="container g-pt-50 g-pb-20">
       <div class="row justify-content-between">
         <div class="col-lg-9 order-lg-2 g-mb-80">
           <div class="g-pl-20--lg">
@@ -182,7 +327,6 @@
 		 <!-- Pagination -->
         <nav class="g-mb-100" aria-label="Page Navigation">
         <ul class="list-inline mb-0">
-         
           	<c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
@@ -193,25 +337,17 @@
                 <span class="sr-only">Next</span>
               </a>
             </li>
-            
 		    </c:if>
-          
-          
             <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-				  
 					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
 					       <c:set var="doneLoop" value="true"/>
 					    </c:if> 
-				    
 				  <c:if test="${not doneLoop}" >
-				  
 				      <li class="list-inline-item hidden-down">
 				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/board/select/${boardKind}?nowPage=${i}">${i}</a> 
 		            </li>
 		         </c:if>
             </c:forEach>
-            
-            
             <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/board/select/${boardKind}?nowPage=${startPage+blockCount}" aria-label="Next">
@@ -222,8 +358,6 @@
               </a>
             </li>
 			</c:if>
-			
-			
             <!-- <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="#" aria-label="Next">
                 <span aria-hidden="true">
@@ -232,8 +366,14 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
-            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
-            
+            <c:choose>
+            	<c:when test="${boardKind==4}">
+            		<span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/writeTag">글쓰기</a></span>	
+            	</c:when>
+            	<c:otherwise>
+            		<span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
+            	</c:otherwise>
+            </c:choose>
           </ul>
         </nav>
         <!-- End Pagination -->
@@ -280,16 +420,25 @@
 		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">지역게시판</h3>
 		              <ul class="list-unstyled g-font-size-13 mb-0">
 		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/3"><i class="mr-2 fa fa-angle-right"></i>서울</a>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/2"><i class="mr-2 fa fa-angle-right"></i>서울</a>
 		                </li>
 		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>경기인천</a>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/3"><i class="mr-2 fa fa-angle-right"></i>경기·인천</a>
 		                </li>
 		                <li>
-		                  <a name="tagrelNo" class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/4"><i class="mr-2 fa fa-angle-right"></i>강원도</a>
 		                </li>
 		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>머시기</a>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/5"><i class="mr-2 fa fa-angle-right"></i>충청도</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/6"><i class="mr-2 fa fa-angle-right"></i>전라도</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/7"><i class="mr-2 fa fa-angle-right"></i>경상도</a>
+		                </li>
+		                <li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/selectByTag/8"><i class="mr-2 fa fa-angle-right"></i>제주도</a>
 		                </li>
 		                <!-- <li>
 		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
@@ -301,6 +450,9 @@
             		<div class="g-mb-50">
 		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
 		              <ul class="list-unstyled g-font-size-13 mb-0">
+		              	<li>
+		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/0"><i class="mr-2 fa fa-angle-right"></i>전체</a>
+		                </li>
 		                <li>
 		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
 		                </li>

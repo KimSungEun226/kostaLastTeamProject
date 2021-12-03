@@ -51,7 +51,6 @@
 	   $("button[name=addToCart]").click(function(){
 		   $("input[name=quantity]").val(qty);
 		   //alert($("input[name=quantity]").val());
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/insertCart");
 		   $("#requestForm").submit();
 		   //alert($('input[name=productNo]').val());
 		   //alert($('input[name=quantity]').val());
@@ -290,16 +289,14 @@
       			  
       		    <sec:authorize access="!hasRole('ADMIN')">
                   <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="addToCart">
-                    Add to Cart <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+                    장바구니담기 <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
-                  <c:set var="mapping" value="user/addToCart"/>
                 </sec:authorize>
                 
                 <sec:authorize access="hasRole('ADMIN')">  
                   <button type="submit" class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="updateProduct">
                     수정하기<i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
-                  <c:set var="mapping" value="admin/updateForm"/>
                 </sec:authorize>
                 
                 </form>

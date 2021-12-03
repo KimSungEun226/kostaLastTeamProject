@@ -80,6 +80,7 @@ $(function(){
 	var nameCheck = false;
 	var emailCheck = false;
 	var phoneCheck = false;
+	var phoneCertificationCheck = false;
 	
 	$("#memberId").on("propertychange change keyup paste input", function(){
 
@@ -249,6 +250,7 @@ $(function(){
 			$("#confirmCertificationBtn").show();
 			$("#phoneCheck").show();
 			$("#inputCertificationNumber").focus();
+			phoneCheck = true;
 			
 			$.ajax({
 				  url: "/check/sendSMS",  //서버요청주소
@@ -267,7 +269,7 @@ $(function(){
 	                          alert("인증이 완료되었습니다.");
 	                          $("#inputCertificationNumber").attr("disabled",true).attr("readonly",false);
 	                          $("#confirmCertificationBtn").attr("disabled",true).attr("readonly",false);
-	                          phoneCheck = true;
+	                          phoneCertificationCheck = true;
 	                      }else{
 	                          alert("인증번호가 올바르지 않습니다.");
 	                      }
@@ -310,6 +312,10 @@ $(function(){
 		if($("#memberPhone").val() == ""){
 			phoneCheck = false;
 		}
+		//휴대전화 인증 공백 확인
+		if($("#inputCertificationNumber").val() == ""){
+			phoneCertificationCheck = false;
+		}
 		
 		//Check 변수가 false일때
 		if(!idCheck){
@@ -333,6 +339,8 @@ $(function(){
 		}else if(!phoneCheck){
 			$("#memberPhone").focus();
 			$("#memberPhone").css("outline", "1px solid red");
+		}else if(!phoneCertificationCheck){
+			alert("휴대전화 인증을 완료해주세요.");
 		}else{ //true일 때 전송
 			$("#joinForm").attr("action", "/signup");
 			$("#joinForm").submit();
@@ -590,14 +598,14 @@ function lastday(){
 	var month=document.getElementById('select_month').value;
 	var day=new Date(new Date(year,month,1)-86400000).getDate();
 	/* = new Date(new Date(Year,Month,0)).getDate(); */
-	let dayIndex_len=document.getElementById('select_day').length;
+	let dayIndex_len=document.getElementById('select_day').length-1;
 	if(day>dayIndex_len){ 
 		for(var i=(dayIndex_len+1); i<=day; i++){ 
-	  		document.getElementById('select_day').options[i-1] = new Option(i, i);
+	  		document.getElementById('select_day').options[i] = new Option(i, i);
 	  	} 
 	} else if(day<dayIndex_len){ 
 		for(var i=dayIndex_len; i>=day; i--){ 
-			document.getElementById('select_day').options[i]=null; 
+			document.getElementById('select_day').options[i+1]=null; 
 		}
 	}
 	
