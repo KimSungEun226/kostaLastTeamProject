@@ -62,7 +62,7 @@
           initialView: 'dayGridMonth',
           events: [ 	  
         	  //2021-11-30T07:10:32
-        	  <fmt:parseDate var="cntday" value="${requestScope.challenge.challenageDate}" pattern="yyyy-MM-dd"/> 
+        	  <fmt:parseDate var="cntday" value="${requestScope.challenge.challengeDate}" pattern="yyyy-MM-dd"/> 
         	  //Tue Nov 30 00:00:00 KST 2021
               <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyyMMdd"/>
               //2021-11-30
