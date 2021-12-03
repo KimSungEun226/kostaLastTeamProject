@@ -277,15 +277,8 @@
           <!-- Tags -->
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
-              <li class="list-inline-item g-mb-10">
-                <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Moview</a>
-              </li>
-              <li class="list-inline-item g-mb-10">
-                <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">TV</a>
-              </li>
-              <li class="list-inline-item g-mb-10">
-                <a class="u-tags-v1 g-brd-around g-brd-gray-dark-v5 g-brd-primary--hover g-color-black g-color-white--hover g-bg-primary--hover g-font-weight-600 g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Featured</a>
-              </li>
+              <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/challenge/delete">삭제하기</a></span>
+              <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/challenge/updateForm">수정하기</a></span>   
             </ul>
           </div>
           <!-- End Tags -->
