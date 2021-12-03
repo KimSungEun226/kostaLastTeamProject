@@ -37,10 +37,10 @@ public class BoardController {
 	/**
 	 * 등록폼(지역게시판 외 게시판)
 	 * */
-	@RequestMapping("/write")
+	/*@RequestMapping("/write")
 	public void writeForm() {
 		
-	}
+	}*/
 	
 	/**
 	 * 등록폼(지역게시판 글등록)
@@ -54,10 +54,10 @@ public class BoardController {
 	 * 등록하기(지역게시판)
 	 * */
 	@RequestMapping("/insertTag")
-	public String insertTag(Board board, Tag tag) {
+	public String insertTag(Board board, Tag tag) throws NullPointerException {
 			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
 		    
-		    //System.out.println(tag.getTagrelNo());
+		    System.out.println(tag.getTagrelNo());
 		    
 			tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
 			board.setTag(tag);
@@ -69,13 +69,13 @@ public class BoardController {
 	/**
 	 * 지역방 외 게시판에 글 등록하는 경우
 	 * */
-	@RequestMapping("/insert")
+	/*@RequestMapping("/insert")
 	public String insert(Board board) {
 		
 		boardService.insert(board);
 		
 		return "redirect:/board/list";
-	}
+	}*/
 	
 	/**
 	 * 전체 커뮤니티 게시물 조회
