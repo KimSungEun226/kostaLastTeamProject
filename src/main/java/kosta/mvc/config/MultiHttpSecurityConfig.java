@@ -1,6 +1,7 @@
 package kosta.mvc.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -104,7 +107,7 @@ public class MultiHttpSecurityConfig {
 	                .antMatchers("/admin/**").hasRole("ADMIN")
 	                .antMatchers("/user/**").hasRole("MEMBER")
 	                //.antMatchers("/shop/**").hasRole("MEMBER")
-	                //.antMatchers("/**").permitAll()
+	                .antMatchers("/**").anonymous()
 	            .and() // 로그인 설정
 	                .formLogin()
 	                .loginPage("/login")
@@ -120,8 +123,23 @@ public class MultiHttpSecurityConfig {
 	                // 403 예외처리 핸들링
 	                .exceptionHandling().accessDeniedPage("/user/denied")
 	            .and()
-	                .csrf().disable();   
+	                .csrf().disable(); 
+	    	http.sessionManagement()
+            .maximumSessions(1)
+            .maxSessionsPreventsLogin(false)
+            .expiredUrl("/duplicated-login")
+            .sessionRegistry(sessionRegistry());
+
+
 	    }
+
+	 // logout 후 login할 때 정상동작을 위함
+	    @Bean
+	    public SessionRegistry sessionRegistry() {
+	        return new SessionRegistryImpl();
+	    }
+
+
 
 	    @Override
 	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
