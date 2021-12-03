@@ -43,6 +43,12 @@
    $(function(){
 	   
 	   var qty=parseInt($('input[name=pcount]').val());
+	   var content="";
+	   
+	   //$("span[name=sumCart]").attr("action", "${pageContext.request.contextPath}/shop/sumCart");
+	   //var amount += $("input[name=amount]").val();
+	   //$("span[name=fmtAmount]").val(amount);
+	   
 	   
 /* 	   $("button[name=cartInfo]").click(function(){
 		   $("input[name=quantity]").val(qty);
@@ -52,29 +58,38 @@
 	   }); */
 	   
 	   //상품별 합계 구하기
-	   var arr = $('span[name=price]').get();
+/* 	   var arr = $('span[name=price]').get();
 	   
 	   for (var i = 0; i <arr.length; i++) {
 		   var price=parseInt($('span[name=price]').html());
-		   alert(arr[i]);
+		   //alert(arr[i]);
 		   $("span[name=sum]").html(price*qty);
 		   
-
-		   
-		 };
-		 
+	   }; */
+/* 	       var price=0;
 		   //수량 변경하면 합계도 같이 변경
 	 	   $("i[name=plusQuantity]").click(function(){
-	 		  	
 				qty+=1;
-				$("span[name=sum]").html(price*qty); 
+				price=parseInt($('span[name=price]').html());
+				$("span[name=sum]").html(price*qty);
+
 		   });
 		   
 		   $("i[name=minusQuantity]").click(function(){
-			    
 				qty-=1;
-				$("span[name=sum]").html(price*qty);
-		   }); 
+     			price=parseInt($('span[name=price]').html());
+				$("span[name=sum]").html(price*qty);  
+			    
+		   }); */
+		   
+		   //상품 삭제 
+		   $("i[name=deleteProductFromCart]").click(function(){
+			   var pno=$("input[name=productNo]").val();
+			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/deleteCart/"+pno);
+			   $("#requestForm").submit();
+		   });
+		   
+			
 		   
 	   
    })
@@ -94,7 +109,7 @@
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/cart">장바구니</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/selectCart">장바구니</a>
              
             </li>
           </ul>
@@ -174,6 +189,7 @@
                           <th></th>
                         </tr>
                       </thead>
+                     <c:set var="amount" value="${0}"/> 
  					<c:forEach items="${requestScope.cartList}" var="cart">
                       <tbody name="productList">
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
@@ -191,32 +207,36 @@
                               </ul>
                             </div>
                           </td>
-                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price">${cart.product.price}</span></td>
+                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
                           <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
+                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus ">
                             
                             <c:set var="productCount" value="1"/>
              				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
                             
-                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="text" value="${pcount}" readonly>
+                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
                               <div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
-                                <i name="plusQuantity" class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up"></i>
+                                <i name="plusQuantity" class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up" ></i>
                                 <i name="minusQuantity" class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
                               </div>
                             </div>
                           </td>
                           <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"></span>
+                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber>${cart.product.price*pcount}</fmt:formatNumber> 원</span>                           
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
-                              <i class="mt-auto fa fa-trash"></i>
+                            <form name="requestForm" method="post" id="requestForm">
+                              <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
+                              <input type="hidden" value="${cart.product.productNo}" name="productNo"/>
+                              
+                            </form>
                             </span>
-                          </td>
-                       
-                        <!-- End Item-->
+                          </td>                
+                       		<input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/>
                         </c:forEach>
                         </c:otherwise>
                         </c:choose>
 						 </tr>
+						  <!-- End Item-->
                        
                       </tbody>
                     </table>
@@ -260,12 +280,12 @@
                     </div>
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">전체 상품 금액</span>
-                      <span class="g-color-black g-font-weight-300">45,000원</span>
+                      <span class="g-color-black g-font-weight-300">${amount}</span>
                     </div>
                     <p>
                     <div class="d-flex justify-content-between g-brd-y g-brd-gray-light-v2 py-3"> <!-- g-brd-y g-brd-gray-light-v2 py-3 선으로 테이블 그리기 -->
-                    <span class="g-color-black">예상 결제 금액</span>
-                      <span class="g-color-black g-font-weight-300">48,000원</span>
+                    <span class="g-color-black" >예상 결제 금액</span>
+                      <span class="g-color-black g-font-weight-300">${amount+3000}</span>
                     </div>
                   </div>
                   <!-- End Summary -->
@@ -386,6 +406,11 @@
                       <tr class="g-color-gray-dark-v4 g-font-size-13">
                         <td class="align-top g-py-10">제주·산간지역</td>
                         <td class="align-top g-py-10">3-5일 소요</td>
+                        <td class="align-top text-right g-py-10"><fmt:formatNumber>3500</fmt:formatNumber></td>
+                      </tr>
+                      <tr class="g-color-gray-dark-v4 g-font-size-13">
+                        <td class="align-top g-py-10">이외 지역</td>
+                        <td class="align-top g-py-10">3-4일 소요</td>
                         <td class="align-top text-right g-py-10"><fmt:formatNumber>3000</fmt:formatNumber></td>
                       </tr>
                     </tbody>
@@ -404,7 +429,7 @@
                     <div id="accordion-03" class="mb-4" role="tablist" aria-multiselectable="true">
                       <div id="accordion-03-heading-03" class="g-brd-y g-brd-gray-light-v2 py-3" role="tab">
                         <h5 class="g-font-weight-400 g-font-size-default mb-0">
-                          <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#accordion-03-body-03" data-toggle="collapse" data-parent="#accordion-03" aria-expanded="false" aria-controls="accordion-03-body-03">3 items in cart
+                          <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#accordion-03-body-03" data-toggle="collapse" data-parent="#accordion-03" aria-expanded="false" aria-controls="accordion-03-body-03">${cartList.size()} items in cart
                             <span class="ml-3 fa fa-angle-down"></span></a>
                         </h5>
                       </div>
