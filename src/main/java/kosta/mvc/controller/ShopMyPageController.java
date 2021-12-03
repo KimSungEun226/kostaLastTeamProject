@@ -3,7 +3,10 @@ package kosta.mvc.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,5 +42,30 @@ public class ShopMyPageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/insertAddr")
+	public String insertAddr(HttpServletRequest request, Principal principal) {
+		String id=principal.getName();
+		int checkBasic = 0;
+		Member member=memberService.selectByMemberId(id);
+		String receiver=request.getParameter("nameInput");
+		String addr=request.getParameter("addrInput1");
+		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String phone=request.getParameter("phoneNumber");
+		
+		Address address= new Address(null, addr, zip, checkBasic, member);
+		addressService.insertAddr(address);
+		
+		return "redirect:/shop/login/myAddress";
+		
+	}
+	
+	@RequestMapping("/deleteAddr/{addressNo}")
+	public String deleteAddr(@PathVariable Long addressNo) {
+		addressService.deleteAddr(addressNo);
+		
+		return "redirect:/shop/login/myAddress";
+	}
+	
 
 }
