@@ -154,7 +154,7 @@
                <sec:authorize access="hasRole('MEMBER')">
                
                  <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
-                   <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#"
+                   <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20"
                       aria-haspopup="true"
                       aria-expanded="false"
                       aria-controls="nav-submenu--pages">
@@ -171,7 +171,7 @@
                      <!-- Account -->
 
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-login-1.html">장바구니</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/selectCart">장바구니</a>
                      </li>
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>
@@ -181,7 +181,7 @@
                        </a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-help-1.html">배송지 관리
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/login/myAddress">배송지 관리
                        </a>
                      </li>
                      

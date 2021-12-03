@@ -129,7 +129,7 @@
 	    }
 	    
 	    <!-- 지역게시판 선택시 지역카테고리 나오게  -->
-		$(function(){
+		/* $(function(){
 		    
 		    // 질문유형을 선택한다.
 		    chnQnaType('1' , '11');
@@ -154,8 +154,7 @@
 		        $('#boardKind').val(type);
 		        $('#tagrelNo').val(select);
 		    }
-		}
-
+		} */
     </script>
   </head>
 
@@ -187,7 +186,7 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="boardWriteForm" method="post" action="${pageContext.request.contextPath}/board/insert" enctype="multipart/form-data">
+      <form name="boardWriteForm" method="post" action="${pageContext.request.contextPath}/board/insertTag" enctype="multipart/form-data">
 
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
@@ -206,20 +205,82 @@
                         <tr>
                         <th>
                           <!-- End Products Block -->
-		                  
-		                  
 		                  <div class="input-group mb-1">
 		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="제목을 입력하세요.">
-		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onChange="chnQnaType(this.value)">
+		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onchange="selSub();">
 		                      <option value="0">카테고리</option>
 		                      <option value="1">일기</option>
 		                      <option value="4">지역방</option>
 		                      <option value="3">자유게시판</option>
 		                    </select>
-		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
+		                    	<option value="">게시판 선택</option>
+								<option value="2" >서울</option>
+								<option value="3" >경기ㆍ인천</option>
+								<option value="4" >강원도</option>
+								<option value="5" >충청도</option>
+								<option value="6" >전라도</option>
+								<option value="7" >경상도</option>
+								<option value="8" >제주도</option>
 		                    </select>
 		                  </div>
-                  
+		                  
+		          <script>
+		          	function selSub(){
+		            	$("#tagrelNo").attr("style", "display:none;");
+		            	if ($("#boardKind option:selected").val() == "4"){
+		          		$("#tagrelNo").attr("style", "display:;");
+		          		$("#category_sub1arr").attr("style", "display:;");
+		            	}
+		            }
+		          </script>
+                  <!-- Start Test -->
+                  <!-- <hr>
+                  <h3>테스트</h3>
+                  <div class="input-group mb-1">
+                  <select id="category" class="select5" name="menu_id1" onchange="selSub();">
+						<option value="">게시판 선택</option>
+												<option value="4" >비포&애프터</option>
+												<option value="1" >자극사진</option>
+												<option value="6" >일기</option>
+												<option value="9" >식단</option>
+												<option value="86" >레시피</option>
+												<option value="126" >팁&노하우</option>
+												<option value="5" selected>자유게시판</option>
+												<option value="3" >고민&질문</option>
+												<option value="11" >지역방</option>
+												<option value="72" >관리자에게</option>
+												option value="2" selected>명언</option
+												<option value="20" >함께도전해요</option>
+												<option value="26" >다신체험단</option>
+												<option value="34" >도전다이어트신</option>
+					</select>
+					</div>
+					<div>
+						<select id="category_sub1" class="select3" name="menu_id2" style="display:none;">
+							<option value="">게시판 선택</option>
+							<option value="12" >서울</option>
+							<option value="13" >경기ㆍ인천</option>
+							<option value="14" >강원도</option>
+							<option value="15" >충청도</option>
+							<option value="16" >전라도</option>
+							<option value="17" >경상도</option>
+							<option value="18" >제주도</option>
+							<option value="19" >해외</option>
+						</select>
+					</div>
+                  <hr>
+                  Script
+                  <script type="text/javascript">
+                  function selSub(){
+                  	$("#category_sub1").attr("style", "display:none;");
+                  	if ($("#category option:selected").val() == "11"){
+                		$("#category_sub1").attr("style", "display:;");
+                		$("#category_sub1arr").attr("style", "display:;");
+                  	}
+                  }
+                  </script> -->
+                  <!-- End Test -->
 		                  
                         <br>
                         </th>
