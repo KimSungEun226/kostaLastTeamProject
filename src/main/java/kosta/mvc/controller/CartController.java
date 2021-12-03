@@ -79,7 +79,7 @@ public class CartController {
 	  /**
 	   * 장바구니에 담긴 상품금액 조회
 	   * */
-	  @RequestMapping("/sumCart")
+	  @RequestMapping("/")
 	  public ModelAndView sumCart(HttpSession session) {
 		  int sum=0;
 		  List<Cart> cartList=cartService.selectCart(session.getId());

@@ -231,7 +231,7 @@
                             </form>
                             </span>
                           </td>                
-                       		<input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/>
+                       		<%-- <input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/> --%>
                         </c:forEach>
                         </c:otherwise>
                         </c:choose>
@@ -280,12 +280,12 @@
                     </div>
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">전체 상품 금액</span>
-                      <span class="g-color-black g-font-weight-300">${amount}</span>
+                      <span class="g-color-black g-font-weight-300">${sum}</span>
                     </div>
                     <p>
                     <div class="d-flex justify-content-between g-brd-y g-brd-gray-light-v2 py-3"> <!-- g-brd-y g-brd-gray-light-v2 py-3 선으로 테이블 그리기 -->
                     <span class="g-color-black" >예상 결제 금액</span>
-                      <span class="g-color-black g-font-weight-300">${amount+3000}</span>
+                      <span class="g-color-black g-font-weight-300">${sum+3000}</span>
                     </div>
                   </div>
                   <!-- End Summary -->
