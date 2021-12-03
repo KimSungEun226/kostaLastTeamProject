@@ -32,10 +32,11 @@ public class CartController {
 		
 		for(Cart c : cartList) {
 			System.out.println(c.getProduct().getProductName());
+			System.out.println(c.getProduct().getProductImageList().get(0).getProductImageName());
 		}
 		
 		
-		return new ModelAndView("shop/cart","cartList", cartList);
+		return new ModelAndView("shop/user/cart","cartList", cartList);
 
 	}
 	
@@ -50,14 +51,14 @@ public class CartController {
 	/**
 	 * 장바구니에 상품 추가(등록)
 	 * */
-	 @RequestMapping("/insertCart") 
+	 @RequestMapping("/addToCart") 
 	 public String insertCart(HttpSession session, Long productNo, String quantity) { //회원번호/식별번호, 상품번호, 상품수량
 		String id = session.getId();
 		int qty = Integer.parseInt(quantity);
 		System.out.println(productNo+"번 상품의 개수 : "+qty);
 		cartService.insertCart(id, productNo, qty); 
 
-		return "redirect:/shop/select/single/"+productNo;
+		return "redirect:/shop/select/single/"+productNo+"/0";
 	}
 	 
 	
