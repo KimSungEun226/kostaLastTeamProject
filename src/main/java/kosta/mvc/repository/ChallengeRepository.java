@@ -25,10 +25,9 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 	 * 챌린지 카테고리별 조회 
 	 */
 	/*
-	 * @Query("select b.boardNo, b.boardTitle, b.boardContent, b.password from Board b inner join b.challenge c where c.challengeCategory = ?1"
-	 * )
+	 * @Query(value = "select b.boardNo, b.boardTitle, b.boardContent, b.password from Board b inner join b.challenge c where c.challengeCategory = ?1", nativeQuery=true)
 	 * 
 	 * @Modifying
 	 */
-	 Page<Board> findByChallengeCategory(int challengeCategory, Pageable pageable);	 
+	 Page<Board> findByChallengeCategory(int challenge_Category, Pageable pageable);
 }

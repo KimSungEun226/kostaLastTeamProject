@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.Tag;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
@@ -20,6 +21,10 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	
 	Page<Board> findByBoardKind(int boardKind, Pageable pageable);
 	
-	Page<Board> findByTag(Long tagrel_no, Pageable pageable);
+	//Page<Board> findByTag(Tag tag, Pageable pageable);
+	
+	//@Query(value = "select * from board where TAGREL_NO=?1" , nativeQuery = true) 
+	@Query(value = "select b from Board b where b.tag.tagrelNo=?1" ) 
+	Page<Board> selectByTag(Long tagrelNo, Pageable pageable);
 	
 }

@@ -60,9 +60,11 @@ public class ChallengeController {
 	public ModelAndView categoryList(@PathVariable int challengeCategory, @RequestParam(defaultValue = "1") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage-1, 5, Direction.DESC, "boardNo" );
 		
+		int challenge_Category = challengeCategory; 
 	
 		//Board boardList = challengeService.findByCallengeCategory(challengeCategory, pageable);
-		Page<Board> boardList = challengeService.findByCallengeCategory(challengeCategory, pageable);
+		Page<Board> boardList = challengeService.findByCallengeCategory(challenge_Category, pageable);
+		
 		
 		//상수로 잡자
 		int blockCount=3;
