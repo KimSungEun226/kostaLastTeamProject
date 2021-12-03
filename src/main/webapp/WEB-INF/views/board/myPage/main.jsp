@@ -132,14 +132,14 @@
 
               <!-- My Projects -->
               <a href="page-profile-projects-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i> My Projects</span>
+                <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
                 <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10">9</span>
               </a>
               <!-- End My Projects -->
 
               <!-- Comments -->
               <a href="page-profile-comments-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i> Comments</span>
+                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
                 <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8">24</span>
               </a>
               <!-- End Comments -->

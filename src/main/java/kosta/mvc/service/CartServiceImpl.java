@@ -66,17 +66,32 @@ public class CartServiceImpl implements CartService {
 		  if(cartNo==null) { 
 			  //아니면 등록
 			  //조회한 db정보로 Cart 생성
-			  Cart cartSave = new Cart(null, id, qty, product, thumbImg, null);
+			  Cart cartSave = new Cart(null, id, qty, product, null);
 			  cartRepository.save(cartSave);
 		  }else{
 			  Cart dbCart= cartRepository.getById(cartNo);
 			  int result=(dbCart.getCartCount())+qty;
 			  dbCart.setCartCount(result); 
 		  }
-		
-		 
-		
+		  
 	}
+
+	/**
+	 * 회원/식별번호와 상품번호에 해당하는 상품 장바구니에서 삭제
+	 * */
+	@Override
+	public void deleteCart(String id, Long productNo) {
+		Long cno = cartRepository.selectByPno(id, productNo);
+		cartRepository.deleteById(cno);
+	}
+	
+	/**
+	 * 재고량 -1 감소
+	 * */
+
+	
+	
+	
 	
 	
 }

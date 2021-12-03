@@ -48,7 +48,7 @@ public class ChallengeController {
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("pageList", boardList);
-		mv.setViewName("board/boardView");
+		mv.setViewName("board/challenge/boardView");
 		return mv;
 	}
 	
@@ -73,7 +73,7 @@ public class ChallengeController {
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("pageList", boardList);
-		mv.setViewName("board/boardView");
+		mv.setViewName("board/challenge/boardView");
 		//System.out.println(boardList.getSize());
 		return mv;
 	}
