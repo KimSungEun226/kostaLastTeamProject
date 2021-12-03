@@ -110,8 +110,8 @@ public class BoardController {
 	
 	@RequestMapping("/selectByTag/{tagrelNo}")
 	public ModelAndView selectByTag(@PathVariable Long tagrelNo, @RequestParam(defaultValue = "1") int nowPage) {
-		System.out.println(tagrelNo);
-		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "tagrelNo" );
+		System.out.println("tagrelNo : " + tagrelNo);
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
 		Page<Board> boardList = boardService.findByTag(tagrelNo, pageable);
 		
 		//상수로 잡자
