@@ -9,7 +9,7 @@
   
   
     <!-- Title -->
-    <title>E-commerce Help Page | Unify - Responsive Website Template</title>
+    <title>챌린지 작성폼</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
