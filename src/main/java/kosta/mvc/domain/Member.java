@@ -83,9 +83,6 @@ public class Member {
 	@JoinColumn(name="Info_No")
 	private Info info;
 	
-	@OneToOne
-	@JoinColumn(name="Address_No")
-	private Address address;
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Board> boardList;
@@ -99,5 +96,8 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Reply> replyList; 
 
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Address> addressList; 
 	
 }

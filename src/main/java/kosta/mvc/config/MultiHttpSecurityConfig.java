@@ -37,7 +37,6 @@ public class MultiHttpSecurityConfig {
 	@Configuration
 	public class ShopSecurityConfig extends WebSecurityConfigurerAdapter {
 		public ShopSecurityConfig() {
-			System.out.println("ShopSecurityConfig..................");
 		}
 		
 		@Override
@@ -48,7 +47,6 @@ public class MultiHttpSecurityConfig {
 		
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        System.out.println("ShopSecurityConfig configure 메소드");
 	        http
 	        .antMatcher("/shop/**")  //반드시 antMatcher
 
@@ -69,7 +67,7 @@ public class MultiHttpSecurityConfig {
 	                .invalidateHttpSession(true)
 	            .and()
 	                // 403 예외처리 핸들링
-	                .exceptionHandling().accessDeniedPage("/user/denied")
+	                .exceptionHandling().accessDeniedPage("/shop")
 	            .and()
 	                .csrf().disable();
 	        		
@@ -100,7 +98,6 @@ public class MultiHttpSecurityConfig {
 
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        System.out.println("SecurityConfig configure 메소드");
 	    	//http.requestMatchers()
 	    	http.authorizeRequests()
 	                // 페이지 권한 설정

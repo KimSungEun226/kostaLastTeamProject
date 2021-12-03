@@ -42,7 +42,34 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
- 
+ <script type="text/javascript">
+   $(function(){
+	   
+	   var qty=parseInt($('input[name=pcount]').val());
+	   
+	   $("button[name=addToCart]").click(function(){
+		   $("input[name=quantity]").val(qty);
+		   //alert($("input[name=quantity]").val());
+		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/insertCart");
+		   $("#requestForm").submit();
+		   //alert($('input[name=productNo]').val());
+		   //alert($('input[name=quantity]').val());
+		   alert($("input[name=quantity]").val()+"개가 장바구니에 담겼습니다.");
+	   });
+	   
+ 	   $("i[name=plusQuantity]").click(function(){
+
+			qty+=1;
+	   });
+	   
+	   $("i[name=minusQuantity]").click(function(){
+			qty-=1;
+	   }); 
+	   
+	   
+	   
+   })
+ </script>
   </head>
 
   <body>
@@ -244,18 +271,19 @@
               <!-- Buttons 여기 하는 중.. -->
               <div class="row g-mx-minus-5 g-mb-20">
                 <div class="col g-px-5 g-mb-10">
-                 <form  name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/shop/updateForm"> 
+                 <form  name="requestForm" method="post" id="requestForm"> 
 	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
 					 <input type=hidden name="quantity" value=""><!-- quatity -->
-                  <button type="submit" class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="updateProduct">
-                    수정하기<i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+      
+                  <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="addToCart">
+                    Add to Cart <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
                 </form>
                 </div>
                 
                 <div class="col g-px-5 g-mb-10">
                   <button class="btn btn-block u-btn-outline-black g-brd-gray-dark-v5 g-brd-black--hover g-color-gray-dark-v4 g-color-white--hover g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">
-                    삭제하기 <i class="align-middle ml-2 icon-medical-022 u-line-icon-pro"></i>
+                    Add to Wishlist <i class="align-middle ml-2 icon-medical-022 u-line-icon-pro"></i>
                   </button>
                 </div>
               </div>
