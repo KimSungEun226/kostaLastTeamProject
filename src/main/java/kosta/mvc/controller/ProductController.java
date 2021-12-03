@@ -158,7 +158,7 @@ public class ProductController {
 	    productService.update(product, path);
 
 	    
-		return "redirect:shop";
+		return "redirect:/shop";
 	}
 
 	

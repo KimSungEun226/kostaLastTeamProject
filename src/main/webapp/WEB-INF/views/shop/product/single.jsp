@@ -290,7 +290,7 @@
       			  
       		    <sec:authorize access="!hasRole('ADMIN')">
                   <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" name="addToCart">
-                    Add to Cart <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+                    장바구니담기 <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
                   </button>
                   <c:set var="mapping" value="user/addToCart"/>
                 </sec:authorize>

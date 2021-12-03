@@ -35,9 +35,7 @@ public class Cart {
 	@JoinColumn(name="product_no")
 	private Product product; //상품정보 -상품번호
 	
-	
-	//private String thumbnail; //상품이미지 - 상품 썸네일
-	
+		
 	@ManyToOne
 	@JoinColumn(name="member_no") 
 	private Member member; //회원정보 -회원번호
