@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Board;
-import kosta.mvc.domain.Tag;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
