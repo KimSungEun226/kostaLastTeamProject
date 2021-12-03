@@ -17,7 +17,7 @@ public class Address {
 	private Long addressNo;
 	private String memberAddress;
 	private int memberZip;
-	private int checkBasic;
+	private int checkBasic; 
 	
 	//회원번호랑 다:1
 	@ManyToOne

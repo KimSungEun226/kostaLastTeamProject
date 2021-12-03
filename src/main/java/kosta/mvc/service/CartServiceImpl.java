@@ -66,7 +66,7 @@ public class CartServiceImpl implements CartService {
 		  if(cartNo==null) { 
 			  //아니면 등록
 			  //조회한 db정보로 Cart 생성
-			  Cart cartSave = new Cart(null, id, qty, product, thumbImg, null);
+			  Cart cartSave = new Cart(null, id, qty, product, null);
 			  cartRepository.save(cartSave);
 		  }else{
 			  Cart dbCart= cartRepository.getById(cartNo);

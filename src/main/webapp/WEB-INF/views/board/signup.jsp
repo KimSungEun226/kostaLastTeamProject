@@ -11,68 +11,81 @@
     color : green;
     display : none;
   }
-  #idDuplicateCheckFail, #nicknameDuplicateCheckFail, #pwdConfirmCheckFail, #nameCheckFail {
+  #idDuplicateCheckFail, #nicknameDuplicateCheckFail, #pwdConfirmCheckFail, #nameCheckFail, #emailCheckFail {
     color : red;
     display : none;
   }
 </style>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(function(){
 	$("#memberId").focus(function(){
-		$("#memberId").css("outline", "1px solid red");
+		$("#memberId").css("outline", "1px solid green");
 		$("#idCheck").show();
 	});
 	$("#memberId").blur(function(){
 		$("#memberId").css("outline", "none");
 	});
 	$("#memberNickname").focus(function(){
-		$("#memberNickname").css("outline", "1px solid red");
+		$("#memberNickname").css("outline", "1px solid green");
 		$("#nicknameCheck").show();
 	});
 	$("#memberNickname").blur(function(){
 		$("#memberNickname").css("outline", "none");
 	});
 	$("#memberPwd").focus(function(){
-		$("#memberPwd").css("outline", "1px solid red");
+		$("#memberPwd").css("outline", "1px solid green");
 		$("#pwdCheck").show();
 	});
 	$("#memberPwd").blur(function(){
 		$("#memberPwd").css("outline", "none");
 	});
 	$("#memberPwdConfirm").focus(function(){
-		$("#memberPwdConfirm").css("outline", "1px solid red");
+		$("#memberPwdConfirm").css("outline", "1px solid green");
 	});
 	$("#memberPwdConfirm").blur(function(){
 		$("#memberPwdConfirm").css("outline", "none");
 	});
 	$("#memberName").focus(function(){
-		$("#memberName").css("outline", "1px solid red");
+		$("#memberName").css("outline", "1px solid green");
 	});
 	$("#memberName").blur(function(){
-		memberName = $("#memberName").val();	
-	
 		$("#memberName").css("outline", "none");
-		
-		var nameChk = /^()[가-힣a-zA-Z\s]{3,16}$/;
-		if(memberName == ""){
-			$("#nameCheckFail").hide();
-		}else{
-			if(!nameChk.test(memberName)){
-				$("#nameCheckFail").show();
-			}else{
-				$("#nameCheckFail").hide();
-			}
-		}
-		
-		
 	});
-	
+	$("#memberEmail").focus(function(){
+		$("#memberEmail").css("outline", "1px solid green");
+	});
+	$("#memberEmail").blur(function(){
+		$("#memberEmail").css("outline", "none");
+	});
+	$("#memberPhone").focus(function(){
+		$("#memberPhone").css("outline", "1px solid green");
+	});
+	$("#memberPhone").blur(function(){
+		$("#memberPhone").css("outline", "none");
+	});
+	$("#inputCertificationNumber").focus(function(){
+		$("#inputCertificationNumber").css("outline", "1px solid green");
+	});
+	$("#inputCertificationNumber").blur(function(){
+		$("#inputCertificationNumber").css("outline", "none");
+	});
+})
+</script>
+<script type="text/javascript">
+$(function(){
+	var idCheck = false;
+	var nicknameCheck = false;
+	var pwdCheck = false;
+	var pwdConfirmCheck = false;
+	var nameCheck = false;
+	var emailCheck = false;
+	var phoneCheck = false;
 	
 	$("#memberId").on("propertychange change keyup paste input", function(){
 
 		//console.log("keyup 테스트");	
 		var memberId = $("#memberId").val();
-		var idChk = /^[a-zA-Z0-9]{5,20}$/;
+		var regExp = /^[a-zA-Z0-9]{5,20}$/;
 
 		if(memberId == ""){
 			$("#idCheck").css("color", "black");
@@ -85,11 +98,12 @@ $(function(){
 				},
 				success : function(result){
 					//console.log(result);
-					if(idChk.test(memberId)){
+					if(regExp.test(memberId)){
 						$("#idCheck").css("color", "green");
 						if(result != "fail"){
 							$("#idDuplicateCheckOk").css("display", "inline-block");
 							$("#idDuplicateCheckFail").css("display", "none");
+							idCheck = true;
 						}else{
 							$("#idDuplicateCheckOk").css("display", "none");
 							$("#idDuplicateCheckFail").css("display", "inline-block");
@@ -98,17 +112,19 @@ $(function(){
 						$("#idCheck").css("color", "red");
 						$("#idDuplicateCheckOk").css("display", "none");
 						$("#idDuplicateCheckFail").css("display", "none");
+						idCheck = false;
 					}
 					
 				}
 			});
 		}
 	});
+	
 	$("#memberNickname").on("propertychange change keyup paste input", function(){
 
 		//console.log("keyup 테스트");	
 		var memberNickname = $("#memberNickname").val();
-		var nicknameChk = /^[가-힣ㄱ-ㅎㅏ-ㅣ]{2,8}|[a-zA-Z0-9]{4,16}$/;
+		var regExp = /^[가-힣ㄱ-ㅎㅏ-ㅣ]{2,8}|[a-zA-Z0-9]{4,16}$/;
 
 		if(memberNickname == ""){
 			$("#nicknameCheck").css("color", "black");
@@ -121,11 +137,12 @@ $(function(){
 				},
 				success : function(result){
 					//console.log(result);
-					if(nicknameChk.test(memberNickname)){
+					if(regExp.test(memberNickname)){
 						$("#nicknameCheck").css("color", "green");
 						if(result != "fail"){
 							$("#nicknameDuplicateCheckOk").css("display", "inline-block");
 							$("#nicknameDuplicateCheckFail").css("display", "none");
+							nicknameCheck = true;
 						}else{
 							$("#nicknameDuplicateCheckOk").css("display", "none");
 							$("#nicknameDuplicateCheckFail").css("display", "inline-block");
@@ -134,6 +151,7 @@ $(function(){
 						$("#nicknameCheck").css("color", "red");
 						$("#nicknameDuplicateCheckOk").css("display", "none");
 						$("#nicknameDuplicateCheckFail").css("display", "none");
+						nicknameCheck = false;
 					}
 					
 				}
@@ -145,15 +163,17 @@ $(function(){
 
 		//console.log("keyup 테스트");	
 		var memberPwd = $("#memberPwd").val();
-		var pwdChk = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
+		var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
 
 		if(memberPwd == ""){
 			$("#pwdCheck").css("color", "black");
 		}else{
-			if(pwdChk.test(memberPwd)){
+			if(regExp.test(memberPwd)){
 				$("#pwdCheck").css("color", "green");
+				pwdCheck = true;
 			}else{
 				$("#pwdCheck").css("color", "red");
+				pwdCheck = false;
 			}
 		}
 	});
@@ -169,9 +189,11 @@ $(function(){
 			if(memberPwd == null || memberPwdConfirm != memberPwd){
 				$("#pwdConfirmCheckOk").css("display", "none");
 				$("#pwdConfirmCheckFail").css("display", "inline-block").css("color", "red");
+				pwdConfirmCheck = false;
 			}else{
 				$("#pwdConfirmCheckFail").css("display", "none");
 				$("#pwdConfirmCheckOk").css("display", "inline-block").css("color", "green");
+				pwdConfirmCheck = true;
 			}
 		}
 		
@@ -179,43 +201,155 @@ $(function(){
 			
 	});
 	
-
-
-	
-});
-/* $(function(){
-	$("#memberId").focus(function(){
-		$("#memberId").css("outline", "1px solid red");
-		$("#idCheck").show();
-	});
-	$("#memberId").blur(function(){
-		$("#memberId").css("outline", "none");
+	$("#memberName").blur(function(){
+		var memberName = $("#memberName").val();
+		var regExp = /^()[가-힣a-zA-Z\s]{2,16}$/;
 		
+		if(memberName == ""){
+			$("#nameCheckFail").hide();
+		}else{
+			if(!regExp.test(memberName)){
+				$("#nameCheckFail").show();
+				nameCheck = false;
+			}else{
+				$("#nameCheckFail").hide();
+				nameCheck = true;
+			}
+		}
 	});
-	$("#memberNickname").focus(function(){
-		$("#nicknameCheck").show();
-	});
-}) */
-</script> -->
+	$("#memberEmail").blur(function(){
+		var memberEmail = $("#memberEmail").val();
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-<script type="text/javascript">
+		if(memberEmail == ""){
+			$("#emailCheckFail").hide();
+		}else{
+			if(!regExp.test(memberEmail)){
+				$("#emailCheckFail").show();
+				emailCheck = false;
+			}else{
+				$("#emailCheckFail").hide();
+				emailCheck = true;
+			}
+		}
+	});
+	
+	$("#sendPhoneNumber").click(function(){
+		//alert(11)
+		let phoneNumber = $("#memberPhone").val();
+		var phoneChk = /^\d{3}-\d{3,4}-\d{4}$/;
+		//alert(phoneNumber);
+		if (phoneNumber == "") {
+			alert("휴대폰 번호를 입력해주세요.");
+		}else if(!phoneChk.test(phoneNumber)){
+			alert("올바른 휴대폰 번호를 입력해주세요.");
+		}else{
+			alert("인증번호가 발송되었습니다.");
+			$("#inputCertificationNumber").show();
+			$("#confirmCertificationBtn").show();
+			$("#phoneCheck").show();
+			$("#inputCertificationNumber").focus();
+			
+			$.ajax({
+				  url: "/check/sendSMS",  //서버요청주소
+				  type: "get", //요청방식(get, post, put,delete, patch)
+				  dataType:"text", //서버가 응답해주는 데이터 타입(text, html, xml, json)
+				  data: {
+				    "phoneNumber" : phoneNumber
+				  },
+				  
+				  success: function(result){
+					  //alert(result);
+					  //$("#display").html("<h3>"+result +"</h3>");
+					  
+					  $('#confirmCertificationBtn').click(function(){
+	                      if($.trim(result) == $("#inputCertificationNumber").val()){
+	                          alert("인증이 완료되었습니다.");
+	                          $("#inputCertificationNumber").attr("disabled",true).attr("readonly",false);
+	                          $("#confirmCertificationBtn").attr("disabled",true).attr("readonly",false);
+	                          phoneCheck = true;
+	                      }else{
+	                          alert("인증번호가 올바르지 않습니다.");
+	                      }
+	                  })
+				  },
+				  error : function(err){
+					  alert(err+"오류 발생했습니다.");
+				  }
+			  });
+		}
+	})
+	
+	//회원가입 버튼을 눌렀을 때
+	$("#joinBtn").click(function(){
+		//아이디 공백 확인 
+		if($("#memberId").val() == ""){ 
+		  idCheck = false;
+		}
+		//닉네임 공백 확인
+		if($("#memberNickname").val() == ""){
+			nicknameCheck = false;
+		}
+		//비밀번호 공백 확인
+		if($("#memberPwd").val() == ""){
+			pwdCheck = false;
+		}
+		//비밀번호 확인 공백 확인
+		if($("#memberPwdConfirm").val() == ""){
+			pwdConfirmCheck = false;
+		}
+		//이름 공백 확인
+		if($("#memberName").val() == ""){
+			nameCheck = false;
+		}
+		//이메일 공백 확인
+		if($("#memberEmail").val() == ""){
+			emailCheck = false;
+		}
+		//휴대전화 공백 확인
+		if($("#memberPhone").val() == ""){
+			phoneCheck = false;
+		}
+		
+		//Check 변수가 false일때
+		if(!idCheck){
+			$("#memberId").focus();
+			$("#memberId").css("outline", "1px solid red");
+		}else if(!nicknameCheck){
+			$("#memberNickname").focus();
+			$("#memberNickname").css("outline", "1px solid red");
+		}else if(!pwdCheck){
+			$("#memberPwd").focus();
+			$("#memberPwd").css("outline", "1px solid red");
+		}else if(!pwdConfirmCheck){
+			$("#memberPwdConfirm").focus();
+			$("#memberPwdConfirm").css("outline", "1px solid red");
+		}else if(!nameCheck){
+			$("#memberName").focus();
+			$("#memberName").css("outline", "1px solid red");
+		}else if(!emailCheck){
+			$("#memberEmail").focus();
+			$("#memberEmail").css("outline", "1px solid red");
+		}else if(!phoneCheck){
+			$("#memberPhone").focus();
+			$("#memberPhone").css("outline", "1px solid red");
+		}else{ //true일 때 전송
+			$("#joinForm").attr("action", "/signup");
+			$("#joinForm").submit();
+		}
+		
+		return false;
+	});
+});
+
+</script> 
+
+<!-- <script type="text/javascript">
   function checks(){
 	var getCheck = RegExp(/^[a-z0-9]{5,20}$/);
 	var getName  = RegExp(/^[가-힣]+$/);
 	  
-	//아이디 공백 확인 
-	if($("#memberId").val() == ""){ 
-	  alert("아이디를 입력해주세요."); 
-	  $("#memberId").focus(); 
-	  return false; 
-	}
 	
-	//비밀번호 공백 확인 
-	if($("#memberPwd").val() == ""){ 
-	  alert("패스워드를 입력해주세요."); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
 
 	//아이디 비밀번호 같음 확인 
 	if($("#memberId").val() == $("#memberPwd").val()){ 
@@ -257,55 +391,10 @@ $(function(){
 
 
   }
-</script>
+</script> -->
 <script type="text/javascript">
 $(function(){
-	$("#sendPhoneNumber").click(function(){
-		//alert(11)
-		let phoneNumber = $("#memberPhone").val();
-		//alert(phoneNumber);
-		if (phoneNumber == "") {
-			alert("휴대폰 번호를 입력해주세요.");
-		}else{
-			alert("인증번호가 발송되었습니다.");
-			$("#inputCertificationNumber").show();
-			$("#phoneCheck").show();
-			
-			$.ajax({
-				  url: "/check/sendSMS",  //서버요청주소
-				  type: "get", //요청방식(get, post, put,delete, patch)
-				  dataType:"text", //서버가 응답해주는 데이터 타입(text, html, xml, json)
-				  data: {
-				    "phoneNumber" : phoneNumber
-				  },
-				  
-				  success: function(result){
-					  //alert(result);
-					  //$("#display").html("<h3>"+result +"</h3>");
-					  
-					  $('#membershipCompleted').click(function(){
-	                      if($.trim(result) == $("#inputCertificationNumber").val()){
-	                          alert("휴대폰 인증이 정상적으로 완료되었습니다.");
 	
-	                          /* $.ajax({
-	                              type: "GET",
-	                              url: "/update/phone",
-	                              data: {
-	                                  "phoneNumber" : $('#memberPhone').val()
-	                              }
-	                          }) */
-	                          document.location.href="/";
-	                      }else{
-	                          alert("인증번호가 올바르지 않습니다.");
-	                      }
-	                  })
-				  },
-				  error : function(err){
-					  alert(err+"오류 발생했습니다.");
-				  }
-			  });
-		}
-	})
 })
 </script>
 </head>
@@ -317,15 +406,12 @@ $(function(){
         <div class="col-lg-5 flex-lg-unordered g-mb-80">
           <div class="g-brd-around g-bg-white rounded g-px-30 g-py-50 mb-4">
             <header class="text-center mb-4">
-              <h1 class="h3 g-color-black g-font-weight-400 text-capitalize">회원가입</h1>
+              <h3 class="h3 g-color-black g-font-weight-400 text-capitalize">회원가입</h3>
             </header>
-			
 			<hr class="g-brd-gray-light-v3 mb-1">
-			
 			<p align="right" class="g-color-gray-dark-v2 g-font-weight-500">별표(*)는 필수항목입니다.</p>
-            
             <!-- Form -->
-            <form class="g-py-15" th:action="@{/signup}" method="post" onsubmit="return checks()">
+            <form id="joinForm" class="g-py-15" method="post">
               
               
                 <div class="g-mb-15">
@@ -369,7 +455,7 @@ $(function(){
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">* 이메일</label>
                 <input id="memberEmail" name="memberEmail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="email" placeholder="이메일 입력" autocomplete="off">
               </div>
-              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheck" style="display:none">※ 올바른 형식의 이메일 주소</div>
+              <p><span class="g-font-weight-500 g-font-size-13 g-mb-25" id="emailCheckFail">※ 유효하지 않은 이메일 형식입니다.</span></p>
               
               <div class="form-group g-mb-20">
                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">성별</label>
@@ -377,7 +463,6 @@ $(function(){
                   <option value="0">-</option>
                   <option value="1">남성</option>
                   <option value="2">여성</option>
-                  <option value="3">선택안함</option>
                 </select>
               </div>
 
@@ -405,10 +490,16 @@ $(function(){
                   <button id="sendPhoneNumber" class="btn btn-block u-btn-outline-primary rounded g-py-13" type="button">인증번호 받기</button>
                 </div>
               </div>
-              <div class="g-mb-20">
-                <input id="inputCertificationNumber" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" style="display:none" type="text" placeholder="인증번호">
+              <div class="row">
+                <div class="col g-mb-10">
+                  <input id="inputCertificationNumber" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" style="display:none" type="text" placeholder="인증번호 입력">
+                </div>
+                <div class="col-5 align-self-center text-right g-mb-10">
+                  <button id="confirmCertificationBtn" class="btn btn-block u-btn-primary rounded g-py-13" type="button" style="display:none">인증 확인</button>
+                </div>
               </div>
-              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="phoneCheck" style="display:none">※ 인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.</div>
+              
+              <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="phoneCheck" style="display:none">※ 인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.</div>
               <div id="display"></div>
               
 
@@ -436,13 +527,13 @@ $(function(){
                 </label>
               </div>
 
-              <button type="submit" id="membershipCompleted" class="btn btn-block u-btn-primary rounded g-py-13" type="button">회원가입</button>
+              <button id="joinBtn" class="btn btn-block u-btn-primary rounded g-py-13" type="button">회원가입</button>
             </form>
             <!-- End Form -->
           </div>
 
           <div class="text-center">
-            <p class="g-color-gray-dark-v5 mb-0">이미 회원이신가요? <a class="g-font-weight-600" href="page-login-12.html">로그인</a>
+            <p class="g-color-gray-dark-v5 mb-0">이미 회원이신가요? <a class="g-font-weight-600" href="/login">로그인</a>
             </p>
           </div>
         </div>
@@ -476,13 +567,18 @@ $(function(){
 var start_year="1970";// 시작할 년도 
 var today = new Date(); 
 var today_year= today.getFullYear(); 
-var index=0; 
+var index=1; 
 var memberBirth = "";
+
+document.getElementById('select_year').options[0] = new Option("년", "0");
+document.getElementById('select_month').options[0] = new Option("월", "0");
+document.getElementById('select_day').options[0] = new Option("일", "0");
+
 for(var y=today_year; y>=start_year; y--){ //start_year ~ 현재 년도 
 	document.getElementById('select_year').options[index] = new Option(y, y); //<option value="1970">1970</option>
 	index++; 
 } 
-index=0; 
+index=1; 
 for(var m=1; m<=12; m++){ 
 	document.getElementById('select_month').options[index] = new Option(m, m); index++; 
 } 
