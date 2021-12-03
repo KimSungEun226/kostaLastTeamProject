@@ -73,10 +73,25 @@ public class CartServiceImpl implements CartService {
 			  int result=(dbCart.getCartCount())+qty;
 			  dbCart.setCartCount(result); 
 		  }
-		
-		 
-		
+		  
 	}
+
+	/**
+	 * 회원/식별번호와 상품번호에 해당하는 상품 장바구니에서 삭제
+	 * */
+	@Override
+	public void deleteCart(String id, Long productNo) {
+		Long cno = cartRepository.selectByPno(id, productNo);
+		cartRepository.deleteById(cno);
+	}
+	
+	/**
+	 * 재고량 -1 감소
+	 * */
+
+	
+	
+	
 	
 	
 }
