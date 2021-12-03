@@ -69,7 +69,7 @@ public class LoginController {
     // 로그인 결과 페이지
     @GetMapping("/user/main")
     public String dispLoginResult() {
-        return "board/user/main";
+        return "board/main";
     }
 
     // 로그아웃 결과 페이지
