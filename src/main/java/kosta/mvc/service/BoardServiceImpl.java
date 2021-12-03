@@ -82,7 +82,11 @@ public class BoardServiceImpl implements BoardService {
 	 * */
 	@Override
 	public Page<Board> findByTag(Long tagrel_no, Pageable pageable) {
-		return boardRepository.findByTag(tagrel_no, pageable);
+		//Tag tag = Tag.builder().tagrelNo(tagrel_no).build();
+		System.out.println("service........");
+		Page<Board> p = boardRepository.selectByTag(tagrel_no, pageable);;
+		System.out.println("end ---------------");
+		return p;
 	}
 
 }
