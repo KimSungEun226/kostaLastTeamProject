@@ -29,5 +29,9 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 	 * 
 	 * @Modifying
 	 */
-	 Page<Board> findByChallengeCategory(int challenge_Category, Pageable pageable);
+	 //Page<Board> findByChallengeCategory(int challenge_Category, Pageable pageable);
+	
+	@Query(value = "select b from Board b where b.challenge.challengeCategory=?1" ) 
+	Page<Board> selectByChallengeCategory(int challengeCategory, Pageable pageable);
+	
 }
