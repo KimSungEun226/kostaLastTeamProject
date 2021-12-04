@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import kosta.mvc.domain.product.ProductQuestion;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +29,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NonuserOrder {
+@Builder
+public class NonuserOrder extends Order{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nonuser_order_no_seq")
 	@SequenceGenerator(sequenceName = "nonuser_order_no_seq", allocationSize = 1, name = "nonuser_order_no_seq")

@@ -20,7 +20,7 @@ public interface CartService {
 	/**
 	 * 회원/식별번호와 상품번호에 해당하는 상품 장바구니에서 삭제
 	 * */
-	void deleteCart(String id, Long productNo);
+	void deleteCart(Long cartNo);
 
 
 }

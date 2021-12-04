@@ -46,18 +46,6 @@ public class CartServiceImpl implements CartService {
 		
 		Product product= productRepository.getById(productNo);
 		//상품 이름, 상품 가격 조회하기
-		System.out.println(product.getProductName()+", "+product.getPrice()+"원");
-		
-		List<String> list = new ArrayList<String>();
-		//상품번호에 해당하는 상품이미지 꺼내오기
-		List<ProductImage> imgList = product.getProductImageList();
-		for(ProductImage image : imgList) {		
-			String imgName=image.getProductImageName();
-			list.add(imgName);
-		}
-		//썸네일
-		String thumbnail = list.get(0);
-		ProductImage thumbImg = new ProductImage(null, product, thumbnail, null, null); 
 		
 		//중복되는 상품번호 조회
 		Long cartNo= cartRepository.doubleCheck(id, productNo);
@@ -80,9 +68,8 @@ public class CartServiceImpl implements CartService {
 	 * 회원/식별번호와 상품번호에 해당하는 상품 장바구니에서 삭제
 	 * */
 	@Override
-	public void deleteCart(String id, Long productNo) {
-		Long cno = cartRepository.selectByPno(id, productNo);
-		cartRepository.deleteById(cno);
+	public void deleteCart(Long cartNo) {
+		cartRepository.deleteById(cartNo);
 	}
 	
 	/**

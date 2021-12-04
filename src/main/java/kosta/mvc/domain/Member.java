@@ -100,4 +100,6 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Address> addressList; 
 	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Cart> cartList;
 }
