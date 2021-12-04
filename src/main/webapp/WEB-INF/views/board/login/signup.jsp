@@ -81,6 +81,7 @@ $(function(){
 	var emailCheck = false;
 	var phoneCheck = false;
 	var phoneCertificationCheck = false;
+	var tosCheck = false;
 	
 	$("#memberId").on("propertychange change keyup paste input", function(){
 
@@ -238,11 +239,11 @@ $(function(){
 	$("#sendPhoneNumber").click(function(){
 		//alert(11)
 		let phoneNumber = $("#memberPhone").val();
-		var phoneChk = /^\d{3}-\d{3,4}-\d{4}$/;
+		var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
 		//alert(phoneNumber);
 		if (phoneNumber == "") {
 			alert("휴대폰 번호를 입력해주세요.");
-		}else if(!phoneChk.test(phoneNumber)){
+		}else if(!regExp.test(phoneNumber)){
 			alert("올바른 휴대폰 번호를 입력해주세요.");
 		}else{
 			alert("인증번호가 발송되었습니다.");
@@ -317,6 +318,11 @@ $(function(){
 			phoneCertificationCheck = false;
 		}
 		
+		//약관 동의 여부
+		if($("#tosCheck").is(":checked")){
+			tosCheck = true;
+		}
+		
 		//Check 변수가 false일때
 		if(!idCheck){
 			$("#memberId").focus();
@@ -336,11 +342,10 @@ $(function(){
 		}else if(!emailCheck){
 			$("#memberEmail").focus();
 			$("#memberEmail").css("outline", "1px solid red");
-		}else if(!phoneCheck){
-			$("#memberPhone").focus();
-			$("#memberPhone").css("outline", "1px solid red");
-		}else if(!phoneCertificationCheck){
+		}else if(!phoneCheck || !phoneCertificationCheck){
 			alert("휴대전화 인증을 완료해주세요.");
+		}else if(!tosCheck){
+			alert("약관에 동의해주세요.");
 		}else{ //true일 때 전송
 			$("#joinForm").attr("action", "/signup");
 			$("#joinForm").submit();
@@ -349,62 +354,7 @@ $(function(){
 		return false;
 	});
 });
-
 </script> 
-
-<!-- <script type="text/javascript">
-  function checks(){
-	var getCheck = RegExp(/^[a-z0-9]{5,20}$/);
-	var getName  = RegExp(/^[가-힣]+$/);
-	  
-	
-
-	//아이디 비밀번호 같음 확인 
-	if($("#memberId").val() == $("#memberPwd").val()){ 
-	  alert("아이디와 비밀번호가 같습니다."); 
-	  $("#memberPwd").val(""); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
-
-	//비밀번호 확인란 공백 확인 
-	if($("#memberPwdConfirm").val() == ""){ 
-	  alert("패스워드 확인란을 입력해주세요."); 
-	  $("#memberPwdConfirm").focus(); 
-	  return false; 
-	}
-
-	//비밀번호 서로확인 
-	if($("#memberPwd").val() != $("#memberPwdConfirm").val()){ 
-	  alert("비밀번호가 상이합니다"); 
-	  $("#memberPwd").val(""); 
-	  $("#memberPwdConfirm").val(""); 
-	  $("#memberPwd").focus(); 
-	  return false; 
-	}
-	
-	//이메일 공백 확인 
-	if($("#memberEmail").val() == ""){ 
-	  alert("이메일을 입력해주세요."); 
-	  $("#memberEmail").focus(); 
-	  return false; 
-	}
-
-	//이름 공백 검사 
-	if($("#memberName").val() == ""){ 
-	  alert("이름을 입력해주세요"); 
-	  $("#memberName").focus(); 
-	  return false; 
-	}
-
-
-  }
-</script> -->
-<script type="text/javascript">
-$(function(){
-	
-})
-</script>
 </head>
 <body>
 <div class="g-bg-primary">&nbsp</div>
@@ -508,7 +458,6 @@ $(function(){
               </div>
               
               <div class="g-color-gray-dark-v2 g-font-weight-500 g-font-size-13 g-mb-25" id="phoneCheck" style="display:none">※ 인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.</div>
-              <div id="display"></div>
               
 
               
@@ -517,7 +466,7 @@ $(function(){
 
               <div class="mb-10">
                 <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-2">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                  <input id="tosCheck" class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
                   <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
                     <i class="fa" data-check-icon="&#xf00c"></i>
                   </div>

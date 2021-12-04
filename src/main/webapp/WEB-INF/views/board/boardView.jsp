@@ -366,14 +366,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
-            <c:choose>
-            	<c:when test="${boardKind==4}">
-            		<span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/writeTag">글쓰기</a></span>	
-            	</c:when>
-            	<c:otherwise>
-            		<span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
-            	</c:otherwise>
-            </c:choose>
+            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
           </ul>
         </nav>
         <!-- End Pagination -->

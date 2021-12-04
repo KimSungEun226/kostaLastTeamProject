@@ -61,12 +61,13 @@ public class EmailCertificationService {
         return key.toString();
 	}
 	
-	public void sendSimpleMessage(String to) throws Exception {
+	public String sendSimpleMessage(String to) throws Exception {
 		// TODO Auto-generated method stub
 		MimeMessage message = createMessage(to);
 		System.out.println(message);
     	emailSender.send(message);
     	
+    	return ePw;
     	
 //	        try{//예외처리
 //	        	System.out.println("성공");
