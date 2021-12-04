@@ -129,7 +129,7 @@
 	    }
 	    
 	    <!-- 지역게시판 선택시 지역카테고리 나오게  -->
-		$(function(){
+		/* $(function(){
 		    
 		    // 질문유형을 선택한다.
 		    chnQnaType('1' , '11');
@@ -154,8 +154,7 @@
 		        $('#boardKind').val(type);
 		        $('#tagrelNo').val(select);
 		    }
-		}
-
+		} */
     </script>
   </head>
 
@@ -206,21 +205,35 @@
                         <tr>
                         <th>
                           <!-- End Products Block -->
-		                  
-		                  
 		                  <div class="input-group mb-1">
 		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="제목을 입력하세요.">
-		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onChange="chnQnaType(this.value)">
+		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onchange="selSub();">
 		                      <option value="0">카테고리</option>
 		                      <option value="1">일기</option>
 		                      <option value="4">지역방</option>
 		                      <option value="3">자유게시판</option>
 		                    </select>
-		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
+		                    	<option value="">게시판 선택</option>
+								<option value="2" >서울</option>
+								<option value="3" >경기ㆍ인천</option>
+								<option value="4" >강원도</option>
+								<option value="5" >충청도</option>
+								<option value="6" >전라도</option>
+								<option value="7" >경상도</option>
+								<option value="8" >제주도</option>
 		                    </select>
 		                  </div>
-                  
 		                  
+		          <script>
+		          	function selSub(){
+		            	$("#tagrelNo").attr("style", "display:none;");
+		            	if ($("#boardKind option:selected").val() == "4"){
+		          		$("#tagrelNo").attr("style", "display:;");
+		          		$("#category_sub1arr").attr("style", "display:;");
+		            	}
+		            }
+		          </script>
                         <br>
                         </th>
                         </tr>
@@ -241,11 +254,6 @@
 							height:200
 							});
 						</script>
-                        
-                       
-
-                        
-						
                         <!-- End Item-->
 
                       </tbody>

@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Tag;
+import kosta.mvc.domain.product.Product;
 import kosta.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -35,47 +36,67 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	/**
-	 * 등록폼(지역게시판 외 게시판)
+	 * 등록폼
 	 * */
-	/*@RequestMapping("/write")
-	public void writeForm() {
-		
-	}*/
-	
-	/**
-	 * 등록폼(지역게시판 글등록)
-	 * */
-	@RequestMapping("/writeTag")
-	public void writeTagForm() {
+	@RequestMapping("/write")
+	public void write() {
 		
 	}
 	
 	/**
-	 * 등록하기(지역게시판)
+	 * 수정폼
 	 * */
-	@RequestMapping("/insertTag")
-	public String insertTag(Board board, Tag tag) throws NullPointerException {
+	/*@RequestMapping("/admin/updateForm")
+	public String update(Long productNo, Model model) {
+		
+		Product product = productService.selectByNo(productNo, false);
+		model.addAttribute("product", product);
+		return "shop/product/update";
+	}*/
+	
+	/**
+	 * 게시판 수정폼
+	 * */
+	@RequestMapping("/updateForm")
+	public ModelAndView updateForm(Long boardNo) {
+		Board board = boardService.selectBy(boardNo, false); //조회수 증가x
+		
+		ModelAndView mv = new ModelAndView("board/update", "board", board);
+		return mv;
+	}
+	
+	/**
+	 * 수정 완료
+	 * */
+	@RequestMapping("/update")
+	public ModelAndView update(Board board) {
+		Board dbBoard = boardService.update(board);
+		
+		return new ModelAndView("board/detail", "board", dbBoard);
+	}
+	
+	
+	
+	
+	/**
+	 * 등록하기
+	 * */
+	@RequestMapping("/insert")
+	public String insert(Board board, Tag tag) throws NullPointerException {
 			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
 		    
 		    System.out.println(tag.getTagrelNo());
 		    
-			tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
-			board.setTag(tag);
+		    if(tag.getTagrelNo() != null) {
+		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
+		    	board.setTag(tag);
+		    }
+		    
 		    boardService.insert(board);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/select/0";
 	}
 	
-	/**
-	 * 지역방 외 게시판에 글 등록하는 경우
-	 * */
-	/*@RequestMapping("/insert")
-	public String insert(Board board) {
-		
-		boardService.insert(board);
-		
-		return "redirect:/board/list";
-	}*/
 	
 	/**
 	 * 전체 커뮤니티 게시물 조회
