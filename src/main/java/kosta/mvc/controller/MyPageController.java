@@ -7,12 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/myPage")
 @RequiredArgsConstructor
 public class MyPageController {
+	
+	//private final MypageService mypageService;
 	
 	@RequestMapping("/")
 	public String myPage() {
@@ -25,7 +28,14 @@ public class MyPageController {
 	 */
 	@RequestMapping("/board")
 	public ModelAndView board() {
-		//
+		
+		//나중에 로그인 정보로 바꾸기!!!!
+		Long memberNo = (long)1;
+		
+		//회원번호에 해당하는 board정보 다가져오기
+		
+		
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/myPage/myBoard");
 		return mv;
