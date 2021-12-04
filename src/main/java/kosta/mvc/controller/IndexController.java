@@ -50,20 +50,7 @@ public class IndexController {
 		return "board/tos";
 	}
 	
-	@RequestMapping("/findId")
-	public String findId() {
-		return "board/findId";
-	}
 	
-	@RequestMapping("/findIdByPhone")
-	public String findIdByPhone() {
-		return "board/findIdByPhone";
-	}
-	
-	@RequestMapping("/findIdByEmail")
-	public String findIdByEmail() {
-		return "board/findIdByEmail";
-	}
 		
 	//회원가입 휴대전화 인증
 	private final CertificationService certificationService;
@@ -90,28 +77,15 @@ public class IndexController {
 	@Autowired
 	EmailCertificationService emailCertificationService;
 	 
-	 //private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	 
-		@PostMapping("/check/sendEmail")
-		@ResponseBody
-		public void emailConfirm(String userEmail)throws Exception{
-			//logger.info("post emailConfirm");
-			System.out.println("전달 받은 이메일 : "+userEmail);
-			emailCertificationService.sendSimpleMessage(userEmail);	
-		}
+	@PostMapping("/check/sendEmail")
+	@ResponseBody
+	public String emailConfirm(String memberEmail)throws Exception{
+		//logger.info("post emailConfirm");
+		System.out.println("전달 받은 이메일 : "+ memberEmail);
+		String code = emailCertificationService.sendSimpleMessage(memberEmail);	
 		
-//		@PostMapping("/verifyCode")
-//		@ResponseBody
-//		public int verifyCode(String code) {
-//			//logger.info("Post verifyCode");
-//			
-//			int result = 0;
-//			System.out.println("code : "+code);
-//			System.out.println("code match : "+ EmailCertificationService.ePw.equals(code));
-//			if(EmailCertificationService.ePw.equals(code)) {
-//				result =1;
-//			}
-//			
-//			return result;
-//		}
+		return code;
+	}
+		
+		
 }

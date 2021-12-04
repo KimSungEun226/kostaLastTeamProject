@@ -1,9 +1,11 @@
 package kosta.mvc.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -52,19 +54,47 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getMemberId(), userEntity.getMemberPwd(), authorities);
     }
     
-    
+    //아이디 중복체크 메소드
     public boolean idCheck(String memberId) throws Exception {
-    	boolean idDuplicateChk = memberRepository.existsByMemberId(memberId);
-    	
-    	return idDuplicateChk;
-    	
+    	return memberRepository.existsByMemberId(memberId);
     }
-    
+    //닉네임 중복체크 메소드
     public boolean nicknameCheck(String memberNickname) throws Exception {
-    	boolean nicknameDuplicateChk = memberRepository.existsByMemberNickname(memberNickname);
-    	
-    	return nicknameDuplicateChk;
-    	
+    	return memberRepository.existsByMemberNickname(memberNickname);
+    }
+    //휴대전화로 아이디찾기
+    public Member findIdByPhone(HttpServletResponse response, String memberName, String memberPhone) throws Exception {
+    	response.setContentType("text/html; charset=UTF-8");
+
+    	Member member = memberRepository.findByMemberNameAndMemberPhone(memberName, memberPhone);
+    	PrintWriter out = response.getWriter();
+    	if(member == null) {
+    		out.println("<script>");
+    		out.println("alert('가입된 아이디가 없습니다.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+    	}else {
+    		return member;
+    	}
+    }
+  //이메일로 아이디찾기
+    public Member findIdByEmail(HttpServletResponse response, String memberName, String memberEmail) throws Exception {
+    	response.setContentType("text/html; charset=UTF-8");
+
+    	Member member = memberRepository.findByMemberNameAndMemberEmail(memberName, memberEmail);
+    	PrintWriter out = response.getWriter();
+    	if(member == null) {
+    		out.println("<script>");
+    		out.println("alert('가입된 아이디가 없습니다.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+    	}else {
+    		return member;
+    	}
     }
     
     public Member selectByMemberId(String memberId) {

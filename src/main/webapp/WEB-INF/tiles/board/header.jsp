@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
             <!-- End Responsive Toggle Button -->
 
 			<!-- Logo -->
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/main">
               <img src="${pageContext.request.contextPath}/e-commerce/assets/img/logo/logo.png" alt="Image Description">
             </a>
             <!-- End Logo -->
@@ -240,12 +241,25 @@
                     </li><!-- End 고객센터 - Q&A -->
                   </ul>
                 </li><!-- End 고객센터 -->
+                
+                <!-- 마이페이지 -->
+                <sec:authorize access="hasRole('MEMBER')">
+				  <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+	                <a href="${pageContext.request.contextPath}/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
+	              </li>
+	              <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                    <a href="${pageContext.request.contextPath}/logout" class="g-color-gray-dark-v5 nav-link g-py-7 g-px-0">로그아웃</a>
+                  </li>
+				</sec:authorize>
               </ul>
             </div><!-- End Navigation -->
 
-            <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
-              <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="${pageContext.request.contextPath}/login">로그인</a>
-            </div>
+			<sec:authorize access="isAnonymous()">
+	          <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+	            <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="${pageContext.request.contextPath}/login">로그인</a>
+	          </div>
+            </sec:authorize>
+            
           </div>
         </nav>
       </div>
