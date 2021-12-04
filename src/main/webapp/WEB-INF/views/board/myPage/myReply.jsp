@@ -108,9 +108,9 @@
             <!-- Sidebar Navigation -->
             <div class="list-group list-group-border-0 g-mb-40">
               <!-- 홈 -->
-              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item justify-content-between active">
-                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>나의 페이지</span>
-                <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
+              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item list-group-item-action justify-content-between">
+                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 페이지</span>
+                <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
               </a>
               <!-- End 홈 -->
 
@@ -122,10 +122,12 @@
               <!-- End 나의 게시물 -->
 
               <!-- 나의 댓글 -->
-              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
-                <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
+              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item justify-content-between active">
+                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
+                <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>
+              
+              
               <!-- End 나의 댓글 -->
               
               <!-- 정보 수정 -->
