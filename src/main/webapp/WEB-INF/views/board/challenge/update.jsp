@@ -8,16 +8,16 @@
   <head>
   
   
-	  
     <!-- Title -->
-    <title>챌린지 수정하기</title>
+    <title>챌린지 게시글 수정하기</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
 
 
     <!-- Favicon -->
@@ -43,17 +43,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
 	
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote-lite.css">
-  <!--  -->
-  
-  
+   <!--  -->
+    
     <!-- CSS Unify Theme -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/e-commerce/assets/css/styles.e-commerce.css">
 
@@ -61,42 +60,57 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
     <script type="text/javascript">
-
+    
+	     $(document).ready(function(){
+	    	 $('#summernote').summernote({
+	    			 tabsize: 1,
+			  			height:400
+	    	 }
+	    			 );
+	    	
+	    });
+      
+	  
     </script>
+    
+    
     
     <script type="text/javascript">
     
     
 	    function form_check() {
 	    	  var boardTitle = document.getElementById("boardTitle");
-	    	  var password = document.getElementById("password");    	
-	    	  var boardContent = document.getElementById("summernote"); 	  
+	    	  var password = document.getElementById("password");   	
+	    	  var content = document.getElementById("summernote");
+	  
 		    	if ( boardTitle.value == "" ) {
 		    	    alert( "제목을 입력해주세요." );
 		    	    boardTitle.focus();
 		    		return false;
 		        }
 		    	
-		    	if ( password.value == "" || password.value.length>4) {
-		            alert( "비밀번호를 4자이하로 작성해주세요." );
-		            password.focus();
+		    	if ( password.value!=${board.password}) {
+		            alert( "게시글 작성시 사용한 비밀번호를 입력해주세요." );
+		            itemPrice.focus();
 		            return false;
 		        }
 	
-		    	if ( boardContent.value == "") {
+		    	if ( content.innerHTML == "" ) {
 		            alert( "내용을 입력해주세요." );
-		            boardContent.focus();
+		            content.focus();
 		            return false;
 		        }
-
-		    	document.challengeInsert_form.submit(); //유효성 검사의 포인트 
-
+		    	document.getElementById("productContent").value = $('#summernote').summernote('code');
+		    	document.boardUpdate_form.submit(); //유효성 검사의 포인트 
 	    }
+	
     </script>
   </head>
 
   <body>
 
+
+    
   
     <main>
       <!-- Header -->
@@ -107,27 +121,24 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="30일챌린지 전체조회">30일 챌린지</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="해당카테고리 전체조회">해당 카테고리</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+              <a class="u-link-v5 g-color-text">챌린지 게시물 수정하기</a>
             </li>
-            <li class="list-inline-item g-color-primary">
-              <span>글쓰기</span>
-            </li>
+            
           </ul>
         </div>
       </section>
       <!-- End Breadcrumbs -->
 
-      <!-- Help -->
-      <form name="challengeUpdate_form" method="post" action="${pageContext.request.contextPath}/challenge/insert" enctype="multipart/form-data">
-	  <input type='hidden' name='boardNo' value="${board.boardNo}">
+      <!-- Start Form -->
+      <form name="boardUpdate_form" method="post" action="${pageContext.request.contextPath}/challenge/update" enctype="multipart/form-data">
+      <input type="hidden" name="boardNo" value="${board.boardNo}"/>
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">30일 챌린지 수정하기</h2>
+          <h2 class="mb-5">챌린지 게시물 수정</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -136,65 +147,43 @@
                 <!-- Accordion -->
                 <div id="accordion-12-1" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
                   <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
-                    
-                    <table class="text-left w-100">
-                      <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
-                        <tr>
-                        <th>
-                          <!-- End Products Block -->
-		                                    
-		                  <div class="input-group mb-1">
-		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:100%;" type="text" value="${board.boardTitle}">
-		                    <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="수정하거나 삭제할때 사용할 비밀번호">   
-		                  </div>                  	                  
-                        <br>
-                        </th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <!-- Item-->
-                        
-                        <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><div id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" value="${board.boardContent}"></div></td> 
-                        </tr>
-                        
-                        <script>
-							$('#summernote').summernote({
-							placeholder: 'Hello Bootstrap 4',
-							tabsize: 1,
-							height:200
-							});
-						</script>
-                        
-                       
-
-                        
-						
-                        <!-- End Item-->
-
-                      </tbody>
-                    </table>
-                    <br>
-    
+	                 <table class="text-left w-100">
+	                    <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+		                    <tr>
+			                    <th>			                                    
+						            <div class="input-group mb-1">
+						               <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:50%;" type="text" value="${board.boardTitle}">
+						            </div>		                  		                  
+						            <div class="input-group mb-1">		                  		                  
+						            	<b class="h5 g-color-black my-1">비밀번호 입력 : &nbsp;&nbsp;&nbsp;</b>   <input id="password" name="password" value="${board.password}" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >			                                       
+						            </div>                  	                  			             
+				                    <br>
+			                    </th>
+		                    </tr>
+	                    </thead>
+	                    <tbody>
+	                        <!-- Content -->	                        
+	                        <tr class="g-brd-bottom g-brd-gray-light-v3">
+	                          <td>
+		                          <div id="summernote" >
+		                          ${board.boardContent}
+		                          </div>
+	                          </td> 
+	                        </tr>
+			              <input type="hidden" id="boardContent" name="boardContent" value="{board.boardContent}"/>
+	                        <!-- End Content-->	
+	                    </tbody>
+	                 </table>
                   </div>
-                  <!-- End Products Block -->
+                  <!-- End Board Block -->
+
                   
-                  <div class="input-group mb-1">      
-		            <select id="challengeCategory" name="challengeCategory" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:50%;">
-		            <option value="0">카테고리</option>
-		            <option value="1">아침밥챙기기</option>
-		            <option value="2">유산소운동하기</option>
-		            <option value="3">플랭크하기</option>
-		            <option value="4">전신운동하기</option>
-		          </select>
-		 
                 </div>
                 <!-- End Accordion -->
                <!-- Contact Form -->
 		            
 		                <div class="text-center">
-		                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
+		                  <button id="check" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>수정완료</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
 		                </div>
 		              
 		              <!-- End Contact Form -->
@@ -203,7 +192,7 @@
           </div>
       </div>
       
-      <!-- End Help -->
+      <!-- End Form -->
       </div>
       </form>
 
@@ -292,7 +281,7 @@
     <script>
       $(function(){
     	 $("#cancel").click(function(){
-    		 confirm("취소하시겠습니까?") ? history.go(-1) : "취소";
+    		 confirm("취소하시겠습니까?") ? location.href="${path}/front" : "취소";
     	 }) 
       });
     </script>

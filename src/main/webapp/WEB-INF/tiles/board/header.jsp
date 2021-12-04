@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
             <!-- End Responsive Toggle Button -->
 
 			<!-- Logo -->
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/main">
               <img src="${pageContext.request.contextPath}/e-commerce/assets/img/logo/logo.png" alt="Image Description">
             </a>
             <!-- End Logo -->
@@ -152,33 +153,33 @@
 
                 <!-- 30일 챌린지 -->
                 <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link--blog" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--blog">30일 챌린지</a>
+                  <a id="nav-link--blog" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/challenge/list" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--blog">30일 챌린지</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--blog" aria-labelledby="nav-link--blog">
                    
                     <!-- 30일 챌린지 - 전체 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">전체</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/list" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">전체</a>
                     </li><!-- End 30일 챌린지 - 전체 -->
                     
                     <!-- 30일 챌린지 - 30일 아침밥 챙기기 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 아침밥 챙기기</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/select/1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 아침밥 챙기기</a>
                     </li><!-- End 30일 챌린지 - 30일 아침밥 챙기기 -->
                     
                     <!-- 30일 챌린지 - 30일 유산소 운동 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 유산소 운동</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/select/2" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 유산소 운동하기</a>
                     </li><!-- End 30일 챌린지 - 30일 유산소 운동  -->
                     
                     <!-- 30일 챌린지 - 30일 플랭크 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 플랭크</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/select/3" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 플랭크하기</a>
                     </li><!-- End 30일 챌린지 - 30일 플랭크 -->
                     
                     <!-- 30일 챌린지 - 30일 전신운동 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 전신운동</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/select/4" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">30일 전신운동하기</a>
                     </li><!-- End 30일 챌린지 - 30일 전신운동 -->
                   </ul>
                 </li><!-- End 30일 챌린지 -->
@@ -237,12 +238,25 @@
                     </li><!-- End 고객센터 - Q&A -->
                   </ul>
                 </li><!-- End 고객센터 -->
+                
+                <!-- 마이페이지 -->
+                <sec:authorize access="hasRole('MEMBER')">
+				  <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+	                <a href="${pageContext.request.contextPath}/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
+	              </li>
+	              <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                    <a href="${pageContext.request.contextPath}/logout" class="g-color-gray-dark-v5 nav-link g-py-7 g-px-0">로그아웃</a>
+                  </li>
+				</sec:authorize>
               </ul>
             </div><!-- End Navigation -->
 
-            <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
-              <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="${pageContext.request.contextPath}/login">로그인</a>
-            </div>
+			<sec:authorize access="isAnonymous()">
+	          <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+	            <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="${pageContext.request.contextPath}/login">로그인</a>
+	          </div>
+            </sec:authorize>
+            
           </div>
         </nav>
       </div>

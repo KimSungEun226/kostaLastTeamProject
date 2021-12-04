@@ -10,7 +10,7 @@
 
 <head>
   <!-- Title -->
-  <title>Blog Single Item 1 | | Unify - Responsive Website Template</title>
+  <title>게시물 상세보기</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -52,10 +52,10 @@
     </style>
     
     <script src='${pageContext.request.contextPath}/fullcalendar/main.js'></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script> 
     
     <!-- fulllCalendar -->
     <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -104,8 +104,11 @@
         calendar.render();
 
      });
-      
     </script>
+    
+    <script type="text/javascript">
+
+	</script>
 </head>
 
 <body>
@@ -113,7 +116,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">${day}</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">${day} / ${requestScope.board.boardNo}</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
@@ -277,8 +280,12 @@
           <!-- Tags -->
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
-              <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/challenge/delete">삭제하기</a></span>
-              <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/challenge/updateForm">수정하기</a></span>   
+              <form  name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/challenge/updateForm"> 
+	            <input type=hidden name="boardNo" value="${board.boardNo}">
+                <button type="submit" class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;">
+                	수정하기
+                </button>
+              </form>
             </ul>
           </div>
           <!-- End Tags -->

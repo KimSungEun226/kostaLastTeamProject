@@ -1,5 +1,7 @@
 package kosta.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -94,27 +96,48 @@ public class ChallengeController {
 	public String insert(Board board, int challengeCategory) {
 		
 		  board.getBoardContent().replace("<", "&lt;");
-		  //Long memberNo = (long)41;
-		  Long memberNo = board.getMember().getMemberNo();
+		  Long memberNo = (long)2;
+		  //Long memberNo = board.getMember().getMemberNo();
+		  board.setBoardKind(5);
+		  System.out.println("memberNo : "+memberNo);
 		  
+		  //1. 챌린지 진행상태가 진행중인것도 확인해야함!!!!!!!!!!!!
+		  //2. boardNo등 잘 들어갔는지 확인하기.
+		  
+		  System.out.println("진행중인 챌린지가 있는지 조회");
 		  //진행중인 challenge조회 
 		  Challenge ischallenge =
 				  challengeService.selectChallenge(challengeCategory, memberNo);
+		  System.out.println("진행중인 챌린지는 : "+ischallenge);
 		  if(ischallenge!=null) { 
-			  //진행중인 챌린지가 있다.
+			  //진행중인 챌린지가 있다.			  
+			  
+			  //등록일 - 하루당 cnt++는 한번만 
 			  int challengeCnt=ischallenge.getChallengeCnt()+1;
+			  
+			  System.out.println("challengeCnt : "+ ischallenge.getChallengeCnt());
+			  
 			  ischallenge.setChallengeCnt(challengeCnt);
+			  System.out.println("challengeCnt +1 : "+ischallenge.getChallengeCnt());
+			  
+			  System.out.println("board에 진행중인 challenge넣기");
 			  board.setChallenge(ischallenge);
-			  boardService.insert(board); 
+			  System.out.println("board에 진행중인 challenge넣기 끝");
+			  
+			  boardService.insert(board);
+			  
 			  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
-			  Challenge challenge = new Challenge(null, null, 1, 0, challengeCategory, null, board.getMember());
+			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
 			  challengeService.insert(challenge);
 			  board.setChallenge(challenge);
 			  boardService.insert(board);
 		  }
-		return "challenge/list";
+		  System.out.println("여기까지 되었나...?");
+		  Long boardNo = board.getBoardNo();
+		  System.out.println("board번호 : "+boardNo); 
+		return "board/challenge/detail";
 	}
 	
 	/**
@@ -140,9 +163,10 @@ public class ChallengeController {
 	 */
 	@RequestMapping("/updateForm")
 	public ModelAndView updateForm(Long boardNo) {
+		System.out.println("수정폼 시작"+boardNo);
 		Board b = boardService.selectBy(boardNo, false);	//조회수 증가 안됨
-		System.out.println(b);
-		ModelAndView mv = new ModelAndView("challenge/update", "board", b);
+		System.out.println("boardService.selectBy결과 : "+b);
+		ModelAndView mv = new ModelAndView("board/challenge/update", "board", b);
 		return mv;
 	}
 	/**
@@ -150,8 +174,9 @@ public class ChallengeController {
 	 */
 	@RequestMapping("/update")
 	public ModelAndView update(Board board) {
+		System.out.println("board update start");
 		Board dbBoard = boardService.update(board);
-		return new ModelAndView("challenge/detail", "board", dbBoard);
+		return new ModelAndView("board/challenge/detail", "board", dbBoard);
 	}
 	
 	/**
@@ -161,7 +186,7 @@ public class ChallengeController {
 	public String delete(Long boardNo, String password) {
 		boardService.delete(boardNo, password);
 		
-		return "redirect:/challenge/list";
+		return "redirect:/board/list";
 	}
 	
 }

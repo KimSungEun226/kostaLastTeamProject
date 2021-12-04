@@ -14,12 +14,6 @@
    <put-attribute name="footer" value="/WEB-INF/tiles/shop/footer.jsp"/>
  </definition>
  
- 
- <definition  extends="boardLayout" name="board/user/*">     
-  <put-attribute name="header" value="/WEB-INF/tiles/board/user/header.jsp"/>
-  <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp"/>
- </definition>
- 
  <!--  뷰의정보가 board/* 인경우 boardLayout.jsp모양으로... -->
  <definition extends="boardLayout" name="board/**">
    <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp"/>
