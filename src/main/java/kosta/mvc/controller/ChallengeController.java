@@ -140,6 +140,7 @@ public class ChallengeController {
 	 */
 	@RequestMapping("/updateForm")
 	public ModelAndView updateForm(Long boardNo) {
+		System.out.println("수정폼 시작");
 		Board b = boardService.selectBy(boardNo, false);	//조회수 증가 안됨
 		System.out.println(b);
 		ModelAndView mv = new ModelAndView("challenge/update", "board", b);
