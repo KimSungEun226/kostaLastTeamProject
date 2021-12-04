@@ -10,7 +10,7 @@
   
 	  
     <!-- Title -->
-    <title>챌린지 작성폼</title>
+    <title>챌린지 수정하기</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
@@ -123,11 +123,11 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="challengeInsert_form" method="post" action="${pageContext.request.contextPath}/challenge/insert" enctype="multipart/form-data">
-
+      <form name="challengeUpdate_form" method="post" action="${pageContext.request.contextPath}/challenge/insert" enctype="multipart/form-data">
+	  <input type='hidden' name='boardNo' value="${board.boardNo}">
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">30일 챌린지 작성</h2>
+          <h2 class="mb-5">30일 챌린지 수정하기</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -144,7 +144,7 @@
                           <!-- End Products Block -->
 		                                    
 		                  <div class="input-group mb-1">
-		                    <input id="boardTitle" name="boardTitle" placeholder="제목" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:100%;" type="text" >
+		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:100%;" type="text" value="${board.boardTitle}">
 		                    <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="수정하거나 삭제할때 사용할 비밀번호">   
 		                  </div>                  	                  
                         <br>
@@ -156,7 +156,7 @@
                         <!-- Item-->
                         
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><textarea id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" placeholder="내용"></textarea></td> 
+                          <td><div id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" value="${board.boardContent}"></div></td> 
                         </tr>
                         
                         <script>

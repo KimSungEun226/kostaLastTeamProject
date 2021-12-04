@@ -14,73 +14,190 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/vendor/icon-line/css/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line/css/simple-line-icons.css">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="../assets/vendor/icon-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/vendor/icon-line-pro/style.css">
-    <link rel="stylesheet" href="../assets/vendor/icon-hs/style.css">
-    <link rel="stylesheet" href="../assets/vendor/chosen/chosen.css">
-    <link rel="stylesheet" href="../assets/vendor/animate.css">
-    <link rel="stylesheet" href="../assets/vendor/hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" href="../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-    <link rel="stylesheet" href="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
 
     <!-- CSS Unify Theme -->
-    <link rel="stylesheet" href="assets/css/styles.e-commerce.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/e-commerce/assets/css/styles.e-commerce.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+    
  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
+   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+ 
  <script type="text/javascript">
+ var IMP = window.IMP;
+ function requestPay() {
+      var customerName = document.getElementById("nameInput").value;
+	  var customerDetailAddr = document.getElementById("detailAddrInput").value;
+	  var customerContact = document.getElementById("contactInput").value;
+	  var customerEmail = document.getElementById("emailInput").value;
+	  var orderAddr = document.getElementById("addrInput2").value + " " + customerDetailAddr;
+
+	 $.ajax({
+         url:"${pageContext.request.contextPath}/shop/pay",
+         type:"post",
+         dataType:"text",
+         //dataType:"json",
+         data:{
+        	 addr: orderAddr,
+        	 contact: customerContact,
+        	 name: customerName,
+        	 cartList: JSON.stringify("${cartList}")
+        	 },
+         success:function(result) {
+             alert(result);
+         },
+         error:function(err){
+             alert(arr+"발생");
+         }
+     })
+	 
+     IMP.init("imp57256984");
+     // IMP.request_pay(param, callback) 결제창 호출
+      var itemName ="";
+ 
+	  
+     var size = ${cartList.size()};
+     if(size==0) itemName="${cartList[0].product.productName}";
+     else itemName="${cartList[0].product.productName}"+"외 "+ ${cartList.size()-1} +"개"  
+     
+     
+     /* IMP.request_pay({ // param
+         pg: "html5_inicis",
+         pay_method: "card",
+         merchant_uid: "ORD20180131-000003",
+         name: itemName,
+         amount: 100,
+         buyer_email: customerEmail,
+         buyer_name: customerName,
+         buyer_tel: customerContact,
+         buyer_addr: orderAddr,
+         buyer_postcode: "01181"
+     }, function (rsp) { // callback
+         if (rsp.success) {
+       	  var msg = '결제가 완료되었습니다.';
+		      msg += '고유ID : ' + rsp.imp_uid;
+		      msg += '상점 거래ID : ' + rsp.merchant_uid;
+		      msg += '결제 금액 : ' + rsp.paid_amount;
+		      msg += '카드 승인번호 : ' + rsp.apply_num;
+         } else {
+       	  var msg = '결제에 실패하였습니다.';
+		      msg += '에러내용 : ' + rsp.error_msg;
+         }
+	      alert(msg);
+     }); */
+   }
+ 
+ 	function form_check() {
+ 	
+	  //변수에 담아주기
+	  var customerName = document.getElementById("nameInput");
+	  var customerAddr = document.getElementById("addrInput1");
+	  var customerDetailAddr = document.getElementById("detailAddrInput");
+
+	  var customerContact = document.getElementById("contactInput");
+	  var customerEmail = document.getElementById("emailInput");
+
+	  
+	  var reg_name = /^[가-힣]+$/; //한글만
+	  var reg_num = /^[0-9]*$/; // 숫자만 
+
+      var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+	  
+	  
+/* 	  if (customerName.value == "" || !reg_name.test(customerName.value) || customerName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+	    alert("이름을 확인하세요.");
+	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+	  };
+
+
+ 	  if (customerAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+   	    alert("주소를 입력하세요.");
+   	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+      };
+     
+      if (customerDetailAddr.value == "" && !document.getElementById("checkSame").checked) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+ 	    alert("상세주소를 입력하세요.");
+ 	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+ 	  };
+
+  	  if (customerEmail.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("이메일을 입력하세요.");
+    	    customerEmail.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+    	  };
+ 	 	  
+ 	  
+ 	  if (customerContact.value == "" || !reg_contact.test(customerContact.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+ 	    alert("전화번호를 확인하세요.");
+ 	    customerContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+ 	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+ 	  }; */
+ 	  
+ 	  
+	
+
+	  //입력 값 전송
+	  //document.check_form.submit(); //유효성 검사의 포인트 
+	  requestPay();
+	}
+ 	
+ 	
+ 
    $(function(){
 	   
-	   var qty=parseInt($('input[name=pcount]').val());
-	   var content="";
-	   
-	   //$("span[name=sumCart]").attr("action", "${pageContext.request.contextPath}/shop/sumCart");
-	   //var amount += $("input[name=amount]").val();
-	   //$("span[name=fmtAmount]").val(amount);
-	   
-	   
-/* 	   $("button[name=cartInfo]").click(function(){
-		   $("input[name=quantity]").val(qty);
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/insertCart");
-		   $("#requestForm").submit();
-
-	   }); */
-	   
-	   //상품별 합계 구하기
-/* 	   var arr = $('span[name=price]').get();
-	   
-	   for (var i = 0; i <arr.length; i++) {
-		   var price=parseInt($('span[name=price]').html());
-		   //alert(arr[i]);
-		   $("span[name=sum]").html(price*qty);
-		   
-	   }; */
-/* 	       var price=0;
-		   //수량 변경하면 합계도 같이 변경
-	 	   $("i[name=plusQuantity]").click(function(){
-				qty+=1;
-				price=parseInt($('span[name=price]').html());
-				$("span[name=sum]").html(price*qty);
-
-		   });
-		   
-		   $("i[name=minusQuantity]").click(function(){
-				qty-=1;
-     			price=parseInt($('span[name=price]').html());
-				$("span[name=sum]").html(price*qty);  
-			    
-		   }); */
+	   $("#checkSame").click(function(){
+  		 if($("input:checkbox[id='checkSame']").is(":checked") == true) {
+  			 //$("#detailAddr").hide();
+  			 //$("#addrInput2").hide();
+  			 
+  			 $("#nameInput").val("${customerDTO.customerName}");
+  			 $("#nameInput").attr("readonly",true);
+  			 $("#emailInput").val("${customerDTO.customerEmail}");
+  			 $("#emailInput").attr("readonly",true);
+  			 $("#addrInput1").val("${customerDTO.customerAddr}");
+  			 $("#addrInput1").attr("readonly",true);
+  			 $("#contactInput").val("${customerDTO.customerContact}");
+  			 $("#contactInput").attr("readonly",true);
+  			 
+  			 
+  		 }
+  		 else{
+  			 $("#nameInput").val("");
+  			 $("#emailInput").val("");
+  			 $("#addrInput1").val("");
+  			 $("#addrInput2").val("");
+  			 $("#detailAddrInput").val("");
+  			 $("#contactInput").val("");
+  			 
+  			 $("#nameInput").removeAttr("readonly");
+  			 $("#emailInput").removeAttr("readonly");
+  			 $("#addrInput1").removeAttr("readonly");
+  			 $("#contactInput").removeAttr("readonly");
+  			 
+  			 $("#detailAddr").show();
+  			 $("#addrInput2").show();
+  		 } 
+  	 })
 		   
 		   //상품 삭제 
 		   $("i[name=deleteProductFromCart]").click(function(){
@@ -119,7 +236,7 @@
 
       <!-- Checkout Form -->
       <div class="container g-pt-100 g-pb-70">
-        <form class="js-validate js-step-form" data-progress-id="#stepFormProgress" data-steps-id="#stepFormSteps">
+        <form name="check_form" class="js-validate js-step-form" data-progress-id="#stepFormProgress" data-steps-id="#stepFormSteps">
           <div class="g-mb-100">
             <!-- Step Titles -->
             <ul id="stepFormProgress" class="js-step-progress row justify-content-center list-inline text-center g-font-size-17 mb-0">
@@ -196,7 +313,7 @@
                           <td class="text-left g-py-25">
 				    
 				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
-                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.productImage.productImageName}" alt="Image Description">
+                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
                             </a>
                             <div class="d-inline-block align-middle">
                               <h4 class="h6 g-color-black">${cart.product.productName}</h4>
@@ -222,7 +339,8 @@
                             </div>
                           </td>
                           <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber>${cart.product.price*pcount}</fmt:formatNumber> 원</span>                           
+                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber>${cart.product.price*pcount}</fmt:formatNumber> 원</span>  
+                            <c:set var="amount" value="${amount+cart.product.price*pcount}"/>
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
                             <form name="requestForm" method="post" id="requestForm">
                               <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
@@ -250,28 +368,7 @@
                     <h4 class="h6 text-uppercase mb-3">계산서</h4>
 
                     <!-- Accordion -->
-                    <div id="accordion-01" class="mb-4" role="tablist" aria-multiselectable="true">
-                      <div id="accordion-01-heading-01" class="g-brd-y g-brd-gray-light-v2 py-3" role="tab">
-                        <h5 class="g-font-weight-400 g-font-size-default mb-0">
-                          <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#accordion-01-body-01" data-toggle="collapse" data-parent="#accordion-01" aria-expanded="false" aria-controls="accordion-01-body-01">Estimate shipping
-                            <span class="ml-3 fa fa-angle-down"></span></a>
-                        </h5>
-                      </div>
-                      <div id="accordion-01-body-01" class="collapse" role="tabpanel" aria-labelledby="accordion-01-heading-01">
-                        <div class="g-py-10">
-                          <div class="mb-3">
-                            <label class="d-block g-color-gray-dark-v2 g-font-size-13">Country</label>
-                            <input id="inputGroup1" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="country" type="text" placeholder="United Kingdom" required>
-                          </div>
-                          <div class="mb-3">
-                            <label class="d-block g-color-gray-dark-v2 g-font-size-13">State/Province</label>
-                            <input id="inputGroup2" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="stateProvince" type="text" placeholder="London" required>
-                          </div>
-                          <label class="d-block g-color-gray-dark-v2 g-font-size-13">ZIP/Postal Code</label>
-                          <input id="inputGroup3" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="zip" type="text" placeholder="e.g. AB123" required>
-                        </div>
-                      </div>
-                    </div>
+                    
                     <!-- End Accordion -->
 
                     <div class="d-flex justify-content-between mb-2 ">
@@ -280,12 +377,12 @@
                     </div>
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">전체 상품 금액</span>
-                      <span class="g-color-black g-font-weight-300">${sum}</span>
+                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount}"/>원</span>
                     </div>
                     <p>
                     <div class="d-flex justify-content-between g-brd-y g-brd-gray-light-v2 py-3"> <!-- g-brd-y g-brd-gray-light-v2 py-3 선으로 테이블 그리기 -->
                     <span class="g-color-black" >예상 결제 금액</span>
-                      <span class="g-color-black g-font-weight-300">${sum+3000}</span>
+                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount+3000}"/>원</span>
                     </div>
                   </div>
                   <!-- End Summary -->
@@ -331,65 +428,78 @@
             <div id="step2">
               <div class="row">
                 <div class="col-md-8 g-mb-30">
+                
+                <div class="row">
+                   <div class="col-sm-6 g-mb-20"> 
+                   <label class="d-block g-color-gray-dark-v2 g-font-size-15">
+                    <input type ="checkbox" id="checkSame" > 주문자 정보와 동일
+                    </label>
+                     
+                     </div>
+                </div>
+                
                   <div class="row">
                     <div class="col-sm-6 g-mb-20">
                       <div class="form-group">
+                      <!-- required data-msg="This field is mandatory" --> 
                         <label class="d-block g-color-gray-dark-v2 g-font-size-13">주문자명</label>
-                        <input id="inputGroup4" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="firstName" type="text" placeholder="Alexander" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                        <input id="nameInput" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="firstName" type="text" placeholder="Alexander" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
 
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">받는 분</label>
-                        <input id="inputGroup5" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="lastName" type="text" placeholder="Teseira" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6 g-mb-20">
+					<div class="col-sm-6 g-mb-20">
                       <div class="form-group">
                         <label class="d-block g-color-gray-dark-v2 g-font-size-13">메일주소</label>
-                        <input id="inputGroup6" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="email" type="email" placeholder="alex@gmail.com" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                        <input id="emailInput" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="email" type="email" placeholder="alex@gmail.com"  data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
                       </div>
                     </div>
                     
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">연락처</label>
-                        <input id="inputGroup10" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="phoneNumber" type="text" placeholder="+01 (00) 555 666 77" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="row">
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">지역</label>
-                        <input id="inputGroup8" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="stateProvince" type="text" placeholder="London" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6 g-mb-20">
-                      <div class="form-group">
-                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">우편번호</label>
-                        <input id="inputGroup9" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="zip" type="text" placeholder="AB123" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
-                      </div>
-                    </div>
                   </div>
 
                   
 
 
+                  <div class="row">
+                    <div class="col-sm-6 g-mb-20">
+                      <div class="form-group">
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">주소</label>
+                        <input name="addrInput1" id="addrInput1" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="zip" type="text" placeholder="ex)서울시 강남구" onclick="findAddr()" >
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6 g-mb-20">
+                      <div class="form-group">
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">&nbsp;</label>
+                        <input name="addrInput2" id="addrInput2" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="address" type="text">
+                      </div>
+                    </div>
+                  </div>
+
+
+				<div class="row" id="detailAddr">
+                    <div class="col-sm-6 g-mb-20">
+                      <div class="form-group">
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">상세주소</label>
+                        <input name="detailAddrInput" id="detailAddrInput" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="detail_address" type="text" placeholder="ex)101동 101호" >
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6 g-mb-20">
+                      <div class="form-group">
+                        <label class="d-block g-color-gray-dark-v2 g-font-size-13">전화번호</label>
+                        <input id="contactInput" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="phoneNumber" type="text" placeholder="+82-10-1234-5678" >
+                      </div>
+                    </div>
+
+                  </div>
+
 
                   <hr class="g-mb-50">
 
-                  <h4 class="h6 text-uppercase mb-5">배송 상세 정보</h4>
-
+<!--                   <h4 class="h6 text-uppercase mb-5">배송 상세 정보</h4>
+ -->
                   <!-- Shipping Mehtod -->
-                  <table class="mb-5">
+                  <%-- <table class="mb-5">
                     <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-gray-dark-v3 g-font-size-13">
                       <tr>
                         <th class="g-width-70 g-font-weight-500 g-pa-0 g-pb-10">배송지</th>
@@ -414,7 +524,7 @@
                         <td class="align-top text-right g-py-10"><fmt:formatNumber>3000</fmt:formatNumber></td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> --%>
                   <!-- End Shipping Mehtod -->
 
                  
@@ -436,49 +546,24 @@
                       <div id="accordion-03-body-03" class="collapse" role="tabpanel" aria-labelledby="accordion-03-heading-03">
                         <div class="g-py-15">
                           <ul class="list-unstyled mb-3">
-                            <!-- Product -->
-                            <li class="d-flex justify-content-start">
-                              <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img6.jpg" alt="Image Description">
-                              <div class="d-block">
-                                <h4 class="h6 g-color-black">Sneaker</h4>
-                                <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_4 mb-1">
-                                  <li>Color: Black</li>
-                                  <li>Size: MD</li>
-                                  <li>QTY: 1</li>
-                                </ul>
-                                <span class="d-block g-color-black g-font-weight-400">$ 87.00</span>
-                              </div>
-                            </li>
-                            <!-- End Product -->
-
-                            <!-- Product -->
+							<!-- Product -->
+							
+							<c:forEach items="${requestScope.cartList}" var="cart">
+							
+							
                             <li class="d-flex justify-content-start g-brd-top g-brd-gray-light-v3 pt-4 mt-4">
-                              <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img3.jpg" alt="Image Description">
+                              <img class="g-width-100 g-height-100 mr-3" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
                               <div class="d-block">
-                                <h4 class="h6 g-color-black">Chukka Shoes</h4>
+                                <h4 class="h6 g-color-black">${cart.product.productName}</h4>
                                 <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_4 mb-1">
-                                  <li>Color: Black</li>
-                                  <li>Size: MD</li>
-                                  <li>QTY: 2</li>
+                                  
+                                  <li>수량: ${cart.cartCount}</li>
                                 </ul>
-                                <span class="d-block g-color-black g-font-weight-400">$ 160.00</span>
+                                <span class="d-block g-color-black g-font-weight-400"><fmt:formatNumber value="${cart.product.price*cart.cartCount}"/>원
                               </div>
                             </li>
-                            <!-- End Product -->
-
-                            <!-- Product -->
-                            <li class="d-flex justify-content-start g-brd-top g-brd-gray-light-v3 pt-4 mt-4">
-                              <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img7.jpg" alt="Image Description">
-                              <div class="d-block">
-                                <h4 class="h6 g-color-black">Desk Clock</h4>
-                                <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_4 mb-1">
-                                  <li>Color: Brown Wood</li>
-                                  <li>Type: Desk</li>
-                                  <li>QTY: 1</li>
-                                </ul>
-                                <span class="d-block g-color-black g-font-weight-400">$ 47.00</span>
-                              </div>
-                            </li>
+                            
+                            </c:forEach>
                             <!-- End Product -->
                           </ul>
                         </div>
@@ -492,11 +577,11 @@
                     </div>
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">결제 금액</span>
-                      <span class="g-color-black g-font-weight-300">$459.5</span>
+                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount+3000}"/>원</span>
                     </div>
                  
                   </div>
-                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step3">결제하러 가기</button>
+                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" onclick="form_check()" >결제하기</button>
                   <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
                   <!-- End Order Summary -->
                 </div>
@@ -509,10 +594,10 @@
             
 
             <!-- Payment & Review -->
-            <div id="step3">
+            <!-- <div id="step3">
               <div class="row">
                 <div class="col-md-8 g-mb-30">
-                  <!-- Payment Methods -->
+                  Payment Methods
                   <ul class="list-unstyled mb-5">
                     <li class="g-brd-bottom g-brd-gray-light-v3 pb-3 my-3">
                       <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
@@ -535,9 +620,9 @@
                       </label>
                     </li>
                   </ul>
-                  <!-- End Payment Methods -->
+                  End Payment Methods
 
-                  <!-- Alert -->
+                  Alert
                   <div class="alert g-brd-around g-brd-gray-dark-v5 rounded-0 g-pa-0 mb-4" role="alert">
                     <div class="media">
                       <div class="d-flex g-brd-right g-brd-gray-dark-v5 g-pa-15">
@@ -550,9 +635,9 @@
                       </div>
                     </div>
                   </div>
-                  <!-- End Alert -->
+                  End Alert
 
-                  <!-- Shipping Details -->
+                  Shipping Details
                   <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-15 g-pl-70 mb-5">
                     <li class="g-my-3">Chester Ryan</li>
                     <li class="g-my-3">chester@gmail.com</li>
@@ -562,7 +647,7 @@
                     <li class="g-my-3">United States</li>
                     <li class="g-my-3">+01 731 878 77</li>
                   </ul>
-                  <!-- End Shipping Details -->
+                  End Shipping Details
 
                   <div class="g-brd-bottom g-brd-gray-light-v3 g-pb-30 g-mb-30">
                     <div class="text-right">
@@ -570,7 +655,7 @@
                     </div>
                   </div>
 
-                  <!-- Accordion -->
+                  Accordion
                   <div id="accordion-04" class="g-max-width-300" role="tablist" aria-multiselectable="true">
                     <div id="accordion-04-heading-04" role="tab">
                       <h5 class="h6 text-uppercase mb-0">
@@ -587,11 +672,11 @@
                       </div>
                     </div>
                   </div>
-                  <!-- End Accordion -->
+                  End Accordion
                 </div>
 
                 <div class="col-md-4 g-mb-30">
-                  <!-- Order Summary -->
+                  Order Summary
                   <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
                     <div class="g-brd-bottom g-brd-gray-light-v3 g-mb-15">
                       <h4 class="h6 text-uppercase mb-3">Order summary</h4>
@@ -613,7 +698,7 @@
                       <span class="g-color-black g-font-weight-300">$459.5</span>
                     </div>
 
-                    <!-- Accordion -->
+                    Accordion
                     <div id="accordion-05" class="mb-4" role="tablist" aria-multiselectable="true">
                       <div id="accordion-05-heading-05" class="g-brd-y g-brd-gray-light-v2 py-3" role="tab">
                         <h5 class="g-font-weight-400 g-font-size-default mb-0">
@@ -624,7 +709,7 @@
                       <div id="accordion-05-body-05" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-05">
                         <div class="g-py-15">
                           <ul class="list-unstyled mb-3">
-                            <!-- Product -->
+                            Product
                             <li class="d-flex justify-content-start">
                               <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img6.jpg" alt="Image Description">
                               <div class="d-block">
@@ -637,9 +722,9 @@
                                 <span class="d-block g-color-black g-font-weight-400">$ 87.00</span>
                               </div>
                             </li>
-                            <!-- End Product -->
+                            End Product
 
-                            <!-- Product -->
+                            Product
                             <li class="d-flex justify-content-start g-brd-top g-brd-gray-light-v3 pt-4 mt-4">
                               <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img3.jpg" alt="Image Description">
                               <div class="d-block">
@@ -652,9 +737,9 @@
                                 <span class="d-block g-color-black g-font-weight-400">$ 160.00</span>
                               </div>
                             </li>
-                            <!-- End Product -->
+                            End Product
 
-                            <!-- Product -->
+                            Product
                             <li class="d-flex justify-content-start g-brd-top g-brd-gray-light-v3 pt-4 mt-4">
                               <img class="g-width-100 g-height-100 mr-3" src="assets/img-temp/150x150/img7.jpg" alt="Image Description">
                               <div class="d-block">
@@ -667,16 +752,16 @@
                                 <span class="d-block g-color-black g-font-weight-400">$ 47.00</span>
                               </div>
                             </li>
-                            <!-- End Product -->
+                            End Product
                           </ul>
                         </div>
                       </div>
                     </div>
-                    <!-- End Accordion -->
+                    End Accordion
                   </div>
-                  <!-- End Order Summary -->
+                  End Order Summary
 
-                  <!-- Ship To -->
+                  Ship To
                   <div class="g-px-20 mb-5">
                     <div class="d-flex justify-content-between g-brd-bottom g-brd-gray-light-v3 g-mb-15">
                       <h4 class="h6 text-uppercase mb-3">Ship to</h4>
@@ -694,9 +779,9 @@
                       <li class="g-my-3">+01 731 878 77</li>
                     </ul>
                   </div>
-                  <!-- End Ship To -->
+                  End Ship To
 
-                  <!-- Shipping Method -->
+                  Shipping Method
                   <div class="g-px-20 mb-5">
                     <div class="d-flex justify-content-between g-brd-bottom g-brd-gray-light-v3 g-mb-15">
                       <h4 class="h6 text-uppercase mb-3">Shipping Method</h4>
@@ -706,10 +791,10 @@
                     </div>
                     <p class="g-color-gray-dark-v4 g-font-size-15">UK Standard Delivery - 2-3 Working Days</p>
                   </div>
-                  <!-- End Shipping Method -->
+                  End Shipping Method
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- End Payment & Review -->
           </div>
         </form>
@@ -778,32 +863,32 @@
     <div class="u-outer-spaces-helper"></div>
 
     <!-- JS Global Compulsory -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-    <script src="../assets/vendor/popper.js/popper.min.js"></script>
-    <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-    <script src="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="../assets/vendor/chosen/chosen.jquery.js"></script>
-    <script src="../assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
 
     <!-- JS Unify -->
-    <script src="../assets/js/hs.core.js"></script>
-    <script src="../assets/js/components/hs.header.js"></script>
-    <script src="../assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="../assets/js/components/hs.dropdown.js"></script>
-    <script src="../assets/js/components/hs.scrollbar.js"></script>
-    <script src="../assets/js/components/hs.select.js"></script>
-    <script src="../assets/js/components/hs.count-qty.js"></script>
-    <script src="../assets/js/components/hs.step-form.js"></script>
-    <script src="../assets/js/components/hs.validation.js"></script>
-    <script src="../assets/js/components/hs.go-to.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.dropdown.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.select.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.count-qty.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.step-form.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.validation.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->
-    <script src="../assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>
@@ -845,5 +930,30 @@
         $.HSCore.components.HSStepForm.init('.js-step-form');
       });
     </script>
+    
+    <script>
+	  function findAddr(){
+		new daum.Postcode({
+	      oncomplete: function(data) {
+	        	
+	        console.log(data);
+	        	
+	        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	        var roadAddr = data.roadAddress; // 도로명 주소 변수
+	        var jibunAddr = data.jibunAddress; // 지번 주소 변수
+	        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	        document.getElementById('addrInput1').value = data.zonecode;
+	        if(roadAddr !== ''){
+	          document.getElementById("addrInput2").value = roadAddr;
+	          }else if(jibunAddr !== ''){
+	            document.getElementById("addrInput2").value = jibunAddr;
+	          }
+	      }
+	    }).open();
+	  }
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>

@@ -138,14 +138,31 @@ public class ChallengeController {
 	/**
 	 * 수정폼
 	 */
-	
+	@RequestMapping("/updateForm")
+	public ModelAndView updateForm(Long boardNo) {
+		System.out.println("수정폼 시작");
+		Board b = boardService.selectBy(boardNo, false);	//조회수 증가 안됨
+		System.out.println(b);
+		ModelAndView mv = new ModelAndView("challenge/update", "board", b);
+		return mv;
+	}
 	/**
 	 * 수정완료
 	 */
+	@RequestMapping("/update")
+	public ModelAndView update(Board board) {
+		Board dbBoard = boardService.update(board);
+		return new ModelAndView("challenge/detail", "board", dbBoard);
+	}
 	
 	/**
 	 * 삭제하기
 	 */
-
+	@RequestMapping("/delete")
+	public String delete(Long boardNo, String password) {
+		boardService.delete(boardNo, password);
+		
+		return "redirect:/challenge/list";
+	}
 	
 }

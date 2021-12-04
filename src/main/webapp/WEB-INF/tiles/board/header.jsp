@@ -94,7 +94,7 @@
                     
                     <!-- 커뮤니티 - 전체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/board/list">전체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/0">전체</a>
                     </li><!-- End 커뮤니티 - 전체 -->
 
 					<!-- 커뮤니티 - 자유 게시판 -->
@@ -109,28 +109,25 @@
                       <!-- Submenu (level 2) -->
                       <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--pages--services" aria-labelledby="nav-link--pages--services">
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-1.html">서울</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/2">서울</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-2.html">경기ㆍ인천</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/3">경기ㆍ인천</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-3.html">강원도</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/4">강원도</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">충청도</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/5">충청도</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">전라도</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/6">전라도</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">경상도</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/7">경상도</a>
                         </li>
                         <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">제주도</a>
-                        </li>
-                        <li class="dropdown-item ">
-                          <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/pages/page-services-4.html">해외</a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/8">제주도</a>
                         </li>
                       </ul><!-- End Submenu (level 2) -->
                     </li><!-- End 커뮤니티 - 지역 게시판 -->	

@@ -154,7 +154,7 @@
                <sec:authorize access="hasRole('MEMBER')">
                
                  <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
-                   <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#"
+                   <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20"
                       aria-haspopup="true"
                       aria-expanded="false"
                       aria-controls="nav-submenu--pages">
@@ -171,7 +171,7 @@
                      <!-- Account -->
 
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-login-1.html">장바구니</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/selectCart">장바구니</a>
                      </li>
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>
@@ -181,7 +181,7 @@
                        </a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-help-1.html">배송지 관리
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/login/myAddress">배송지 관리
                        </a>
                      </li>
                      
@@ -230,7 +230,7 @@
                     </a>
                   </div>
 				
-                  <div id="basket-bar" class="u-basket__bar u-dropdown--css-animation g-text-transform-none g-bg-white g-brd-around g-brd-gray-light-v4 u-dropdown--hidden" aria-labelledby="basket-bar-invoker" style="animation-duration: 300ms;">
+                  <%-- <div id="basket-bar" class="u-basket__bar u-dropdown--css-animation g-text-transform-none g-bg-white g-brd-around g-brd-gray-light-v4 u-dropdown--hidden" aria-labelledby="basket-bar-invoker" style="animation-duration: 300ms;">
                     <div class="g-brd-bottom g-brd-gray-light-v4 g-pa-15 g-mb-10">
                       <span class="d-block h6 text-center text-uppercase mb-0">장바구니</span>
                     </div>
@@ -258,14 +258,14 @@
                           <div class="col-8">
                             <h6 class="g-font-weight-400 g-font-size-default">
                             <!-- 상품상세보기로 이동 -->
-                              <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#"><%-- ${cartList.productName} --%></a>
+                              <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">${cartList.productName}</a>
                             </h6>
-                            <small class="g-color-primary g-font-size-12">${cart.cartCount} x ${cart.price}<%-- ${cart.price} --%></small>
+                            <small class="g-color-primary g-font-size-12">${cart.cartCount} x ${cart.price}${cart.price}</small>
                           </div>
                         </div>
                         <!-- 상품 장바구니에서 삭제 -->
-                        <%-- <form action="${pageContext.request.contextPath}/shop/deleteCart" method="get"> --%>
-                          <button type="button" class="u-basket__product-remove" <%-- value="${cart.productNo}" --%>>×</button>
+                        <form action="${pageContext.request.contextPath}/shop/deleteCart" method="get">
+                          <button type="button" class="u-basket__product-remove" value="${cart.productNo}">×</button>
                        <!--  </form> -->
                       </div>
                       <!-- End Product -->
@@ -283,7 +283,7 @@
                           <strong class="d-block g-py-10 text-uppercase g-color-main g-font-weight-500 g-py-10">Total</strong>
                         </div>
                         <div class="col">
-                          <strong class="d-block g-py-10 g-color-main g-font-weight-500 g-py-10"><fmt:formatNumber><%-- ${cart.price}  --%></fmt:formatNumber>원</strong>
+                          <strong class="d-block g-py-10 g-color-main g-font-weight-500 g-py-10"><fmt:formatNumber>${cart.price} </fmt:formatNumber>원</strong>
                         </div>
                       </div>
                     </div>
@@ -298,7 +298,7 @@
                       <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="page-checkout-1.html">바로 구매</a>
                     </div>
                   </div>
-                  
+                   --%>
                   
                 </div>
                  </li>

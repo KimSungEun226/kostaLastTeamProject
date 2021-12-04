@@ -1,3 +1,6 @@
+/**
+ * 작성자 : 서은지
+ * */
 package kosta.mvc.controller;
 
 import java.io.File;
@@ -21,8 +24,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
-import kosta.mvc.domain.BoardImage;
 import kosta.mvc.domain.Tag;
+import kosta.mvc.domain.product.Product;
 import kosta.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -36,34 +39,69 @@ public class BoardController {
 	 * 등록폼
 	 * */
 	@RequestMapping("/write")
-	public void writeForm() {
+	public void write() {
 		
 	}
 	
 	/**
-	 * 등록하기 
+	 * 수정폼
+	 * */
+	/*@RequestMapping("/admin/updateForm")
+	public String update(Long productNo, Model model) {
+		
+		Product product = productService.selectByNo(productNo, false);
+		model.addAttribute("product", product);
+		return "shop/product/update";
+	}*/
+	
+	/**
+	 * 게시판 수정폼
+	 * */
+	@RequestMapping("/updateForm")
+	public ModelAndView updateForm(Long boardNo) {
+		Board board = boardService.selectBy(boardNo, false); //조회수 증가x
+		
+		ModelAndView mv = new ModelAndView("board/update", "board", board);
+		return mv;
+	}
+	
+	/**
+	 * 수정 완료
+	 * */
+	@RequestMapping("/update")
+	public ModelAndView update(Board board) {
+		Board dbBoard = boardService.update(board);
+		
+		return new ModelAndView("board/detail", "board", dbBoard);
+	}
+	
+	
+	
+	
+	/**
+	 * 등록하기
 	 * */
 	@RequestMapping("/insert")
-	public String insert(Board board, Tag tag) {
-
-		String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
-	    
-	    //System.out.println(tag.getTagrelNo());
-	    
-		tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
-		board.setTag(tag);
-	    boardService.insert(board);
+	public String insert(Board board, Tag tag) throws NullPointerException {
+			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
+		    
+		    System.out.println(tag.getTagrelNo());
+		    
+		    if(tag.getTagrelNo() != null) {
+		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
+		    	board.setTag(tag);
+		    }
+		    
+		    boardService.insert(board);
 		
-		//등록 전에 입력한 데이터에 유효하지 않는 특수문자, script태그 등이 있으면 태그가 아닌 문자열로 변경한다. - 실무에서 filter 적용
-		//board.getBoardContent().replace("<", "&lt;");
-	    
-		return "redirect:/board/list";
+		return "redirect:/board/select/0";
 	}
+	
 	
 	/**
 	 * 전체 커뮤니티 게시물 조회
 	 * */
-	@RequestMapping("/list")
+	/*@RequestMapping("/list")
 	public void list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
 		//List<Board> list = boardService.selectAll();
 		//return new ModelAndView("board/list", "board", list);
@@ -79,26 +117,30 @@ public class BoardController {
 		model.addAttribute("blockCount", blockCount);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
-		
-	}
+	}*/
 	
 	/**
-	 * 카테고리별 게시판 이동
+	 * 카테고리별 게시판 이동 by은지_2021.12.03
 	 * */
 	@RequestMapping("/select/{boardKind}")
 	public ModelAndView list(@PathVariable int boardKind, @RequestParam(defaultValue = "1") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
-		Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
-		
+		ModelAndView mv = new ModelAndView();
+		if(boardKind == 0) { //boardKind가 view에서 0으로 넘어온다면
+			Page<Board> boardList = boardService.selectAll(pageable); //board의 전체를 가지고 와서 boardList에 담아준다
+			mv.addObject("pageList", boardList);
+		} else { //boardkind가 0 이외의 값으로 들어오면 boardKind에 맞는 게시물들만 찾아준다.
+			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
+			mv.addObject("pageList", boardList);
+		}
 		//상수로 잡자
 		int blockCount=3;
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
-		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
-		mv.addObject("pageList", boardList);
 		mv.setViewName("board/boardView");
 		//System.out.println(boardList.getSize());
 		return mv;
@@ -107,10 +149,9 @@ public class BoardController {
 	/**
 	 * 지역방 카테고리별 게시판 이동
 	 * */
-	
 	@RequestMapping("/selectByTag/{tagrelNo}")
 	public ModelAndView selectByTag(@PathVariable Long tagrelNo, @RequestParam(defaultValue = "1") int nowPage) {
-		System.out.println("tagrelNo : " + tagrelNo);
+		//System.out.println("tagrelNo : " + tagrelNo);
 		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
 		Page<Board> boardList = boardService.findByTag(tagrelNo, pageable);
 		

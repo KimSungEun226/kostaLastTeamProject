@@ -190,7 +190,6 @@ public class ProductController {
 	 * */
 	@RequestMapping("select/single/{productNo}/{readnumCheck}")
 	public ModelAndView selectSingle(@PathVariable Long productNo, @PathVariable int readnumCheck) {
-		System.out.println(readnumCheck);
 		boolean stat = true;
 
 		//관리자가 선택했을경우엔 조회수 증가 안한다.

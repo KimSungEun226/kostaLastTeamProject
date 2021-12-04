@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
-	private final BoardImageRepository boardImageRepository;
+	//private final BoardImageRepository boardImageRepository;
 	
 	@Override
 	public List<Board> selectAll() {

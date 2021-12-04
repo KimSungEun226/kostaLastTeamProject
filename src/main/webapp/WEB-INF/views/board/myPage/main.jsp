@@ -15,29 +15,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <!-- CSS Global Icons -->
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-etlinefont/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line/css/simple-line-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-etlinefont/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
 
   <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-core.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-components.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
 </head>
 
 <body>
@@ -48,15 +48,11 @@
       <div class="container">
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-7">
-            <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Home</a>
-            <i class="fa fa-angle-right g-ml-7"></i>
-          </li>
-          <li class="list-inline-item g-mr-7">
-            <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+            <a class="u-link-v5 g-color-main g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
             <i class="fa fa-angle-right g-ml-7"></i>
           </li>
           <li class="list-inline-item g-color-primary">
-            <span>Profile</span>
+            <span>MyPage</span>
           </li>
         </ul>
       </div>
@@ -102,7 +98,7 @@
 
               <!-- User Info -->
               <span class="g-pos-abs g-top-20 g-left-0">
-                  <a class="btn btn-sm u-btn-primary rounded-0" href="#">Johne Doe</a>
+                  <a class="btn btn-sm u-btn-primary rounded-0" href="#">등급이름</a>
                   <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small>
                 </span>
               <!-- End User Info -->
@@ -111,150 +107,35 @@
 
             <!-- Sidebar Navigation -->
             <div class="list-group list-group-border-0 g-mb-40">
-              <!-- Overall -->
-              <a href="${pageContext.request.contextPath}/myPage" class="list-group-item justify-content-between active">
-                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i> Overall</span>
-                <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10">2</span>
+              <!-- 홈 -->
+              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item justify-content-between active">
+                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>나의 페이지</span>
+                <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>
-              <!-- End Overall -->
+              <!-- End 홈 -->
 
-              <!-- Profile -->
-              <a href="page-profile-profile-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-cursor g-pos-rel g-top-1 g-mr-8"></i> Profile</span>
-              </a>
-              <!-- End Profile -->
-
-              <!-- Users Contacts -->
-              <a href="page-profile-users-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-notebook g-pos-rel g-top-1 g-mr-8"></i> Users Contacts</span>
-              </a>
-              <!-- End Users Contacts -->
-
-              <!-- My Projects -->
-              <a href="page-profile-projects-1.html" class="list-group-item list-group-item-action justify-content-between">
+              <!-- 나의 게시물 -->
+              <a href="${pageContext.request.contextPath}/myPage/board" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
-                <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10">9</span>
+                <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10"></span>
               </a>
-              <!-- End My Projects -->
+              <!-- End 나의 게시물 -->
 
-              <!-- Comments -->
-              <a href="page-profile-comments-1.html" class="list-group-item list-group-item-action justify-content-between">
+              <!-- 나의 댓글 -->
+              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
-                <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8">24</span>
+                <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
               </a>
-              <!-- End Comments -->
-
-              <!-- Reviews -->
-              <a href="page-profile-reviews-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-heart g-pos-rel g-top-1 g-mr-8"></i> Reviews</span>
+              <!-- End 나의 댓글 -->
+              
+              <!-- 정보 수정 -->
+              <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
+                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
+                <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
               </a>
-              <!-- End Reviews -->
-
-              <!-- History -->
-              <a href="page-profile-history-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-fire g-pos-rel g-top-1 g-mr-8"></i> History</span>
-              </a>
-              <!-- End History -->
-
-              <!-- Settings -->
-              <a href="page-profile-settings-1.html" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> Settings</span>
-                <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8">3</span>
-              </a>
-              <!-- End Settings -->
+              <!-- End 정보수정 -->
             </div>
             <!-- End Sidebar Navigation -->
-
-            <!-- Project Progress -->
-            <div class="card border-0 rounded-0 g-mb-50">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> Project Progress
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
-
-              <!-- Panel Body -->
-              <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-300 g-pa-0">
-                <!-- Web Design -->
-                <div class="g-mb-20">
-                  <h6 class="g-mb-10">Web Design <span class="float-right g-ml-10">68%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-5">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-cyan u-progress-bar--xs" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">11% more than last week</small>
-                </div>
-                <!-- End Web Design -->
-
-                <!-- Unify Project -->
-                <div class="g-mb-20">
-                  <h6 class="g-mb-10">Dribbble Shots <span class="float-right g-ml-10">62%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-5">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-pink u-progress-bar--xs" role="progressbar" style="width: 62%;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">20% less than last week</small>
-                </div>
-                <!-- End Unify Project -->
-
-                <!-- Unify Project -->
-                <div class="g-mb-20">
-                  <h6 class="g-mb-10">Unify Project <span class="float-right g-ml-10">93%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-5">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-primary u-progress-bar--xs" role="progressbar" style="width: 93%;" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">17% more than last week</small>
-                </div>
-                <!-- End Unify Project -->
-
-                <!-- WordPress Coding -->
-                <div class="g-mb-20">
-                  <h6 class="g-mb-10">WordPress Coding <span class="float-right g-ml-10">74%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-5">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-black u-progress-bar--xs" role="progressbar" style="width: 74%;" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">35% more than last week</small>
-                </div>
-                <!-- End WordPress Coding -->
-
-                <!-- Pixeel Ltd -->
-                <div class="g-mb-20">
-                  <h6 class="g-mb-10">Pixeel Ltd <span class="float-right g-ml-10">86%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-5">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-darkpurple u-progress-bar--xs" role="progressbar" style="width: 86%;" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">42% more than last week</small>
-                </div>
-                <!-- End Pixeel Ltd -->
-              </div>
-              <!-- End Panel Body -->
-            </div>
-            <!-- End Project Progress -->
           </div>
           <!-- End Profile Sidebar -->
 
@@ -268,28 +149,23 @@
                     <i class="icon-people align-self-center display-4 g-mr-20"></i>
 
                     <div class="g-line-height-1">
-                      <h4 class="h5">Level</h4>
+                      <h4 class="h5">나의 등급</h4>
                       <div class="js-counter g-font-size-30" data-comma-separated="true">52147</div>
                     </div>
                   </header>
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Week</h5>
+                      <h5 class="h6 g-font-weight-600">다음 등급까지 남은 경험치</h5>
                       <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
-                    </div>
-
-                    <div class="text-right g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
                     </div>
                   </div>
 
-                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
+                  <h6 class="g-mb-10">다음 등급까지 <span class="float-right g-ml-10">72%</span></h6>
                   <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
                     <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <small class="g-font-size-12">11% less than last month</small>
+                  <small class="g-font-size-12">다음 등급은...?</small>
                 </div>
               </div>
 
@@ -306,16 +182,10 @@
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Week</h5>
+                      <h5 class="h6 g-font-weight-600">나의 목표는...!!!</h5>
                       <div class="js-counter g-font-size-16" data-comma-separated="true">26904</div>
                     </div>
-
-                    <div class="text-right g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">124766</div>
-                    </div>
                   </div>
-
                   <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">89%</span></h6>
                   <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
                     <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
