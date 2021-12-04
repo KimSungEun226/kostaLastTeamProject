@@ -20,5 +20,14 @@ public class AddressService {
     public List<Address> selectAddrById(String memberId){
     	return addressRepository.selectByMemberId(memberId);
     }
+    
+    public void insertAddr(Address addr){
+    	addressRepository.save(addr);
+    	
+    }
+    
+    public void deleteAddr(Long addressNo) {
+    	addressRepository.deleteById(addressNo);
+    }
 
 }
