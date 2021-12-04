@@ -13,4 +13,8 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 	@Query("select a from Address a inner join a.member m where m.memberId=?1")
 	@Modifying
 	List<Address> selectByMemberId(String memberId);
+
+	@Query("select a from Address a where a.addressNo=?1")
+	@Modifying
+	Address findByAddrNo(Long addressNo);
 }

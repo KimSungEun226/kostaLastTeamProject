@@ -147,13 +147,23 @@
               <!-- Profile Settings List -->
               <ul class="list-unstyled mb-0">
                 <li class="g-pb-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="page-wallet-1.html">
+                  <a class="d-block align-middle active u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover g-color-primary--parent-active g-bg-gray-light-v5--active rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/myPage">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-059 u-line-icon-pro"></i></span>
-                    Your Wallet
+                    내정보
                   </a>
                 </li>
-                
-                
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/selectCart">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-114 u-line-icon-pro"></i></span>
+                    장바구니
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/front?key=customer&methodName=selectOrderDetail">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
+                    주문내역
+                  </a>
+                </li>
               </ul>
               <!-- End Profile Settings List -->
             </aside>
@@ -167,7 +177,7 @@
               
           <c:choose>
           <c:when test="${empty addrList}">
-          	등록한 배송지 정보가 없습니다.
+          	등록된 배송지 정보가 없습니다.
           </c:when>
 		  <c:otherwise>
 		  	<c:forEach items="${addrList}" var="addr" varStatus="status">
@@ -175,7 +185,7 @@
                 <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30">
                   <div class="g-mb-50">
                     <h3 class="h5 mb-3">주소 ${status.count}</h3>
-                    <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${memberInfo.memberName}</span>
+                    <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${addr.receiver}</span>
 
                     <!-- Address -->
                     <address class="media">
@@ -184,7 +194,7 @@
                       </div>
 
                       <div class="media-body g-color-text">
-                        ${addr.memberZip}
+                        우편번호: ${addr.memberZip}
                         <br>
                         ${addr.memberAddress}
                         <br>
@@ -198,7 +208,7 @@
                         <span class="u-icon-v1 g-color-gray-dark-v4"><i class="icon-electronics-005 u-line-icon-pro"></i></span>
                       </div>
                       <div class="media-body g-color-text">
-                        ${memberInfo.memberPhone}
+                        ${addr.phone}
                       </div>
                     </div>
                     <!-- End Phone -->
@@ -207,7 +217,7 @@
                   <!-- Edit/Delete -->
                   <ul class="d-flex align-items-center list-inline mb-0">
                     <li class="list-inline-item">
-                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="#" title="수정"
+                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/login/editAddr/${addr.addressNo}" title="수정"
                          data-toggle="tooltip"
                          data-placement="top">
                         <i class="icon-finance-023 u-line-icon-pro"></i>
@@ -223,7 +233,7 @@
                     </li>
                     
                     
-                    <c:if test="${addr.checkBasic}==0">
+                    <c:if test="${addr.checkBasic==0}">
                     <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
                     <li class="list-inline-item">
                       <label class="form-check-inline u-check d-block u-link-v5 g-color-text g-pl-30 mb-0">

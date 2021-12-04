@@ -30,4 +30,7 @@ public class AddressService {
     	addressRepository.deleteById(addressNo);
     }
 
+    public Address findByAddrNo(Long addressNo) {
+    	return addressRepository.findByAddrNo(addressNo);
+    }
 }

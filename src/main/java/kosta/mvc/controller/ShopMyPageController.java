@@ -31,9 +31,9 @@ public class ShopMyPageController {
 		//아이디 가져오기
 		String id=principal.getName();
 		Member memberInfo=memberService.selectByMemberId(id);
-	    System.out.println(memberInfo.getMemberName());
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("shop/myPage/myAddress");
+		mv.setViewName("shop/login/myAddress");
 		mv.addObject("memberInfo", memberInfo);
 		
 		//db에 등록된 배송지 조회
@@ -53,7 +53,7 @@ public class ShopMyPageController {
 		int zip=Integer.parseInt(request.getParameter("zipInput"));
 		String phone=request.getParameter("phoneNumber");
 		
-		Address address= new Address(null, addr, zip, checkBasic, member);
+		Address address= new Address(null, addr, zip, checkBasic, member, receiver, phone);
 		addressService.insertAddr(address);
 		
 		return "redirect:/shop/login/myAddress";
@@ -65,6 +65,22 @@ public class ShopMyPageController {
 		addressService.deleteAddr(addressNo);
 		
 		return "redirect:/shop/login/myAddress";
+	}
+	
+	@RequestMapping("/editAddr/{addressNo}")
+	public ModelAndView editForm(HttpServletRequest request, @PathVariable Long addressNo) {
+		this.findByAddrNo(request, addressNo);
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	@RequestMapping("/updateAddr/{addressNo}")
+	public ModelAndView findByAddrNo(HttpServletRequest request, @PathVariable Long addressNo) {
+		Address address = addressService.findByAddrNo(addressNo);
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
 	}
 	
 
