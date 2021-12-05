@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,14 +11,13 @@
   <body>
     <main>
       <!-- Header -->
-      
-
+	  
       <!-- Breadcrumbs -->
       <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
         <div class="container">
           <div class="d-sm-flex text-center">
             <div class="align-self-center">
-              <h1 class="h3 mb-0"><b>장바구니</b></h1>
+              <h1 class="h3 mb-0"><b>주문 내역</b></h1>
             </div>
 
             <div class="align-self-center ml-auto">
@@ -29,7 +27,7 @@
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
                 </li>
                 <li class="list-inline-item g-color-primary">
-                  <span>장바구니</span>
+                  <span>주문 내역</span>
                 </li>
               </ul>
             </div>
@@ -38,27 +36,124 @@
       </section>
       <!-- End Breadcrumbs -->
 
-	  <div class="container g-pt-70 g-pb-30">
-      <div class="row justify-content-center">
+      <div class="container g-pt-70 g-pb-30">
+        <div class="row justify-content-center">
           <!-- Profile Settings -->
           
           <!-- End Profile Settings -->
-          
-          
-      <div class="col-lg-9 g-mb-50 text-center">
-        <div class="mb-5">
-          <span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">
-            <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
-          </span>
-          <h2 class="g-mb-30"><b>장바구니가 비어있습니다.</b></h2>
-          <p><b>결제를 진행하기 전에 장바구니에 일부 제품을 추가해야 합니다.</b></p>
+ 
+          <!-- Orders -->
+          <div class="col-lg-9 g-mb-50">
+            
+
+            <!-- Links -->
+            <ul class="list-inline g-brd-bottom--sm g-brd-gray-light-v3 mb-5">
+              <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
+                <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="page-orders-1.html">주문 목록</a>
+              </li>
+            </ul>
+            <!-- End Links -->
+
+            <!-- <div class="mb-5">
+              <h3 class="h6 d-inline-block">주문 중인 상품 : 2 개</h3>
+            </div> -->
+
+            <!-- Order Block -->
+            
+            <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
+            
+            <c:forEach items="${list}" var="order">
+            
+            <c:forEach items="${order.userOrderDetailList}" var="orderdetail">
+            
+            <div class="g-pa-20">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="mb-4">
+                      <h3 class="h5 mb-1">주문시각 : ${order.orderDate}</h3>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4 col-sm-3 g-mb-30">
+                        <img class="img-fluid g-width-120 g-height-120"  src="${pageContext.request.contextPath}/save/${orderdetail.product.productImageList[0].productImageName}" alt="Image Description">
+                      </div>
+
+                      <div class="col-8 col-sm-9 g-mb-30">
+                        <h4 class="h6 g-font-weight-400"><a href="page-single-product.jsp">${orderdetail.product.productName}</a></h4>
+                        <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
+                        <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
+                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">상품 보기</a>
+                      </div>
+                    </div>
+                  </div>
+                    
+              <c:choose>      
+                <c:when test="${orderdetail.orderStatus==0}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송준비중
+                     </a>
+                     
+                    
+                  </div>
+                     
+                  </c:when>
+                  
+                
+                <c:when test="${orderdetail.orderStatus==1}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송중
+                     </a>
+                  </div>
+                     
+                  </c:when>
+                
+                  
+                 <c:when test="${orderdetail.orderStatus==2}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송완료
+                     </a>
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     리뷰작성
+                     </a>  
+                     
+                  </div>
+                     
+                  </c:when> 
+                  
+                </c:choose>
+                    
+                    
+                </div>
+              </div>
+            
+            </c:forEach>
+            
+            
+            </c:forEach>
+            
+               
+              <!-- End Order Content -->
+            </div>
+            <!-- End Order Block -->
+
+            <!-- Order Block -->
+         
+            <!-- End Order Block -->
+
+            <!-- Pagination -->
+            
+            <!-- End Pagination -->
+          </div>
+          <!-- Orders -->
         </div>
       </div>
-</div>
-</div>
+
+
+
       <!-- Footer -->
-      
-      <!-- End Footer -->
 
       <a class="js-go-to u-go-to-v2" href="#"
          data-type="fixed"

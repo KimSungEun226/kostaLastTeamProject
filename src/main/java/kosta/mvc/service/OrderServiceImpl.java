@@ -6,6 +6,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Cart;
@@ -84,5 +86,28 @@ public class OrderServiceImpl implements OrderService {
 		
 		return order;
 	}
+
+	@Override
+	public Page<UserOrder> selectUserOrder(Pageable pageable) {
+		return userOrderRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<NonuserOrder> selectNonuserOrder(Pageable pageable) {
+		return nonuserOrderRepository.findAll(pageable);
+	}
+
+	@Override
+	public UserOrder selectUserOrder(Long orderNo) {
+		
+		return userOrderRepository.findById(orderNo).orElse(null);
+	}
+
+	@Override
+	public NonuserOrder selectNonuserOrder(Long orderNo) {
+		return nonuserOrderRepository.findById(orderNo).orElse(null);
+	}
+	
+	
 
 }

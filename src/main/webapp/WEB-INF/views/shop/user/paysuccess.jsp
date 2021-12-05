@@ -50,8 +50,9 @@
           <span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">
             <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
           </span>
-          <h2 class="g-mb-30"><b>결제가 완료되었습니다.</b></h2>
-          <p><b>결제를 진행하기 전에 장바구니에 일부 제품을 추가해야 합니다.</b></p>
+          <h2 class="g-mb-30"><b>결제가 완료되었습니다. </b> <p>
+              주문번호 : ${orderNo}
+         </h2>
         </div>
       </div>
 </div>
