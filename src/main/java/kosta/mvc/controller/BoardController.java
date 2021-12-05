@@ -15,17 +15,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Tag;
-import kosta.mvc.domain.product.Product;
 import kosta.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -59,6 +55,7 @@ public class BoardController {
 	 * */
 	@RequestMapping("/updateForm")
 	public ModelAndView updateForm(Long boardNo) {
+		System.out.println("수정폼 시작"+boardNo);
 		Board board = boardService.selectBy(boardNo, false); //조회수 증가x
 		
 		ModelAndView mv = new ModelAndView("board/update", "board", board);
@@ -70,6 +67,7 @@ public class BoardController {
 	 * */
 	@RequestMapping("/update")
 	public ModelAndView update(Board board) {
+		System.out.println("수정완료 controller의 update 메소드...");
 		Board dbBoard = boardService.update(board);
 		
 		return new ModelAndView("board/detail", "board", dbBoard);
@@ -182,6 +180,16 @@ public class BoardController {
 		mv.addObject("board", board);
 		
 		return mv;
+	}
+	
+	/**
+	 * 삭제하기_2021.12.05
+	 * */
+	@RequestMapping("/delete")
+	public String delete(Long boardNo, String password) {
+		boardService.delete(boardNo, password);
+		
+		return "redirect:/board/select/0";
 	}
 	
 	

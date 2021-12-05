@@ -108,8 +108,8 @@ $(function(){
 		}else if(!phoneCheck || !phoneCertificationCheck){
 			alert("휴대전화 인증을 완료해주세요.");
 		}else{ //true일 때 전송
-			$("#findIdForm").attr("action", "/findIdByPhone");
-			$("#findIdForm").submit();
+			$("#findPwdForm").attr("action", "/findPwdByPhone");
+			$("#findPwdForm").submit();
 		}
 		
 		return false;
@@ -126,13 +126,14 @@ $(function(){
 	  <div class="col-lg-5 flex-lg-unordered g-mb-80">
 		<div class="g-brd-around g-bg-white rounded g-px-30 g-py-50 mb-4">
 		  <header class="text-center mb-4">
-			<h1 class="h3 g-color-black g-font-weight-400 text-capitalize">아이디 찾기</h1>
+			<h1 class="h3 g-color-black g-font-weight-400 text-capitalize">비밀번호 찾기</h1>
 		  </header>
 
 		  <hr class="g-brd-gray-light-v3 mb-1">
 
 		  <!-- Form -->
-		  <form class="g-py-15" id="findIdForm" method="post">
+		  <form class="g-py-15" id="findPwdForm" method="post">
+		    <input type="hidden" name="memberId" value="${memberId}">
 			<div class="g-mb-15">
               <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">이름</label>
               <input id="memberName" name="memberName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
@@ -162,10 +163,10 @@ $(function(){
 				<hr class="g-brd-gray-light-v3 mb-3">
 
 				<button id="findIdBtn" class="btn btn-block u-btn-primary rounded g-py-13 g-mb-15">확인</button>
-				<div class="text-center">
-			  	  <a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="page-login-12.html">${count} 이메일로 찾기 >></a>
-				</div>
 				
+				<div class="text-center">
+			  	  <a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="page-login-12.html">이메일로 찾기 >></a>
+				</div>
 			</form>
 			<!-- End Form -->
 			</div>
