@@ -48,7 +48,7 @@
                 <!-- End Icon Blocks -->
             </div>
           </div>
-          <p style="float:right" class="g-color-gray-dark-v5 g-font-size-13 mb-0">비밀번호를 찾으시나요? <a class="g-font-weight-600" href="${pageContext.request.contextPath}/findPwd">비밀번호 찾기</a>
+          <a style="float: right" class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="#">비밀번호 찾기 >></a>
         </div>
         <!-- End Icon Blocks -->
 		
