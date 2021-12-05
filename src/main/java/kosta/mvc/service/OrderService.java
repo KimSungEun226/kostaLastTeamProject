@@ -65,4 +65,9 @@ public interface OrderService {
 	 * */
 	int changeNonuserOrderStatus(Long orderDetailNo);
 	
+	/**
+	 * 비회원 주문조회 상세 리턴
+	 */
+	NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone);
+	
 }

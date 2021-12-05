@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,61 +56,55 @@ public class OrderController {
     
     
     
-    //결제하기
-	@ResponseBody
-	@RequestMapping("/pay")
-	public Long payAjax(Principal principal, HttpSession session, String addr, String contact, String name, String imp_uid) throws Exception {
-		
-		System.out.println("principal : " + principal);
-		System.out.println("imp_uid : " + imp_uid);
-		//0. principal이 null이면 비회원 주문에, null아니면 회원 주문에 레코드 추가.
-		if(principal==null) {
-			id = session.getId();
-			NonuserOrder nonuserOrder = new NonuserOrder().builder().orderAddr(addr).receiverName(name).receiverPhone(contact).build();
-			cartList = cartService.selectCart(id);
-			for(Cart cart : cartList) {
-				if(cart.getProduct().getStock() >= cart.getCartCount()) {
-					NonuserOrderDetail orderDetail = new NonuserOrderDetail().builder().product(cart.getProduct()).
-					productCount(cart.getCartCount()).orderStatus(1).
-					refundCheck("환불가능").deliveryStatus("배송준비").build();
-					nonuserOrderDetailList.add(orderDetail);
-					
-					//장바구니에서 삭제해야한다.
-					deleteCartList.add(cart);
-				}
-			}			
-			nonuserOrder.setNonuserOrderDetailList(nonuserOrderDetailList);
-			
-			
-			nonuserOrder = orderService.insertNonuserOrder(nonuserOrder, deleteCartList);
-			result = nonuserOrder.getNonuserOrderNo(); // 주문이 잘 등록 되었다. (예외발생x)
-
-		}
-		else if(principal!=null){
-			id = principal.getName();
-			Member m = memberService.selectByMemberId(id);
-			UserOrder userOrder = new UserOrder().builder().member(m).orderAddr(addr).receiverName(name).receiverPhone(contact).build();
-			cartList = cartService.selectCart(id);
-			for(Cart cart : cartList) {
-				if(cart.getProduct().getStock() >= cart.getCartCount()) {
-
-					UserOrderDetail orderDetail = new UserOrderDetail().builder().product(cart.getProduct()).
-					productCount(cart.getCartCount()).orderStatus(0).
-					refundCheck("환불가능").deliveryStatus("배송준비").build();
-					userOrderDetailList.add(orderDetail);
-					deleteCartList.add(cart);
-				}
-			}			
-			userOrder.setUserOrderDetailList(userOrderDetailList);
-			
-			userOrder = orderService.insertUserOrder(userOrder, deleteCartList);
-			m.getOrderList().add(userOrder);
-			result = userOrder.getUserOrderNo();
-		}
-		
-
-		return result;
-	}
+	/*
+	 * //결제하기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping("/pay") public Long payAjax(Principal principal, HttpSession
+	 * session, String addr, String contact, String name, String imp_uid) throws
+	 * Exception {
+	 * 
+	 * System.out.println("principal : " + principal);
+	 * System.out.println("imp_uid : " + imp_uid); //0. principal이 null이면 비회원 주문에,
+	 * null아니면 회원 주문에 레코드 추가. if(principal==null) { id = session.getId();
+	 * NonuserOrder nonuserOrder = new
+	 * NonuserOrder().builder().orderAddr(addr).receiverName(name).receiverPhone(
+	 * contact).build(); cartList = cartService.selectCart(id); for(Cart cart :
+	 * cartList) { if(cart.getProduct().getStock() >= cart.getCartCount()) {
+	 * NonuserOrderDetail orderDetail = new
+	 * NonuserOrderDetail().builder().product(cart.getProduct()).
+	 * productCount(cart.getCartCount()).orderStatus(1).
+	 * refundCheck("환불가능").deliveryStatus("배송준비").build();
+	 * nonuserOrderDetailList.add(orderDetail);
+	 * 
+	 * //장바구니에서 삭제해야한다. deleteCartList.add(cart); } }
+	 * nonuserOrder.setNonuserOrderDetailList(nonuserOrderDetailList);
+	 * 
+	 * 
+	 * nonuserOrder = orderService.insertNonuserOrder(nonuserOrder, deleteCartList);
+	 * result = nonuserOrder.getNonuserOrderNo(); // 주문이 잘 등록 되었다. (예외발생x)
+	 * 
+	 * } else if(principal!=null){ id = principal.getName(); Member m =
+	 * memberService.selectByMemberId(id); UserOrder userOrder = new
+	 * UserOrder().builder().member(m).orderAddr(addr).receiverName(name).
+	 * receiverPhone(contact).build(); cartList = cartService.selectCart(id);
+	 * for(Cart cart : cartList) { if(cart.getProduct().getStock() >=
+	 * cart.getCartCount()) {
+	 * 
+	 * UserOrderDetail orderDetail = new
+	 * UserOrderDetail().builder().product(cart.getProduct()).
+	 * productCount(cart.getCartCount()).orderStatus(0).
+	 * refundCheck("환불가능").deliveryStatus("배송준비").build();
+	 * userOrderDetailList.add(orderDetail); deleteCartList.add(cart); } }
+	 * userOrder.setUserOrderDetailList(userOrderDetailList);
+	 * 
+	 * userOrder = orderService.insertUserOrder(userOrder, deleteCartList);
+	 * m.getOrderList().add(userOrder); result = userOrder.getUserOrderNo(); }
+	 * 
+	 * 
+	 * return result; }
+	 */
 	
 	//결제완료 페이지로 이동
 	@RequestMapping("/paysuccess")
@@ -132,6 +128,26 @@ public class OrderController {
 		return "shop/user/page-orders";
 	}
 	
+	/**
+	 * 비회원 주문조회 정보입력(이름, 전화번호, 주문번호)
+	 */
+	@RequestMapping("/orderInfo")
+	public String nonUserOrderInfo() {
+		return "shop/nonUser/orderInfo";
+	}
+	
+	/**
+	 * 비회원 주문조회
+	 */
+	@RequestMapping(value="/orderList", method=RequestMethod.POST)
+	public String nonUserOrderList(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone, Model model) {
+		System.out.println("컨트롤러 진입");
+		NonuserOrder nonuserOrder = orderService.selectNonuserOrder(nonuserOrderNo, receiverName, receiverPhone);
+		System.out.println(nonuserOrder);
+		model.addAttribute("order", nonuserOrder);
+		model.addAttribute("orderDetail", nonuserOrder.getNonuserOrderDetailList());
+		return "shop/nonUser/orderList";
+	}
 	
 	//관리자가 전체 주문내역 확인하기
 	@RequestMapping("/admin/orderList/{user}")
@@ -206,8 +222,5 @@ public class OrderController {
 		}
 	}
 	
-	/**
-	 * 비회원 주문조회
-	 * */
-	//@RequestMapping("/shop")
+	
 }

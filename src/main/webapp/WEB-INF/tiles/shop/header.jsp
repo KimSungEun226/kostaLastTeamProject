@@ -151,16 +151,17 @@
                  
                    <!-- Pages - Submenu -->
                    
-               <sec:authorize access="hasRole('MEMBER')">
                
-                 <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+               
+                <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+                 <sec:authorize access="hasRole('MEMBER')">
                    <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20"
                       aria-haspopup="true"
                       aria-expanded="false"
                       aria-controls="nav-submenu--pages">
                      <b>마이페이지</b>
                    </a>
-               </sec:authorize>
+                 </sec:authorize>
                
                
                    <!-- Submenu -->
@@ -240,7 +241,7 @@
                  </li>
                  
                  <li class="nav-item g-ml-10--lg">
-                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/login">주문조회</a>
+                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/orderInfo">비회원 주문조회</a>
                  </li>
                 </sec:authorize>
                 

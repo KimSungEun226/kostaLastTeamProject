@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		return order;
 	}
-
+	
 	@Override
 	public Page<UserOrder> selectUserOrder(Pageable pageable) {
 		return userOrderRepository.findAll(pageable);
@@ -128,6 +128,17 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int changeNonuserOrderStatus(Long orderDetailNo) {
 		int result = nonuserOrderDetailRepository.statusUpdate(orderDetailNo);
+		return result;
+	}
+
+	/**
+	 * 비회원 주문조회
+	 */
+	@Override
+	public NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone) {
+		System.out.println("service 진입");
+		NonuserOrder result = nonuserOrderRepository.findByNonuserOrderNoAndReceiverNameAndReceiverPhone(nonuserOrderNo, receiverName, receiverPhone);
+		System.out.println(result);
 		return result;
 	}
 	
