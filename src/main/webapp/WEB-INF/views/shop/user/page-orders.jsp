@@ -7,7 +7,12 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    
+    <script type="text/javascript">
+    $(document).on("click","#cancleOrder",function(){
+  		var reason = prompt("취소 사유를 알려주세요.");
+  		location.href = "${pageContext.request.contextPath}/shop/user/cancleOrder?userOrderDetailNo="+$(this).attr("name")+"&reason="+reason;
+  	});    
+    </script>
   </head>
 
   <body>
@@ -116,8 +121,8 @@
             <c:forEach items="${list}" var="order">
             
             <c:forEach items="${order.userOrderDetailList}" var="orderdetail">
-            
-            <div class="g-pa-20">
+            <c:if test="${orderdetail.status==0}">
+             <div class="g-pa-20">
                 <div class="row">
                   <div class="col-md-8">
                     <div class="mb-4">
@@ -145,7 +150,7 @@
                      배송준비중
                      </a>
                      
-                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      취소하기
                      </a>
                     
@@ -159,6 +164,11 @@
                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      배송중
                      </a>
+                     
+                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     취소하기
+                     </a>
+                     
                   </div>
                      
                   </c:when>
@@ -170,7 +180,7 @@
                      배송완료
                      </a>
                      
-                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      반품하기
                      </a>  
                      
@@ -187,7 +197,7 @@
                     
                 </div>
               </div>
-            
+            </c:if>
             </c:forEach>
             
             
