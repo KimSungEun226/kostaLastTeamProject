@@ -39,7 +39,6 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
- <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
  
  <script type="text/javascript">
@@ -242,13 +241,7 @@
                 <h4 class="g-font-size-16 text-uppercase mb-0">배송지입력</h4>
               </li>
 
-              <li class="col-3 list-inline-item">
-                <span class="d-block u-icon-v2 u-icon-size--sm g-rounded-50x g-brd-gray-light-v2 g-color-gray-dark-v5 g-brd-primary--active g-color-white--parent-active g-bg-primary--active g-color-white--checked g-bg-primary--checked mx-auto mb-3">
-                  <i class="g-font-style-normal g-font-weight-700 g-hide-check">3</i>
-                  <i class="fa fa-check g-show-check"></i>
-                </span>
-                <h4 class="g-font-size-16 text-uppercase mb-0">결제정보</h4>
-              </li>
+              
             </ul>
             <!-- End Step Titles -->
           </div>

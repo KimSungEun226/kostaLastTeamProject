@@ -140,6 +140,9 @@ public class ChallengeController {
 		  System.out.println("여기까지 되었나...?");
 		  Long boardNo = board.getBoardNo();
 		  System.out.println("board번호 : "+boardNo); 
+		  
+		  //챌린지 정보도 보내야하나....? or 리스트로 보내자 
+		  
 		return "board/challenge/detail";
 	}
 	
@@ -151,12 +154,10 @@ public class ChallengeController {
 		boolean state = flag == null;
 		
 		Board board = boardService.selectBy(boardNo, state);
-		Challenge challenge = board.getChallenge();
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/challenge/detail");
 		mv.addObject("board", board);
-		mv.addObject("challenge", challenge);
 		
 		return mv;
 	}
