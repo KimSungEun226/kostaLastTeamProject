@@ -3,6 +3,7 @@ package kosta.mvc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,21 +36,23 @@ public class ChallengeController {
 	 * 전체 챌린지 조회
 	 * boardKind == 5
 	 */
-	@RequestMapping("/list")
+	@RequestMapping("/select")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int nowPage) {
 		int boardKind = 5;
 		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		ModelAndView mv = new ModelAndView();
+
 		Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
-		
+		mv.addObject("pageList", boardList);
+
 		//상수로 잡자
 		int blockCount=3;
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
-		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
-		mv.addObject("pageList", boardList);
 		mv.setViewName("board/challenge/boardView");
 		return mv;
 	}
