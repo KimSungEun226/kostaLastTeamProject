@@ -11,10 +11,12 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     
-    <!-- Required Meta Tags Always Come First -->
+        <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
@@ -30,6 +32,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
@@ -41,7 +44,6 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
     //유효성체크
     function form_check() {
@@ -81,10 +83,31 @@
       	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
       	  };
       	  
+          
+
+      	  
     	  //입력 값 전송
     	  document.check_form.submit(); //유효성 검사의 포인트 
     	  
-    	}       
+    	}      
+		
+    	//기본배송지 버튼
+		$(function(){
+			 $("#checked").click(function(){
+				 alert("기본배송지로 등록되었습니다.");
+		         $("#basicCheck_form").submit(); 
+			 });
+	         
+		});
+    		
+		
+		
+		
+			
+		
+    
+   
+    
  
     
     </script>
@@ -161,7 +184,7 @@
                   </a>
                 </li>
                 <li class="g-py-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/front?key=customer&methodName=selectOrderDetail">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
                     주문내역
                   </a>
@@ -186,7 +209,12 @@
                 <!-- Addresses -->
                 <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30">
                   <div class="g-mb-50">
-                    <h3 class="h5 mb-3">주소 ${status.count}</h3>
+                    <h3 class="h5 mb-3">주소 ${status.count}
+                    <c:if test="${addr.checkBasic==1}">
+                    : 기본배송지
+                    </c:if>
+                    
+                    </h3>
                     <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${addr.receiver}</span>
 
                     <!-- Address -->
@@ -238,17 +266,15 @@
                     <c:if test="${addr.checkBasic==0}">
                     <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
                     <li class="list-inline-item">
-                      <label class="form-check-inline u-check d-block u-link-v5 g-color-text g-pl-30 mb-0">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" >
-                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </span>
-                        	기본배송지 설정
-                        </c:if>
-                      </label>
+                        <form id="basicCheck_form" action="${pageContext.request.contextPath}/shop/login/basicCheck/${addr.addressNo}">
+                       		<input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
+                       		id="checked" name="checked" value="기본배송지로 설정" />  
+                       		<input type="hidden" id="sendBasicCheck" name="sendBasicCheck" value="1">
+                       	</form>
+                     
                     </li>
+                  </c:if>
                   </ul>
-                  
                   <!-- End Edit/Delete -->
                 </div>
                 <p>
@@ -359,25 +385,25 @@
     <div class="u-outer-spaces-helper"></div>
 
     <!-- JS Global Compulsory -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-    <script src="../assets/vendor/popper.js/popper.min.js"></script>
-    <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-    <script src="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- JS Unify -->
-    <script src="../assets/js/hs.core.js"></script>
-    <script src="../assets/js/components/hs.header.js"></script>
-    <script src="../assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="../assets/js/components/hs.dropdown.js"></script>
-    <script src="../assets/js/components/hs.scrollbar.js"></script>
-    <script src="../assets/js/components/hs.go-to.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.dropdown.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->
-    <script src="../assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>

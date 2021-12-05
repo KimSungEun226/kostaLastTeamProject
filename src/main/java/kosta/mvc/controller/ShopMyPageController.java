@@ -23,6 +23,7 @@ public class ShopMyPageController {
 	
 	private final MemberService memberService;
 	private final AddressService addressService;
+	private int checkBasic;
 
 
 	@RequestMapping("/myAddress")
@@ -46,7 +47,7 @@ public class ShopMyPageController {
 	@RequestMapping("/insertAddr")
 	public String insertAddr(HttpServletRequest request, Principal principal) {
 		String id=principal.getName();
-		int checkBasic = 0;
+		checkBasic = 0; //0:배송지, 1:기본배송지
 		Member member=memberService.selectByMemberId(id);
 		String receiver=request.getParameter("nameInput");
 		String addr=request.getParameter("addrInput1");
@@ -84,7 +85,6 @@ public class ShopMyPageController {
 	@RequestMapping("/updateAddr/{addressNo}")
 	public ModelAndView findByAddrNo(HttpServletRequest request, @PathVariable Long addressNo, Principal principal) {
 		String id=principal.getName();
-		int checkBasic = 0;
 		Member member=memberService.selectByMemberId(id);
 		Address address = addressService.findByAddrNo(addressNo);
 		String receiver=request.getParameter("nameInput");
@@ -92,12 +92,13 @@ public class ShopMyPageController {
 		int zip=Integer.parseInt(request.getParameter("zipInput"));
 		String phone=request.getParameter("phoneNumber");
 		
-		address.setCheckBasic(checkBasic);
 		address.setMember(member);
 		address.setMemberAddress(addr);
 		address.setMemberZip(zip);
 		address.setPhone(phone);
 		address.setReceiver(receiver);
+		
+		addressService.insertAddr(address);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/login/addrEditForm");
@@ -106,6 +107,30 @@ public class ShopMyPageController {
 		
 		return mv;
 	}
+	
+	/**
+	 * 기본배송지 설정
+	 * */
+	@RequestMapping("/basicCheck/{addressNo}")
+	public String basicCheck(Principal principal, HttpServletRequest request, @PathVariable Long addressNo) {
+		//1=체크, 0=비체크
+		int checked=Integer.parseInt(request.getParameter("sendBasicCheck"));
+		System.out.println("기본배송지:"+checked+", addrNo:"+addressNo);
+		
+		String id = principal.getName();
+		Member member=memberService.selectByMemberId(id);
+		List<Address> addrList=member.getAddressList();
+		for(Address a : addrList) {
+			a.setCheckBasic(0);
+		}
+		
+		Address addr = addressService.findByAddrNo(addressNo);
+		addr.setCheckBasic(checked);
+		addressService.insertAddr(addr);
+
+		return "redirect:/shop/login/myAddress";
+	}
+	
 	
 
 }
