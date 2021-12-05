@@ -1,6 +1,9 @@
 package kosta.mvc.controller;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
+import kosta.mvc.domain.Level;
 import kosta.mvc.domain.Member;
+import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
 
@@ -25,35 +30,40 @@ import lombok.RequiredArgsConstructor;
 public class MyPageController {
 	
 	private final MypageService myPageService;
+	private final MemberService memberService; 
 	
+	/**
+	 * 마이페이지 - main
+	 * member, info, level, 회원의 게시물, 회원의 챌린지,회원의 댓글 
+	 */
 	@RequestMapping("")
-	public String myPage() {
-		//member, info, level, 회원의 게시물, 회원의 챌린지,회원의 댓글 
-		Long memberNo = (long)1;
+	public ModelAndView myPage(HttpSession session, Principal principal) {
+		Member member = memberService.selectByMemberId(principal.getName());
 		ModelAndView mv = new ModelAndView();
 		
 		//member
-		Member member = myPageService.findByMemberNo(memberNo);
 		mv.addObject("member", member);
 		
-		//게시물
-		List<Board> boardList = myPageService.findBoard(memberNo);
+		//boardList
+		List<Board> boardList = member.getBoardList();
 		mv.addObject("boardList", boardList);
 		
 		//챌린지
-		List<Challenge> challengeList = myPageService.findChallenge(memberNo);
+		List<Challenge> challengeList = member.getChallengeList();
 		mv.addObject("challengeList", challengeList);
 		
 		//댓글
 		
+		
 		//회원활동정보
-		Info info = myPageService.findInfo(memberNo);
+		Info info = member.getInfo();
 		mv.addObject("info", info);
 		
-		//등급......????
+		//등급
+		//Level level = member.getInfo().getLevelNo()
 		
-		
-		return "board/myPage/main";
+		mv.setViewName("board/myPage/main");
+		return mv;
 	}
 	
 	/**
