@@ -67,18 +67,42 @@ public class ShopMyPageController {
 		return "redirect:/shop/login/myAddress";
 	}
 	
-	@RequestMapping("/editAddr/{addressNo}")
-	public ModelAndView editForm(HttpServletRequest request, @PathVariable Long addressNo) {
-		this.findByAddrNo(request, addressNo);
+	@RequestMapping("/addrEditForm/{addressNo}")
+	public ModelAndView editForm(@PathVariable Long addressNo, Principal principal) {
+		String id=principal.getName();
+		Member memberInfo=memberService.selectByMemberId(id);
+		Address dbAddr=addressService.findByAddrNo(addressNo);
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/login/addrEditForm");
+		mv.addObject("memberInfo", memberInfo);
+		mv.addObject("dbAddr", dbAddr);
 		
-		return mv;
+		return mv; 
 	}
 	
+
 	@RequestMapping("/updateAddr/{addressNo}")
-	public ModelAndView findByAddrNo(HttpServletRequest request, @PathVariable Long addressNo) {
+	public ModelAndView findByAddrNo(HttpServletRequest request, @PathVariable Long addressNo, Principal principal) {
+		String id=principal.getName();
+		int checkBasic = 0;
+		Member member=memberService.selectByMemberId(id);
 		Address address = addressService.findByAddrNo(addressNo);
+		String receiver=request.getParameter("nameInput");
+		String addr=request.getParameter("addrInput1");
+		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String phone=request.getParameter("phoneNumber");
+		
+		address.setCheckBasic(checkBasic);
+		address.setMember(member);
+		address.setMemberAddress(addr);
+		address.setMemberZip(zip);
+		address.setPhone(phone);
+		address.setReceiver(receiver);
+		
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/login/addrEditForm");
+		mv.addObject("dbAddr", address);
+		mv.addObject("memberInfo", member);
 		
 		return mv;
 	}
