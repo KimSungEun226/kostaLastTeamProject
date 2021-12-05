@@ -7,7 +7,7 @@
 
 <head>
   <!-- Title -->
-  <title>Unify Profile | | Unify - Responsive Website Template</title>
+  <title>내 정보 수정</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">

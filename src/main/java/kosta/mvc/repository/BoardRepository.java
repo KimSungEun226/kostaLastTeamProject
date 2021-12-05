@@ -25,5 +25,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	//@Query(value = "select * from board where TAGREL_NO=?1" , nativeQuery = true) 
 	@Query(value = "select b from Board b where b.tag.tagrelNo=?1" ) 
 	Page<Board> selectByTag(Long tagrelNo, Pageable pageable);
-	
+
+	/**
+	 * 마이페이지 - 회원번호로 작성한 게시물 조회하기
+	 */
+	@Query(value = "select b from Board b where b.member.memberNo=?1")
+	Page<Board> findByMemberNo(Long memberNo, Pageable pageable);
+
 }

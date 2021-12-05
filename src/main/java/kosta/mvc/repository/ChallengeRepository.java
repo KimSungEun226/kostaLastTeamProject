@@ -23,6 +23,12 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 	 * 챌린지 카테고리별 조회 
 	 */
 	@Query(value = "select b from Board b where b.challenge.challengeCategory=?1" ) 
-	Page<Board> selectByChallengeCategory(int challengeCategory, Pageable pageable);
+	Page<Board> findByChallengeCategory(int challengeCategory, Pageable pageable);
+
+	/**
+	 * 마이페이지 - 회원번호로 도전한 챌린지 조회하기 
+	 */
+	@Query(value = "select c from Challenge c where c.member.memberNo=?1")
+	List<Challenge> findByMemberNo(Long memberNo);
 	
 }
