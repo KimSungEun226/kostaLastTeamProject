@@ -79,7 +79,7 @@ public class MemberService implements UserDetailsService {
     		return member;
     	}
     }
-  //이메일로 아이디찾기
+    //이메일로 아이디찾기
     public Member findIdByEmail(HttpServletResponse response, String memberName, String memberEmail) throws Exception {
     	response.setContentType("text/html; charset=UTF-8");
 
@@ -96,10 +96,77 @@ public class MemberService implements UserDetailsService {
     		return member;
     	}
     }
+    //휴대전화로 비밀번호찾기
+    public Member findPwdByPhone(HttpServletResponse response, String memberId, String memberName, String memberPhone) throws Exception {
+    	response.setContentType("text/html; charset=UTF-8");
+
+    	Member member = memberRepository.findByMemberIdAndMemberNameAndMemberPhone(memberId, memberName, memberPhone);
+    	PrintWriter out = response.getWriter();
+    	System.out.println(memberId);
+    	if(member == null) {
+    		out.println("<script>");
+    		out.println("alert('회원정보와 입력한 정보가 같지 않습니다.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+    	}else {
+    		return member;
+    	}
+    }
+    //이메일로 비밀번호찾기
+    public Member findPwdByEmail(HttpServletResponse response, String memberId, String memberName, String memberEmail) throws Exception {
+    	response.setContentType("text/html; charset=UTF-8");
+
+    	Member member = memberRepository.findByMemberIdAndMemberNameAndMemberEmail(memberId, memberName, memberEmail);
+    	PrintWriter out = response.getWriter();
+    	if(member == null) {
+    		out.println("<script>");
+    		out.println("alert('회원정보와 입력한 정보가 같지 않습니다.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+    	}else {
+    		return member;
+    	}
+    }
+    //비밀번호찾기 아이디입력
+    public boolean findPwdInputId(HttpServletResponse response, String memberId) throws Exception {
+    	response.setContentType("text/html; charset=UTF-8");
+
+    	boolean member = memberRepository.existsByMemberId(memberId);
+    	PrintWriter out = response.getWriter();
+    	if(!member) {
+    		out.println("<script>");
+    		out.println("alert('아이디를 정확하게 입력해주세요.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return false;
+    	}else {
+    		return true;
+    	}
+    }
+    //새비밀번호 설정
+    @Transactional
+    public void changePwd(MemberDto memberDto, String memberPwd, String memberId) throws Exception{
+        
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        memberDto.setMemberPwd(passwordEncoder.encode(memberPwd));
+        
+    	int member = memberRepository.updateMemberPwd(memberDto.getMemberPwd(), memberId);
+    	System.out.println(memberPwd);
+    	System.out.println(memberId);
+    	System.out.println(member);
+    	if(member==0) {
+    		throw new RuntimeException("비밀번호가 변경되지 않았습니다.");
+    	}
+    }
+    
     
     public Member selectByMemberId(String memberId) {
     	return memberRepository.selectByMemberId(memberId);
     }
-
     
 }

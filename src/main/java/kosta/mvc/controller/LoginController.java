@@ -39,7 +39,6 @@ public class LoginController {
     	return "board/login/signup";
     }
     
-
     // 회원가입 처리
     @PostMapping("/signup")
     public String execSignup(MemberDto memberDto) {
@@ -48,14 +47,11 @@ public class LoginController {
         return "redirect:/login";
     }
     
-
     // 로그인 페이지
     @GetMapping("/login")
     public String dispLogin() {
         return "board/login/login";
     }
-
-
 
     // 로그인 결과 페이지
     @GetMapping("/user/main")
@@ -74,17 +70,39 @@ public class LoginController {
 	public String findId() {
 		return "board/login/findId";
 	}
+    
+    // 비밀번호찾기 페이지
+    @RequestMapping("/findPwd")
+	public String findPwd() {
+		return "board/login/findPwd";
+	}
 	
-    // 휴대전화로 아이디찾기
-	@RequestMapping("/findIdByPhone")
+    // 휴대전화로 아이디찾기 페이지
+	@GetMapping("/findIdByPhone")
 	public String findIdByPhone() {
 		return "board/login/findIdByPhone";
 	}
 	
-	//이메일로 아이디찾기
-	@RequestMapping("/findIdByEmail")
+	// 이메일로 아이디찾기 페이지
+	@GetMapping("/findIdByEmail")
 	public String findIdByEmail() {
 		return "board/login/findIdByEmail";
+	}
+	
+	// 휴대전화로 비밀번호찾기 페이지
+	@RequestMapping("/findPwdByPhonePage")
+	public String findPwdByPhone(String memberId, Model model) {
+		model.addAttribute("memberId", memberId);
+		System.out.println(memberId);
+		return "board/login/findPwdByPhone";
+	}
+	
+	//이메일로 비밀번호찾기 페이지
+	@RequestMapping("/findPwdByEmailPage")
+	public String findPwdByEmail(String memberId, Model model) {
+		model.addAttribute("memberId", memberId);
+		System.out.println(memberId);
+		return "board/login/findPwdByEmail";
 	}
 	
     // 접근 거부 페이지
@@ -144,5 +162,39 @@ public class LoginController {
     	
     	model.addAttribute("id", member.getMemberId());
     	return "board/login/findIdResult";
+    }
+    
+    //휴대전화로 비밀번호찾기
+    @RequestMapping(value="/findPwdByPhone",method=RequestMethod.POST)
+    public String findPwdByPhone(HttpServletResponse response, String memberId, String memberName, String memberPhone, Model model) throws Exception {
+    	memberService.findPwdByPhone(response, memberId, memberName, memberPhone);
+    	model.addAttribute("memberId", memberId);
+    	
+    	return "board/login/findPwdNew";
+    }
+    
+    //이메일로 비밀번호찾기
+    @RequestMapping(value="/findPwdByEmail",method=RequestMethod.POST)
+    public String findPwdByEmail(HttpServletResponse response, String memberId, String memberName, String memberEmail, Model model) throws Exception {
+    	memberService.findPwdByEmail(response, memberId, memberName, memberEmail);
+    	model.addAttribute("memberId", memberId);
+    	
+    	return "board/login/findPwdNew";
+    }
+    
+    //비밀번호 찾기 이름 확인
+    @RequestMapping(value="/findPwdInputId",method=RequestMethod.POST)
+    public String findPwdInputId(HttpServletResponse response, String memberId, Model model) throws Exception {
+    	memberService.findPwdInputId(response, memberId);
+    	model.addAttribute("memberId", memberId);
+    	return "board/login/findPwdChoice";
+    }
+    
+    //새 비밀번호 변경
+    @RequestMapping(value="/changePwd", method=RequestMethod.POST)
+    public String changePwd(HttpServletResponse response, MemberDto memberDto, String memberPwd, String memberId) throws Exception {
+    	System.out.println("컨트롤러 진입");
+    	memberService.changePwd(memberDto, memberPwd, memberId);
+    	return "board/login/findPwdResult";
     }
 }
