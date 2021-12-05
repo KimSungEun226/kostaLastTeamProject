@@ -70,7 +70,7 @@ public class OrderController {
 				if(cart.getProduct().getStock() >= cart.getCartCount()) {
 					NonuserOrderDetail orderDetail = new NonuserOrderDetail().builder().product(cart.getProduct()).
 					productCount(cart.getCartCount()).orderStatus(1).
-					refundCheck("환불가능").deliveryStatus("배송준비").build();
+					refundCheck("환불가능").status(0).build();
 					nonuserOrderDetailList.add(orderDetail);
 					
 					//장바구니에서 삭제해야한다.
@@ -94,7 +94,7 @@ public class OrderController {
 
 					UserOrderDetail orderDetail = new UserOrderDetail().builder().product(cart.getProduct()).
 					productCount(cart.getCartCount()).orderStatus(0).
-					refundCheck("환불가능").deliveryStatus("배송준비").build();
+					refundCheck("환불가능").status(0).build();
 					userOrderDetailList.add(orderDetail);
 					deleteCartList.add(cart);
 				}
@@ -210,4 +210,10 @@ public class OrderController {
 	 * 비회원 주문조회
 	 * */
 	//@RequestMapping("/shop")
+	
+	
+	/**
+	 * 회원 주문 취소하기
+	 * */
+	
 }
