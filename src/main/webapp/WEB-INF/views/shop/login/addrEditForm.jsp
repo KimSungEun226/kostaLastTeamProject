@@ -89,6 +89,31 @@
     
     
     </script>
+    <!-- 주소찾기 --> 
+    <script>
+	  function findAddr(){
+		new daum.Postcode({
+	      oncomplete: function(data) {
+	        	
+	        console.log(data);
+	        	
+	        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	        var roadAddr = data.roadAddress; // 도로명 주소 변수
+	        var jibunAddr = data.jibunAddress; // 지번 주소 변수
+	        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	        document.getElementById('zipInput').value = data.zonecode;
+	        if(roadAddr !== ''){
+	          document.getElementById("addrInput2").value = roadAddr;
+	          }else if(jibunAddr !== ''){
+	            document.getElementById("addrInput2").value = jibunAddr;
+	          }
+	      }
+	    }).open();
+	  }
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
     
   </head>
@@ -192,7 +217,7 @@
                       <div class="media-body g-color-text">
                         우편번호: ${dbAddr.memberZip}
                         <br>
-                        ${dbAddr.memberAddress}
+                        ${dbAddr.memberAddress} ${dbAddr.memberDetailAddress}
                         <br>
                       </div>
                     </address>
@@ -251,26 +276,32 @@
               <h3 class="h5 mb-3"><b>배송지 수정</h3>
 
               <form name="check_form" action="${pageContext.request.contextPath}/shop/login/updateAddr/${dbAddr.addressNo}">
-                <div class="row">
+                 <div class="row">
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">받는 분</label>
-                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.receiver}">
+                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.receiver}">
+                  </div>
+                  
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">연락처</label>
+                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.phone}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">우편번호</label>
-                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberZip}">
+                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" onclick="findAddr()" value="${dbAddr.memberZip}" >
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">주소</label>
-                    <input name="addrInput1" id="addrInput1" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberAddress}">
+                    <input name="addrInput2" id="addrInput2" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.memberAddress}">
+                  </div>
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">상세주소</label>
+                    <input name="detailAddrInput" id="detailAddrInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.memberDetailAddress}">
                   </div>
 
-                  <div class="col-sm-6 form-group g-mb-20">
-                    <label class="g-color-text g-font-size-13">연락처</label>
-                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.phone}">
-                  </div>
+                  
                 </div>
             </div>
             <!-- End Contact Form -->

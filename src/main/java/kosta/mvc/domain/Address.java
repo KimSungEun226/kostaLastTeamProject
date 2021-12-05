@@ -34,6 +34,7 @@ public class Address {
 	
 	private String receiver;
 	private String phone;
+	private String memberDetailAddress;
 	
 	
 }
