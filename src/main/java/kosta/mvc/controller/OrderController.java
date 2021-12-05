@@ -215,5 +215,14 @@ public class OrderController {
 	/**
 	 * 회원 주문 취소하기
 	 * */
+	@RequestMapping("/user/cancleOrder")
+	public ModelAndView cancleOrder(int userOrderDetailNo, String reason) {
+		Integer temp = userOrderDetailNo;
+		Long no = temp.longValue();
+		
+		System.out.println("userOrderDetailNo: " + no);
+		System.out.println("reason: " + reason);
+		return null;
+	}
 	
 }
