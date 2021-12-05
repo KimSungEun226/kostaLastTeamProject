@@ -153,13 +153,13 @@
 
                 <!-- 30일 챌린지 -->
                 <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link--blog" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/challenge/list" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--blog">30일 챌린지</a>
+                  <a id="nav-link--blog" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/challenge/select" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--blog">30일 챌린지</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--blog" aria-labelledby="nav-link--blog">
                    
                     <!-- 30일 챌린지 - 전체 -->
                     <li class="dropdown-item ">
-                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/list" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">전체</a>
+                      <a id="nav-link--pages--blog--minimal" class="nav-link" href="${pageContext.request.contextPath}/challenge/select" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--blog--minimal">전체</a>
                     </li><!-- End 30일 챌린지 - 전체 -->
                     
                     <!-- 30일 챌린지 - 30일 아침밥 챙기기 -->

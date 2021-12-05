@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +41,54 @@
       <div class="container g-pt-70 g-pb-30">
         <div class="row justify-content-center">
           <!-- Profile Settings -->
-          
+          <div class="col-lg-3 g-mb-50">
+            <aside class="g-brd-around g-brd-gray-light-v4 rounded g-px-20 g-py-30">
+              <!-- Profile Picture -->
+              <div class="text-center g-pos-rel g-mb-30">
+
+                <span id="name" class="d-block g-font-weight-500">
+                <sec:authorize access="isAuthenticated()">
+     			<hidden name="memberId" value='<sec:authentication property="principal.Username"/>'/>	
+        			<sec:authentication property="principal.Username"/> 님 환영합니다. <!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+    			</sec:authorize>
+                </span>
+
+              </div>
+              <!-- End Profile Picture -->
+
+              <hr class="g-brd-gray-light-v4 g-my-30">
+
+              <!-- Profile Settings List -->
+              <ul class="list-unstyled mb-0">
+                <li class="g-pb-3">
+                  <a class="d-block align-middle active u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover g-color-primary--parent-active g-bg-gray-light-v5--active rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/myPage">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-059 u-line-icon-pro"></i></span>
+                    내정보
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/selectCart">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-114 u-line-icon-pro"></i></span>
+                    장바구니
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="#">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
+                    주문내역
+                  </a>
+                </li>
+                
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/front?key=customer&methodName=selectOrderDetail">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
+                    취소내역
+                  </a>
+                </li>
+              </ul>
+              <!-- End Profile Settings List -->
+            </aside>
+          </div>
           <!-- End Profile Settings -->
  
           <!-- Orders -->
@@ -51,6 +100,8 @@
               <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
                 <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="page-orders-1.html">주문 목록</a>
               </li>
+              
+              
             </ul>
             <!-- End Links -->
 
@@ -79,10 +130,10 @@
                       </div>
 
                       <div class="col-8 col-sm-9 g-mb-30">
-                        <h4 class="h6 g-font-weight-400"><a href="page-single-product.jsp">${orderdetail.product.productName}</a></h4>
+                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">${orderdetail.product.productName}</a></h4>
                         <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
                         <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
-                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">상품 보기</a>
+                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
                       </div>
                     </div>
                   </div>
@@ -94,6 +145,9 @@
                      배송준비중
                      </a>
                      
+                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     취소하기
+                     </a>
                     
                   </div>
                      
@@ -115,6 +169,11 @@
                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      배송완료
                      </a>
+                     
+                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     반품하기
+                     </a>  
+                     
                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      리뷰작성
                      </a>  
@@ -226,8 +285,6 @@
         $.HSCore.components.HSGoTo.init('.js-go-to');
       });
     </script>
-    <script type="text/javascript">
-        document.getElementById("name").innerHTML = "<b>${sessionScope.customerDTO.customerName} 님</b>"
-    </script>
+    
   </body>
 </html>

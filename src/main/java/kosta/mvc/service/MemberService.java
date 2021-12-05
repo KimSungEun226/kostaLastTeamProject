@@ -168,6 +168,5 @@ public class MemberService implements UserDetailsService {
     public Member selectByMemberId(String memberId) {
     	return memberRepository.selectByMemberId(memberId);
     }
-
     
 }

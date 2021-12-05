@@ -43,9 +43,9 @@ public class NonuserOrderDetail extends OrderDetail {
 	private Product product;
 	
 	private int productCount;
-	private int orderStatus; //비회원주문인지 체크 : 1이면 비회원
+	private int orderStatus; //배송상태
 	private String refundCheck; //환불 가능인지 체크
-	private String deliveryStatus;
+	private int status; //1이면 배송전 주문취소, 2면 반품
 	
 
 	

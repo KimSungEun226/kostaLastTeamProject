@@ -2,6 +2,8 @@ package kosta.mvc.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +46,8 @@ public class ShopLoginController {
 
    // 쇼핑몰 로그인 결과 페이지
     @GetMapping("/main")
-    public String shopLoginResult() {
+    public String shopLoginResult(HttpSession session) {
+    	System.out.println(session.getId());
     	System.out.println("로그인성공");
         return "redirect:/shop";
     }

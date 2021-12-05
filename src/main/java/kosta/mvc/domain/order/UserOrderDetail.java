@@ -41,7 +41,7 @@ public class UserOrderDetail extends OrderDetail{
 	private int productCount;
 	private int orderStatus;
 	private String refundCheck;
-	private String deliveryStatus;
+	private int status; //1이면 배송전 주문취소, 2면 반품
 	
 	
 }
