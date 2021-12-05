@@ -41,8 +41,9 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!--     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
     <script type="text/javascript">
+
     //유효성체크
     function form_check() {
     	
@@ -275,6 +276,8 @@
             <!-- End Contact Form -->
 			
             <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()">주소 수정하기</button>
+            <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="location.href='${pageContext.request.contextPath}/shop/login/myAddress'">배송지목록으로 돌아가기</button>
+        
           	</form>
           </div>
           <!-- Addresses -->
@@ -282,6 +285,7 @@
       </div>
 
       <!-- Call to Action -->
+      <p><p><p><p>
       <div class="g-bg-primary">
         <div class="container g-py-20">
           <div class="row justify-content-center">
@@ -343,25 +347,25 @@
     <div class="u-outer-spaces-helper"></div>
 
     <!-- JS Global Compulsory -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-    <script src="../assets/vendor/popper.js/popper.min.js"></script>
-    <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-    <script src="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- JS Unify -->
-    <script src="../assets/js/hs.core.js"></script>
-    <script src="../assets/js/components/hs.header.js"></script>
-    <script src="../assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="../assets/js/components/hs.dropdown.js"></script>
-    <script src="../assets/js/components/hs.scrollbar.js"></script>
-    <script src="../assets/js/components/hs.go-to.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.dropdown.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->
-    <script src="../assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>

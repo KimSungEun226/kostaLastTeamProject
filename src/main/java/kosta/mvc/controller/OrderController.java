@@ -55,56 +55,62 @@ public class OrderController {
     private Long result;
     
     
-    
-	/*
-	 * //결제하기
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/pay") public Long payAjax(Principal principal, HttpSession
-	 * session, String addr, String contact, String name, String imp_uid) throws
-	 * Exception {
-	 * 
-	 * System.out.println("principal : " + principal);
-	 * System.out.println("imp_uid : " + imp_uid); //0. principal이 null이면 비회원 주문에,
-	 * null아니면 회원 주문에 레코드 추가. if(principal==null) { id = session.getId();
-	 * NonuserOrder nonuserOrder = new
-	 * NonuserOrder().builder().orderAddr(addr).receiverName(name).receiverPhone(
-	 * contact).build(); cartList = cartService.selectCart(id); for(Cart cart :
-	 * cartList) { if(cart.getProduct().getStock() >= cart.getCartCount()) {
-	 * NonuserOrderDetail orderDetail = new
-	 * NonuserOrderDetail().builder().product(cart.getProduct()).
-	 * productCount(cart.getCartCount()).orderStatus(1).
-	 * refundCheck("환불가능").deliveryStatus("배송준비").build();
-	 * nonuserOrderDetailList.add(orderDetail);
-	 * 
-	 * //장바구니에서 삭제해야한다. deleteCartList.add(cart); } }
-	 * nonuserOrder.setNonuserOrderDetailList(nonuserOrderDetailList);
-	 * 
-	 * 
-	 * nonuserOrder = orderService.insertNonuserOrder(nonuserOrder, deleteCartList);
-	 * result = nonuserOrder.getNonuserOrderNo(); // 주문이 잘 등록 되었다. (예외발생x)
-	 * 
-	 * } else if(principal!=null){ id = principal.getName(); Member m =
-	 * memberService.selectByMemberId(id); UserOrder userOrder = new
-	 * UserOrder().builder().member(m).orderAddr(addr).receiverName(name).
-	 * receiverPhone(contact).build(); cartList = cartService.selectCart(id);
-	 * for(Cart cart : cartList) { if(cart.getProduct().getStock() >=
-	 * cart.getCartCount()) {
-	 * 
-	 * UserOrderDetail orderDetail = new
-	 * UserOrderDetail().builder().product(cart.getProduct()).
-	 * productCount(cart.getCartCount()).orderStatus(0).
-	 * refundCheck("환불가능").deliveryStatus("배송준비").build();
-	 * userOrderDetailList.add(orderDetail); deleteCartList.add(cart); } }
-	 * userOrder.setUserOrderDetailList(userOrderDetailList);
-	 * 
-	 * userOrder = orderService.insertUserOrder(userOrder, deleteCartList);
-	 * m.getOrderList().add(userOrder); result = userOrder.getUserOrderNo(); }
-	 * 
-	 * 
-	 * return result; }
-	 */
+    //결제하기
+	@ResponseBody
+	@RequestMapping("/pay")
+	public Long payAjax(Principal principal, HttpSession session, String addr, String contact, String name, String imp_uid) throws Exception {
+		
+		System.out.println("principal : " + principal);
+		System.out.println("imp_uid : " + imp_uid);
+		//0. principal이 null이면 비회원 주문에, null아니면 회원 주문에 레코드 추가.
+		if(principal==null) {
+			id = session.getId();
+			NonuserOrder nonuserOrder = new NonuserOrder().builder().orderAddr(addr).receiverName(name).receiverPhone(contact).build();
+			cartList = cartService.selectCart(id);
+			for(Cart cart : cartList) {
+				if(cart.getProduct().getStock() >= cart.getCartCount()) {
+					NonuserOrderDetail orderDetail = new NonuserOrderDetail().builder().product(cart.getProduct()).
+					productCount(cart.getCartCount()).orderStatus(1).
+					refundCheck("환불가능").status(0).build();
+					nonuserOrderDetailList.add(orderDetail);
+					
+					//장바구니에서 삭제해야한다.
+					deleteCartList.add(cart);
+				}
+			}			
+			nonuserOrder.setNonuserOrderDetailList(nonuserOrderDetailList);
+			
+			
+			nonuserOrder = orderService.insertNonuserOrder(nonuserOrder, deleteCartList);
+			result = nonuserOrder.getNonuserOrderNo(); // 주문이 잘 등록 되었다. (예외발생x)
+
+		}
+		else if(principal!=null){
+			id = principal.getName();
+			Member m = memberService.selectByMemberId(id);
+			UserOrder userOrder = new UserOrder().builder().member(m).orderAddr(addr).receiverName(name).receiverPhone(contact).build();
+			cartList = cartService.selectCart(id);
+			for(Cart cart : cartList) {
+				if(cart.getProduct().getStock() >= cart.getCartCount()) {
+
+					UserOrderDetail orderDetail = new UserOrderDetail().builder().product(cart.getProduct()).
+					productCount(cart.getCartCount()).orderStatus(0).
+					refundCheck("환불가능").status(0).build();
+					userOrderDetailList.add(orderDetail);
+					deleteCartList.add(cart);
+				}
+			}			
+			userOrder.setUserOrderDetailList(userOrderDetailList);
+			
+			userOrder = orderService.insertUserOrder(userOrder, deleteCartList);
+			m.getOrderList().add(userOrder);
+			result = userOrder.getUserOrderNo();
+		}
+		
+
+		return result;
+	}
+
 	
 	//결제완료 페이지로 이동
 	@RequestMapping("/paysuccess")
@@ -222,5 +228,17 @@ public class OrderController {
 		}
 	}
 	
+	/**
+	 * 회원 주문 취소하기
+	 * */
+	@RequestMapping("/user/cancleOrder")
+	public ModelAndView cancleOrder(int userOrderDetailNo, String reason) {
+		Integer temp = userOrderDetailNo;
+		Long no = temp.longValue();
+		
+		System.out.println("userOrderDetailNo: " + no);
+		System.out.println("reason: " + reason);
+		return null;
+	}
 	
 }

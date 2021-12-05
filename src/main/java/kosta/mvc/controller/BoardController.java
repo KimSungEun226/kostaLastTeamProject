@@ -40,17 +40,6 @@ public class BoardController {
 	}
 	
 	/**
-	 * 수정폼
-	 * */
-	/*@RequestMapping("/admin/updateForm")
-	public String update(Long productNo, Model model) {
-		
-		Product product = productService.selectByNo(productNo, false);
-		model.addAttribute("product", product);
-		return "shop/product/update";
-	}*/
-	
-	/**
 	 * 게시판 수정폼
 	 * */
 	@RequestMapping("/updateForm")
@@ -72,16 +61,15 @@ public class BoardController {
 		
 		return new ModelAndView("board/detail", "board", dbBoard);
 	}
-	
-	
-	
+
 	
 	/**
-	 * 등록하기
+	 * 등록하기(커뮤니티 게시판)
 	 * */
 	@RequestMapping("/insert")
 	public String insert(Board board, Tag tag) throws NullPointerException {
 			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
+			
 		    
 		    System.out.println(tag.getTagrelNo());
 		    
@@ -127,9 +115,16 @@ public class BoardController {
 		if(boardKind == 0) { //boardKind가 view에서 0으로 넘어온다면
 			Page<Board> boardList = boardService.selectAll(pageable); //board의 전체를 가지고 와서 boardList에 담아준다
 			mv.addObject("pageList", boardList);
-		} else { //boardkind가 0 이외의 값으로 들어오면 boardKind에 맞는 게시물들만 찾아준다.
+			mv.setViewName("board/boardView");
+		} else if(boardKind == 6) { //홈트레이닝(운동) 게시판으로 이동_2021.12.05
 			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
 			mv.addObject("pageList", boardList);
+			mv.setViewName("board/hometraining");
+		}
+		else { //boardkind가 0 이외의 값으로 들어오면 boardKind에 맞는 게시물들만 찾아준다.
+			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
+			mv.addObject("pageList", boardList);
+			mv.setViewName("board/boardView");
 		}
 		//상수로 잡자
 		int blockCount=3;
@@ -139,7 +134,6 @@ public class BoardController {
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
-		mv.setViewName("board/boardView");
 		//System.out.println(boardList.getSize());
 		return mv;
 	}
