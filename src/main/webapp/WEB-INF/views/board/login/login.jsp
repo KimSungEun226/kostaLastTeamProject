@@ -56,7 +56,7 @@
                     <div class="col align-self-center text-right">
                       <a class="g-font-size-12" href="${pageContext.request.contextPath}/findId">아이디</a>
                       <a class="g-font-size-12" href="#"> / </a>
-                      <a class="g-font-size-12" href="#">비밀번호 찾기</a>
+                      <a class="g-font-size-12" href="${pageContext.request.contextPath}/findPwd">비밀번호 찾기</a>
                     </div>
                   </div>
                 </div>

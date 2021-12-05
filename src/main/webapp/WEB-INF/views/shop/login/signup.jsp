@@ -15,33 +15,6 @@ $(function(){
 		$("#nicknameCheck").show();
 	});
 })
-/* $(function(){
-	$("#id").keyup(function(){
-		  
-		  if($(this).val()=="") {
-			  $("#dupleCheck").html("");
-			  return;  //함수를 빠져나가라.
-		  }
-		  
-		  $.ajax({
-		    url: "../../idCheck",         //서버요청주소
-		    type: "post",                        //method방식(get,post,put,delete)
-		    dataType: "text",                    //서버가 응답해주는 데이터의 type(text, html, xml, json)
-		    data:{id:$(this).val(), info:"customer"} ,       //서버에게 보낼 parameter정보
-		   
-		    success: function(result){    //개수|단어,단어,단어,단어...
-		       //alert(result);
-		       //console.log("result : " + result);
-		       $("#dupleCheck").html(result);
-		       
-		   },//성공했을때 callback함수      
-		    //실패했을때 함수
-		   error: function(err){
-			   alert(err+"발생했어요")
-		   }
-		   
-	   });//ajax끝
-	  }); */
 </script>
 
 <script type="text/javascript">
@@ -72,15 +45,6 @@ $(function(){
 					  $('#membershipCompleted').click(function(){
 	                      if($.trim(result) == $("#inputCertificationNumber").val()){
 	                          alert("휴대폰 인증이 정상적으로 완료되었습니다.");
-	
-	                          /* $.ajax({
-	                              type: "GET",
-	                              url: "/update/phone",
-	                              data: {
-	                                  "phoneNumber" : $('#memberPhone').val()
-	                              }
-	                          }) */
-	                          document.location.href="/";
 	                      }else{
 	                          alert("인증번호가 올바르지 않습니다.");
 	                      }
