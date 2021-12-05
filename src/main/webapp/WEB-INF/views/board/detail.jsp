@@ -97,6 +97,7 @@
           <form  name="requestForm" method="post" id="requestForm"> 
 	            <input type=hidden name="boardNo" value="${board.boardNo}">
 	            <input type=button value="수정하기">
+	            <input type=button value="삭제하기">
           </form>
 			<!-- End 수정하기 버튼 test 중 -->
           <!--  Start 글내용 -->
@@ -573,7 +574,7 @@
 		   })
 		   
 		   
-		   /* $("input[value=삭제하기]").click(function(){
+		   $("input[value=삭제하기]").click(function(){
 			   var pwd = prompt("비밀번호를 입력하세요.");
 			   if(pwd){
 		           $("#password").val(pwd);
@@ -582,7 +583,7 @@
 			   }
 		   })
 		   
-		   $("input[value=답변하기]").click(function(){
+		   /* $("input[value=답변하기]").click(function(){
 			  
 			   
 			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/reply/writeForm");

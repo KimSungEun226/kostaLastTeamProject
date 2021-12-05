@@ -10,11 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
-import kosta.mvc.domain.BoardImage;
-import kosta.mvc.domain.Tag;
-import kosta.mvc.domain.product.Product;
-import kosta.mvc.domain.product.ProductImage;
-import kosta.mvc.repository.BoardImageRepository;
 import kosta.mvc.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
-	//private final BoardImageRepository boardImageRepository;
 	
 	@Override
 	public List<Board> selectAll() {
@@ -58,17 +52,43 @@ public class BoardServiceImpl implements BoardService {
 		
 		return board;
 	}
+	
 
+
+	//by은지_2021.12.05
 	@Override
 	public Board update(Board board) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("service의 update 메소드...");
+		//글번호 검증
+		Board dbBoard = boardRepository.findById(board.getBoardNo()).orElse(null);
+		if(dbBoard == null) throw new RuntimeException("글번호 오류로 수정할 수 없습니다.");
+		
+		//비밀번호 일치여부 확인
+		if(!dbBoard.getPassword().equals(board.getPassword())) {
+			throw new RuntimeException("비밀번호 오류로 수정할 수 없습니다.");
+		}
+		
+		//게시글 수정하기
+		dbBoard.setBoardTitle(board.getBoardTitle());
+		dbBoard.setBoardContent(board.getBoardContent());
+		
+		return dbBoard; //수정된 값이 들어간 dbBoard 리턴해준다.
 	}
 
+	/**
+	 * 삭제하기_2021.12.05
+	 * */
 	@Override
 	public void delete(Long boardNo, String password) {
-		// TODO Auto-generated method stub
+		// 비밀번호 검증
+		Board board = boardRepository.findById(boardNo).orElse(null);
+		if(board == null) throw new RuntimeException("글번호 오류로 삭제할 수 없습니다.");
+		
+		if(board.getPassword().equals(password)) {
+			throw new RuntimeException("비밀번호를 다시 확인해주세요(삭제실패)");
+		}
 
+		boardRepository.delete(board);
 	}
 
 	/**
