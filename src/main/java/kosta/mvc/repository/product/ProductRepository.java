@@ -37,4 +37,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * */
 	@Query("select p from Product p where rownum<=9 order by p.productDate desc")
 	List<Product> selectByDate();
+	
+	/**
+	 * 재고량 감소시키기
+	 * */
+	@Query("update Product p set p.stock=p.stock-?1 where p.productNo=?2")
+	@Modifying
+	int updateStock(int count, Long productNo);
 }

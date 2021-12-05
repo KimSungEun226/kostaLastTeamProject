@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 
 import kosta.mvc.domain.product.Product;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +22,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserOrderDetail {
+@Builder
+public class UserOrderDetail extends OrderDetail{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_order_detail_no_seq")
@@ -37,8 +39,7 @@ public class UserOrderDetail {
 	private Product product;
 	
 	private int productCount;
-	private int orderPrice;
-	private String orderStatus;
+	private int orderStatus;
 	private String refundCheck;
 	private String deliveryStatus;
 	

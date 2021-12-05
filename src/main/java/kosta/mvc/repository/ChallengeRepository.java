@@ -16,22 +16,19 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 	/**
 	 * 진행중인 챌린지 조회 
 	 */
-	@Query
-	("select c from Challenge c where challenge_category=?1 and member_no=?2")
-	@Modifying 
-	Challenge findChallenge(int challengeCategory,Long memberNo);
+	@Query(value = "select c from Challenge c where c.challengeCategory=?1 AND c.member.memberNo=?2")
+	Challenge selectChallenge(int challengeCategory,Long memberNo);
 	
 	/**
 	 * 챌린지 카테고리별 조회 
 	 */
-	/*
-	 * @Query(value = "select b.boardNo, b.boardTitle, b.boardContent, b.password from Board b inner join b.challenge c where c.challengeCategory = ?1", nativeQuery=true)
-	 * 
-	 * @Modifying
-	 */
-	 //Page<Board> findByChallengeCategory(int challenge_Category, Pageable pageable);
-	
 	@Query(value = "select b from Board b where b.challenge.challengeCategory=?1" ) 
-	Page<Board> selectByChallengeCategory(int challengeCategory, Pageable pageable);
+	Page<Board> findByChallengeCategory(int challengeCategory, Pageable pageable);
+
+	/**
+	 * 마이페이지 - 회원번호로 도전한 챌린지 조회하기 
+	 */
+	@Query(value = "select c from Challenge c where c.member.memberNo=?1")
+	List<Challenge> findByMemberNo(Long memberNo);
 	
 }

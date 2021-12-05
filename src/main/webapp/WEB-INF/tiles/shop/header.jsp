@@ -171,10 +171,10 @@
                      <!-- Account -->
 
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/selectCart">장바구니</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/selectCart">장바구니</a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/orderList">주문내역</a>
                      </li>
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/myPage">개인정보내역
@@ -203,6 +203,20 @@
                    
                    <!-- End Mega Menu -->
                  </li> 
+                 
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
+                     data-animation-in="fadeIn"
+                     data-animation-out="fadeOut"
+                     data-position="right">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/orderList/user" aria-haspopup="true" aria-expanded="false">
+                     <b>주문내역조회</b>
+                   </a>
+
+                   <!-- Mega Menu -->
+                   
+                   <!-- End Mega Menu -->
+                 </li> 
+                 
                  </sec:authorize>
                  <!-- End Pages - Submenu -->
                  

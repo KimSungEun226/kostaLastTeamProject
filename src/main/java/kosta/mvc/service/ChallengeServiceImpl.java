@@ -25,7 +25,7 @@ public class ChallengeServiceImpl implements ChallengeService{
 	@Override
 	public Challenge selectChallenge(int challengeCategory, Long memberNo) {
 		
-		return challengeRepository.findChallenge(challengeCategory, memberNo);
+		return challengeRepository.selectChallenge(challengeCategory, memberNo);
 	}
 	
 	@Override
@@ -40,7 +40,8 @@ public class ChallengeServiceImpl implements ChallengeService{
 	
 	  @Override
 	  public Page<Board> findByCallengeCategory(int challenge_Category, Pageable pageable) { 
-		  return challengeRepository.selectByChallengeCategory(challenge_Category, pageable); 
+		  Page<Board> p = challengeRepository.findByChallengeCategory(challenge_Category, pageable);
+		  return  p;
 	  }
 	 
 }

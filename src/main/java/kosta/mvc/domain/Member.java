@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import kosta.mvc.domain.order.UserOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -100,4 +101,9 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<Address> addressList; 
 	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<Cart> cartList;
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
+	private List<UserOrder> orderList;
 }

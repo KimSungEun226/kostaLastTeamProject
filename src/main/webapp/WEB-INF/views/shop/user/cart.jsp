@@ -39,73 +39,10 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
- <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
  
  <script type="text/javascript">
- var IMP = window.IMP;
- function requestPay() {
-      var customerName = document.getElementById("nameInput").value;
-	  var customerDetailAddr = document.getElementById("detailAddrInput").value;
-	  var customerContact = document.getElementById("contactInput").value;
-	  var customerEmail = document.getElementById("emailInput").value;
-	  var orderAddr = document.getElementById("addrInput2").value + " " + customerDetailAddr;
-
-	 $.ajax({
-         url:"${pageContext.request.contextPath}/shop/pay",
-         type:"post",
-         dataType:"text",
-         //dataType:"json",
-         data:{
-        	 addr: orderAddr,
-        	 contact: customerContact,
-        	 name: customerName,
-        	 cartList: JSON.stringify("${cartList}")
-        	 },
-         success:function(result) {
-             alert(result);
-         },
-         error:function(err){
-             alert(arr+"발생");
-         }
-     })
-	 
-     IMP.init("imp57256984");
-     // IMP.request_pay(param, callback) 결제창 호출
-      var itemName ="";
- 
-	  
-     var size = ${cartList.size()};
-     if(size==0) itemName="${cartList[0].product.productName}";
-     else itemName="${cartList[0].product.productName}"+"외 "+ ${cartList.size()-1} +"개"  
-     
-     
-     /* IMP.request_pay({ // param
-         pg: "html5_inicis",
-         pay_method: "card",
-         merchant_uid: "ORD20180131-000003",
-         name: itemName,
-         amount: 100,
-         buyer_email: customerEmail,
-         buyer_name: customerName,
-         buyer_tel: customerContact,
-         buyer_addr: orderAddr,
-         buyer_postcode: "01181"
-     }, function (rsp) { // callback
-         if (rsp.success) {
-       	  var msg = '결제가 완료되었습니다.';
-		      msg += '고유ID : ' + rsp.imp_uid;
-		      msg += '상점 거래ID : ' + rsp.merchant_uid;
-		      msg += '결제 금액 : ' + rsp.paid_amount;
-		      msg += '카드 승인번호 : ' + rsp.apply_num;
-         } else {
-       	  var msg = '결제에 실패하였습니다.';
-		      msg += '에러내용 : ' + rsp.error_msg;
-         }
-	      alert(msg);
-     }); */
-   }
- 
+ 	var IMP = window.IMP;
  	function form_check() {
  	
 	  //변수에 담아주기
@@ -162,6 +99,59 @@
 	}
  	
  	
+ 	function requestPay() {
+ 	      var customerName = document.getElementById("nameInput").value;
+ 		  var customerDetailAddr = document.getElementById("detailAddrInput").value;
+ 		  var customerContact = document.getElementById("contactInput").value;
+ 		  var customerEmail = document.getElementById("emailInput").value;
+ 		  var orderAddr = document.getElementById("addrInput2").value + " " + customerDetailAddr;
+
+ 		  IMP.init("imp57256984");
+ 	      var itemName ="";
+ 	      var size = ${cartList.size()};
+ 	      if(size==0) itemName="${cartList[0].product.productName}";
+ 	      else itemName="${cartList[0].product.productName}"+"외 "+ ${cartList.size()-1} +"개"  
+ 	      IMP.request_pay({ // param
+ 	           pg: "html5_inicis",
+ 	           pay_method: "card",
+ 	           merchant_uid: 'merchant_' + new Date().getTime(),
+ 	           name: itemName,
+ 	           amount: 100,
+ 	           buyer_email: customerEmail,
+ 	           buyer_name: customerName,
+ 	           buyer_tel: customerContact,
+ 	           buyer_addr: orderAddr,
+ 	           buyer_postcode: "01181"
+ 	        }, function (rsp) { // callback
+ 	           if (rsp.success) {
+ 	           	$.ajax({
+ 	                   url:"${pageContext.request.contextPath}/shop/pay",
+ 	                   type:"post",
+ 	                   dataType:"text",
+ 	                   //dataType:"json",
+ 	                   data:{
+ 	                  	 addr: orderAddr,
+ 	                  	 contact: customerContact,
+ 	                  	 name: customerName,
+ 	                  	 imp_uid : rsp.imp_uid
+ 	                  	 },
+ 	                   success:function(result) {
+ 	                	   location.href="${pageContext.request.contextPath}/shop/paysuccess?orderNo="+result;
+ 	                   	},
+ 	                   	error:function(err){
+ 	                           alert(arr+"발생");
+ 	                    }
+ 	              }) //아작스 끝
+ 	             
+ 	           } else {
+ 	         	  var msg = '결제에 실패하였습니다.';
+ 	  		      msg += '에러내용 : ' + rsp.error_msg;
+ 	           }
+ 	         
+ 	        })
+ 	     };
+ 	
+ 	
  
    $(function(){
 	   
@@ -199,12 +189,7 @@
   		 } 
   	 })
 		   
-		   //상품 삭제 
-		   $("i[name=deleteProductFromCart]").click(function(){
-			   var pno=$("input[name=productNo]").val();
-			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/shop/deleteCart/"+pno);
-			   $("#requestForm").submit();
-		   });
+		   
 		   
 			
 		   
@@ -256,13 +241,7 @@
                 <h4 class="g-font-size-16 text-uppercase mb-0">배송지입력</h4>
               </li>
 
-              <li class="col-3 list-inline-item">
-                <span class="d-block u-icon-v2 u-icon-size--sm g-rounded-50x g-brd-gray-light-v2 g-color-gray-dark-v5 g-brd-primary--active g-color-white--parent-active g-bg-primary--active g-color-white--checked g-bg-primary--checked mx-auto mb-3">
-                  <i class="g-font-style-normal g-font-weight-700 g-hide-check">3</i>
-                  <i class="fa fa-check g-show-check"></i>
-                </span>
-                <h4 class="g-font-size-16 text-uppercase mb-0">결제정보</h4>
-              </li>
+              
             </ul>
             <!-- End Step Titles -->
           </div>
@@ -273,30 +252,16 @@
               <div class="row">
                 <div class="col-md-8 g-mb-30">
                   <!-- Products Block -->
+                <c:choose>
+				  
+				    <c:when test="${not empty requestScope.cartList}">
                   <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
                     <table class="text-center w-100">
                      
                       
                       
-                        <!-- Item-->
-                        <!-- 장바구니에 담은 상품이 없으면 -->
-                        <c:choose>
-				    <c:when test="${empty requestScope.cartList}">
-				     <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
-                        <tr>
-                          <th class="g-font-weight-400 text-left g-pb-20"></th>
-                          <th class="g-font-weight-400 g-width-130 g-pb-20"></th>
-                          <th class="g-font-weight-400 g-width-50 g-pb-20"></th>
-                          <th class="g-font-weight-400 g-width-130 g-pb-20"></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-				       <p align="center"><b><span style="font-size:9pt;">장바구니에 상품이 없습니다.</span></b></p>
-				    </c:when>
-				    
-				    <c:otherwise> 
+                
                      
-                      
                          <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
                         <tr>
                           <th class="g-font-weight-400 text-left g-pb-20">상품</th>
@@ -318,7 +283,153 @@
                             <div class="d-inline-block align-middle">
                               <h4 class="h6 g-color-black">${cart.product.productName}</h4>
                               <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
-                                <li>재고량: ${cart.product.stock}</li>
+                                <fmt:parseDate value="${cart.product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                <li>등록일: <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/> </li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
+                          <td>
+                            <div class="js-quantity input-group u-quantity-v1 g-width-50 g-brd-primary--focus ">
+                            
+                            <c:set var="productCount" value="1"/>
+             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
+                            
+                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
+                              
+                            </div>
+                          </td>
+                          <td class="text-right g-color-black">
+                            <c:set var="amount" value="${amount+cart.product.price*pcount}"/>
+                            <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
+                              <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
+                              <a href="${pageContext.request.contextPath}/shop/deleteCart/${cart.cartNo}">
+                              
+                                <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
+                              </a>
+                            </span>
+                          </td>                
+                       		<%-- <input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/> --%>
+                        </c:forEach>
+                        
+						 </tr>
+						  <!-- End Item-->
+                       
+                      </tbody>
+                    </table>
+                  <br>
+                  <br>
+                  <br>
+                  </div>
+                  </c:when>
+                        </c:choose>
+                  <!-- End Products Block -->
+                  
+                  
+                  
+                <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
+                 <table class="text-center w-100">
+                 
+                       
+                  <c:choose>
+				    
+				    <c:when test="${not empty requestScope.soldoutList}">
+                     
+                       <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                        <tr>
+                          <th class="g-font-weight-400 text-left g-pb-20">품절된 상품</th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20">가격</th>
+                          <th class="g-font-weight-400 g-width-50 g-pb-20">수량</th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20">합계</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+ 					<c:forEach items="${requestScope.soldoutList}" var="cart">
+                      <tbody name="productList">
+                        <tr class="g-brd-bottom g-brd-gray-light-v3">
+                          <td class="text-left g-py-25">
+				    
+				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
+                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
+                            </a>
+                            <div class="d-inline-block align-middle">
+                              <h4 class="h6 g-color-black">${cart.product.productName}(품절)</h4>
+                              <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
+                                <fmt:parseDate value="${cart.product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                <li>등록일: <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/> </li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
+                          <td>
+                            <div class="js-quantity input-group u-quantity-v1 g-width-30  g-brd-primary--focus ">
+                            
+                            <c:set var="productCount" value="1"/>
+             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
+                            
+                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" readonly="readonly" value="${pcount}" min='1' max='50' >
+                              
+                            </div>
+                          </td>
+                          <td class="text-right g-color-black">
+                            <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
+                              <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
+                              <a href="${pageContext.request.contextPath}/shop/deleteCart/${cart.cartNo}">
+                              
+                              <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
+                              </a>
+                            </span>
+                          </td>                
+                        </c:forEach>
+                        </c:when>
+                        </c:choose>
+                       
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                </div>
+                
+                
+                
+                
+                <!-- ------------------------------- -->
+                
+                <%-- <div class="col-md-8 g-mb-30">
+                  <!-- Products Block -->
+                  <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
+                    <table class="text-center w-100">
+                     
+                      
+                      
+                        <!-- Item-->
+
+                  <c:choose>
+				    
+				    <c:when test="${not empty requestScope.soldoutList}">
+                     
+                         <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                        <tr>
+                          <th class="g-font-weight-400 text-left g-pb-20">상품</th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20">가격</th>
+                          <th class="g-font-weight-400 g-width-50 g-pb-20">수량</th>
+                          <th class="g-font-weight-400 g-width-130 g-pb-20">합계</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                     <c:set var="amount" value="${0}"/> 
+ 					<c:forEach items="${requestScope.soldoutList}" var="cart">
+                      <tbody name="productList">
+                        <tr class="g-brd-bottom g-brd-gray-light-v3">
+                          <td class="text-left g-py-25">
+				    
+				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
+                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
+                            </a>
+                            <div class="d-inline-block align-middle">
+                              <h4 class="h6 g-color-black">${cart.product.productName}</h4>
+                              <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
                                 <fmt:parseDate value="${cart.product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                 <li>등록일: <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/> </li>
                               </ul>
@@ -339,18 +450,20 @@
                             </div>
                           </td>
                           <td class="text-right g-color-black">
-                            <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber>${cart.product.price*pcount}</fmt:formatNumber> 원</span>  
                             <c:set var="amount" value="${amount+cart.product.price*pcount}"/>
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
                             <form name="requestForm" method="post" id="requestForm">
+                              <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
+                            
                               <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
                               <input type="hidden" value="${cart.product.productNo}" name="productNo"/>
                               
                             </form>
                             </span>
                           </td>                
-                       		<%-- <input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/> --%>
+                       		<input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/>
                         </c:forEach>
+                        </c:when>
                         </c:otherwise>
                         </c:choose>
 						 </tr>
@@ -360,11 +473,11 @@
                     </table>
                   </div>
                   <!-- End Products Block -->
-                </div>
+                </div> --%>
 
-                <div class="col-md-4 g-mb-30">
+                 <div class="col-md-4 g-mb-30">
                   <!-- Summary -->
-                  <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
+                  <%-- <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
                     <h4 class="h6 text-uppercase mb-3">계산서</h4>
 
                     <!-- Accordion -->
@@ -384,16 +497,16 @@
                     <span class="g-color-black" >예상 결제 금액</span>
                       <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount+3000}"/>원</span>
                     </div>
-                  </div>
+                  </div> --%>
                   <!-- End Summary -->
 					
-					
+				 <c:if test="${not empty requestScope.cartList || requestScope.cartList.size()!=0}">
 				  <form  name="requestForm" method="post" id="requestForm"> 
 	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
 					 <input type=hidden name="quantity" value=""><!-- quantity -->	
                   <button name="cartInfo" class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
                   </form>
-                  
+                  </c:if>
                   <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
 					
                  <!--  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
@@ -418,7 +531,7 @@
                     </div>
                   </div> -->
                   <!-- End Accordion -->
-                </div>
+                </div> 
               </div>
             </div>
             <!-- End Shopping Cart -->
@@ -571,13 +684,13 @@
                     </div>
                     <!-- End Accordion -->
 
-                    <div class="d-flex justify-content-between mb-2">
+                    <%-- <div class="d-flex justify-content-between mb-2">
                       <span class="g-color-black">배송비</span>
                       <span class="g-color-black g-font-weight-300"><fmt:formatNumber>3000</fmt:formatNumber></span>
-                    </div>
+                    </div> --%>
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">결제 금액</span>
-                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount+3000}"/>원</span>
+                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount}"/>원</span>
                     </div>
                  
                   </div>

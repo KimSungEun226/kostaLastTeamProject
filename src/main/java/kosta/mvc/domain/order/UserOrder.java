@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import kosta.mvc.domain.Member;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +27,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserOrder {
+@Builder
+public class UserOrder extends Order{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_order_no_seq")

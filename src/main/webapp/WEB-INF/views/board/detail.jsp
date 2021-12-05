@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="../../assets/css/custom.css">
 </head>
 
+
 <body>
   <main>
     <!-- Start BoardKind 게시판 카테고리 -->
@@ -91,19 +92,16 @@
             </ul>
           </div>
           <!-- End 작성자, 조회수, 날자 -->
+          <!-- Start 수정하기 버튼 test중 -->
+          <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+          <form  name="requestForm" method="post" id="requestForm"> 
+	            <input type=hidden name="boardNo" value="${board.boardNo}">
+	            <input type=button value="수정하기">
+          </form>
+			<!-- End 수정하기 버튼 test 중 -->
           <!--  Start 글내용 -->
             <div class="d-inline-block float-left g-width-60 g-color-black g-font-size-14 text-center g-pa-7 g-mt-40 mr-2">${requestScope.board.boardContent}</div>
           <!--  End 글내용 -->
-          <!-- Start 수정하기 버튼 test중 -->
-          <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
-			<form name="requestForm" method="post" id="requestForm">
-				<input type=hidden name="boardNo" value="${board.boardNo}">
-				<input type=hidden name="password" value="" id="password">
-				<input type=button value="수정하기" >
-				<input type=button value="삭제하기" >
-				<input type=button value="답변하기" >
-			</form>
-			<!-- End 수정하기 버튼 test 중 -->
           </div>
           
 
@@ -505,7 +503,7 @@
       <i class="hs-icon hs-icon-arrow-top"></i>
     </a>
   </main>
-
+			
   <div class="u-outer-spaces-helper"></div>
 
 
@@ -562,38 +560,37 @@
           $.HSCore.components.HSTabs.init('[role="tablist"]');
         }, 200);
       });
-      
-      //수정하기 버튼  test 중....
-      $(function(){
-	   //alert(1)
-	   $("input[value=수정하기]").click(function(){
-		   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
-		   
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/board/updateForm");
-		   $("#requestForm").submit();
-	   })
-	   
-	   
-	  /*  $("input[value=삭제하기]").click(function(){
-		   var pwd = prompt("비밀번호를 입력하세요.");
-		   if(pwd){
-	           $("#password").val(pwd);
-			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/board/delete");
-			   $("#requestForm").submit();
-		   }
-	   })
-	   
-	   $("input[value=답변하기]").click(function(){
-		  
-		   
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/reply/writeForm");
-		   $("#requestForm").submit();
-	   }) */
-	   
-   })
-      
-      //수정하기 버튼 test End
   </script>
+  
+  <script type="text/javascript">
+	$(function(){
+		   
+		   $("input[value=수정하기]").click(function(){
+			   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
+			   alert(1)
+			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/board/updateForm");
+			   $("#requestForm").submit();
+		   })
+		   
+		   
+		   /* $("input[value=삭제하기]").click(function(){
+			   var pwd = prompt("비밀번호를 입력하세요.");
+			   if(pwd){
+		           $("#password").val(pwd);
+				   $("#requestForm").attr("action", "${pageContext.request.contextPath}/board/delete");
+				   $("#requestForm").submit();
+			   }
+		   })
+		   
+		   $("input[value=답변하기]").click(function(){
+			  
+			   
+			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/reply/writeForm");
+			   $("#requestForm").submit();
+		   }) */
+		   
+	})
+</script>
 
 </body>
 

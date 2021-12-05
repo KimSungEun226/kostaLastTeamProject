@@ -45,6 +45,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board selectBy(Long boardNo, boolean state) {
+		
+		//조회수 
 		if(state) {
 			if(boardRepository.readnumUpdate(boardNo)==0) {
 				throw new RuntimeException(boardNo+"번호 오류로 조회수 증가 실패로 인해 검색할 수 없습니다.");
