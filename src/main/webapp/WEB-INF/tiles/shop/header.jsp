@@ -171,7 +171,7 @@
                      <!-- Account -->
 
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/selectCart">장바구니</a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/selectCart">장바구니</a>
                      </li>
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="page-signup-1.html">주문내역</a>

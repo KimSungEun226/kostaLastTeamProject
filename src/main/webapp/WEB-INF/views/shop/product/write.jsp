@@ -177,7 +177,7 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/insert" enctype="multipart/form-data">
+      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/admin/insert" enctype="multipart/form-data">
       
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">

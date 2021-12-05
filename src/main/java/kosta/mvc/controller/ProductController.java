@@ -105,7 +105,7 @@ public class ProductController {
 	    productService.insert(product);
 
 	    
-		return "redirect:";
+		return "redirect:/shop";
 	}
 	
 	

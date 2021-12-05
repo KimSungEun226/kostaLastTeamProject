@@ -18,10 +18,11 @@ import kosta.mvc.service.CartService;
 @Controller
 @RequestMapping("/shop")
 public class CartController {
-
+	
 	@Autowired
 	private CartService cartService;
 	
+	List<Cart> list;
 	/**
 	 * 아이디/식별번호에 해당하는 장바구니 상품 정보 조회
 	 *  : 상품이름, 가격, 이미지파일이름, 상품수량, 상품번호
@@ -31,16 +32,28 @@ public class CartController {
 		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
 		List<Cart> cartList = new ArrayList<Cart>();
-		if(principal!=null) cartList=cartService.selectCart(principal.getName());
-		else cartList=cartService.selectCart(session.getId());
+		List<Cart> soldoutList = new ArrayList<Cart>();
+		if(principal!=null) list=cartService.selectCart(principal.getName());
+		else list=cartService.selectCart(session.getId());
 		
-		for(Cart c : cartList) {
-			System.out.println(c.getProduct().getProductName());
-			System.out.println(c.getProduct().getProductImageList().get(0).getProductImageName());
+		for(Cart cart: list) {
+			if(cart.getProduct().getStock() < cart.getCartCount()) soldoutList.add(cart);
+			else cartList.add(cart);
 		}
 		
+		ModelAndView mv = new ModelAndView();
 		
-		return new ModelAndView("shop/user/cart","cartList", cartList);
+		//카트리스트가 둘 다 비어있으면 empty로!
+		if(cartList.size()==0 && soldoutList.size()==0) {
+			mv.setViewName("shop/user/emptyCart");
+		}
+		else {
+			mv.addObject("cartList", cartList);
+			mv.addObject("soldoutList", soldoutList);
+			mv.setViewName("shop/user/cart");
+		}
+		
+		return mv;
 
 	}
 	
@@ -73,14 +86,13 @@ public class CartController {
 	 * 장바구니에서 상품번호에 해당하는 상품 삭제
 	 * */
 	
-	  @RequestMapping("/deleteCart/{pno}") 
-	  public String deleteCart(HttpSession session, @PathVariable Long pno) {
-		  System.out.println("삭제할 상품번호 : " +pno);
+	  @RequestMapping("/deleteCart/{cartNo}") 
+	  public String deleteCart(@PathVariable Long cartNo) {
 		  //세션 아이디와 pno로 조회한 해당 장바구니에서 상품 삭제
-		  String id = session.getId();
-		  cartService.deleteCart(id, pno);
+		  System.out.println(cartNo);
+		  cartService.deleteCart(cartNo);
 		  
-	  return "redirect:/shop/selectCart"; 
+		  return "redirect:/shop/selectCart"; 
 	  }
 	 
 	  

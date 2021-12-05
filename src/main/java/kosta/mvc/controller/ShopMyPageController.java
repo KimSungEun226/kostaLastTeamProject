@@ -31,9 +31,9 @@ public class ShopMyPageController {
 		//아이디 가져오기
 		String id=principal.getName();
 		Member memberInfo=memberService.selectByMemberId(id);
-	    System.out.println(memberInfo.getMemberName());
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("shop/myPage/myAddress");
+		mv.setViewName("shop/login/myAddress");
 		mv.addObject("memberInfo", memberInfo);
 		
 		//db에 등록된 배송지 조회
@@ -53,7 +53,7 @@ public class ShopMyPageController {
 		int zip=Integer.parseInt(request.getParameter("zipInput"));
 		String phone=request.getParameter("phoneNumber");
 		
-		Address address= new Address(null, addr, zip, checkBasic, member);
+		Address address= new Address(null, addr, zip, checkBasic, member, receiver, phone);
 		addressService.insertAddr(address);
 		
 		return "redirect:/shop/login/myAddress";
@@ -65,6 +65,46 @@ public class ShopMyPageController {
 		addressService.deleteAddr(addressNo);
 		
 		return "redirect:/shop/login/myAddress";
+	}
+	
+	@RequestMapping("/addrEditForm/{addressNo}")
+	public ModelAndView editForm(@PathVariable Long addressNo, Principal principal) {
+		String id=principal.getName();
+		Member memberInfo=memberService.selectByMemberId(id);
+		Address dbAddr=addressService.findByAddrNo(addressNo);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/login/addrEditForm");
+		mv.addObject("memberInfo", memberInfo);
+		mv.addObject("dbAddr", dbAddr);
+		
+		return mv; 
+	}
+	
+
+	@RequestMapping("/updateAddr/{addressNo}")
+	public ModelAndView findByAddrNo(HttpServletRequest request, @PathVariable Long addressNo, Principal principal) {
+		String id=principal.getName();
+		int checkBasic = 0;
+		Member member=memberService.selectByMemberId(id);
+		Address address = addressService.findByAddrNo(addressNo);
+		String receiver=request.getParameter("nameInput");
+		String addr=request.getParameter("addrInput1");
+		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String phone=request.getParameter("phoneNumber");
+		
+		address.setCheckBasic(checkBasic);
+		address.setMember(member);
+		address.setMemberAddress(addr);
+		address.setMemberZip(zip);
+		address.setPhone(phone);
+		address.setReceiver(receiver);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/login/addrEditForm");
+		mv.addObject("dbAddr", address);
+		mv.addObject("memberInfo", member);
+		
+		return mv;
 	}
 	
 

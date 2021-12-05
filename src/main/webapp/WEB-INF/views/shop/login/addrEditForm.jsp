@@ -86,6 +86,7 @@
     	  
     	}       
     
+    
     </script>
     
     
@@ -108,11 +109,11 @@
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
                 </li>
                 <li class="list-inline-item g-mr-5">
-                  <li class="list-inline-item g-color-primary">마이페이지</a>
+                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop//user/myPage">마이페이지</a>
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
                 </li>
                 <li class="list-inline-item g-color-primary">
-                  <span>배송지관리</span>
+                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/login/myAddress">배송지관리</a>
                 </li>
               </ul>
             </div>
@@ -147,13 +148,23 @@
               <!-- Profile Settings List -->
               <ul class="list-unstyled mb-0">
                 <li class="g-pb-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="page-wallet-1.html">
+                  <a class="d-block align-middle active u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover g-color-primary--parent-active g-bg-gray-light-v5--active rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/myPage">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-059 u-line-icon-pro"></i></span>
-                    Your Wallet
+                    내정보
                   </a>
                 </li>
-                
-                
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/selectCart">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-114 u-line-icon-pro"></i></span>
+                    장바구니
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/front?key=customer&methodName=selectOrderDetail">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
+                    주문내역
+                  </a>
+                </li>
               </ul>
               <!-- End Profile Settings List -->
             </aside>
@@ -165,17 +176,11 @@
 
            <div class="col-md-6 g-mb-30">
               
-          <c:choose>
-          <c:when test="${empty addrList}">
-          	등록한 배송지 정보가 없습니다.
-          </c:when>
-		  <c:otherwise>
-		  	<c:forEach items="${addrList}" var="addr" varStatus="status">
                 <!-- Addresses -->
                 <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30">
                   <div class="g-mb-50">
-                    <h3 class="h5 mb-3">주소 ${status.count}</h3>
-                    <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${memberInfo.memberName}</span>
+                    <h3 class="h5 mb-3">수정할 주소</h3>
+                    <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${dbAddr.receiver}</span>
 
                     <!-- Address -->
                     <address class="media">
@@ -184,9 +189,9 @@
                       </div>
 
                       <div class="media-body g-color-text">
-                        ${addr.memberZip}
+                        우편번호: ${dbAddr.memberZip}
                         <br>
-                        ${addr.memberAddress}
+                        ${dbAddr.memberAddress}
                         <br>
                       </div>
                     </address>
@@ -198,7 +203,7 @@
                         <span class="u-icon-v1 g-color-gray-dark-v4"><i class="icon-electronics-005 u-line-icon-pro"></i></span>
                       </div>
                       <div class="media-body g-color-text">
-                        ${memberInfo.memberPhone}
+                        ${dbAddr.phone}
                       </div>
                     </div>
                     <!-- End Phone -->
@@ -206,28 +211,21 @@
 
                   <!-- Edit/Delete -->
                   <ul class="d-flex align-items-center list-inline mb-0">
+
                     <li class="list-inline-item">
-                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="#" title="수정"
+                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/login/deleteAddr/${dbAddr.addressNo}" title="삭제"
                          data-toggle="tooltip"
                          data-placement="top">
-                        <i class="icon-finance-023 u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
-                    <li class="list-inline-item">
-                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/login/deleteAddr/${addr.addressNo}" title="삭제"
-                         data-toggle="tooltip"
-                         data-placement="top">
-                        <i class="icon-hotel-restaurant-214 u-line-icon-pro"></i>
+                        <i class="icon-hotel-restaurant-214 u-line-icon-pro"></i>삭제
                       </a>
                     </li>
                     
                     
-                    <c:if test="${addr.checkBasic}==0">
+                    <c:if test="${addr.checkBasic==0}">
                     <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
                     <li class="list-inline-item">
                       <label class="form-check-inline u-check d-block u-link-v5 g-color-text g-pl-30 mb-0">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" >
                         <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
                           <i class="fa" data-check-icon="&#xf00c"></i>
                         </span>
@@ -241,9 +239,7 @@
                 </div>
                 <p>
                 <!-- End Addresses -->
-                </c:forEach>
-				</c:otherwise>
-              </c:choose>
+
               </div>
 
             </div>              
@@ -251,34 +247,34 @@
 
             <!-- Contact Form -->
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
-              <h3 class="h5 mb-3"><b>배송지 추가</h3>
+              <h3 class="h5 mb-3"><b>배송지 수정</h3>
 
-              <form name="check_form" action="${pageContext.request.contextPath}/shop/login/insertAddr">
+              <form name="check_form" action="${pageContext.request.contextPath}/shop/login/updateAddr/${dbAddr.addressNo}">
                 <div class="row">
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">받는 분</label>
-                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="이름">
+                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.receiver}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">우편번호</label>
-                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="10101">
+                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberZip}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">주소</label>
-                    <input name="addrInput1" id="addrInput1" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="경기도 성남시 XX구 XX길">
+                    <input name="addrInput1" id="addrInput1" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberAddress}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">연락처</label>
-                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="010-XXXX-XXXX">
+                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.phone}">
                   </div>
                 </div>
             </div>
             <!-- End Contact Form -->
 			
-            <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()">주소목록에 추가하기</button>
+            <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()">주소 수정하기</button>
           	</form>
           </div>
           <!-- Addresses -->

@@ -44,6 +44,8 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
+    
 </head>
 <body>
   <header>
