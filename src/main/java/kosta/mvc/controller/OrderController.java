@@ -149,7 +149,7 @@ public class OrderController {
 	public String nonUserOrderList(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone, Model model) {
 		System.out.println("컨트롤러 진입");
 		NonuserOrder nonuserOrder = orderService.selectNonuserOrder(nonuserOrderNo, receiverName, receiverPhone);
-		System.out.println(nonuserOrder);
+		System.out.println(nonuserOrder.getNonuserOrderDetailList());
 		model.addAttribute("order", nonuserOrder);
 		model.addAttribute("orderDetail", nonuserOrder.getNonuserOrderDetailList());
 		return "shop/nonUser/orderList";

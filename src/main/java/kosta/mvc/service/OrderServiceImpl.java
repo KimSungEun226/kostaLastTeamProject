@@ -138,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
 	public NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone) {
 		System.out.println("service 진입");
 		NonuserOrder result = nonuserOrderRepository.findByNonuserOrderNoAndReceiverNameAndReceiverPhone(nonuserOrderNo, receiverName, receiverPhone);
-		System.out.println(result);
+		System.out.println("service : " + result);
 		return result;
 	}
 	

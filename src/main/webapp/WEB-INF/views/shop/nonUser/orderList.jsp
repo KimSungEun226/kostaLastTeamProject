@@ -64,9 +64,74 @@
             
             
             
-            ${order}
-            ${orderDetail}
+            
+            <c:forEach items="${orderDetail}" var="orderdetail">
+            
+            <div class="g-pa-20">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="mb-4">
+                      <h3 class="h5 mb-1">주문시각 : ${order.orderDate}</h3>
+                    </div>
 
+                    <div class="row">
+                      <div class="col-4 col-sm-3 g-mb-30">
+                        <img class="img-fluid g-width-120 g-height-120"  src="${pageContext.request.contextPath}/save/${orderdetail.product.productImageList[0].productImageName}" alt="Image Description">
+                      </div>
+
+                      <div class="col-8 col-sm-9 g-mb-30">
+                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">${orderdetail.product.productName}</a></h4>
+                        <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
+                        <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
+                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
+                      </div>
+                    </div>
+                  </div>
+                    
+              <c:choose>      
+                <c:when test="${orderdetail.orderStatus==0}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송준비중
+                     </a>
+                     
+                    
+                  </div>
+                     
+                  </c:when>
+                  
+                
+                <c:when test="${orderdetail.orderStatus==1}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송중
+                     </a>
+                  </div>
+                     
+                  </c:when>
+                
+                  
+                 <c:when test="${orderdetail.orderStatus==2}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송완료
+                     </a>
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     리뷰작성
+                     </a>  
+                     
+                  </div>
+                     
+                  </c:when> 
+                  
+                </c:choose>
+                    
+                    
+                </div>
+              </div>
+
+            </c:forEach>
+               
               <!-- End Order Content -->
             </div>
             <!-- End Order Block -->
