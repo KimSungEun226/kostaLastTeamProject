@@ -100,7 +100,7 @@
 		            content.focus();
 		            return false;
 		        }
-		    	document.getElementById("productContent").value = $('#summernote').summernote('code');
+		    	document.getElementById("boardContent").value = $('#summernote').summernote('code');
 		    	document.boardUpdate_form.submit(); //유효성 검사의 포인트 
 	    }
 	
