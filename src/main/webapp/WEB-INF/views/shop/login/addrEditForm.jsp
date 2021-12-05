@@ -47,41 +47,48 @@
     //유효성체크
     function form_check() {
     	
-    	  //변수에 담아주기
-    	  var memberName = document.getElementById("nameInput");
-    	  var memberAddr = document.getElementById("addrInput1");
-    	  var memberZip = document.getElementById("zipInput");
-    	  var memberContact = document.getElementById("contactInput");
+    	//변수에 담아주기
+  	  var memberName = document.getElementById("nameInput");
+  	  var memberZip = document.getElementById("zipInput");
+  	  var memberAddr = document.getElementById("addrInput2");
+  	  var memberDetailAddr = document.getElementById("detailAddrInput");
+  	  var memberContact = document.getElementById("contactInput");
 
-    	  var reg_name = /^[가-힣]+$/; //한글만
-    	  var reg_num = /^[0-9]*$/; // 숫자만 
+  	  var reg_name = /^[가-힣]+$/; //한글만
+  	  var reg_num = /^[0-9]*$/; // 숫자만 
 
-          var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
-    	  
-    	  
-    	  if (memberName.value == "" || !reg_name.test(memberName.value) || memberName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-    	    alert("이름을 확인하세요.");
-    	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+        var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+  	  
+  	  
+  	  if (memberName.value == "" || !reg_name.test(memberName.value) || memberName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+  	    alert("이름을 확인하세요.");
+  	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+  	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+  	  };
+
+
+    	  if (memberDetailAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+      	    alert("상세 주소를 입력하세요.");
+      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+        };
+        
+        if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("주소를 입력하세요.");
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+        };
+        
+        if (memberZip.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("우편번호를 입력하세요.");
     	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
     	  };
 
-
-      	  if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-        	    alert("주소를 입력하세요.");
-        	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-          };
-          
-          if (memberZip.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-      	    alert("우편번호를 입력하세요.");
-      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-      	  };
-
-      	  if (memberContact.value == "" || !reg_contact.test(memberContact.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-      	    alert("전화번호를 확인하세요.");
-      	    memberContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
-      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-      	  };
-      	  
+    	  if (memberContact.value == "" || !reg_contact.test(memberContact.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("전화번호를 확인하세요.");
+    	    memberContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+    	  };
+    	  
+    	  
     	  //입력 값 전송
     	  document.check_form.submit(); //유효성 검사의 포인트 
     	  
