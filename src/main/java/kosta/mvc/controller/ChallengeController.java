@@ -1,24 +1,29 @@
 package kosta.mvc.controller;
 
+import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.domain.Info;
+import kosta.mvc.domain.Member;
 import kosta.mvc.service.BoardService;
 import kosta.mvc.service.ChallengeService;
+import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -29,7 +34,8 @@ public class ChallengeController {
 	private final ChallengeService challengeService;
 	  
 	private final BoardService boardService;
-	 
+	
+	private final MemberService memberService; 
 	 
 	
 	/**
@@ -96,53 +102,74 @@ public class ChallengeController {
 	 * 등록하기
 	 */
 	@RequestMapping("/insert")
-	public String insert(Board board, int challengeCategory) {
-		
-		  board.getBoardContent().replace("<", "&lt;");
-		  Long memberNo = (long)2;
-		  //Long memberNo = board.getMember().getMemberNo();
+	public String insert(HttpSession session, Principal principal, Board board, int challengeCategory) {		
+		  //System.out.println("session.getId()"+session.getId());
+		  System.out.println("principle.getName() : "+principal.getName()); //hesu0 : memberId
+		  
+		  
+		  //로그인한 memberId로 member객체가져오기 
+		  Member member = memberService.selectByMemberId(principal.getName());
+		  //Info info = member.getInfo();
+		  //System.out.println("info : "+info);
 		  board.setBoardKind(5);
-		  System.out.println("memberNo : "+memberNo);
-		  
-		  //1. 챌린지 진행상태가 진행중인것도 확인해야함!!!!!!!!!!!!
-		  //2. boardNo등 잘 들어갔는지 확인하기.
-		  
+
 		  System.out.println("진행중인 챌린지가 있는지 조회");
 		  //진행중인 challenge조회 
 		  Challenge ischallenge =
-				  challengeService.selectChallenge(challengeCategory, memberNo);
+				  challengeService.selectChallenge(challengeCategory, member.getMemberNo());
 		  System.out.println("진행중인 챌린지는 : "+ischallenge);
+
+		  //진행중인 챌린지가 있다.
 		  if(ischallenge!=null) { 
-			  //진행중인 챌린지가 있다.			  
+
+			  //오늘 날짜구하기
+			  LocalDate today = LocalDate.now();
+			  System.out.println("today : "+today);
 			  
-			  //등록일 - 하루당 cnt++는 한번만 
-			  int challengeCnt=ischallenge.getChallengeCnt()+1;
+			  //회원번호에 해당하는 boardList
+			  List<Board> boardList = member.getBoardList();
 			  
-			  System.out.println("challengeCnt : "+ ischallenge.getChallengeCnt());
+			  //오늘 해당 챌린지의 처음 게시물을 올렸을때 
+			  for(Board b : boardList) {				  
+				  if(!(b.getChallenge().getChallengeNo() == ischallenge.getChallengeNo() && b.getBoardRegdate() == today)) {
+					  //cnt증가
+					  int challengeCnt=ischallenge.getChallengeCnt()+1;
+					  ischallenge.setChallengeCnt(challengeCnt);
+					  
+					  //경험치 +10추가
+//					  if(ischallenge.getChallengeCnt()<29) {
+//						  int memberExp = member.getInfo().getMemberExp()+10;
+//						  info.setMemberExp(memberExp);
+//					  }
+//					  //경험치 +50추가
+//					  if(ischallenge.getChallengeCnt()==29) {
+//						  int memberExp = member.getInfo().getMemberExp()+50; 
+//						  //챌린지 성공으로 상태바꾸기  
+//						  ischallenge.setChallengeState(2);
+//						  info.setMemberExp(memberExp);
+//					  }
+					  
+				  }
+			  }
 			  
-			  ischallenge.setChallengeCnt(challengeCnt);
-			  System.out.println("challengeCnt +1 : "+ischallenge.getChallengeCnt());
-			  
-			  System.out.println("board에 진행중인 challenge넣기");
+			  //member.setInfo(info);
+			  board.setMember(member);
 			  board.setChallenge(ischallenge);
-			  System.out.println("board에 진행중인 challenge넣기 끝");
-			  
 			  boardService.insert(board);
-			  
-			  
+			  		  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
 			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
+			  //int memberExp = info.getMemberExp()+10;
+			  //info.setMemberExp(memberExp);
+			  
+			  //member.setInfo(info);
+			  challenge.setMember(member);
 			  challengeService.insert(challenge);
+			  board.setMember(member);
 			  board.setChallenge(challenge);
 			  boardService.insert(board);
-		  }
-		  System.out.println("여기까지 되었나...?");
-		  Long boardNo = board.getBoardNo();
-		  System.out.println("board번호 : "+boardNo); 
-		  
-		  //챌린지 정보도 보내야하나....? or 리스트로 보내자 
-		  
+		  }  
 		return "board/challenge/detail";
 	}
 	
