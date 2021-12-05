@@ -46,7 +46,7 @@
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
                     <!-- 홈트레이닝 - 전체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">전체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/6">전체</a>
                     </li><!-- End 홈트레이닝 - 전체 -->
 
                     <!-- 홈트레이닝 - 전신 -->
