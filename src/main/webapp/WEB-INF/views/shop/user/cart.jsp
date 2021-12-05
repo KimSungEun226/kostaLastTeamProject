@@ -60,7 +60,7 @@
       var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
 	  
 	  
-/* 	  if (customerName.value == "" || !reg_name.test(customerName.value) || customerName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+ 	  if (customerName.value == "" || !reg_name.test(customerName.value) || customerName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
 	    alert("이름을 확인하세요.");
 	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
 	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
@@ -88,7 +88,7 @@
  	    alert("전화번호를 확인하세요.");
  	    customerContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
  	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
- 	  }; */
+ 	  }; 
  	  
  	  
 	

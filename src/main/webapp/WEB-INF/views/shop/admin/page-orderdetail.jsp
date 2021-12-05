@@ -5,7 +5,19 @@
 <html lang="en">
   <head>
     <!-- Title -->
-
+<script type="text/javascript">
+      $(document).ready(function(){
+    	  
+    	  $("#changeStatus").click(function(){
+    		  
+    		  if(confirm("배송 상태를 변경하시겠습니까?")) {
+    			  location.href = "${pageContext.request.contextPath}/shop/admin/changeStatus/user?orderDetailNo="+$(this).attr("name");
+    		  }else{
+    		  }
+    		  
+    	  });
+      });
+    </script>
   </head>
 
   <body>
@@ -68,74 +80,98 @@
 				<div class="mb-5">
               		<h3 class="h6 d-inline-block">주문 상세 내역 : ${list.size()}개</h3>
             	</div>
-            	
-				<c:forEach items="${requestScope.list}" var="orderDetail">
-			
-            	
-            	<!-- Product Block -->
-            	<div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
-              		<header class="g-bg-gray-light-v5 g-pa-5">
-                		<div class="row">
-                  		
-                  		<div class="col-4 col-sm-3 g-mb-30">
-		                        <img class="img-fluid g-width-100 g-height-100 g-pa-2" src="${pageContext.request.contextPath}/save/${orderDetail.product.productImageList[0].productImageName}" alt="Image Description">
-		                 </div>
+            
+            
+            <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
+				<form>
+				
+				<c:forEach items="${requestScope.list}" var="orderdetail">
+				<div class="g-pa-20">
+                <div class="row">
+                  <div class="col-md-8">
+                    
 
-                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
-                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">상품명</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${orderDetail.product.productName} </span>
-                  		</div>
+                    <div class="row">
+                      <div class="col-4 col-sm-3 g-mb-30">
+                        <img class="img-fluid g-width-120 g-height-120"  src="${pageContext.request.contextPath}/save/${orderdetail.product.productImageList[0].productImageName}" alt="Image Description">
+                      </div>
 
-                  		
-                  		
-                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
-                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">개수</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${orderDetail.productCount} </span>
-                  		</div>
-						
-                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
-                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문상태</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${orderDetail.orderStatus} </span>
-                  		</div>						
-						
-                  		
-                		</div>
-              		</header>
-
-              		<!-- Product Content -->
-              		<div class="g-pa-20">
-               		 <div class="row">
-                 		 <div class="col-md-8">
-           
-							<!--  
-		                    <div class="row">
-		                      <div class="col-4 col-sm-3 g-mb-30">
-		                        <img class="img-fluid" src="assets/img-temp/150x150/img9.jpg" alt="Image Description">
-		                      </div>
-							-->
-		
-							<!-- 버튼 비활성화 
-		                      <div class="col-8 col-sm-9 g-mb-30">
-		                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/front?key=item&methodName=selectDetail&itemNo=${itemDto.itemNo}">${itemDto.itemName}</a></h4>
-		                        <span class="d-block g-color-gray-dark-v4 g-font-size-13 mb-2">판매자 정보: ${itemDTO.sellerNo}</span>
-		                        <span class="d-block g-color-lightred mb-2">${itemDto.itemPrice}</span>
-		                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/front?key=order&methodName=selectOrderDetailByItemNo&itemNo=${itemDto.itemNo}">판매 내역 보기</a>
-		                      </div>
-		                      -->
-		                      
-		                     
-		                    </div>
-	                  </div>
-	
-					<!--  상품 삭제 (보류) 
-	                  <div class="col-md-4">
-	                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">상품 삭제하기</a>
-	                  </div>
-	                 -->
-	                </div>
-	              </div>
-	              <!-- End Product Content -->
+                      <div class="col-8 col-sm-9 g-mb-30">
+                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/0">${orderdetail.product.productName}</a></h4>
+                        <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
+                        <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
+                        <span class="d-block mb-2">재고량 : ${orderdetail.product.stock}</span>
+                        <span class="d-block mb-2">주문상세번호 : ${orderdetail.userOrderDetailNo}</span>
+                        
+                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/0">상품 보기</a>
+                      </div>
+                    </div>
+                  </div>
+                 
+                  
+                <!-- <div class="col-md-4">
+                <select id="cateCode" name="cateCode" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+	                      <option value="0">카테고리</option>
+	                      <option value="1">닭가슴살</option>
+	                      <option value="2">샐러드</option>
+	                      <option value="3">프로틴</option>
+		          </select> 
+                </div> -->
+                    
+              <c:choose>      
+              
+                
+              
+                <c:when test="${orderdetail.orderStatus==0}">
+                  <div class="col-md-4">
+                    <a id="changeStatus" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25">
+                     배송준비중
+                     </a>
+                     
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     주문 취소
+                     </a> 
+                    
+                  </div>
+                     
+                  </c:when>
+                  
+                
+                <c:when test="${orderdetail.orderStatus==1}">
+                  <div class="col-md-4">
+                    <a id="changeStatus" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" value="123">
+                     배송중
+                     </a>
+                     
+                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     주문 취소
+                     </a> 
+                     
+                  </div>
+                     
+                  </c:when>
+                
+                  
+                 <c:when test="${orderdetail.orderStatus==2}">
+                  <div class="col-md-4">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     배송완료
+                     </a>
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                     리뷰작성
+                     </a>  
+                     
+                  </div>
+                     
+                  </c:when> 
+                  
+                </c:choose>
+                    
+                    
+                </div>
+              </div>
             </c:forEach>
+            </form>
             </c:otherwise>
 			</c:choose>
 			</div>

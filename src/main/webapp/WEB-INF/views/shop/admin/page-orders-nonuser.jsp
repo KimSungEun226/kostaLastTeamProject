@@ -1,33 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Title -->
+    <title>E-commerce Orders Page | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     
   </head>
 
   <body>
     <main>
-      <!-- Header -->
-	  
+      
+
       <!-- Breadcrumbs -->
       <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
         <div class="container">
           <div class="d-sm-flex text-center">
             <div class="align-self-center">
-              <h1 class="h3 mb-0"><b>주문 내역</b></h1>
+              <h1 class="h3 mb-0"><b>판매 정보</b></h1>
             </div>
 
             <div class="align-self-center ml-auto">
               <ul class="u-list-inline">
                 <li class="list-inline-item g-mr-5">
-                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop">이짐샵</a>
+                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/main">이짐샵</a>
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
                 </li>
                 <li class="list-inline-item g-color-primary">
-                  <span>주문 내역</span>
+                  <span>관리자 주문내역</span>
                 </li>
               </ul>
             </div>
@@ -41,107 +50,104 @@
           <!-- Profile Settings -->
           
           <!-- End Profile Settings -->
- 
-          <!-- Orders -->
-          <div class="col-lg-9 g-mb-50">
-            
 
+
+          <!-- Products -->
+          <div class="col-lg-9 g-mb-50">
+
+			
             <!-- Links -->
             <ul class="list-inline g-brd-bottom--sm g-brd-gray-light-v3 mb-5">
               <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
-                <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="page-orders-1.html">주문 목록</a>
+                <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="page-orders-1.html">판매 목록</a>
               </li>
             </ul>
+            
             <!-- End Links -->
+			<c:choose>
+				<c:when test="${empty requestScope.list}">
+					<div id="accordion-12-1-heading-01" class="u-accordion__header g-color-gray-dark-v4 g-font-weight-500 g-font-size-16 g-pa-0" role="tab">
+                         주문 내역이 없습니다.
+            		</div>
+				</c:when>
 
-            <!-- <div class="mb-5">
-              <h3 class="h6 d-inline-block">주문 중인 상품 : 2 개</h3>
-            </div> -->
 
-            <!-- Order Block -->
-            
-            <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
-            
-            <c:forEach items="${list}" var="order">
-            
-            <c:forEach items="${order.userOrderDetailList}" var="orderdetail">
-            
-            <div class="g-pa-20">
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="mb-4">
-                      <h3 class="h5 mb-1">주문시각 : ${order.orderDate}</h3>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-4 col-sm-3 g-mb-30">
-                        <img class="img-fluid g-width-120 g-height-120"  src="${pageContext.request.contextPath}/save/${orderdetail.product.productImageList[0].productImageName}" alt="Image Description">
-                      </div>
+		<c:otherwise>
+		<div class="mb-5">
+             <h3 class="h6 d-inline-block">주문 내역 개수 : ${list.content.size()} 개</h3>
+        </div>
+            	
+            	<!-- Product Block -->
+       	<div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
+            	
+               <c:forEach items="${requestScope.list.content}" var="order">
+            	
+              		<header class="g-bg-gray-light-v5 g-pa-20">
+                		<div class="row">
+                  		
+                  		
 
-                      <div class="col-8 col-sm-9 g-mb-30">
-                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">${orderdetail.product.productName}</a></h4>
-                        <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
-                        <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
-                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
-                      </div>
-                    </div>
-                  </div>
-                    
-              <c:choose>      
-                <c:when test="${orderdetail.orderStatus==0}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송준비중
-                     </a>
-                     
-                    
-                  </div>
-                     
-                  </c:when>
-                  
-                
-                <c:when test="${orderdetail.orderStatus==1}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송중
-                     </a>
-                  </div>
-                     
-                  </c:when>
-                
-                  
-                 <c:when test="${orderdetail.orderStatus==2}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송완료
-                     </a>
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     리뷰작성
-                     </a>  
-                     
-                  </div>
-                     
-                  </c:when> 
-                  
-                </c:choose>
-                    
-                    
-                </div>
-              </div>
-            
-            </c:forEach>
-            
-            
-            </c:forEach>
-            
-               
-              <!-- End Order Content -->
-            </div>
-            <!-- End Order Block -->
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문번호</h4>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">
+                              ${order.nonuserOrderNo}
+                    		</span>
+                  		</div>
+                  		
+                  		
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문 일자</h4>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${order.orderDate}</span>
+                  		</div>
 
-            <!-- Order Block -->
-         
-            <!-- End Order Block -->
+						<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문자 명</h4>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${order.receiverName}</span>
+                  		</div>
+                  		
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">연락처</h4>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${order.receiverPhone}</span>
+                  		</div>
+						
+                  		<div class="col-sm-3 col-md-4 ml-auto text-sm-right">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">배송지 : ${order.orderAddr} </h4>
+                  		</div>
+                		</div>
+              		</header>
+
+              		<!-- Product Content -->
+              		<div class="g-pa-20">
+               		 <div class="row">
+                 		 <div class="col-md-8">
+           
+	
+		                    <div class="row">
+		                      
+		                      
+		                      <div class="col-8 col-sm-9 g-mb-30">
+		                        
+		                        </span>
+		                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/admin/orderDetail/nonuser/${order.nonuserOrderNo}">주문 상세 내역 보기</a>
+		                      </div>
+		                    </div>
+	                  </div>
+	
+	                </div>
+	              </div>
+	              <!-- End Product Content -->
+            </c:forEach> 
+            </c:otherwise>
+			</c:choose>
+			</div>
+			<!-- End Product Block -->
+			
+			</div> 
+			</div>
+            
+
+
 
             <!-- Pagination -->
             
@@ -149,10 +155,9 @@
           </div>
           <!-- Orders -->
         </div>
-      </div>
 
 
-
+		 
       <!-- Footer -->
 
       <a class="js-go-to u-go-to-v2" href="#"
@@ -166,6 +171,7 @@
          data-show-effect="zoomIn">
         <i class="hs-icon hs-icon-arrow-top"></i>
       </a>
+      
     </main>
 
     <div class="u-outer-spaces-helper"></div>
@@ -226,8 +232,6 @@
         $.HSCore.components.HSGoTo.init('.js-go-to');
       });
     </script>
-    <script type="text/javascript">
-        document.getElementById("name").innerHTML = "<b>${sessionScope.customerDTO.customerName} 님</b>"
-    </script>
+   
   </body>
 </html>

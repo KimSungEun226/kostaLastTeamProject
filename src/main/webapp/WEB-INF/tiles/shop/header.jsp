@@ -217,12 +217,30 @@
                    <!-- End Mega Menu -->
                  </li> 
                  
+                 
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
+                     data-animation-in="fadeIn"
+                     data-animation-out="fadeOut"
+                     data-position="right">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/orderList/nonuser" aria-haspopup="true" aria-expanded="false">
+                     <b>(비)주문내역조회</b>
+                   </a>
+
+                   <!-- Mega Menu -->
+                   
+                   <!-- End Mega Menu -->
+                 </li> 
+                 
                  </sec:authorize>
                  <!-- End Pages - Submenu -->
                  
 			    <sec:authorize access="isAnonymous()">
                  <li class="nav-item g-ml-10--lg">
                    <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/login">로그인</a>
+                 </li>
+                 
+                 <li class="nav-item g-ml-10--lg">
+                   <a class="nav-link text-uppercase g-color-primary--hover g-pl-25 g-pr-0 g-py-20" href="${pageContext.request.contextPath}/shop/login">주문조회</a>
                  </li>
                 </sec:authorize>
                 

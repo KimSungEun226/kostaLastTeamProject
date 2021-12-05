@@ -107,6 +107,29 @@ public class OrderServiceImpl implements OrderService {
 	public NonuserOrder selectNonuserOrder(Long orderNo) {
 		return nonuserOrderRepository.findById(orderNo).orElse(null);
 	}
+
+	@Override
+	public UserOrderDetail selectUserOrderDetail(Long orderDetailNo) {
+		return userOrderDetailRepository.findById(orderDetailNo).orElse(null);
+	}
+
+	@Override
+	public NonuserOrderDetail selectNonuserOrderDetail(Long orderDetailNo) {
+		return nonuserOrderDetailRepository.findById(orderDetailNo).orElse(null);
+
+	}
+
+	@Override
+	public int changeUserOrderStatus(Long orderDetailNo) {
+		int result = userOrderDetailRepository.statusUpdate(orderDetailNo);
+		return result;
+	}
+
+	@Override
+	public int changeNonuserOrderStatus(Long orderDetailNo) {
+		int result = nonuserOrderDetailRepository.statusUpdate(orderDetailNo);
+		return result;
+	}
 	
 	
 

@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 
 import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.order.NonuserOrder;
+import kosta.mvc.domain.order.NonuserOrderDetail;
 import kosta.mvc.domain.order.UserOrder;
+import kosta.mvc.domain.order.UserOrderDetail;
 
 public interface OrderService {
 	
@@ -41,4 +43,26 @@ public interface OrderService {
 	 * 주문번호로 비회원주문 리턴
 	 * */
 	NonuserOrder selectNonuserOrder(Long orderNo);
+	
+	/**
+	 * 주문상세번호로 회원 주문 상세 리턴
+	 * */
+	UserOrderDetail selectUserOrderDetail(Long orderDetailNo);
+	
+	/**
+	 * 주문상세번호로 비회원 주문 상세 리턴
+	 * */
+	NonuserOrderDetail selectNonuserOrderDetail(Long orderDetailNo);
+	
+	
+	/**
+	 * 회원의 주문상세번호를 입력받으면 상태에 1을 더한다.
+	 * */
+	int changeUserOrderStatus(Long orderDetailNo);
+	
+	/**
+	 * 비회원의 주문상세번호를 입력받으면 상태에 1을 더한다.
+	 * */
+	int changeNonuserOrderStatus(Long orderDetailNo);
+	
 }

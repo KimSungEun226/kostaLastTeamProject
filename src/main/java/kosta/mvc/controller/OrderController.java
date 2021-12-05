@@ -23,7 +23,6 @@ import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.order.NonuserOrder;
 import kosta.mvc.domain.order.NonuserOrderDetail;
-import kosta.mvc.domain.order.Order;
 import kosta.mvc.domain.order.OrderDetail;
 import kosta.mvc.domain.order.UserOrder;
 import kosta.mvc.domain.order.UserOrderDetail;
@@ -55,6 +54,7 @@ public class OrderController {
     
     
     
+    //결제하기
 	@ResponseBody
 	@RequestMapping("/pay")
 	public Long payAjax(Principal principal, HttpSession session, String addr, String contact, String name, String imp_uid) throws Exception {
@@ -102,6 +102,7 @@ public class OrderController {
 			userOrder.setUserOrderDetailList(userOrderDetailList);
 			
 			userOrder = orderService.insertUserOrder(userOrder, deleteCartList);
+			m.getOrderList().add(userOrder);
 			result = userOrder.getUserOrderNo();
 		}
 		
@@ -109,6 +110,7 @@ public class OrderController {
 		return result;
 	}
 	
+	//결제완료 페이지로 이동
 	@RequestMapping("/paysuccess")
 	public String success(Long orderNo, Principal principal, Model model) {
 		//System.out.println("orderNo = " + orderNo);
@@ -118,6 +120,8 @@ public class OrderController {
 		return "shop/user/paysuccess";
 	}
 	
+	
+	//유저의 orderList를 보여준다.
 	@RequestMapping("/user/orderList")
 	public String orderList(Principal principal, Model model) {
 		
@@ -151,7 +155,7 @@ public class OrderController {
 			Pageable pageable = PageRequest.of(nowPage-1,10, Direction.DESC, "orderDate" );
 			Page<NonuserOrder> orderList = orderService.selectNonuserOrder(pageable);
 			mv.addObject("list", orderList);
-			mv.setViewName("shop/admin/page-orders");
+			mv.setViewName("shop/admin/page-orders-nonuser");
 		}
 		
 		return mv;
@@ -169,10 +173,41 @@ public class OrderController {
 		else {
 			NonuserOrder order = orderService.selectNonuserOrder(orderNo);
 			mv.addObject("list", order.getNonuserOrderDetailList());
-			mv.setViewName("shop/admin/page-orderdetail");
+			mv.setViewName("shop/admin/page-orderdetail-nonuser");
 		}
 		
 		return mv;
 	}
 	
+	//관리자가 회원의 배송상태를 변경한다.
+	@RequestMapping("/admin/changeStatus/{user}")
+	public ModelAndView changeStatus(Long orderDetailNo, @PathVariable String user) {
+		
+		ModelAndView mv = new ModelAndView();
+		System.out.println("안녕");
+		if ("user".equals(user)) {
+			UserOrderDetail detail = orderService.selectUserOrderDetail(orderDetailNo);
+			int result = orderService.changeUserOrderStatus(orderDetailNo);
+			if (result ==0) throw new RuntimeException("주문 상세 상태값 변경을 실패했습니다.");
+			
+			mv.setViewName("redirect:/shop/admin/orderDetail/user/"+detail.getUserOrder().getUserOrderNo());
+			
+			
+			return mv;
+		}
+		else {
+			NonuserOrderDetail detail = orderService.selectNonuserOrderDetail(orderDetailNo);
+			int result = orderService.changeNonuserOrderStatus(orderDetailNo);
+			if (result ==0) throw new RuntimeException("주문 상세 상태값 변경을 실패했습니다.");
+			
+			mv.setViewName("redirect:/shop/admin/orderDetail/nonuser/"+detail.getNonuserOrder().getNonuserOrderNo());
+
+			return mv;
+		}
+	}
+	
+	/**
+	 * 비회원 주문조회
+	 * */
+	//@RequestMapping("/shop")
 }
