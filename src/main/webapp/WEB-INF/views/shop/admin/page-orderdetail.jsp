@@ -5,17 +5,11 @@
 <html lang="en">
   <head>
     <!-- Title -->
-<script type="text/javascript">
-      $(document).ready(function(){
-    	  
-    	  $("#changeStatus").click(function(){
-    		  
-    		  if(confirm("배송 상태를 변경하시겠습니까?")) {
-    			  location.href = "${pageContext.request.contextPath}/shop/admin/changeStatus/user?orderDetailNo="+$(this).attr("name");
-    		  }else{
-    		  }
-    		  
-    	  });
+    <script type="text/javascript">
+      $(document).on("click","#changeStatus",function(){
+    	  if(confirm("배송 상태를 변경하시겠습니까?")) {
+    		location.href = "${pageContext.request.contextPath}/shop/admin/changeStatus/user?orderDetailNo="+$(this).attr("name");
+    	  }	  
       });
     </script>
   </head>
@@ -127,10 +121,6 @@
                     <a id="changeStatus" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25">
                      배송준비중
                      </a>
-                     
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     주문 취소
-                     </a> 
                     
                   </div>
                      
@@ -143,9 +133,7 @@
                      배송중
                      </a>
                      
-                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     주문 취소
-                     </a> 
+                    
                      
                   </div>
                      
@@ -157,9 +145,7 @@
                     <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      배송완료
                      </a>
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     리뷰작성
-                     </a>  
+                    
                      
                   </div>
                      

@@ -545,7 +545,12 @@
                 <div class="row">
                    <div class="col-sm-6 g-mb-20"> 
                    <label class="d-block g-color-gray-dark-v2 g-font-size-15">
-                    <input type ="checkbox" id="checkSame" > 주문자 정보와 동일
+                   
+<%--                     <form id="basicCheck_form" action="${pageContext.request.contextPath}/shop/login/basicCheck/${addr.addressNo}">
+                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
+                       		id="checked" name="checked" value="기본배송지로 설정" />  
+                   <input type="hidden" id="sendBasicCheck" name="sendBasicCheck" value="1">
+                   </form> --%>
                     </label>
                      
                      </div>

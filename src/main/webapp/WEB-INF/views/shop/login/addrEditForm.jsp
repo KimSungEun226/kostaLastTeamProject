@@ -41,46 +41,54 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!--     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
     <script type="text/javascript">
+
     //유효성체크
     function form_check() {
     	
-    	  //변수에 담아주기
-    	  var memberName = document.getElementById("nameInput");
-    	  var memberAddr = document.getElementById("addrInput1");
-    	  var memberZip = document.getElementById("zipInput");
-    	  var memberContact = document.getElementById("contactInput");
+    	//변수에 담아주기
+  	  var memberName = document.getElementById("nameInput");
+  	  var memberZip = document.getElementById("zipInput");
+  	  var memberAddr = document.getElementById("addrInput2");
+  	  var memberDetailAddr = document.getElementById("detailAddrInput");
+  	  var memberContact = document.getElementById("contactInput");
 
-    	  var reg_name = /^[가-힣]+$/; //한글만
-    	  var reg_num = /^[0-9]*$/; // 숫자만 
+  	  var reg_name = /^[가-힣]+$/; //한글만
+  	  var reg_num = /^[0-9]*$/; // 숫자만 
 
-          var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
-    	  
-    	  
-    	  if (memberName.value == "" || !reg_name.test(memberName.value) || memberName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-    	    alert("이름을 확인하세요.");
-    	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+        var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+  	  
+  	  
+  	  if (memberName.value == "" || !reg_name.test(memberName.value) || memberName.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+  	    alert("이름을 확인하세요.");
+  	    customerName.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+  	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+  	  };
+
+
+    	  if (memberDetailAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+      	    alert("상세 주소를 입력하세요.");
+      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+        };
+        
+        if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("주소를 입력하세요.");
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+        };
+        
+        if (memberZip.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("우편번호를 입력하세요.");
     	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
     	  };
 
-
-      	  if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-        	    alert("주소를 입력하세요.");
-        	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-          };
-          
-          if (memberZip.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-      	    alert("우편번호를 입력하세요.");
-      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-      	  };
-
-      	  if (memberContact.value == "" || !reg_contact.test(memberContact.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-      	    alert("전화번호를 확인하세요.");
-      	    memberContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
-      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-      	  };
-      	  
+    	  if (memberContact.value == "" || !reg_contact.test(memberContact.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("전화번호를 확인하세요.");
+    	    memberContact.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+    	  };
+    	  
+    	  
     	  //입력 값 전송
     	  document.check_form.submit(); //유효성 검사의 포인트 
     	  
@@ -88,6 +96,31 @@
     
     
     </script>
+    <!-- 주소찾기 --> 
+    <script>
+	  function findAddr(){
+		new daum.Postcode({
+	      oncomplete: function(data) {
+	        	
+	        console.log(data);
+	        	
+	        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	        var roadAddr = data.roadAddress; // 도로명 주소 변수
+	        var jibunAddr = data.jibunAddress; // 지번 주소 변수
+	        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	        document.getElementById('zipInput').value = data.zonecode;
+	        if(roadAddr !== ''){
+	          document.getElementById("addrInput2").value = roadAddr;
+	          }else if(jibunAddr !== ''){
+	            document.getElementById("addrInput2").value = jibunAddr;
+	          }
+	      }
+	    }).open();
+	  }
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
     
   </head>
@@ -191,7 +224,7 @@
                       <div class="media-body g-color-text">
                         우편번호: ${dbAddr.memberZip}
                         <br>
-                        ${dbAddr.memberAddress}
+                        ${dbAddr.memberAddress} ${dbAddr.memberDetailAddress}
                         <br>
                       </div>
                     </address>
@@ -250,31 +283,39 @@
               <h3 class="h5 mb-3"><b>배송지 수정</h3>
 
               <form name="check_form" action="${pageContext.request.contextPath}/shop/login/updateAddr/${dbAddr.addressNo}">
-                <div class="row">
+                 <div class="row">
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">받는 분</label>
-                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.receiver}">
+                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.receiver}">
+                  </div>
+                  
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">연락처</label>
+                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.phone}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">우편번호</label>
-                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberZip}">
+                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" onclick="findAddr()" value="${dbAddr.memberZip}" >
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">주소</label>
-                    <input name="addrInput1" id="addrInput1" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.memberAddress}">
+                    <input name="addrInput2" id="addrInput2" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.memberAddress}">
+                  </div>
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">상세주소</label>
+                    <input name="detailAddrInput" id="detailAddrInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${dbAddr.memberDetailAddress}">
                   </div>
 
-                  <div class="col-sm-6 form-group g-mb-20">
-                    <label class="g-color-text g-font-size-13">연락처</label>
-                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${dbAddr.phone}">
-                  </div>
+                  
                 </div>
             </div>
             <!-- End Contact Form -->
 			
             <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()">주소 수정하기</button>
+            <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="location.href='${pageContext.request.contextPath}/shop/login/myAddress'">배송지목록으로 돌아가기</button>
+        
           	</form>
           </div>
           <!-- Addresses -->
@@ -282,6 +323,7 @@
       </div>
 
       <!-- Call to Action -->
+      <p><p><p><p>
       <div class="g-bg-primary">
         <div class="container g-py-20">
           <div class="row justify-content-center">
@@ -343,25 +385,25 @@
     <div class="u-outer-spaces-helper"></div>
 
     <!-- JS Global Compulsory -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-    <script src="../assets/vendor/popper.js/popper.min.js"></script>
-    <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-    <script src="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- JS Unify -->
-    <script src="../assets/js/hs.core.js"></script>
-    <script src="../assets/js/components/hs.header.js"></script>
-    <script src="../assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="../assets/js/components/hs.dropdown.js"></script>
-    <script src="../assets/js/components/hs.scrollbar.js"></script>
-    <script src="../assets/js/components/hs.go-to.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.dropdown.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->
-    <script src="../assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>

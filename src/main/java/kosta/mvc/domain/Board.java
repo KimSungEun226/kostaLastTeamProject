@@ -67,6 +67,8 @@ public class Board {
 	private int boardState; // 0 :공개 / 1 :비공개 / 2 :삭제
 	private int boardRecommend; //추천수 
 	
+	//은지 thumbnail 컬럼 sqldeveloper에서 추가_2021.12.06
+	private String thumbnail;
 	
 	//회원번호 다 : 1
 	@ManyToOne

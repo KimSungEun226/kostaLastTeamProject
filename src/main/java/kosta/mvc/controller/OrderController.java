@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,7 +53,6 @@ public class OrderController {
     private List<NonuserOrderDetail> nonuserOrderDetailList = new ArrayList<NonuserOrderDetail>();
     private List<UserOrderDetail> userOrderDetailList = new ArrayList<UserOrderDetail>();
     private Long result;
-    
     
     
     //결제하기
@@ -109,6 +110,7 @@ public class OrderController {
 
 		return result;
 	}
+
 	
 	//결제완료 페이지로 이동
 	@RequestMapping("/paysuccess")
@@ -132,6 +134,26 @@ public class OrderController {
 		return "shop/user/page-orders";
 	}
 	
+	/**
+	 * 비회원 주문조회 정보입력(이름, 전화번호, 주문번호)
+	 */
+	@RequestMapping("/orderInfo")
+	public String nonUserOrderInfo() {
+		return "shop/nonUser/orderInfo";
+	}
+	
+	/**
+	 * 비회원 주문조회
+	 */
+	@RequestMapping(value="/orderList", method=RequestMethod.POST)
+	public String nonUserOrderList(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone, Model model) {
+		System.out.println("컨트롤러 진입");
+		NonuserOrder nonuserOrder = orderService.selectNonuserOrder(nonuserOrderNo, receiverName, receiverPhone);
+		System.out.println(nonuserOrder.getNonuserOrderDetailList());
+		model.addAttribute("order", nonuserOrder);
+		model.addAttribute("orderDetail", nonuserOrder.getNonuserOrderDetailList());
+		return "shop/nonUser/orderList";
+	}
 	
 	//관리자가 전체 주문내역 확인하기
 	@RequestMapping("/admin/orderList/{user}")
@@ -207,13 +229,16 @@ public class OrderController {
 	}
 	
 	/**
-	 * 비회원 주문조회
-	 * */
-	//@RequestMapping("/shop")
-	
-	
-	/**
 	 * 회원 주문 취소하기
 	 * */
+	@RequestMapping("/user/cancleOrder")
+	public ModelAndView cancleOrder(int userOrderDetailNo, String reason) {
+		Integer temp = userOrderDetailNo;
+		Long no = temp.longValue();
+		
+		System.out.println("userOrderDetailNo: " + no);
+		System.out.println("reason: " + reason);
+		return null;
+	}
 	
 }

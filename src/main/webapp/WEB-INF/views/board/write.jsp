@@ -212,6 +212,7 @@
 		                      <option value="1">일기</option>
 		                      <option value="4">지역방</option>
 		                      <option value="3">자유게시판</option>
+		                      <option value="6">홈트레이닝</option>
 		                    </select>
 		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
 		                    	<option value="">게시판 선택</option>
@@ -223,14 +224,31 @@
 								<option value="7" >경상도</option>
 								<option value="8" >제주도</option>
 		                    </select>
+		                    <select id="tagrelNo2" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
+		                    	<option value="">게시판 선택</option>
+								<option value="21" >전신</option>
+								<option value="22" >복부</option>
+								<option value="23" >상체</option>
+								<option value="24" >하체</option>
+								<option value="25" >스트레칭</option>
+								<option value="26" >댄스</option>
+								<option value="27" >요가</option>
+		                    </select>
+		                    <div><input id="thumbnail" name="thumbnail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%; display:none;" type="text" placeholder="https://img.youtube.com/vi/링크아이디/mqdefault.jpg"></div>
 		                  </div>
 		                  
 		          <script>
 		          	function selSub(){
 		            	$("#tagrelNo").attr("style", "display:none;");
-		            	if ($("#boardKind option:selected").val() == "4"){
-		          		$("#tagrelNo").attr("style", "display:;");
-		          		$("#category_sub1arr").attr("style", "display:;");
+		            	$("#thumbnail").attr("style", "display:none;");
+		            	
+		            	if ($("#boardKind option:selected").val() == "4"){ //지역방 선택시
+			          		$("#tagrelNo").attr("style", "display:;");
+			          		$("#category_sub1arr").attr("style", "display:;");
+		            	} else if($("#boardKind option:selected").val() == "6"){ //홈트레이닝 선택시
+		            		$("#thumbnail").attr("style", "display:;");
+		            		$("#tagrelNo2").attr("style", "display:;");
+			          		$("#category_sub1arr").attr("style", "display:;");
 		            	}
 		            }
 		          </script>
