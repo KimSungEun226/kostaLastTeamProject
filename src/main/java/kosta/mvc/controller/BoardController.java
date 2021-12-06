@@ -57,8 +57,8 @@ public class BoardController {
 	@RequestMapping("/update")
 	public ModelAndView update(Board board) {
 		System.out.println("수정완료 controller의 update 메소드...");
+		System.out.println(board.getBoardNo());
 		Board dbBoard = boardService.update(board);
-		
 		return new ModelAndView("board/detail", "board", dbBoard);
 	}
 

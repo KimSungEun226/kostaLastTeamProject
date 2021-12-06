@@ -203,7 +203,7 @@
                 <img class="col-lg-17" src="${board.thumbnail}"  alt="${board.boardTitle}" />
                 <!-- End 썸네일 -->
                   <h2 class="h4 g-mb-15">
-                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/select/detail/${board.boardNo}">${board.boardTitle}</a>
+                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
                     </h2>
 
                   <!-- Search Info -->
