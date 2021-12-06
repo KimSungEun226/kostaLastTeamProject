@@ -37,10 +37,13 @@ public class CalorieController {
 
 	@RequestMapping("/calPreOutput")
 	public ModelAndView calPreOutput(Calorie cal) {
-		System.out.println("input : "+cal);
 		Calorie result = calorieService.calPreOutput(cal);
-		System.out.println("output : "+cal);
-		
+		return new ModelAndView("board/calPrescriptionOutput","cal",result);
+	}
+
+	@RequestMapping("/foodCalList")
+	public ModelAndView foodCalList(Calorie cal) {
+		Calorie result = calorieService.calPreOutput(cal);
 		return new ModelAndView("board/calPrescriptionOutput","cal",result);
 	}
 
