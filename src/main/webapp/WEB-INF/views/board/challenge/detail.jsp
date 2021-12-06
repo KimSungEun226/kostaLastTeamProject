@@ -280,12 +280,11 @@
           <!-- Tags -->
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
-              <form  name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/challenge/updateForm"> 
-	            <input type=hidden name="boardNo" value="${board.boardNo}">
-                <button type="submit" class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;">
-                	수정하기
-                </button>
-              </form>
+              <form  name="requestForm" method="post" id="requestForm"> 
+	           	 <input type=hidden name="boardNo" value="${board.boardNo}">
+	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="삭제하기">
+	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="수정하기">	           	 
+          		</form>
             </ul>
           </div>
           <!-- End Tags -->
@@ -589,6 +588,25 @@
         }, 200);
       });
   </script>
+  
+  
+  <script type="text/javascript">
+	$(function(){
+		   
+		   $("input[value=수정하기]").click(function(){	   
+			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/challenge/updateForm");
+			   $("#requestForm").submit();
+		   })
+		   $("input[value=삭제하기]").click(function(){
+			   var pwd = prompt("비밀번호를 입력하세요.");
+			   if(pwd){
+		           $("#password").val(pwd);
+				   $("#requestForm").attr("action", "${pageContext.request.contextPath}/challenge/delete");
+				   $("#requestForm").submit();
+			   }
+		   })  
+		})
+	</script>
 
 </body>
 
