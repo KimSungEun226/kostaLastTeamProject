@@ -53,5 +53,10 @@ public interface BoardService {
 	     * 삭제하기
 	     * */
 	    void delete(Long boardNo, String password);
+	    
+	    /**
+	     * challengeNo에 해당하는 boardList가져오기  
+	     */
+		List<Board> findByChallengeNo(Long challengeNo);
 	
 }

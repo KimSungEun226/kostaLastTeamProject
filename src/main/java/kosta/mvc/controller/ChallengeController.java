@@ -105,7 +105,7 @@ public class ChallengeController {
 	public String insert(HttpSession session, Principal principal, Board board, int challengeCategory) {		
 		  //System.out.println("session.getId()"+session.getId());
 		  System.out.println("principle.getName() : "+principal.getName()); //hesu0 : memberId
-		  
+		  System.out.println("board.regdate : "+board.getBoardRegdate());
 		  
 		  //로그인한 memberId로 member객체가져오기 
 		  Member member = memberService.selectByMemberId(principal.getName());
@@ -126,15 +126,14 @@ public class ChallengeController {
 			  LocalDate today = LocalDate.now();
 			  System.out.println("today : "+today);
 			  
-			  //회원번호에 해당하는 boardList
-			  List<Board> boardList = member.getBoardList();
+			  //challengeNo에 해당하는 boardList 
+			  List<Board> boardList = boardService.findByChallengeNo(ischallenge.getChallengeNo());
 			  
 			  //오늘 해당 챌린지의 처음 게시물을 올렸을때 
 			  for(Board b : boardList) {				  
-				  if(!(b.getChallenge().getChallengeNo() == ischallenge.getChallengeNo() && b.getBoardRegdate() == today)) {
-					  //cnt증가
-					  int challengeCnt=ischallenge.getChallengeCnt()+1;
-					  ischallenge.setChallengeCnt(challengeCnt);
+				  if((b.getBoardRegdate().equals(today))) {
+					  System.out.println("cnt유지!!");
+				  }else {
 					  
 					  //경험치 +10추가
 //					  if(ischallenge.getChallengeCnt()<29) {
@@ -146,10 +145,22 @@ public class ChallengeController {
 //						  int memberExp = member.getInfo().getMemberExp()+50; 
 //						  //챌린지 성공으로 상태바꾸기  
 //						  ischallenge.setChallengeState(2);
-//						  info.setMemberExp(memberExp);
+//						  info.setMemberExp(memberExp);					  
 //					  }
 					  
+					//cnt증가
+					  int challengeCnt=ischallenge.getChallengeCnt()+1;
+					  ischallenge.setChallengeCnt(challengeCnt);
+					  System.out.println("cnt증가!!");					  
 				  }
+				  
+				  System.out.println("-------------------------");
+				  boolean w =(b.getBoardRegdate().equals(today));
+				  System.out.println("(b.getBoardRegdate() == today) : "+w);
+				  System.out.println("board 등록일 : "+b.getBoardRegdate());
+				  System.out.println("today : "+today);
+	
+				  System.out.println("--------------------------");
 			  }
 			  
 			  //member.setInfo(info);
