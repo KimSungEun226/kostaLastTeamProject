@@ -183,14 +183,10 @@
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
                       <h5 class="h6 g-font-weight-600">나의 목표는...!!!</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">26904</div>
+                      <h3>${requestScope.member.memberMessage}</div></h3>
                     </div>
+                    
                   </div>
-                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">89%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">16% higher than last month</small>
                 </div>
               </div>
             </div>
@@ -205,36 +201,12 @@
                   <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                     <h3 class="h6 mb-0">
                         <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> 최근 게시물
-                      </h3>
-                    <div class="dropdown g-mb-10 g-mb-0--md">
-                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                        </span>
-                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                        </a>
-                      </div>
-                    </div>
+                      </h3>             
                   </div>
                   <!-- End Panel Header -->
 
                   <!-- Panel Body -->
+
                   <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
                     <ul class="list-unstyled">
                       <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
