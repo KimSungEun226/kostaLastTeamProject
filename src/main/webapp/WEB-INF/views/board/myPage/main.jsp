@@ -7,7 +7,7 @@
 
 <head>
   <!-- Title -->
-  <title>Unify Profile | | Unify - Responsive Website Template</title>
+  <title>마이페이지 - main</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -138,11 +138,12 @@
             <!-- End Sidebar Navigation -->
           </div>
           <!-- End Profile Sidebar -->
-
-          <!-- Profile Content -->
+          
+		  <!-- Profile Content -->
           <div class="col-lg-9">
             <!-- Overall Statistics -->
             <div class="row g-mb-40">
+              <!-- START 나의 등급 -->
               <div class="col-md-6 g-mb-30 g-mb-0--md">
                 <div class="g-bg-cyan g-color-white g-pa-25">
                   <header class="d-flex text-uppercase g-mb-40">
@@ -156,57 +157,99 @@
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">다음 등급까지 남은 경험치</h5>
+                      <h5 class="h6 g-font-weight-600">Last Week</h5>
                       <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
+                    </div>
+
+                    <div class="text-right g-line-height-1">
+                      <h5 class="h6 g-font-weight-600">Last Month</h5>
+                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
                     </div>
                   </div>
 
-                  <h6 class="g-mb-10">다음 등급까지 <span class="float-right g-ml-10">72%</span></h6>
+                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
                   <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
                     <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <small class="g-font-size-12">다음 등급은...?</small>
+                  <small class="g-font-size-12">11% less than last month</small>
                 </div>
               </div>
-
+              <!-- 나의 등급 End -->
+		
+			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
                 <div class="g-bg-purple g-color-white g-pa-25">
                   <header class="d-flex text-uppercase g-mb-40">
                     <i class="icon-layers align-self-center display-4 g-mr-20"></i>
 
                     <div class="g-line-height-1">
-                      <h4 class="h5">나의 다짐</h4>
+                      <h4 class="h5">다짐 메세지</h4>
                       <div class="js-counter g-font-size-30" data-comma-separated="true">324056</div>
                     </div>
                   </header>
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">나의 목표는...!!!</h5>
-                      <h3>${requestScope.member.memberMessage}</div></h3>
+                      <h5 class="h6 g-font-weight-600">Last Week</h5>
+                      <div class="js-counter g-font-size-16" data-comma-separated="true">26904</div>
                     </div>
-                    
+
+                    <div class="text-right g-line-height-1">
+                      <h5 class="h6 g-font-weight-600">Last Month</h5>
+                      <div class="js-counter g-font-size-16" data-comma-separated="true">124766</div>
+                    </div>
                   </div>
+
+                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">89%</span></h6>
+                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
+                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <small class="g-font-size-12">16% higher than last month</small>
                 </div>
               </div>
+              <!-- End 다짐메세지 -->
             </div>
             <!-- End Overall Statistics -->
 
             <!-- Projects & Activities Panels -->
             <div class="row g-mb-40">
               <div class="col-lg-6 g-mb-40 g-mb-0--lg">
-                <!-- Latest Projects Panel -->
+                <!-- member.Info Panel -->
                 <div class="card border-0">
                   <!-- Panel Header -->
                   <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                     <h3 class="h6 mb-0">
-                        <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> 최근 게시물
-                      </h3>             
+                        <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i>활동정보
+                      </h3>
+                    <div class="dropdown g-mb-10 g-mb-0--md">
+                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
+                        </span>
+                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
+                        <a class="dropdown-item g-px-10" href="#">
+                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
+                        </a>
+                        <a class="dropdown-item g-px-10" href="#">
+                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
+                        </a>
+                        <a class="dropdown-item g-px-10" href="#">
+                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
+                        </a>
+                        <a class="dropdown-item g-px-10" href="#">
+                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item g-px-10" href="#">
+                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
+                        </a>
+                      </div>
+                    </div>
                   </div>
                   <!-- End Panel Header -->
 
                   <!-- Panel Body -->
-
                   <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
                     <ul class="list-unstyled">
                       <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
@@ -261,15 +304,15 @@
                   </div>
                   <!-- End Panel Body -->
                 </div>
-                <!-- End Latest Projects Panel -->
+                <!-- End memberInfo Panel -->
               </div>
 
               <div class="col-lg-6">
-                <!-- Activities Panel -->
+                <!-- Challenge Panel -->
                 <div class="card border-0">
                   <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                     <h3 class="h6 mb-0">
-                        <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> 30일 챌린지
+                        <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i>도전한 30일챌린지 목록
                       </h3>
                     <div class="dropdown g-mb-10 g-mb-0--md">
                       <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -382,7 +425,7 @@
                     </ul>
                   </div>
                 </div>
-                <!-- End Activities Panel -->
+                <!-- End Challenge Panel -->
               </div>
             </div>
             <!-- End Projects & Activities Panels -->
@@ -390,282 +433,15 @@
             <!-- Projects & News Feeds Panels -->
             <div class="row g-mb-40">
               <div class="col-lg-6 g-mb-40 g-mb-0--lg">
-                <!-- Notifications Panel -->
-                <div class="card border-0">
-                  <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                    <h3 class="h6 mb-0">
-                        <i class="icon-list g-pos-rel g-top-1 g-mr-5"></i> 최근 댓글
-                      </h3>
-                    <div class="dropdown g-mb-10 g-mb-0--md">
-                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                        </span>
-                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-300 g-pa-0">
-                    <!-- Alert Success -->
-                    <div class="alert fade show g-bg-primary-opacity-0_1 g-color-primary rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <img class="g-width-40 g-height-40 g-rounded-50x" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Jasica Coolman</strong> saved your pin.</p>
-                          <span class="g-font-size-12 g-color-gray">2 hours ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Success -->
-
-                    <!-- Alert Cyan -->
-                    <div class="alert fade show g-bg-cyan-opacity-0_1 g-color-cyan rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <img class="g-width-40 g-height-40 g-rounded-50x" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Jack Watson</strong> sent you a message.</p>
-                          <span class="g-font-size-12">5 minutes ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Cyan -->
-
-                    <!-- Alert Orange -->
-                    <div class="alert fade show g-bg-orange-opacity-0_1 g-color-orange rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <img class="g-width-40 g-height-40 g-rounded-50x" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Nelly</strong> is offering free cofee..</p>
-                          <span class="g-font-size-12 g-color-gray">5 days ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Orange -->
-
-                    <!-- Alert Purple -->
-                    <div class="alert fade show g-bg-purple-opacity-0_1 g-color-purple rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <span class="u-icon-v3 u-icon-size--sm g-bg-purple g-color-white g-rounded-50x">
-                            <i class="icon-wallet"></i>
-                          </span>
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Pixeel Ltd</strong> received $270 for logo.</p>
-                          <span class="g-font-size-12 g-color-gray">2 hours ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Purple -->
-
-                    <!-- Alert Red -->
-                    <div class="alert fade show g-bg-red-opacity-0_1 g-color-lightred rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <img class="g-width-40 g-height-40 g-rounded-50x" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Edmon Low</strong> saved your pin.</p>
-                          <span class="g-font-size-12 g-color-gray">5 minutes ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Red -->
-
-                    <!-- Alert Gray Lighter 5 -->
-                    <div class="alert fade show g-bg-gray-light-v5 rounded-0 g-mb-5" role="alert">
-                      <button type="button" class="close u-alert-close--light g-ml-10 g-mt-1" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <div class="media">
-                        <div class="d-flex g-mr-10">
-                          <img class="g-width-40 g-height-40 g-rounded-50x" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <p class="m-0"><strong>Htmlstream</strong> released a new update.</p>
-                          <span class="g-font-size-12 g-color-gray">2 hours ago</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Alert Gray Lighter 5 -->
-                  </div>
-                </div>
-                <!-- End Notifications Panel -->
-              </div>
-
-              <div class="col-lg-6">
-                <!-- Activities Panel -->
-                <div class="card border-0">
-                  <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                    <h3 class="h6 mb-0">
-                        <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> 나의 활동 내역
-                      </h3>
-                    <div class="dropdown g-mb-10 g-mb-0--md">
-                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                        </span>
-                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                    <ul class="list-unstyled">
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">James Coolman</span>
-                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
-                            </h5>
-                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">Alberta Watson</span>
-                              <small class="g-font-size-12 g-color-pink">5k+ earned</small>
-                            </h5>
-                          <p class="m-0">Hac consectetur habitasse platea dictumst</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-pink g-rounded-20 g-px-10">$32 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">David Lee</span>
-                              <small class="g-font-size-12 g-color-teal">3k+ earned</small>
-                            </h5>
-                          <p class="m-0">Curabitur hendrerit dolor sit amet consectetur</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-teal g-rounded-20 g-px-10">$28 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">Alberta Heller</span>
-                              <small class="g-font-size-12 g-color-darkpurple">4k+ earned</small>
-                            </h5>
-                          <p class="m-0">Adipiscing elitut leosit amet, consectetur eleifend</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-darkpurple g-rounded-20 g-px-10">$35 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">James Coolman</span>
-                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
-                            </h5>
-                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- End Activities Panel -->
+                
               </div>
             </div>
             <!-- End Projects & News Feeds Panels -->
-
-           
+          </div>
           <!-- End Profile Content -->
         </div>
       </div>
-    </section>
+    </section>    
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
      "bottom": 15,
      "right": 15
