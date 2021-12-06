@@ -4,6 +4,7 @@
 package kosta.mvc.controller;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Tag;
 import kosta.mvc.service.BoardService;
+import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -31,12 +34,43 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	private final BoardService boardService;
 	
+	private final MemberService memberService;
+	
 	/**
 	 * 등록폼
 	 * */
 	@RequestMapping("/write")
-	public void write() {
+	public void write(Principal principal) {
+	}
+	
+	/**
+	 * 등록하기(커뮤니티 게시판)
+	 * */
+	@RequestMapping("/insert")
+	public String insert(Principal principal, Board board, Tag tag) throws NullPointerException {
+			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
+			//System.out.println("principle.getName() : "+principal.getName()); // eunji?
+			
+			//로그인한 memberId로 member객체가져오기 
+			Member member = memberService.selectByMemberId(principal.getName());
+			//System.out.println("member : " + member); //member객체
+			
+			//해당 member객체의 memberNickname 가져와서 memberNick에 담기
+			String memberNick = member.getMemberNickname();
+			//System.out.println("memberNick : " + memberNick); //isshoeunji
+			
+		    //System.out.println(tag.getTagrelNo());
+		    
+		    if(tag.getTagrelNo() != null) { //지역방의 지역카테고리 값이 들어오면
+		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
+		    	board.setTag(tag);
+		    }
+		    
+		    board.setMember(member);
+		    board.setMemberNickname(memberNick);
+		    boardService.insert(board);
 		
+		return "redirect:/board/select/0";
 	}
 	
 	/**
@@ -57,32 +91,10 @@ public class BoardController {
 	@RequestMapping("/update")
 	public ModelAndView update(Board board) {
 		System.out.println("수정완료 controller의 update 메소드...");
+		System.out.println(board.getBoardNo());
 		Board dbBoard = boardService.update(board);
-		
 		return new ModelAndView("board/detail", "board", dbBoard);
 	}
-
-	
-	/**
-	 * 등록하기(커뮤니티 게시판)
-	 * */
-	@RequestMapping("/insert")
-	public String insert(Board board, Tag tag) throws NullPointerException {
-			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
-			
-		    
-		    System.out.println(tag.getTagrelNo());
-		    
-		    if(tag.getTagrelNo() != null) {
-		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
-		    	board.setTag(tag);
-		    }
-		    
-		    boardService.insert(board);
-		
-		return "redirect:/board/select/0";
-	}
-	
 	
 	/**
 	 * 카테고리별 게시판 이동 by은지_2021.12.03

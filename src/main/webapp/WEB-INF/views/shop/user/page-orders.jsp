@@ -89,7 +89,7 @@
                 <li class="g-py-3">
                   <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/cancleList">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
-                    취소내역
+                    환불내역
                   </a>
                 </li>
               </ul>
@@ -153,7 +153,7 @@
                      </a>
                      
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     취소하기
+                     환불하기
                      </a>
                     
                   </div>

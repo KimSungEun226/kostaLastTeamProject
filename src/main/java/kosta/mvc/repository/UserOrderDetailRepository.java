@@ -20,9 +20,10 @@ public interface UserOrderDetailRepository extends JpaRepository<UserOrderDetail
 	/**
 	 * 회원의 주문 취소 요청에 따른 상태(status)값 변경
 	 * */
-	@Query("update UserOrderDetail o set o.status=1 where o.userOrderDetailNo=?1")
+	@Query("update UserOrderDetail o set o.status=o.status+1 where o.userOrderDetailNo=?1")
 	@Modifying
 	int requestUserorderCancle(Long orderDetailNo);
+	
 	
 	
 }
