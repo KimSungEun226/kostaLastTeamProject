@@ -471,28 +471,16 @@
           </div>
           End Blog Single Item Comments
 
-          <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">Add Comment</h3>
-
-          <form>
-            <div class="row">
-              <div class="col-md-6 form-group g-mb-30">
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--focus rounded-3 g-py-13 g-px-15" type="text" placeholder="First name">
-              </div>
-
-              <div class="col-md-6 form-group g-mb-30">
-                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--focus rounded-3 g-py-13 g-px-15" type="email" placeholder="Email">
-              </div>
-            </div>
+          <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">댓글 작성하기</h3>
+		  <!-- Start 댓글 입력 폼 -->
+		  <form name="replyWriteForm" method="post" action="${pageContext.request.contextPath}/reply/insert" enctype="multipart/form-data">
+		  	  <input type="hidden" name="boardNo" value="${board.boardNo}" />
+	          <div class="g-mb-30">
+	            <textarea name="replyContent" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="12" placeholder="댓글 내용을 입력하세요."></textarea>
+	          </div>
+	          <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" type="button">댓글 등록하기</button>
           </form>
-
-          <div class="g-mb-30">
-            <textarea class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="12" placeholder="Your message"></textarea>
-          </div>
-
-          <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit" role="button">Add Comment</button>
-        </div>
-      </div>
-      </div>
+       
     </section>
     <!-- End Blog Single Item Comments -->
     </article>
