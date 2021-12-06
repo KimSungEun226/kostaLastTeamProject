@@ -145,13 +145,17 @@ public class OrderServiceImpl implements OrderService {
 		return result;
 	}
 
+	/**
+	 * 환불을 신청한다.
+	 * */
 	@Override
 	public void updateUserOrderDetailStatus(Long orderDetailNo, String reason) {
 		int result = userOrderDetailRepository.requestUserorderCancle(orderDetailNo);
 		if (result==0) throw new RuntimeException("주문취소 신청 실패");
 		UserOrderDetail detail = selectUserOrderDetail(orderDetailNo);
+		
 		System.out.println(detail.getUserOrderDetailNo());
-		UserRefund userRefund = new UserRefund().builder().userOrderDetail(detail).refundStatus(reason).refundStatus("신청완료").build();
+		UserRefund userRefund = new UserRefund().builder().userOrderDetail(detail).refundReason(reason).refundStatus("신청완료").build();
 		userRefund = refundService.insertUserRefund(userRefund);
 		if (userRefund==null) throw new RuntimeException("환불 등록 실패");
 		
@@ -163,7 +167,7 @@ public class OrderServiceImpl implements OrderService {
 		if (result==0) throw new RuntimeException("주문취소 신청 실패");
 
 		NonuserOrderDetail detail = selectNonuserOrderDetail(orderDetailNo);
-		NonuserRefund refund = new NonuserRefund().builder().nonuserOrderDetail(detail).refundStatus(reason).refundStatus("신청완료").build();
+		NonuserRefund refund = new NonuserRefund().builder().nonuserOrderDetail(detail).refundReason(reason).refundStatus("신청완료").build();
 		refund = refundService.insertNonuserRefund(refund);
 		if (refund==null) throw new RuntimeException("환불 등록 실패");
 		

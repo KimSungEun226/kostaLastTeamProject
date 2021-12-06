@@ -96,7 +96,7 @@
                  <!-- End Mega Menu Item -->
 
                  <!-- New Arrivals - Mega Menu -->
-                 <li class="hs-has-mega-menu nav-item g-ml-10--lg g-ml-15--xl"
+                 <!-- <li class="hs-has-mega-menu nav-item g-ml-10--lg g-ml-15--xl"
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
                      data-position="right">
@@ -105,11 +105,11 @@
                      <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-7"></i>
                    </a>
 
-                   <!-- Mega Menu -->
+                   Mega Menu
                    <div class="w-100 hs-mega-menu u-shadow-v11 g-text-transform-none g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-pa-30 g-mt-17" aria-labelledby="mega-menu-label-5">
                      <div class="row">
                        <div class="col-md-4 g-mb-30 g-mb-0--md">
-                         <!-- Article -->
+                         Article
                          <article class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-bluegray-opacity-0_3--after text-center g-px-40 g-py-80" data-bg-img-src="assets/img-temp/600x400/img1.jpg">
                            <div class="g-pos-rel g-z-index-1">
                              <span class="d-block g-color-white g-font-weight-400 text-uppercase mb-3">Blouse</span>
@@ -117,11 +117,11 @@
                              <a class="btn u-btn-white g-brd-primary--hover g-color-white--hover g-bg-primary--hover g-font-size-11 text-uppercase g-py-10 g-px-20" href="#">Shop Now</a>
                            </div>
                          </article>
-                         <!-- End Article -->
+                         End Article
                        </div>
 
                        <div class="col-md-4 g-mb-30 g-mb-0--md">
-                         <!-- Article -->
+                         Article
                          <article class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-bluegray-opacity-0_3--after text-center g-px-40 g-py-80" data-bg-img-src="assets/img-temp/600x400/img2.jpg">
                            <div class="g-pos-rel g-z-index-1">
                              <span class="d-block g-color-white g-font-weight-400 text-uppercase mb-3">Hamburg Hats</span>
@@ -129,11 +129,11 @@
                              <a class="btn u-btn-white g-brd-primary--hover g-color-white--hover g-bg-primary--hover g-font-size-11 text-uppercase g-py-10 g-px-20" href="#">Shop Now</a>
                            </div>
                          </article>
-                         <!-- End Article -->
+                         End Article
                        </div>
 
                        <div class="col-md-4 g-mb-30 g-mb-0--md">
-                         <!-- Article -->
+                         Article
                          <article class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-bluegray-opacity-0_3--after text-center g-px-40 g-py-80" data-bg-img-src="assets/img-temp/600x400/img3.jpg">
                            <div class="g-pos-rel g-z-index-1">
                              <span class="d-block g-color-white g-font-weight-400 text-uppercase mb-3">Glasses</span>
@@ -141,12 +141,12 @@
                              <a class="btn u-btn-white g-brd-primary--hover g-color-white--hover g-bg-primary--hover g-font-size-11 text-uppercase g-py-10 g-px-20" href="#">Shop Now</a>
                            </div>
                          </article>
-                         <!-- End Article -->
+                         End Article
                        </div>
                      </div>
                    </div>
-                   <!-- End Mega Menu -->
-                 </li>
+                   End Mega Menu
+                 </li> -->
                  <!-- End New Arrivals - Mega Menu -->
                  
                    <!-- Pages - Submenu -->
@@ -230,7 +230,21 @@
                    <!-- Mega Menu -->
                    
                    <!-- End Mega Menu -->
+                 </li>
+                 
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
+                     data-animation-in="fadeIn"
+                     data-animation-out="fadeOut"
+                     data-position="right">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/refundList/user" aria-haspopup="true" aria-expanded="false">
+                     <b>환불내역</b>
+                   </a>
+
+                   <!-- Mega Menu -->
+                   
+                   <!-- End Mega Menu -->
                  </li> 
+                 
                  
                  </sec:authorize>
                  <!-- End Pages - Submenu -->

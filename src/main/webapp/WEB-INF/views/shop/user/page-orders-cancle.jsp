@@ -126,6 +126,8 @@
 
                       <div class="col-8 col-sm-9 g-mb-30">
                         <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">${orderdetail.product.productName}</a></h4>
+                       <span class="d-block mb-2">주문상세번호 : ${orderdetail.userOrderDetailNo}</span>
+                        
                         <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
                         <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
                         <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
@@ -147,7 +149,7 @@
                   </c:when>
                   
                 
-                <c:when test="${orderdetail.orderStatus==2}">
+                <c:when test="${orderdetail.status==2}">
                   <div class="col-md-4">
                     
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">

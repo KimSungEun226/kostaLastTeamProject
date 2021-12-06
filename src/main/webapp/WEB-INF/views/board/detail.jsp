@@ -79,7 +79,7 @@
             <ul class="u-list-inline mb-5 float-right">
               <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
                     <i class="align-middle g-font-size-default mr-1 icon-education-200 u-line-icon-pro"></i>
-                    ${board.memberNickname}작성자
+                    ${requestScope.board.memberNickname}
               </a>
               <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
                     <i class="align-middle g-font-size-default mr-1 icon-communication-128 u-line-icon-pro"></i>

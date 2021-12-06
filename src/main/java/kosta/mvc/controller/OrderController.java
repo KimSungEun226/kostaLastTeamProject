@@ -211,6 +211,7 @@ public class OrderController {
 		}
 	}
 	
+	
 	/**
 	 * 비회원 주문조회
 	 * */
@@ -227,28 +228,52 @@ public class OrderController {
 		
 		orderService.updateUserOrderDetailStatus(no, reason);
 		
-		
-		return "shop/user/cancleOk";
+		return "cancleOk";
 	}
 	
 	
 	/**
 	 * 회원취소목록
 	 * */
-//	@RequestMapping("/user/cancleList")
-//	public String cancleList(Principal principal, Model model) {
-//		String id = principal.getName();
-//		Member m = memberService.selectByMemberId(id);
-//		List<UserOrder> orderList = m.getOrderList();
-//		List<UserOrderDetail> cancleList = new ArrayList<UserOrderDetail>();
-//		for(UserOrder userOrder: orderList) {
-//			for(UserOrderDetail userOrderDetail: userOrder.getUserOrderDetailList()) {
-//				if (userOrderDetail.getStatus() >=1) cancleList.add(userOrderDetail);
-//			}
-//		}
-//		
-//		model.addAttribute("list", cancleList);
-//		return "shop/user/page-orders-cancle";
-//	}
+	@RequestMapping("/user/cancleList")
+	public String cancleList(Principal principal, Model model) {
+		String id = principal.getName();
+		Member m = memberService.selectByMemberId(id);
+		List<UserOrder> orderList = m.getOrderList();
+		List<UserOrderDetail> cancleList = new ArrayList<UserOrderDetail>();
+		for(UserOrder userOrder: orderList) {
+			for(UserOrderDetail userOrderDetail: userOrder.getUserOrderDetailList()) {
+				if (userOrderDetail.getStatus() >=1) cancleList.add(userOrderDetail);
+			}
+		}
+		
+		model.addAttribute("list", cancleList);
+		return "shop/user/page-orders-cancle";
+	}
+	
+	/**
+	 * 관리자가 환불내역을 확인한다.
+	 * */
+	@RequestMapping("/admin/refundList/{user}")
+	public String refundList(@PathVariable String user, Model model) {
+		List<UserRefund> refundList = refundService.selectUserRefund();
+		model.addAttribute("list", refundList);
+		return "shop/admin/page-refund";
+	}
+	
+	/**
+	 * 관리자가 환불을 승인한다.
+	 * */
+	@RequestMapping("/admin/agreeRefund/{user}")
+	public String agreeRefund(@PathVariable String user,Long refundNo, Model model) throws Exception{
+		
+		if("user".equals(user)) {
+			UserRefund userRefund = refundService.userRefund(refundNo);
+			if (userRefund==null) throw new Exception("환불 번호 조회 실패");
+			refundService.agreeUserRefund(refundNo);
+		}
+		
+		return "redirect:/shop/admin/refundList/user";
+	}
 	
 }
