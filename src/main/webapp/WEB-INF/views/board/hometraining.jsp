@@ -109,8 +109,6 @@
             <!-- End 나의 BMI 지수는? -->
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
-            <c:choose>
-            	<c:when test="${boardKind==6}">
             		<div class="g-mb-50">
 		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">홈트레이닝</h3>
 		              <ul class="list-unstyled g-font-size-13 mb-0">
@@ -140,33 +138,6 @@
 		                </li> -->
 		              </ul>
             		</div>
-            	</c:when>
-            	<c:otherwise>
-            		<div class="g-mb-50">
-		              <h3 class="h5 g-color-black g-font-weight-600 mb-4 g-pt-50">커뮤니티</h3>
-		              <ul class="list-unstyled g-font-size-13 mb-0">
-		              	<li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/0"><i class="mr-2 fa fa-angle-right"></i>전체</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/3"><i class="mr-2 fa fa-angle-right"></i>자유게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/4"><i class="mr-2 fa fa-angle-right"></i>지역게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="${pageContext.request.contextPath}/board/select/1"><i class="mr-2 fa fa-angle-right"></i>일기게시판</a>
-		                </li>
-		                <li>
-		                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i>질문게시판</a>
-		                </li>
-		                <!-- <li>
-		                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-		                </li> -->
-		              </ul>
-            		</div>
-            	</c:otherwise>
-            </c:choose>
             <!-- End Links -->
 
             
@@ -179,14 +150,37 @@
             <div class="d-md-flex justify-content-between g-mb-30">
               <ul class="list-inline">
                 <li class="list-inline-item g-mr-30">
-                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#">
+                  <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/6">
                     <i class="icon-grid g-pos-rel g-top-1 g-mr-5"></i> 홈트레이닝 > 
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="#">
-                     {board.tagrelNo}
-                  </a>
+                <c:choose>
+                	<c:when test="${tagrelNo==21}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/21">전신</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==22}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/22">복부</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==23}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/23">상체</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==24}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/24">하체</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==25}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/25">스트레칭</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==26}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/26">댄스</a>                	
+                	</c:when>
+                	<c:when test="${tagrelNo==27}">
+						<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/selectByTag/27">요가</a>                	
+                	</c:when>
+                	<c:otherwise>
+                		<a class="u-link-v5 g-color-gray-dark-v5 g-color-gray-dark-v5--hover" href="${pageContext.request.contextPath}/board/select/6">전체</a>
+                	</c:otherwise>
+                </c:choose>
                 </li>
               </ul>
             </div>
@@ -209,13 +203,13 @@
                 <img class="col-lg-17" src="${board.thumbnail}"  alt="${board.boardTitle}" />
                 <!-- End 썸네일 -->
                   <h2 class="h4 g-mb-15">
-                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
+                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/select/detail/${board.boardNo}">${board.boardTitle}</a>
                     </h2>
 
                   <!-- Search Info -->
                   <ul class="list-inline d-flex justify-content-between g-mb-20">
                     <li class="list-inline-item g-mr-10">
-                      <i class="icon-sport-096 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i> {board.tagrelNo}
+                      <i class="icon-sport-096 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i>태그
                     </li>
                     <li class="list-inline-item">
                       <i class="icon-eye g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i> ${board.boardReadnum}
@@ -279,7 +273,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
-            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
+            <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/writeHometraining">글쓰기</a></span>
           </ul>
         </nav>
         <!-- End Pagination -->

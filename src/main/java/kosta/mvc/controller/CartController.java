@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.Address;
 import kosta.mvc.domain.Cart;
+import kosta.mvc.service.AddressService;
 import kosta.mvc.service.CartService;
 
 @Controller
@@ -21,6 +23,8 @@ public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private AddressService addressService;
 	
 	List<Cart> list;
 	/**
@@ -33,6 +37,9 @@ public class CartController {
 		//식별값 또는 아이디 값을 넘긴다.
 		List<Cart> cartList = new ArrayList<Cart>();
 		List<Cart> soldoutList = new ArrayList<Cart>();
+		//회원번호에 해당하는 기본배송지 찾기 
+		Address addr = addressService.findBasicAddr(principal.getName());
+		
 		if(principal!=null) list=cartService.selectCart(principal.getName());
 		else list=cartService.selectCart(session.getId());
 		
@@ -50,6 +57,7 @@ public class CartController {
 		else {
 			mv.addObject("cartList", cartList);
 			mv.addObject("soldoutList", soldoutList);
+			mv.addObject("addr", addr);
 			mv.setViewName("shop/user/cart");
 		}
 		

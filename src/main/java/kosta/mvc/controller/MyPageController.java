@@ -56,12 +56,12 @@ public class MyPageController {
 		
 		
 		//회원활동정보
-		Info info = member.getInfo();
-		mv.addObject("info", info);
+//		Info info = member.getInfo();
+//		mv.addObject("info", info);
 		
 		//등급
-		//Level level = member.getInfo().getLevelNo()
-		
+//		Grade level = member.getInfo().getLevel();
+		mv.addObject(member);
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
