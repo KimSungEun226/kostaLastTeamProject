@@ -88,6 +88,7 @@
     	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
     	  };
     	  
+    	  alert("수정되었습니다.");
     	  
     	  //입력 값 전송
     	  document.check_form.submit(); //유효성 검사의 포인트 

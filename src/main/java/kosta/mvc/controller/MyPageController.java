@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
-import kosta.mvc.domain.Level;
+import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
