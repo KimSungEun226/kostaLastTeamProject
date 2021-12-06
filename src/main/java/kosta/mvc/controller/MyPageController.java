@@ -55,13 +55,15 @@ public class MyPageController {
 		//댓글
 		
 		
-		//회원활동정보
-//		Info info = member.getInfo();
-//		mv.addObject("info", info);
+
 		
-		//등급
-//		Grade level = member.getInfo().getLevel();
-		mv.addObject(member);
+		
+		System.out.println("------------------------------");
+		for(Challenge challenge : challengeList) {
+			System.out.println(challenge.getChallengeNo());
+		}
+		System.out.println("------------------------------");
+		
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}

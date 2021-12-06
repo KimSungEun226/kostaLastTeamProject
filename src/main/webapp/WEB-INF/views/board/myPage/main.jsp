@@ -314,98 +314,18 @@
                     <h3 class="h6 mb-0">
                         <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i>도전한 30일챌린지 목록
                       </h3>
-                    <div class="dropdown g-mb-10 g-mb-0--md">
-                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                        </span>
-                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                        </a>
-                      </div>
-                    </div>
                   </div>
 
                   <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
                     <ul class="list-unstyled">
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">James Coolman</span>
-                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
-                            </h5>
-                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">Alberta Watson</span>
-                              <small class="g-font-size-12 g-color-pink">5k+ earned</small>
-                            </h5>
-                          <p class="m-0">Hac consectetur habitasse platea dictumst</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-pink g-rounded-20 g-px-10">$32 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">David Lee</span>
-                              <small class="g-font-size-12 g-color-teal">3k+ earned</small>
-                            </h5>
-                          <p class="m-0">Curabitur hendrerit dolor sit amet consectetur</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-teal g-rounded-20 g-px-10">$28 / hr</span>
-                        </div>
-                      </li>
-
-                      <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
-                        <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="align-self-center g-px-10">
-                          <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">Alberta Heller</span>
-                              <small class="g-font-size-12 g-color-darkpurple">4k+ earned</small>
-                            </h5>
-                          <p class="m-0">Adipiscing elitut leosit amet, consectetur eleifend</p>
-                        </div>
-                        <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-darkpurple g-rounded-20 g-px-10">$35 / hr</span>
-                        </div>
-                      </li>
+                                          
+                      <c:choose>
+					  <c:when test="${empty requestScope.challengeList}">
+				            <p align="center"><b><span style="font-size:9pt;">도전중인 챌린지가 없습니다.</span></b></p>
+				      </c:when>
+				      <c:otherwise>
+				      <c:forEach items="${requestScope.challengeList}" var="challenge">
+                    
 
                       <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
                         <div class="g-mt-2">
@@ -413,8 +333,8 @@
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">James Coolman</span>
-                              <small class="g-font-size-12 g-color-blue">8k+ earned</small>
+                              <span class="g-mr-5">${challenge.challengeNo}</span>
+                              <small class="g-font-size-12 g-color-blue">도전한 날 :  ${challenge.challengeDate}</small>
                             </h5>
                           <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
                         </div>
@@ -422,6 +342,12 @@
                           <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
                         </div>
                       </li>
+                      
+                      </c:forEach>
+                      </c:otherwise>
+           		      </c:choose>
+                      
+                      
                     </ul>
                   </div>
                 </div>
