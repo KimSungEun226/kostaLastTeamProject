@@ -195,6 +195,18 @@
 		   
 	   
    })
+   		//기본배송지로 입력
+    	$(document).on("click","#checked",function(){
+    		$("#nameInput").attr("value", "${addr.receiver}");
+    		$("#emailInput").attr("value", "${addr.member.memberEmail}");
+    		$("#contactInput").attr("value", "${addr.phone}");
+    		$("#addrInput1").attr("value", "${addr.memberZip}");
+    		$("#addrInput2").attr("value", "${addr.memberAddress}");
+    		$("#detailAddrInput").attr("value", "${addr.memberDetailAddress}");
+    		
+    		
+    	  });
+   
  </script>
     
   </head>
@@ -546,11 +558,11 @@
                    <div class="col-sm-6 g-mb-20"> 
                    <label class="d-block g-color-gray-dark-v2 g-font-size-15">
                    
-<%--                     <form id="basicCheck_form" action="${pageContext.request.contextPath}/shop/login/basicCheck/${addr.addressNo}">
-                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
-                       		id="checked" name="checked" value="기본배송지로 설정" />  
-                   <input type="hidden" id="sendBasicCheck" name="sendBasicCheck" value="1">
-                   </form> --%>
+                   <form name="basicCheck">
+	                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
+	                       		id="checked" name="checked" value="기본배송지로 입력하기" />  
+                   </form>
+              
                     </label>
                      
                      </div>

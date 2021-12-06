@@ -16,4 +16,7 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
 	@Query("select a from Address a where a.addressNo=?1")
 	Address findByAddrNo(Long addressNo);
+	
+	@Query("select a from Address a inner join a.member m where m.memberId=?1 and a.checkBasic=1")
+	Address findBasicAddr(String id);
 }
