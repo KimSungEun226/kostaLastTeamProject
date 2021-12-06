@@ -47,7 +47,8 @@ public class CalorieController {
 	@RequestMapping("/foodCalList")
 	public ModelAndView foodCalList(Calorie cal) {
 		List<FoodCalory> result = calorieService.selectAll();
-		return new ModelAndView("board/calPrescriptionOutput","food",result);
+
+		return new ModelAndView("board/foodCalList","food",result);
 	}
 
 }

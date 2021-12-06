@@ -89,6 +89,6 @@ public class CalorieService {
 	
 	public List<FoodCalory> selectAll(){
 		
-		return CalorieRepository.selectAll();
+		return CalorieRepository.findAll();
 	}
 }
