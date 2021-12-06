@@ -82,8 +82,13 @@ public interface OrderService {
 	
 	
 	/**
-	 * 회원의 주문상세를 전부 리턴
+	 * 회원의 주문상세(상태0)를 전부 리턴
 	 * */
-	Page<UserOrderDetail> userOrderDetailPage(List<UserOrder> list, Pageable pageable);
+	Page<UserOrderDetail> userOrderDetailPage(List<UserOrder> list, Pageable pageable, int status);
+	
+	/**
+	 * 회원의 주문상세(상태1,2)를 전부 리턴
+	 * */
+	Page<UserOrderDetail> userCancleOrderDetailPage(List<UserOrder> list, Pageable pageable, int status);
 	
 }

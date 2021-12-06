@@ -5,6 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.order.NonuserRefund;
@@ -14,8 +17,6 @@ import kosta.mvc.repository.NonuserOrderDetailRepository;
 import kosta.mvc.repository.NonuserRefundRepository;
 import kosta.mvc.repository.UserOrderDetailRepository;
 import kosta.mvc.repository.UserRefundRepository;
-import kosta.mvc.repository.product.ProductImageRepository;
-import kosta.mvc.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service  //생성 id="productServiceImpl"
@@ -46,8 +47,8 @@ public class RefundServiceImpl implements RefundService {
 	}
 
 	@Override
-	public List<UserRefund> selectUserRefund() {
-		return userRefundRepository.findAll();
+	public Page<UserRefund> selectUserRefund(Pageable pageable) {
+		return userRefundRepository.findAll(pageable);
 	}
 
 	@Override

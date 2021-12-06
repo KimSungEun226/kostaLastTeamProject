@@ -126,30 +126,7 @@ public class OrderController {
 	}
 	
 	
-	//유저의 orderList를 보여준다.
-	@RequestMapping("/user/orderList")
-	public ModelAndView orderList(Principal principal, Model model, @RequestParam(defaultValue = "1") int nowPage) {
-		
-		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userOrderDetailNo" );
-
-		
-		String id = principal.getName();
-		Member m = memberService.selectByMemberId(id);
-		List<UserOrder> orderList = m.getOrderList();
-		
-		Page<UserOrderDetail> pageList = orderService.userOrderDetailPage(orderList, pageable);
-		
-		int blockCount=3;
-		int temp = (nowPage-1)%blockCount;
-		int startPage = nowPage -temp;
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("blockCount", blockCount);
-		mv.addObject("nowPage", nowPage);
-		mv.addObject("startPage", startPage);
-		mv.setViewName("shop/user/page-orders");
-		model.addAttribute("list", pageList);
-		return mv;
-	}
+	
 	
 	
 	//관리자가 전체 주문내역 확인하기
@@ -165,7 +142,7 @@ public class OrderController {
 		mv.addObject("startPage", startPage);
 		
 		if("user".equals(user)) {
-			Pageable pageable = PageRequest.of(nowPage-1,10, Direction.DESC, "orderDate" );
+			Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "orderDate" );
 			Page<UserOrder> orderList = orderService.selectUserOrder(pageable);
 			mv.addObject("list", orderList);
 			mv.setViewName("shop/admin/page-orders");
@@ -246,33 +223,77 @@ public class OrderController {
 	}
 	
 	
+	//유저의 orderList를 보여준다.
+	@RequestMapping("/user/orderList")
+	public ModelAndView orderList(Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
+		
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userOrderDetailNo" );
+
+		
+		String id = principal.getName();
+		Member m = memberService.selectByMemberId(id);
+		List<UserOrder> orderList = m.getOrderList();
+		
+		Page<UserOrderDetail> pageList = orderService.userOrderDetailPage(orderList, pageable, 0);
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.setViewName("shop/user/page-orders");
+		mv.addObject("list", pageList);
+		return mv;
+	}
+	
 	/**
 	 * 회원취소목록
 	 * */
 	@RequestMapping("/user/cancleList")
-	public String cancleList(Principal principal, Model model) {
+	public ModelAndView cancleList(Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
 		String id = principal.getName();
 		Member m = memberService.selectByMemberId(id);
 		List<UserOrder> orderList = m.getOrderList();
-		List<UserOrderDetail> cancleList = new ArrayList<UserOrderDetail>();
-		for(UserOrder userOrder: orderList) {
-			for(UserOrderDetail userOrderDetail: userOrder.getUserOrderDetailList()) {
-				if (userOrderDetail.getStatus() >=1) cancleList.add(userOrderDetail);
-			}
-		}
 		
-		model.addAttribute("list", cancleList);
-		return "shop/user/page-orders-cancle";
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userOrderDetailNo" );
+		Page<UserOrderDetail> pageList = orderService.userCancleOrderDetailPage(orderList, pageable, 0);
+		
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.setViewName("shop/user/page-orders-cancle");
+		mv.addObject("list", pageList);
+		
+		return mv;
 	}
 	
 	/**
 	 * 관리자가 환불내역을 확인한다.
 	 * */
 	@RequestMapping("/admin/refundList/{user}")
-	public String refundList(@PathVariable String user, Model model) {
-		List<UserRefund> refundList = refundService.selectUserRefund();
-		model.addAttribute("list", refundList);
-		return "shop/admin/page-refund";
+	public ModelAndView refundList(@PathVariable String user, Model model, @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userRefundNo" );
+
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
+		Page<UserRefund> refundList = refundService.selectUserRefund(pageable);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.setViewName("shop/admin/page-refund");
+		mv.addObject("list", refundList);
+		
+		return mv;
 	}
 	
 	/**

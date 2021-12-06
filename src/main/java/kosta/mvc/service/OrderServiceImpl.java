@@ -174,8 +174,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Page<UserOrderDetail> userOrderDetailPage(List<UserOrder> list, Pageable pageable) {
-		return userOrderDetailRepository.findByStatusAndUserOrderIn(0, list, pageable);
+	public Page<UserOrderDetail> userOrderDetailPage(List<UserOrder> list, Pageable pageable, int status) {
+		return userOrderDetailRepository.findByStatusAndUserOrderIn(status, list, pageable);
+	}
+
+	@Override
+	public Page<UserOrderDetail> userCancleOrderDetailPage(List<UserOrder> list, Pageable pageable, int status) {
+		return userOrderDetailRepository.findByStatusGreaterThanAndUserOrderIn(status, list, pageable);
 	}
 
 	

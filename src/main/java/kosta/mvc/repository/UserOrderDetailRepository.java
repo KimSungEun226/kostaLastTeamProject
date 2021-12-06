@@ -14,10 +14,14 @@ import kosta.mvc.domain.order.UserOrderDetail;
 public interface UserOrderDetailRepository extends JpaRepository<UserOrderDetail, Long> {
 
 	/**
-	 * 회원번호에 따른 페이지 리스트 리턴 
+	 * 회원번호에 따른 주문 상세페이지 리스트 리턴 
 	 * */
 	Page<UserOrderDetail> findByStatusAndUserOrderIn(int status, List<UserOrder> userOrder, Pageable pageable);
 
+	/**
+	 * 주문이 취소된 회원의 주문 상세 페이지 리스트 리턴
+	 * */
+	Page<UserOrderDetail> findByStatusGreaterThanAndUserOrderIn(int status, List<UserOrder> userOrder, Pageable pageable);
 	
 	/**
 	 * 상태 값 증가 -> 배송상태 변경

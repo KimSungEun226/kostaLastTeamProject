@@ -76,17 +76,17 @@ public class BoardRepositoryTest {
 	 * 검색 test
 	 * */
 	
-	 @Test 
-	 public void testRead() {
-		Pageable pageable = PageRequest.of(0,5, Direction.DESC, "userOrderDetailNo" );
-
-		 Member m = ms.selectByMemberId("tjdt11");
-		 System.out.println(m.getOrderList().size());
-		 Page<UserOrderDetail> pageList = rep.findByUserOrderIn(m.getOrderList(), pageable);
-		 
-		 System.out.println("pageList size : " + pageList.getSize());
-		 
-	 }
+//	 @Test 
+//	 public void testRead() {
+//		Pageable pageable = PageRequest.of(0,5, Direction.DESC, "userOrderDetailNo" );
+//
+//		 Member m = ms.selectByMemberId("tjdt11");
+//		 System.out.println(m.getOrderList().size());
+//		 Page<UserOrderDetail> pageList = rep.findByUserOrderIn(m.getOrderList(), pageable);
+//		 
+//		 System.out.println("pageList size : " + pageList.getSize());
+//		 
+//	 }
 	 
 
 }
