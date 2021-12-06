@@ -147,390 +147,88 @@
               <!-- Panel Header -->
               <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                 <h3 class="h6 mb-0">
-                    <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 1)</small>
+                    <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i>나의 게시물</small>
                   </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
               </div>
               <!-- End Panel Header -->
+              
+              <!-- 게시물 리스트 start -->
+			  <c:choose>
+					<c:when test="${empty requestScope.pageList.content}">
+				            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
+				    </c:when>
+				    <c:otherwise>
+				    <c:forEach items="${requestScope.pageList.content}" var="board">
 
               <!-- Panel Body -->
-              <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
                 <ul class="list-unstyled">
+                  <!-- START 게시물List -->
                   <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
                     <div class="d-flex g-mt-2 g-mr-15">
                       <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
                     </div>
+                    
+				    
                     <div class="media-body">
                       <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">Unify Template</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
+                        <h5 class="h6 g-font-weight-600 g-color-black">${board.boardTitle}</h5>
+                        <span class="small text-nowrap g-color-blue">${board.boardRegdate}</span>
                       </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">AnhularJS</span>
+                      <p>${board.boardContent}</p>
+                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardRegdate}</span>
+                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardReadnum}</span>
                       <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
                     </div>
                   </li>
-
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">UX/UI Design and Backend</h5>
-                        <span class="small text-nowrap g-color-pink">16 min ago</span>
-                      </div>
-                      <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-color-black g-rounded-20 g-px-10">JavaScript</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">Ruby</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ASP.NET</span>
-                    </div>
-                  </li>
-
-                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-black-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">React Native App</h5>
-                        <span class="small text-nowrap g-color-blue">2 min ago</span>
-                      </div>
-                      <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ReactJS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Panel Body -->
-            </div>
-            <!-- End Latest Projects Panel -->
-
-            <!-- Activities Panel -->
-            <div class="card border-0 g-mb-40">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 2)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
-
-              <!-- Panel Content -->
-              <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
-                <ul class="list-unstyled">
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">UX Project</h5>
-                      <span class="ml-auto small g-color-blue g-px-10">Dropbox Inc</span>
-                    </div>
-                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-blue g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">5+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-blue g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Python Algorithm</h5>
-                      <span class="ml-auto small g-color-pink g-px-10">Google I/O</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img8.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-pink g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">17+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-pink g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-primary-left rounded g-pa-20 g-mb-10">
-                    <div class="d-flex justify-content-start">
-                      <h5 class="g-font-weight-600 g-color-black">Unify Tempalte</h5>
-                      <span class="ml-auto small g-color-primary g-px-10">Htmlstream</span>
-                    </div>
-                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                    <div class="d-flex justify-content-between">
-                      <ul class="u-list-inline">
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img12.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <img class="g-brd-around g-brd-gray-light-v3 g-pa-2 g-width-40 g-height-40 rounded" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                        </li>
-                        <li class="list-inline-item mr-0">
-                          <a class="u-link-v4 d-inline-block g-bg-primary g-color-white g-font-weight-600 g-text-underline--none--hover rounded g-py-8 g-px-11" href="#">9+</a>
-                        </li>
-                      </ul>
-                      <div class="align-self-center">
-                        <a class="btn u-btn-outline-primary g-rounded-50" href="#">Follow</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Panel Content -->
-            </div>
-            <!-- End Activities Panel -->
-
-            <!-- Activities Panel -->
-            <div class="card border-0">
-              <!-- Panel Header -->
-              <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
-                <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Latest Projects <small>(option 3)</small>
-                  </h3>
-                <div class="dropdown g-mb-10 g-mb-0--md">
-                  <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                    </span>
-                  <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                    </a>
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <a class="dropdown-item g-px-10" href="#">
-                      <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Panel Header -->
-
-              <!-- Panel Content -->
-              <div class="card-block g-pa-0">
-                <div class="table-responsive">
-                  <table class="table table-bordered u-table--v2">
-                    <thead class="text-uppercase g-letter-spacing-1">
-                      <tr>
-                        <th class="g-font-weight-300 g-color-black">Companies</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Project Description</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-130">Status</th>
-                        <th class="g-font-weight-300 g-color-black">Rating</th>
-                        <th class="g-font-weight-300 g-color-black g-min-width-200">Locations</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img3.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pixeel Ltd" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Nulla ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="4" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>389ZA2 DeClaudine, CA, USA</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Htmlstream" alt="Image Description">
-                        </td>
-                        <td class="align-middle">In consectetur adipiscing hac habitasse platea dictumst, curabitur hendrerit.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-cyan" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="4.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>738AD Lorena Spur, London, UK</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Starbucks" alt="Image Description">
-                        </td>
-                        <td class="align-middle">To a general advertiser outdoor advertising is worthy of consideration..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-purple" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="2.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>044C1 Port Dickson, BC, Canada</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img2.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Wrapbootstrap" alt="Image Description">
-                        </td>
-                        <td>Create a list with all possible keywords that fit to your product, service or business..</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-lightred" role="progressbar" style="width: 86%" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-color-primary" data-rating="5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>07W2 Donell Lodge, NY, USA</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="align-middle text-nowrap text-center">
-                          <img class="g-brd-around g-brd-gray-light-v4 g-pa-2 g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest" alt="Image Description">
-                        </td>
-                        <td class="align-middle">Ulla consectetur ipsum dolor sit amet, consectetur adipiscing elitut eleifend nisl.</td>
-                        <td class="align-middle">
-                          <div class="js-hr-progress-bar progress rounded-0">
-                            <div class="js-hr-progress-bar-indicator progress-bar u-progress-bar--xs g-bg-darkpurple" role="progressbar" style="width: 62%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="js-rating g-font-size-121 g-color-primary" data-rating="3.5" data-spacing="3"></div>
-                        </td>
-                        <td class="align-middle">
-                          <div class="d-flex">
-                            <i class="icon-location-pin g-font-size-18 g-color-gray-dark-v5 g-pos-rel g-top-5 g-mr-7"></i>
-                            <span>1A9WA4 Wanderben, Berlin, Germany</span>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <!-- End Panel Content -->
-            </div>
-            <!-- End Activities Panel -->
+                  <!-- END 게시물List-->
+                </ul> 
+                </c:forEach>
+                </c:otherwise>
+           		</c:choose>         
           </div>
           <!-- End Profle Content -->
+          
+          <!-- Pagination -->
+        <nav class="g-mb-100" aria-label="Page Navigation">
+        <ul class="list-inline mb-0">
+          	<c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/board?nowPage=${startPage-1}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+		    </c:if>
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					       <c:set var="doneLoop" value="true"/>
+					    </c:if> 
+				  <c:if test="${not doneLoop}" >
+				      <li class="list-inline-item hidden-down">
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/myPage/board?nowPage=${i}">${i}</a> 
+		            </li>
+		         </c:if>
+            </c:forEach>
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/board?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+          </ul>
+        </nav>
+        <!-- End Pagination -->
+          
+          
+          
+          
         </div>
       </div>
     </section>

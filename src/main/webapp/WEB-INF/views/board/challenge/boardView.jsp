@@ -149,7 +149,7 @@
 
 	<!-- 게시물 리스트 start -->
 	<c:choose>
-	<c:when test="${empty requestScope.pageList}">
+	<c:when test="${empty requestScope.pageList.content}">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
     </c:when>
     <c:otherwise>
