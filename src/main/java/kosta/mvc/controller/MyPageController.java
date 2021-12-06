@@ -54,10 +54,6 @@ public class MyPageController {
 		
 		//댓글
 		
-		
-
-		
-		
 		System.out.println("------------------------------");
 		for(Challenge challenge : challengeList) {
 			System.out.println(challenge.getChallengeNo());
@@ -109,11 +105,8 @@ public class MyPageController {
 	 * 내 정보 보기 
 	 */
 	@RequestMapping("/setting")
-	public ModelAndView setting() {
-		
-		Long memberNo = (long)1;
-		//회원번호로 회원정보가져오기 
-		Member member = myPageService.findByMemberNo(memberNo);
+	public ModelAndView setting(HttpSession session, Principal principal) {	
+		Member member = memberService.selectByMemberId(principal.getName());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("member", member);
@@ -125,11 +118,9 @@ public class MyPageController {
 	 * 내 정보 수정 
 	 */
 	@RequestMapping("/update")
-	public ModelAndView update(Member member) {
-		Long memberNo = (long)1;
-		
-		
-		
+	public ModelAndView update(HttpSession session, Principal principal) {
+		Member member = memberService.selectByMemberId(principal.getName());
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/myPage/mySetting");
 		return mv;
