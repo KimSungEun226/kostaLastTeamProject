@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
-import kosta.mvc.domain.Level;
+import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
@@ -56,12 +56,12 @@ public class MyPageController {
 		
 		
 		//회원활동정보
-		Info info = member.getInfo();
-		mv.addObject("info", info);
+//		Info info = member.getInfo();
+//		mv.addObject("info", info);
 		
 		//등급
-		//Level level = member.getInfo().getLevelNo()
-		
+//		Grade level = member.getInfo().getLevel();
+		mv.addObject(member);
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
@@ -70,14 +70,15 @@ public class MyPageController {
 	 * 나의 게시물 모아보기
 	 */
 	@RequestMapping("/board")
-	public ModelAndView board(@RequestParam(defaultValue = "1") int nowPage) {
-		Long memberNo = (long)1;
+	public ModelAndView board(HttpSession session, Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
+		Member member = memberService.selectByMemberId(principal.getName());
+		Long memberNo = member.getMemberNo();
 		
 		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
 		ModelAndView mv = new ModelAndView();
 		
-		Page<Board> boardList = myPageService.findBoard(memberNo, pageable);
-		mv.addObject("pageList", boardList);
+		Page<Board> pageList = myPageService.findBoard(memberNo, pageable);
+		mv.addObject("pageList", pageList);
 		
 		int blockCount=3;
 		int temp = (nowPage-1)%blockCount;

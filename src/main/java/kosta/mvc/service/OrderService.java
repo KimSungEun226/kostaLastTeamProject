@@ -70,4 +70,15 @@ public interface OrderService {
 	 */
 	NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone);
 	
+	/**
+	 * 회원의 주문상세의 상태를 0 -> 1 (취소신청)으로 바꾼다.
+	 * */
+	void updateUserOrderDetailStatus(Long orderDetailNo,String reason);
+	
+	/**
+	 * 비회원의 주문상세의 상태를 0 -> 1 (취소신청)으로 바꾼다.
+	 * */
+	void updateNonuserOrderDetailStatus(Long orderDetailNo, String reason);
+	
+	
 }

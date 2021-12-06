@@ -24,7 +24,7 @@ public class Address {
 	@SequenceGenerator(sequenceName = "address_no_seq", allocationSize = 1, name = "address_no_seq")
 	private Long addressNo;
 	private String memberAddress;
-	private int memberZip;
+	private String memberZip;
 	private int checkBasic;
 	
 	//회원번호랑 다:1
@@ -34,6 +34,7 @@ public class Address {
 	
 	private String receiver;
 	private String phone;
+	private String memberDetailAddress;
 	
 	
 }

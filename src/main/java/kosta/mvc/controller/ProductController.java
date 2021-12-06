@@ -172,7 +172,7 @@ public class ProductController {
 		Page<Product> pageList = productService.selectByCateCode(cateCode, pageable);
 		
 		//상수로 잡자
-		int blockCount=3;
+		int blockCount=5;
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
 		ModelAndView mv = new ModelAndView();

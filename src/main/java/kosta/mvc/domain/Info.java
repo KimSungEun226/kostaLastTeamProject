@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -27,11 +28,14 @@ public class Info {
 	private int attendNo;
 	private int contentNo;
 	private int memberExp;
-	private int levelNo;
-	
+
 	@OneToOne(mappedBy = "info")
 	private Member member; 
 	
 	//@OneToOne
 	//private Level level;
+	
+	@OneToOne
+	@JoinColumn(name="level_no")
+	private Grade level;
 }

@@ -51,37 +51,37 @@
 
                     <!-- 홈트레이닝 - 전신 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">전신</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/21">전신</a>
                     </li><!-- End 홈트레이닝 - 전신 -->
                     
                     <!-- 홈트레이닝 - 복부 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">복부</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/22">복부</a>
                     </li><!-- End 홈트레이닝 - 복부 -->
                     
                     <!-- 홈트레이닝 - 상체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">상체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/23">상체</a>
                     </li><!-- End 홈트레이닝 - 상체 -->
                     
                     <!-- 홈트레이닝 - 하체 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">하체</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/24">하체</a>
                     </li><!-- End 홈트레이닝 - 하체 -->
                     
                     <!-- 홈트레이닝 - 스트레칭 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">스트레칭</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/25">스트레칭</a>
                     </li><!-- End 홈트레이닝 - 스트레칭 -->
                     
                     <!-- 홈트레이닝 - 댄스 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">댄스</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/26">댄스</a>
                     </li><!-- End 홈트레이닝 - 댄스 -->
                     
                     <!-- 홈트레이닝 - 요가 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">요가</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/selectByTag/27">요가</a>
                     </li><!-- End 홈트레이닝 - 요가 -->
                   </ul>
                 </li><!-- End 홈트레이닝 -->
@@ -219,7 +219,7 @@
 
                 <!-- 칼로리사전 -->
                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                  <a href="${pageContext.request.contextPath}/unify-main/shortcodes/index.html" class="nav-link g-py-7 g-px-0">칼로리사전</a>
+                  <a href="${pageContext.request.contextPath}/foodCal" class="nav-link g-py-7 g-px-0">칼로리사전</a>
                 </li>
                 <!-- End 칼로리사전 -->
 

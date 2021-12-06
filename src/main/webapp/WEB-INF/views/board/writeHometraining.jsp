@@ -9,14 +9,14 @@
   
   
     <!-- Title -->
-    <title>게시글 수정하기</title>
+    <title>게시글 작성하기</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
 
     <!-- Favicon -->
@@ -46,7 +46,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
+  
   <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
@@ -59,21 +59,40 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-   
-    <script type="text/javascript">
     
-	     $(document).ready(function(){
-	    	 $('#summernote').summernote({
-	    			 tabsize: 1,
-			  			height:400
-	    	 }
-	    			 );
-	    });
-      
-	  
+    <script type="text/javascript">
+      $(document).ready(function(){
+    	  
+    	  let count = 1;
+    	  
+    	  $("#btnAdd").click(function(){
+    		  
+    		  if (count <= 2) { 
+	    		  $(".addFile").append(
+	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
+	    	  
+	    		  $(".btnRemove").on("click", function(){
+	        		  $(this).prev().remove();
+	        		  $(this).next().remove();
+	        		  $(this).remove();
+	        		  count-=1;
+	        	  });
+	    		  
+	    		  count+=1;
+    		  }else{
+    			  alert("이미지는 최대 3장");
+    		  }
+    	  });
+    	  
+    	  
+    	  
+    	  
+      });
     </script>
     
     <script type="text/javascript">
+    
+    
 	    function form_check() {
 	    	  var boardName = document.getElementById("boardTitle");
 	    	  var categoryNo = $("#boardKind option:selected");    	
@@ -105,11 +124,37 @@
 		            return false;
 		        }
 		    	
-		    	document.getElementById("boardContent").value = $('#summernote').summernote('code');
-		    	document.boardUpdateForm.submit(); //유효성 검사의 포인트 
+		    	document.hometrainingWrtieForm.submit(); //유효성 검사의 포인트 
+
 	    }
 	    
-	    
+	    <!-- 지역게시판 선택시 지역카테고리 나오게  -->
+		/* $(function(){
+		    
+		    // 질문유형을 선택한다.
+		    chnQnaType('1' , '11');
+		});
+		
+		function chnQnaType(type , select) {
+		    
+		    $('#tagrelNo').empty();
+		    
+		    if(type == '4') { // 지역방 선택
+		    	$('#tagrelNo').append("<option value='2' >서울</option>");
+		        $('#tagrelNo').append("<option value='3' >경기·인천</option>");
+		        $('#tagrelNo').append("<option value='4' >강원도</option>");
+		        $('#tagrelNo').append("<option value='5' >충청도</option>");
+		        $('#tagrelNo').append("<option value='6' >전라도</option>");
+		        $('#tagrelNo').append("<option value='7' >경상도</option>");
+		        $('#tagrelNo').append("<option value='8' >제주도</option>");
+		    } 
+		    document.getElementById("tagrelNo").style.display = "";
+		    
+		    if ($.trim(select) != "") {
+		        $('#boardKind').val(type);
+		        $('#tagrelNo').val(select);
+		    }
+		} */
     </script>
   </head>
 
@@ -128,8 +173,12 @@
               <a class="u-link-v5 g-color-text" href="#">커뮤니티</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
+            <li class="list-inline-item g-mr-5">
+              <a class="u-link-v5 g-color-text" href="#">${board.boardKind}</a>
+              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
             <li class="list-inline-item g-color-primary">
-              <span>게시글 수정하기</span>
+              <span>글쓰기</span>
             </li>
           </ul>
         </div>
@@ -137,11 +186,11 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="boardUpdateForm" method="post" action="${pageContext.request.contextPath}/board/update" enctype="multipart/form-data">
-	  <input type="hidden" name="boardNo" value="${board.boardNo}"/>
+      <form name="hometrainingWrtieForm" method="post" action="${pageContext.request.contextPath}/board/insertHometarining" enctype="multipart/form-data">
+
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">수정하기</h2>
+          <h2 class="mb-5">글쓰기</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -157,45 +206,27 @@
                         <th>
                           <!-- End Products Block -->
 		                  <div class="input-group mb-1">
-		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:70%;" type="text" value="${board.boardTitle}">
+		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="제목을 입력하세요.">
 		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onchange="selSub();">
 		                      <option value="0">카테고리</option>
-		                      <option value="1" ${board.boardKind == '1' ? 'selected="selected"' : '' }>일기</option>
-		                      <option value="4" ${board.boardKind == '4' ? 'selected="selected"' : '' }>지역방</option>
-		                      <option value="3" ${board.boardKind == '3' ? 'selected="selected"' : '' }>자유게시판</option>
+		                      
+		                      <option value="6" selected>홈트레이닝</option>
 		                    </select>
-		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
-		                    	<option value="">지역 선택</option>
-								<option value="2">서울</option>
-								<option value="3">경기ㆍ인천</option>
-								<option value="4">강원도</option>
-								<option value="5">충청도</option>
-								<option value="6">전라도</option>
-								<option value="7">경상도</option>
-								<option value="8">제주도</option>
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    	<option value="">운동 선택</option>
+								<option value="21" >전신</option>
+								<option value="22" >복부</option>
+								<option value="23" >상체</option>
+								<option value="24" >하체</option>
+								<option value="25" >스트레칭</option>
+								<option value="26" >댄스</option>
+								<option value="27" >요가</option>
 		                    </select>
+		                    <div>
+		                    	<span class="g-color-text" style="display: inline-block;">썸네일 url : </span>
+		                    	<input id="thumbnail" name="thumbnail" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:370px; display: inline-block;" type="text" placeholder="https://img.youtube.com/vi/링크아이디/mqdefault.jpg">
+		                    </div>
 		                  </div>
-		                  
-		                  <!-- test -->
-		                  <%-- <select class="form-control" id="test" name="test" onchange="">
-							    <option value="0" ${test == '0' ? 'selected="selected"' : '' }>해지</option>
-							    <option value="1" ${test == '1' ? 'selected="selected"' : '' }>진행</option>
-							    <option value="2" ${test == '2' ? 'selected="selected"' : '' }>완료</option>
-							</select> --%>
-		                  <!-- end tedt -->
-		                  <script>
-				          	function selSub(){
-				            	$("#tagrelNo").attr("style", "display:none;");
-				            	$("#thumbnail").attr("style", "display:none;");
-				            	
-				            	if ($("#boardKind option:selected").val() == "4"){ //지역방 선택시
-					          		$("#tagrelNo").attr("style", "display:;");
-					          		$("#category_sub1arr").attr("style", "display:;");
-				            	} 
-				            }
-				          </script>
-		                  
-		          
                         <br>
                         </th>
                         </tr>
@@ -205,13 +236,17 @@
                         <!-- Item-->
                         
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
-                        <td>
-                          <div id="summernote" >
-                          ${board.boardContent}
-                          </div>
-                          </td> 
+                          <td><textarea id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" placeholder="글 내용"></textarea></td> 
                         </tr>
-                        <input type="hidden" id="boardContent" name="boardContent" value=""/>
+                        
+                        
+                        <script>
+							$('#summernote').summernote({
+							placeholder: 'Hello Bootstrap 4',
+							tabsize: 1,
+							height:200
+							});
+						</script>
                         <!-- End Item-->
 
                       </tbody>
@@ -227,7 +262,7 @@
                <!-- Contact Form -->
 		            
 		                <div class="text-center">
-		                  <button id="check" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
+		                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
 		                </div>
 		              
 		              <!-- End Contact Form -->

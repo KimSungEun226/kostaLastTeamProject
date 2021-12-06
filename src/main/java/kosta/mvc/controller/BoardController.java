@@ -4,6 +4,7 @@
 package kosta.mvc.controller;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Tag;
 import kosta.mvc.service.BoardService;
+import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -31,12 +34,43 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	private final BoardService boardService;
 	
+	private final MemberService memberService;
+	
 	/**
 	 * 등록폼
 	 * */
 	@RequestMapping("/write")
-	public void write() {
+	public void write(Principal principal) {
+	}
+	
+	/**
+	 * 등록하기(커뮤니티 게시판)
+	 * */
+	@RequestMapping("/insert")
+	public String insert(Principal principal, Board board, Tag tag) throws NullPointerException {
+			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
+			//System.out.println("principle.getName() : "+principal.getName()); // eunji?
+			
+			//로그인한 memberId로 member객체가져오기 
+			Member member = memberService.selectByMemberId(principal.getName());
+			//System.out.println("member : " + member); //member객체
+			
+			//해당 member객체의 memberNickname 가져와서 memberNick에 담기
+			String memberNick = member.getMemberNickname();
+			//System.out.println("memberNick : " + memberNick); //isshoeunji
+			
+		    //System.out.println(tag.getTagrelNo());
+		    
+		    if(tag.getTagrelNo() != null) { //지역방의 지역카테고리 값이 들어오면
+		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
+		    	board.setTag(tag);
+		    }
+		    
+		    board.setMember(member);
+		    board.setMemberNickname(memberNick);
+		    boardService.insert(board);
 		
+		return "redirect:/board/select/0";
 	}
 	
 	/**
@@ -57,53 +91,10 @@ public class BoardController {
 	@RequestMapping("/update")
 	public ModelAndView update(Board board) {
 		System.out.println("수정완료 controller의 update 메소드...");
+		System.out.println(board.getBoardNo());
 		Board dbBoard = boardService.update(board);
-		
 		return new ModelAndView("board/detail", "board", dbBoard);
 	}
-
-	
-	/**
-	 * 등록하기(커뮤니티 게시판)
-	 * */
-	@RequestMapping("/insert")
-	public String insert(Board board, Tag tag) throws NullPointerException {
-			String[] tagList = {"서울", "경기·인천","강원도","충청도","전라도","경상도","제주도"};
-			
-		    
-		    System.out.println(tag.getTagrelNo());
-		    
-		    if(tag.getTagrelNo() != null) {
-		    	tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo())-2]);
-		    	board.setTag(tag);
-		    }
-		    
-		    boardService.insert(board);
-		
-		return "redirect:/board/select/0";
-	}
-	
-	
-	/**
-	 * 전체 커뮤니티 게시물 조회
-	 * */
-	/*@RequestMapping("/list")
-	public void list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
-		//List<Board> list = boardService.selectAll();
-		//return new ModelAndView("board/list", "board", list);
-		Pageable pageable = PageRequest.of(nowPage-1, 10, Direction.DESC, "boardNo");
-		Page<Board> pageList = boardService.selectAll(pageable);
-		
-		model.addAttribute("pageList", pageList); //뷰쪽으로 전달될 데이터정보
-		
-		int blockCount = 3;
-		int temp = (nowPage-1)%blockCount;
-		int startPage = nowPage-temp;
-		
-		model.addAttribute("blockCount", blockCount);
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-	}*/
 	
 	/**
 	 * 카테고리별 게시판 이동 by은지_2021.12.03
@@ -139,7 +130,7 @@ public class BoardController {
 	}
 	
 	/**
-	 * 지역방 카테고리별 게시판 이동
+	 * 지역방, 홈트레이닝게시판 카테고리별 게시판 이동
 	 * */
 	@RequestMapping("/selectByTag/{tagrelNo}")
 	public ModelAndView selectByTag(@PathVariable Long tagrelNo, @RequestParam(defaultValue = "1") int nowPage) {
@@ -156,7 +147,11 @@ public class BoardController {
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("pageList", boardList);
-		mv.setViewName("board/boardView");
+		if(tagrelNo >= 21 && tagrelNo <= 27) {
+			mv.setViewName("board/hometraining");
+		} else {
+			mv.setViewName("board/boardView");
+		}
 		return mv;
 	}
 	
@@ -186,5 +181,30 @@ public class BoardController {
 		return "redirect:/board/select/0";
 	}
 	
+	/**
+	 * 홈트레이닝 게시물 등록폼_2021.12.06
+	 * */
+	@RequestMapping("/writeHometraining")
+	public void writeHometraining() {
+		
+	}
+	
+	
+	/**
+	 * 홈트레이닝 게시물 등록하기_2021.12.06
+	 * */
+	@RequestMapping("/insertHometarining")
+	public String insertHometraining(Board board, Tag tag) {
+		String[] tagList = {"전신", "복부", "상체", "하체", "스트레칭", "댄스", "요가"};
+		
+		System.out.println(tag.getTagrelNo());
+		
+		tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo()-21)]);
+		board.setTag(tag);
+		
+		boardService.insert(board);
+		
+		return "redirect:/board/select/6"; //홈트레이닝>전체 게시판으로 이동
+	}
 	
 }

@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,9 +26,11 @@ import kosta.mvc.domain.order.NonuserOrderDetail;
 import kosta.mvc.domain.order.OrderDetail;
 import kosta.mvc.domain.order.UserOrder;
 import kosta.mvc.domain.order.UserOrderDetail;
+import kosta.mvc.domain.order.UserRefund;
 import kosta.mvc.service.CartService;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
+import kosta.mvc.service.RefundService;
 
 @Controller
 @RequestMapping("/shop")
@@ -44,6 +44,9 @@ public class OrderController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	RefundService refundService;
 	 
     private NonuserOrder nonuserOrder;
     private UserOrder userOrder;
@@ -53,6 +56,7 @@ public class OrderController {
     private List<NonuserOrderDetail> nonuserOrderDetailList = new ArrayList<NonuserOrderDetail>();
     private List<UserOrderDetail> userOrderDetailList = new ArrayList<UserOrderDetail>();
     private Long result;
+    
     
     
     //결제하기
@@ -110,7 +114,6 @@ public class OrderController {
 
 		return result;
 	}
-
 	
 	//결제완료 페이지로 이동
 	@RequestMapping("/paysuccess")
@@ -134,26 +137,6 @@ public class OrderController {
 		return "shop/user/page-orders";
 	}
 	
-	/**
-	 * 비회원 주문조회 정보입력(이름, 전화번호, 주문번호)
-	 */
-	@RequestMapping("/orderInfo")
-	public String nonUserOrderInfo() {
-		return "shop/nonUser/orderInfo";
-	}
-	
-	/**
-	 * 비회원 주문조회
-	 */
-	@RequestMapping(value="/orderList", method=RequestMethod.POST)
-	public String nonUserOrderList(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone, Model model) {
-		System.out.println("컨트롤러 진입");
-		NonuserOrder nonuserOrder = orderService.selectNonuserOrder(nonuserOrderNo, receiverName, receiverPhone);
-		System.out.println(nonuserOrder.getNonuserOrderDetailList());
-		model.addAttribute("order", nonuserOrder);
-		model.addAttribute("orderDetail", nonuserOrder.getNonuserOrderDetailList());
-		return "shop/nonUser/orderList";
-	}
 	
 	//관리자가 전체 주문내역 확인하기
 	@RequestMapping("/admin/orderList/{user}")
@@ -228,17 +211,69 @@ public class OrderController {
 		}
 	}
 	
+	
 	/**
-	 * 회원 주문 취소하기
+	 * 비회원 주문조회
+	 * */
+	//@RequestMapping("/shop")
+	
+	
+	/**
+	 * 회원 주문 취소 신청 하기
 	 * */
 	@RequestMapping("/user/cancleOrder")
-	public ModelAndView cancleOrder(int userOrderDetailNo, String reason) {
+	public String cancleOrder(int userOrderDetailNo, String reason) throws Exception{
 		Integer temp = userOrderDetailNo;
-		Long no = temp.longValue();
+		Long no = temp.longValue(); //orderdetail번호
 		
-		System.out.println("userOrderDetailNo: " + no);
-		System.out.println("reason: " + reason);
-		return null;
+		orderService.updateUserOrderDetailStatus(no, reason);
+		
+		return "cancleOk";
+	}
+	
+	
+	/**
+	 * 회원취소목록
+	 * */
+	@RequestMapping("/user/cancleList")
+	public String cancleList(Principal principal, Model model) {
+		String id = principal.getName();
+		Member m = memberService.selectByMemberId(id);
+		List<UserOrder> orderList = m.getOrderList();
+		List<UserOrderDetail> cancleList = new ArrayList<UserOrderDetail>();
+		for(UserOrder userOrder: orderList) {
+			for(UserOrderDetail userOrderDetail: userOrder.getUserOrderDetailList()) {
+				if (userOrderDetail.getStatus() >=1) cancleList.add(userOrderDetail);
+			}
+		}
+		
+		model.addAttribute("list", cancleList);
+		return "shop/user/page-orders-cancle";
+	}
+	
+	/**
+	 * 관리자가 환불내역을 확인한다.
+	 * */
+	@RequestMapping("/admin/refundList/{user}")
+	public String refundList(@PathVariable String user, Model model) {
+		List<UserRefund> refundList = refundService.selectUserRefund();
+		model.addAttribute("list", refundList);
+		return "shop/admin/page-refund";
+	}
+	
+	/**
+	 * 관리자가 환불을 승인한다.
+	 * */
+	@RequestMapping("/admin/agreeRefund/{user}")
+	public String agreeRefund(@PathVariable String user,Long refundNo, Model model) throws Exception{
+		
+		if("user".equals(user)) {
+			UserRefund userRefund = refundService.userRefund(refundNo);
+			if (userRefund==null) throw new Exception("환불 번호 조회 실패");
+			refundService.agreeUserRefund(refundNo);
+		}
+		
+		return "redirect:/shop/admin/refundList/user";
 	}
 	
 }

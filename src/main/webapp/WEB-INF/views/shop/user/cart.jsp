@@ -195,6 +195,18 @@
 		   
 	   
    })
+   		//기본배송지로 입력
+    	$(document).on("click","#checked",function(){
+    		$("#nameInput").attr("value", "${addr.receiver}");
+    		$("#emailInput").attr("value", "${addr.member.memberEmail}");
+    		$("#contactInput").attr("value", "${addr.phone}");
+    		$("#addrInput1").attr("value", "${addr.memberZip}");
+    		$("#addrInput2").attr("value", "${addr.memberAddress}");
+    		$("#detailAddrInput").attr("value", "${addr.memberDetailAddress}");
+    		
+    		
+    	  });
+   
  </script>
     
   </head>
@@ -545,7 +557,12 @@
                 <div class="row">
                    <div class="col-sm-6 g-mb-20"> 
                    <label class="d-block g-color-gray-dark-v2 g-font-size-15">
-                    <input type ="checkbox" id="checkSame" > 주문자 정보와 동일
+                   
+                   <form name="basicCheck">
+	                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
+	                       		id="checked" name="checked" value="기본배송지로 입력하기" />  
+                   </form>
+              
                     </label>
                      
                      </div>

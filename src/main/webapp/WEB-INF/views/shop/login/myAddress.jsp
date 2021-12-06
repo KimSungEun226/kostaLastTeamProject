@@ -50,8 +50,9 @@
     	
     	  //변수에 담아주기
     	  var memberName = document.getElementById("nameInput");
-    	  var memberAddr = document.getElementById("addrInput1");
     	  var memberZip = document.getElementById("zipInput");
+    	  var memberAddr = document.getElementById("addrInput2");
+    	  var memberDetailAddr = document.getElementById("detailAddrInput");
     	  var memberContact = document.getElementById("contactInput");
 
     	  var reg_name = /^[가-힣]+$/; //한글만
@@ -67,9 +68,14 @@
     	  };
 
 
-      	  if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-        	    alert("주소를 입력하세요.");
+      	  if (memberDetailAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+        	    alert("상세 주소를 입력하세요.");
         	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+          };
+          
+          if (memberAddr.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+      	    alert("주소를 입력하세요.");
+      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
           };
           
           if (memberZip.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
@@ -92,25 +98,40 @@
     	}      
 		
     	//기본배송지 버튼
-		$(function(){
-			 $("#checked").click(function(){
-				 alert("기본배송지로 등록되었습니다.");
-		         $("#basicCheck_form").submit(); 
-			 });
-	         
-		});
+    	$(document).on("click","#checked",function(){
+    		$("#basicCheck_form").attr("action", "${pageContext.request.contextPath}/shop/login/basicCheck/"+$(this).attr("name"));
+    		alert("기본배송지로 등록되었습니다.");
+	         $("#basicCheck_form").submit(); 
+    	  });
     		
-		
-		
-		
-			
-		
-    
-   
-    
- 
+
     
     </script>
+   <!-- 주소찾기 --> 
+    <script>
+	  function findAddr(){
+		new daum.Postcode({
+	      oncomplete: function(data) {
+	        	
+	        console.log(data);
+	        	
+	        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	        var roadAddr = data.roadAddress; // 도로명 주소 변수
+	        var jibunAddr = data.jibunAddress; // 지번 주소 변수
+	        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	        document.getElementById('zipInput').value = data.zonecode;
+	        if(roadAddr !== ''){
+	          document.getElementById("addrInput2").value = roadAddr;
+	          }else if(jibunAddr !== ''){
+	            document.getElementById("addrInput2").value = jibunAddr;
+	          }
+	      }
+	    }).open();
+	  }
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
     
   </head>
@@ -184,7 +205,7 @@
                   </a>
                 </li>
                 <li class="g-py-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/orderList">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
                     주문내역
                   </a>
@@ -201,17 +222,18 @@
            <div class="col-md-6 g-mb-30">
               
           <c:choose>
-          <c:when test="${empty addrList}">
-          	등록된 배송지 정보가 없습니다.
+          <c:when test="${empty requestScope.addrList}">
+          
+          <p align="center"><b><span style="font-size:9pt;">등록된 배송지 정보가 없습니다.</span></b></p>
           </c:when>
 		  <c:otherwise>
-		  	<c:forEach items="${addrList}" var="addr" varStatus="status">
+		  	<c:forEach items="${requestScope.addrList}" var="addr" varStatus="status">
                 <!-- Addresses -->
                 <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30">
                   <div class="g-mb-50">
                     <h3 class="h5 mb-3">주소 ${status.count}
                     <c:if test="${addr.checkBasic==1}">
-                    : 기본배송지
+                     <mark>기본배송지</mark>
                     </c:if>
                     
                     </h3>
@@ -226,7 +248,7 @@
                       <div class="media-body g-color-text">
                         우편번호: ${addr.memberZip}
                         <br>
-                        ${addr.memberAddress}
+                        ${addr.memberAddress} ${addr.memberDetailAddress}
                         <br>
                       </div>
                     </address>
@@ -266,9 +288,9 @@
                     <c:if test="${addr.checkBasic==0}">
                     <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
                     <li class="list-inline-item">
-                        <form id="basicCheck_form" action="${pageContext.request.contextPath}/shop/login/basicCheck/${addr.addressNo}">
-                       		<input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
-                       		id="checked" name="checked" value="기본배송지로 설정" />  
+                        <form id="basicCheck_form">
+                       		<input type="button"  class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
+                       		id="checked" name="${addr.addressNo}" value="기본배송지로 설정" />  
                        		<input type="hidden" id="sendBasicCheck" name="sendBasicCheck" value="1">
                        	</form>
                      
@@ -281,10 +303,11 @@
                 <!-- End Addresses -->
                 </c:forEach>
 				</c:otherwise>
-              </c:choose>
+              </c:choose>  
               </div>
-
-            </div>              
+ 
+            </div> 
+                      
             
 
             <!-- Contact Form -->
@@ -295,23 +318,29 @@
                 <div class="row">
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">받는 분</label>
-                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="이름">
+                    <input name="nameInput" id="nameInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${memberInfo.memberName}">
+                  </div>
+                  
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">연락처</label>
+                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="${memberInfo.memberPhone}">
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">우편번호</label>
-                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="10101">
+                    <input name="zipInput" id="zipInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" onclick="findAddr()" placeholder="우편번호찾기" >
                   </div>
 
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">주소</label>
-                    <input name="addrInput1" id="addrInput1" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="경기도 성남시 XX구 XX길">
+                    <input name="addrInput2" id="addrInput2" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text">
+                  </div>
+                  <div class="col-sm-6 form-group g-mb-20">
+                    <label class="g-color-text g-font-size-13">상세주소</label>
+                    <input name="detailAddrInput" id="detailAddrInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" >
                   </div>
 
-                  <div class="col-sm-6 form-group g-mb-20">
-                    <label class="g-color-text g-font-size-13">연락처</label>
-                    <input name="phoneNumber" id="contactInput" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" placeholder="010-XXXX-XXXX">
-                  </div>
+                  
                 </div>
             </div>
             <!-- End Contact Form -->

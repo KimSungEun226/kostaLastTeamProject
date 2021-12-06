@@ -1,6 +1,5 @@
 package kosta.mvc.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,9 +12,10 @@ import org.springframework.stereotype.Service;
 import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.order.NonuserOrder;
 import kosta.mvc.domain.order.NonuserOrderDetail;
-import kosta.mvc.domain.order.Order;
+import kosta.mvc.domain.order.NonuserRefund;
 import kosta.mvc.domain.order.UserOrder;
 import kosta.mvc.domain.order.UserOrderDetail;
+import kosta.mvc.domain.order.UserRefund;
 import kosta.mvc.repository.CartRepository;
 import kosta.mvc.repository.NonuserOrderDetailRepository;
 import kosta.mvc.repository.NonuserOrderRepository;
@@ -44,6 +44,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	RefundService refundService;
 	
 	@Override
 	public UserOrder insertUserOrder(UserOrder userOrder, List<Cart> deleteCartList) {
@@ -141,6 +144,36 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println("service : " + result);
 		return result;
 	}
+
+	/**
+	 * 환불을 신청한다.
+	 * */
+	@Override
+	public void updateUserOrderDetailStatus(Long orderDetailNo, String reason) {
+		int result = userOrderDetailRepository.requestUserorderCancle(orderDetailNo);
+		if (result==0) throw new RuntimeException("주문취소 신청 실패");
+		UserOrderDetail detail = selectUserOrderDetail(orderDetailNo);
+		
+		System.out.println(detail.getUserOrderDetailNo());
+		UserRefund userRefund = new UserRefund().builder().userOrderDetail(detail).refundReason(reason).refundStatus("신청완료").build();
+		userRefund = refundService.insertUserRefund(userRefund);
+		if (userRefund==null) throw new RuntimeException("환불 등록 실패");
+		
+	}
+
+	@Override
+	public void updateNonuserOrderDetailStatus(Long orderDetailNo, String reason) {
+		int result = nonuserOrderDetailRepository.requestUserorderCancle(orderDetailNo);
+		if (result==0) throw new RuntimeException("주문취소 신청 실패");
+
+		NonuserOrderDetail detail = selectNonuserOrderDetail(orderDetailNo);
+		NonuserRefund refund = new NonuserRefund().builder().nonuserOrderDetail(detail).refundReason(reason).refundStatus("신청완료").build();
+		refund = refundService.insertNonuserRefund(refund);
+		if (refund==null) throw new RuntimeException("환불 등록 실패");
+		
+	}
+
+	
 	
 	
 

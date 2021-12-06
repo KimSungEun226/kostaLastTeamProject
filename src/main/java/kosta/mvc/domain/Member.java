@@ -64,7 +64,7 @@ public class Member {
 	private LocalDateTime memberJoindate;
 	
 	private String profileImage; //프로필 이미지
-	private String memberMessgae; //다짐메시지
+	private String memberMessage; //다짐메시지
 	private String memberStatus; //회원활동상태
 	
 	
@@ -105,4 +105,5 @@ public class Member {
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true) //1:다
 	private List<UserOrder> orderList;
+	
 }

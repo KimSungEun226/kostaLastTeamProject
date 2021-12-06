@@ -109,7 +109,8 @@
             <div class="list-group list-group-border-0 g-mb-40">
               <!-- 홈 -->
               <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>나의 페이지</span>
+                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>
+                나의 페이지</span>
                 <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
               </a>
               <!-- End 홈 -->
@@ -132,7 +133,7 @@
               
               
               <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item justify-content-between active">
-                <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
+                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>
               <!-- End 정보수정 -->

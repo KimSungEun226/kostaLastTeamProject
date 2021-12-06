@@ -449,6 +449,24 @@
       </div>
       <!-- End Features -->
 
+	  <!-- <div class="container">
+        <div class="g-brd-y g-brd-gray-light-v3 g-py-20">
+          Nav tabs
+          <ul class="nav g-max-width-200 text-center mx-auto" role="tablist" data-target="nav-1-2-accordion-default-hor-left-underline" data-tabs-mobile-type="accordion" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+            <li class="nav-item text-center mx-auto g-pb-10">
+              <a class="nav-link active g-brd-around g-brd-primary--active g-color-text g-color-primary--parent-active g-font-size-16 rounded" data-toggle="tab" href="#nav-1-2-accordion-default-hor-left-underline--1" role="tab">상세설명</a>
+            </li>
+            <li class="nav-item text-center mx-auto g-pb-10">
+              <a class="nav-link g-brd-around g-brd-primary--active g-color-text g-color-primary--parent-active g-font-size-16 rounded" data-toggle="tab" id="reviewBtn" href="" role="tab">사용후기</a>
+            </li>
+          </ul>
+          End Nav tabs
+             
+        </div>
+     </div>
+     End Tab panes -->
+
+        
       <!-- Details -->
       <div id="details" class="container-fluid g-px-0 g-py-1">
         <div class="row no-gutters g-min-height-100vh justify-content-center">
@@ -467,9 +485,13 @@
       <!-- Review -->
       <div class="container">
         <div class="g-brd-y g-brd-gray-light-v4 g-py-100">
+        <%-- <c:forEach item="${product.reviewList}" var="review">
+           ${review.member.membernickName}
+           ${reivew.reviewContent}
+        </c:forEach> --%>
           <div class="row justify-content-center">
             <div class="col-lg-9">
-              <h2 class="h4 mb-5">Review</h2>
+              <h2 class="h4 mb-5">상품후기</h2>
 
               <!-- Review -->
               <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">

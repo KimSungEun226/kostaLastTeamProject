@@ -50,11 +50,12 @@ public class ShopMyPageController {
 		checkBasic = 0; //0:배송지, 1:기본배송지
 		Member member=memberService.selectByMemberId(id);
 		String receiver=request.getParameter("nameInput");
-		String addr=request.getParameter("addrInput1");
-		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String addr=request.getParameter("addrInput2");
+		String detailAddr=request.getParameter("detailAddrInput");
+		String zip=request.getParameter("zipInput");
 		String phone=request.getParameter("phoneNumber");
 		
-		Address address= new Address(null, addr, zip, checkBasic, member, receiver, phone);
+		Address address= new Address(null, addr, zip, checkBasic, member, receiver, phone, detailAddr);
 		addressService.insertAddr(address);
 		
 		return "redirect:/shop/login/myAddress";
@@ -88,12 +89,14 @@ public class ShopMyPageController {
 		Member member=memberService.selectByMemberId(id);
 		Address address = addressService.findByAddrNo(addressNo);
 		String receiver=request.getParameter("nameInput");
-		String addr=request.getParameter("addrInput1");
-		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String addr=request.getParameter("addrInput2");
+		String detailAddr=request.getParameter("detailAddrInput");
+		String zip=request.getParameter("zipInput");
 		String phone=request.getParameter("phoneNumber");
 		
 		address.setMember(member);
 		address.setMemberAddress(addr);
+		address.setMemberDetailAddress(detailAddr);
 		address.setMemberZip(zip);
 		address.setPhone(phone);
 		address.setReceiver(receiver);
@@ -122,7 +125,9 @@ public class ShopMyPageController {
 		List<Address> addrList=member.getAddressList();
 		for(Address a : addrList) {
 			a.setCheckBasic(0);
+			addressService.insertAddr(a);
 		}
+		System.out.println(addrList.size());
 		
 		Address addr = addressService.findByAddrNo(addressNo);
 		addr.setCheckBasic(checked);
