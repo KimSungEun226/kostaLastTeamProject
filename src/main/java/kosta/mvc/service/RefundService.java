@@ -2,6 +2,9 @@ package kosta.mvc.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import kosta.mvc.domain.order.NonuserRefund;
 import kosta.mvc.domain.order.UserRefund;
 
@@ -21,7 +24,7 @@ public interface RefundService {
 	/**
 	 * 회원의 환불 리스트 리턴
 	 * */
-	public List<UserRefund> selectUserRefund();
+	public Page<UserRefund> selectUserRefund(Pageable pageable);
 	
 	/**
 	 * 비회원의 환불 리스트 리턴

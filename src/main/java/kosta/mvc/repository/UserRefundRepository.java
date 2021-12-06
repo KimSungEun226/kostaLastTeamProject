@@ -15,4 +15,5 @@ public interface UserRefundRepository extends JpaRepository<UserRefund, Long> {
 	@Modifying
 	int statusUpdate(Long userRefundNo);
 	
+	
 }
