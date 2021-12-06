@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
 	
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
@@ -67,9 +68,6 @@
 			  			height:400
 	    	 }
 	    			 );
-
-	    	var cate = ["일기", "지역방", "자유게시판"];
-	    	$("#boardKind2").val(cate["${board.boardKind}"-1]);
 	    });
       
 	  
@@ -140,7 +138,7 @@
 
       <!-- Help -->
       <form name="boardUpdateForm" method="post" action="${pageContext.request.contextPath}/board/update" enctype="multipart/form-data">
-	  <input type="hidden" name="productNo" value="${board.boardNo}"/>
+	  <input type="hidden" name="boardNo" value="${board.boardNo}"/>
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
           <h2 class="mb-5">수정하기</h2>
@@ -160,14 +158,42 @@
                           <!-- End Products Block -->
 		                  <div class="input-group mb-1">
 		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:70%;" type="text" value="${board.boardTitle}">
-		                    
-
-		                   <input id="boardKind2" name="boardKind2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:15%;" type="text" readonly="readonly" 
-		                   value="${board.boardKind}">
-		                      
-		                   <input type="hidden" id="boardKind" name="boardKind" value="${board.boardKind}" />
+		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onchange="selSub();">
+		                      <option value="0">카테고리</option>
+		                      <option value="1" ${board.boardKind == '1' ? 'selected="selected"' : '' }>일기</option>
+		                      <option value="4" ${board.boardKind == '4' ? 'selected="selected"' : '' }>지역방</option>
+		                      <option value="3" ${board.boardKind == '3' ? 'selected="selected"' : '' }>자유게시판</option>
+		                    </select>
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
+		                    	<option value="">지역 선택</option>
+								<option value="2">서울</option>
+								<option value="3">경기ㆍ인천</option>
+								<option value="4">강원도</option>
+								<option value="5">충청도</option>
+								<option value="6">전라도</option>
+								<option value="7">경상도</option>
+								<option value="8">제주도</option>
+		                    </select>
 		                  </div>
 		                  
+		                  <!-- test -->
+		                  <%-- <select class="form-control" id="test" name="test" onchange="">
+							    <option value="0" ${test == '0' ? 'selected="selected"' : '' }>해지</option>
+							    <option value="1" ${test == '1' ? 'selected="selected"' : '' }>진행</option>
+							    <option value="2" ${test == '2' ? 'selected="selected"' : '' }>완료</option>
+							</select> --%>
+		                  <!-- end tedt -->
+		                  <script>
+				          	function selSub(){
+				            	$("#tagrelNo").attr("style", "display:none;");
+				            	$("#thumbnail").attr("style", "display:none;");
+				            	
+				            	if ($("#boardKind option:selected").val() == "4"){ //지역방 선택시
+					          		$("#tagrelNo").attr("style", "display:;");
+					          		$("#category_sub1arr").attr("style", "display:;");
+				            	} 
+				            }
+				          </script>
 		                  
 		          
                         <br>

@@ -1,13 +1,20 @@
 package kosta.mvc.service;
 
 import java.util.Calendar;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.mvc.domain.FoodCalory;
+import kosta.mvc.repository.CalorieRepository;
 import kosta.mvc.vo.Calorie;
 
 @Service
 public class CalorieService {
+	
+	@Autowired
+	private CalorieRepository CalorieRepository;
 	
 	private int getAge(int birthYear, int birthMonth, int birthDay)	{
 		Calendar current = Calendar.getInstance();
@@ -79,4 +86,9 @@ public class CalorieService {
 
 		return cal;
     }
+	
+	public List<FoodCalory> selectAll(){
+		
+		return CalorieRepository.selectAll();
+	}
 }
