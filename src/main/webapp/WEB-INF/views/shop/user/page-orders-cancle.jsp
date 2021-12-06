@@ -7,14 +7,7 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    <script type="text/javascript">
-    $(document).on("click","#cancleOrder",function(){
-  		var reason = prompt("취소 사유를 알려주세요.");
-  		
-  		if(reason!=null) location.href = "${pageContext.request.contextPath}/shop/user/cancleOrder?userOrderDetailNo="+$(this).attr("name")+"&reason="+reason;
-
-  	});    
-    </script>
+    
   </head>
 
   <body>
@@ -87,7 +80,7 @@
                 </li>
                 
                 <li class="g-py-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/cancleList">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/front?key=customer&methodName=selectOrderDetail">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
                     취소내역
                   </a>
@@ -120,16 +113,11 @@
             
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
             
-            <c:forEach items="${list}" var="order">
             
-            <c:forEach items="${order.userOrderDetailList}" var="orderdetail">
-            <c:if test="${orderdetail.status==0}">
+            <c:forEach items="${list}" var="orderdetail">
              <div class="g-pa-20">
                 <div class="row">
                   <div class="col-md-8">
-                    <div class="mb-4">
-                      <h3 class="h5 mb-1">주문시각 : ${order.orderDate}</h3>
-                    </div>
 
                     <div class="row">
                       <div class="col-4 col-sm-3 g-mb-30">
@@ -146,14 +134,12 @@
                   </div>
                     
               <c:choose>      
-                <c:when test="${orderdetail.orderStatus==0}">
+                <c:when test="${orderdetail.status==1}">
                   <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송준비중
-                     </a>
+                    
                      
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     취소하기
+                     환불신청완료
                      </a>
                     
                   </div>
@@ -161,14 +147,11 @@
                   </c:when>
                   
                 
-                <c:when test="${orderdetail.orderStatus==1}">
+                <c:when test="${orderdetail.orderStatus==2}">
                   <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송중
-                     </a>
-                     
+                    
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     취소하기
+                     환불완료
                      </a>
                      
                   </div>
@@ -176,34 +159,16 @@
                   </c:when>
                 
                   
-                 <c:when test="${orderdetail.orderStatus==2}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송완료
-                     </a>
-                     
-                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     반품하기
-                     </a>  
-                     
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     리뷰작성
-                     </a>  
-                     
-                  </div>
-                     
-                  </c:when> 
+                 
                   
                 </c:choose>
                     
                     
                 </div>
               </div>
-            </c:if>
             </c:forEach>
             
             
-            </c:forEach>
             
                
               <!-- End Order Content -->

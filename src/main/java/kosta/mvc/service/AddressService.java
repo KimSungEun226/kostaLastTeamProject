@@ -33,4 +33,8 @@ public class AddressService {
     public Address findByAddrNo(Long addressNo) {
     	return addressRepository.findByAddrNo(addressNo);
     }
+    
+    public Address findBasicAddr(String id) {
+    	return addressRepository.findBasicAddr(id);
+    }
 }
