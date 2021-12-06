@@ -85,27 +85,6 @@ public class BoardController {
 	
 	
 	/**
-	 * 전체 커뮤니티 게시물 조회
-	 * */
-	/*@RequestMapping("/list")
-	public void list(Model model, @RequestParam(defaultValue = "1") int nowPage) {
-		//List<Board> list = boardService.selectAll();
-		//return new ModelAndView("board/list", "board", list);
-		Pageable pageable = PageRequest.of(nowPage-1, 10, Direction.DESC, "boardNo");
-		Page<Board> pageList = boardService.selectAll(pageable);
-		
-		model.addAttribute("pageList", pageList); //뷰쪽으로 전달될 데이터정보
-		
-		int blockCount = 3;
-		int temp = (nowPage-1)%blockCount;
-		int startPage = nowPage-temp;
-		
-		model.addAttribute("blockCount", blockCount);
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-	}*/
-	
-	/**
 	 * 카테고리별 게시판 이동 by은지_2021.12.03
 	 * */
 	@RequestMapping("/select/{boardKind}")
@@ -139,7 +118,7 @@ public class BoardController {
 	}
 	
 	/**
-	 * 지역방 카테고리별 게시판 이동
+	 * 지역방, 홈트레이닝게시판 카테고리별 게시판 이동
 	 * */
 	@RequestMapping("/selectByTag/{tagrelNo}")
 	public ModelAndView selectByTag(@PathVariable Long tagrelNo, @RequestParam(defaultValue = "1") int nowPage) {
@@ -156,7 +135,11 @@ public class BoardController {
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("pageList", boardList);
-		mv.setViewName("board/boardView");
+		if(tagrelNo >= 21 && tagrelNo <= 27) {
+			mv.setViewName("board/hometraining");
+		} else {
+			mv.setViewName("board/boardView");
+		}
 		return mv;
 	}
 	
@@ -186,5 +169,30 @@ public class BoardController {
 		return "redirect:/board/select/0";
 	}
 	
+	/**
+	 * 홈트레이닝 게시물 등록폼_2021.12.06
+	 * */
+	@RequestMapping("/writeHometraining")
+	public void writeHometraining() {
+		
+	}
+	
+	
+	/**
+	 * 홈트레이닝 게시물 등록하기_2021.12.06
+	 * */
+	@RequestMapping("/insertHometarining")
+	public String insertHometraining(Board board, Tag tag) {
+		String[] tagList = {"전신", "복부", "상체", "하체", "스트레칭", "댄스", "요가"};
+		
+		System.out.println(tag.getTagrelNo());
+		
+		tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo()-21)]);
+		board.setTag(tag);
+		
+		boardService.insert(board);
+		
+		return "redirect:/board/select/6"; //홈트레이닝>전체 게시판으로 이동
+	}
 	
 }
