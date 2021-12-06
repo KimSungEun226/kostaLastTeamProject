@@ -1,5 +1,7 @@
 package kosta.mvc.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +34,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	@Query(value = "select b from Board b where b.member.memberNo=?1")
 	Page<Board> findByMemberNo(Long memberNo, Pageable pageable);
 
+
+	/**
+	 * 챌린지등록하기 - challengeNo에 해당하는 boardList가져오기
+	 */
+	@Query(value="select b from Board b where b.challenge.challengeNo=?1")
+	List<Board> findByChallengeNo(Long challengeNo);
+	
 }

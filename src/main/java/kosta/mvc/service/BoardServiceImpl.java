@@ -116,4 +116,9 @@ public class BoardServiceImpl implements BoardService {
 		return p;
 	}
 
+	@Override
+	public List<Board> findByChallengeNo(Long challengeNo) {
+		return boardRepository.findByChallengeNo(challengeNo);
+	}
+
 }
