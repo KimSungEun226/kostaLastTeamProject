@@ -47,11 +47,48 @@
 <script type="text/javascript">
 
 
-    $(document).on("click","#checked",function(){
-		$("#basicCheck_form").attr("action", "${pageContext.request.contextPath}/shop/login/basicCheck/"+$(this).attr("name"));
-		alert("기본배송지로 등록되었습니다.");
-         $("#basicCheck_form").submit(); 
-	  });
+	function form_check_myInfo(){
+	  //이름, 이메일, 휴대전화
+  	  var name = document.getElementById("name"); 
+  	  var email = document.getElementById("email");
+  	  var phone = document.getElementById("phone");
+
+  	  var reg_name = /^[가-힣]+$/; //한글만
+  	  var reg_num = /^[0-9]*$/; // 숫자만 
+
+      var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+      var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+  	  
+  	  
+	  	  if (name.value == "" || !reg_name.test(name.value) || name.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+	  	    alert("이름을 확인하세요.");
+	  	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+	  	  };
+
+
+    	  if (email.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+      	    alert("이메일 주소를 입력하세요.");
+      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+          };
+          
+          if (!reg_email.test(email.value)) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+        	    alert("이메일 형식이 올바르지 않습니다.");
+        	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+          };
+
+
+    	  if (phone.value == "" || !reg_contact.test(phone.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	    alert("전화번호를 확인하세요.");
+    	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+    	  };
+    	  
+        
+
+    	  
+  	  //입력 값 전송
+  	  document.check_form_myInfo.submit();
+		
+	}
     
 
 </script>
@@ -138,14 +175,14 @@
           <!-- End Profile Settings -->
 
           <!-- Login & Security -->
-
+			
           <div class="col-lg-9 g-mb-50">
             <!-- Info -->
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1">ID:</span>
-                  <span name="id" class="d-block">${member.memberId}</span>
+                  <span name="id" class="d-block"><sec:authentication property="principal.Username"/></span>
                 </div>
 
                 
@@ -155,8 +192,9 @@
 
               <div class="row">
                 <div class="col-8">
+                <form name="check_form_myInfo" method="post" action="${pageContext.request.contextPath}/shop/login/updateMyInfo" >
                   <span class="d-block g-color-text g-font-size-13 mb-1">이름:</span>
-                  <span class="d-block">${member.memberName}</span>
+                  <span class="d-block"><input id="name" name="name" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${member.memberName}"></span>
                 </div>
 
                 
@@ -167,7 +205,7 @@
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1">Email:</span>
-                  <span class="d-block">${member.memberEmail}</span>
+                  <span class="d-block"><input id="email" name="email" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${member.memberEmail}"></span>
                 </div>
 
                 
@@ -178,7 +216,7 @@
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1">휴대전화:</span>
-                  <span class="d-block">${member.memberPhone}</span>
+                  <span class="d-block"><input id="phone" name="phone" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${member.memberPhone}"></span>
                 </div>
 
               
@@ -186,16 +224,19 @@
 
               <hr class="g-brd-gray-light-v4 g-my-20">
               
-               <form method="post" action="${pageContext.request.contextPath}/shop/login/myInfoForm" >
+              
 			    
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1"></span>
+                  <input name="pwd" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="비밀번호를 입력해주세요.">
                   </span>
                 </div>
+                
+                
 
                 <div class="col-4 text-right">
-                  <button type="submit" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >수정하러 가기</a>
+                  <button name="form_check" type="button" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" onclick="form_check_myInfo()">수정</a>
                 </div>
               
               </div>

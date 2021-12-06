@@ -136,6 +136,51 @@ public class ShopMyPageController {
 		return "redirect:/shop/login/myAddress";
 	}
 	
+	/**
+	 * 마이페이지 개인정보 수정폼
+	 * */
+	@RequestMapping("/myInfoForm")
+	public ModelAndView myInfoForm(HttpServletRequest request, Principal principal) {
+		
+		Member member=memberService.selectByMemberId(principal.getName());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/login/myInfoEditForm");
+		mv.addObject("member", member);
+		
+		return mv;
+	}
+	
+	/**
+	 * 마이페이지 개인정보 수정하기
+	 * */
+	@RequestMapping("/updateMyInfo")
+	public ModelAndView updateMyInfo(HttpServletRequest request, Principal principal) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		String name=request.getParameter("name");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		String pwd=request.getParameter("pwd");
+		
+		if(pwd!=null) {
+			Member member=memberService.selectByMemberId(principal.getName());
+			member.setMemberName(name);
+			member.setMemberEmail(email);
+			member.setMemberPhone(phone);
+			
+			Member memberUpdate=memberService.insert(member);
+			mv.addObject(memberUpdate);
+			mv.setViewName("shop/login/myPage");
+		}else {
+			mv.addObject("error", "비밀번호가 맞지 않아 수정 실패하였습니다.");
+			mv.setViewName("shop/login/myInfoEditForm");
+		}
+
+		return mv;
+	}
+	
+	 	
 	
 
 }
