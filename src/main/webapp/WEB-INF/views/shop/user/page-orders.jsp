@@ -10,7 +10,9 @@
     <script type="text/javascript">
     $(document).on("click","#cancleOrder",function(){
   		var reason = prompt("취소 사유를 알려주세요.");
-  		location.href = "${pageContext.request.contextPath}/shop/user/cancleOrder?userOrderDetailNo="+$(this).attr("name")+"&reason="+reason;
+  		
+  		if(reason!=null) location.href = "${pageContext.request.contextPath}/shop/user/cancleOrder?userOrderDetailNo="+$(this).attr("name")+"&reason="+reason;
+
   	});    
     </script>
   </head>
