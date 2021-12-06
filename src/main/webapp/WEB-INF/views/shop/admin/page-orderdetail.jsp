@@ -80,6 +80,7 @@
 				<form>
 				
 				<c:forEach items="${requestScope.list}" var="orderdetail">
+				<c:if test="${orderdetail.status==0}">
 				<div class="g-pa-20">
                 <div class="row">
                   <div class="col-md-8">
@@ -156,6 +157,7 @@
                     
                 </div>
               </div>
+              </c:if>
             </c:forEach>
             </form>
             </c:otherwise>
