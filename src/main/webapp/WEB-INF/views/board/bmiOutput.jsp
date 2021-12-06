@@ -157,7 +157,7 @@
           </div>
         </div>
         <div class="col-md-4 align-self-center g-hidden-sm-down g-mb-30">
-            <button class="btn btn-md u-btn-primary g-font-size-default rounded-0 g-py-10" type="button" onclick="location.href='${pageContext.request.contextPath}/'">메인으로</button>
+            <button class="btn btn-md u-btn-primary g-font-size-default rounded-0 g-py-10" type="button" onclick="location.href='${pageContext.request.contextPath}/main'">메인으로</button>
         </div>
       </div><!-- End Total -->
     </section><!-- End Table Striped Rows -->
