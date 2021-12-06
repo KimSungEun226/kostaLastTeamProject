@@ -84,7 +84,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 음식칼로리</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
@@ -105,7 +105,7 @@
 
 	<!-- 게시물 리스트 start -->
 	<c:choose>
-	<c:when test="${empty requestScope.pageList}">
+	<c:when test="${empty requestScope.pageList.content}">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
     </c:when>
     <c:otherwise>
@@ -116,12 +116,12 @@
         <div class="col-lg-9 order-lg-2 g-mb-80">
           <div class="g-pl-20--lg">
             <!-- Blog Minimal Blocks -->
-            <c:forEach items="${requestScope.pageList.content}" var="board">
+            <!--<c:forEach items="${requestScope.pageList.content}" var="food">-->
             <article class="g-mb-100">
               <div class="g-mb-30">
                 <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
                 <h2 class="h4 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">${board.boardTitle}</a>
+                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">food</a>
                   </h2>
                 <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer, you have probably gotten an email from Clark or from InVision at one time or another, but if you’re not familiar with the company.</p>
                 <a class="g-font-size-13" href="#">Read more...</a>
@@ -130,7 +130,7 @@
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
-                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
+                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img7.jpg" alt="Image Description">
                       Alex Teseira
                     </span>
                 </li>
@@ -148,15 +148,11 @@
                 </li>
               </ul>
             </article>
-            </c:forEach>
+            <!--</c:forEach>-->
             </c:otherwise>
             </c:choose>
             <!-- End Blog Minimal Blocks -->
             <!-- 게시물 리스트 End -->
-
-		
-
-           
           </div>
         </div>
 
@@ -194,7 +190,7 @@
                 <ul class="list-unstyled g-font-size-13 mb-0">
                   <li>
                     <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}//assets/img-temp/100x100/img1.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">Htmlstream</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -204,7 +200,7 @@
                   </li>
                   <li>
                     <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}//assets/img-temp/100x100/img3.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">Pixeel</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -214,7 +210,7 @@
                   </li>
                   <li>
                     <article class="media">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img2.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">WrapBootstrap</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -279,46 +275,6 @@
     </div>
     <!-- End Blog Minimal Blocks -->
 
-    
-
-
-   	<!-- 페이징 start -->
-			${pageList.hasPrevious()}  /  ${pageList.hasNext()}
-		<div style="text-align: center">
-		
-		<!-- 이전, 다음 표시하기 (한블럭당 페이지 개수 제한) -->
-		<c:set var="doneLoop" value="false"/>
-			\${doneLoop} = ${doneLoop}<p>
-				<!--  블럭당  -->
-		 <nav class="pagination-container">
-			<div class="pagination">
-			<c:set var="doneLoop" value="false"/>
-				
-				  <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
-				      <a class="pagination-newer" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage-1}">PREV</a>
-				  </c:if>
-				  
-						<span class="pagination-inner"> 
-						  <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-						  
-							    <c:if test="${(i-1)>=pageList.getTotalPages()}">
-							       <c:set var="doneLoop" value="true"/>
-							    </c:if> 
-						    
-						  <c:if test="${not doneLoop}" >
-						         <a class="${i==nowPage?'pagination-active':page}" href="${pageContext.request.contextPath}/board/list?nowPage=${i}">${i}</a> 
-						  </c:if>
-						   
-						</c:forEach>
-						</span> 
-						 <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-						     <a class="pagination-older" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage+blockCount}">NEXT</a>
-						 </c:if>
-		
-				</div>
-			</nav>  
-			\${doneLoop} = ${doneLoop}<p>
-			<!-- 페이징 end -->
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
      "bottom": 15,
      "right": 15
@@ -331,25 +287,25 @@
 
 
   <!-- JS Global Compulsory -->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-  <script src="../../assets/vendor/popper.js/popper.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
 
   <!-- JS Implementing Plugins -->
-  <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
 
   <!-- JS Unify -->
-  <script src="../../assets/js/hs.core.js"></script>
-  <script src="../../assets/js/components/hs.header.js"></script>
-  <script src="../../assets/js/helpers/hs.hamburgers.js"></script>
-  <script src="../../assets/js/components/hs.tabs.js"></script>
-  <script src="../../assets/js/components/hs.sticky-block.js"></script>
-  <script src="../../assets/js/components/hs.go-to.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.tabs.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.sticky-block.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
   <!-- JS Customization -->
-  <script src="../../assets/js/custom.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
   <!-- JS Plugins Init. -->
   <script>

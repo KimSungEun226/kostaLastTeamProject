@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.FoodCalory;
@@ -87,8 +89,8 @@ public class CalorieService {
 		return cal;
     }
 	
-	public List<FoodCalory> selectAll(){
+	public Page<FoodCalory> selectAll(Pageable page){
 		
-		return CalorieRepository.findAll();
+		return CalorieRepository.findAll(page);
 	}
 }
