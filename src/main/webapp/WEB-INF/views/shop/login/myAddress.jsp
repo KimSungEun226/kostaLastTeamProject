@@ -98,23 +98,13 @@
     	}      
 		
     	//기본배송지 버튼
-		$(function(){
-			 $("#checked").click(function(){
-				 alert("기본배송지로 등록되었습니다.");
-		         $("#basicCheck_form").submit(); 
-			 });
-	         
-		});
+    	$(document).on("click","#checked",function(){
+    		$("#basicCheck_form").attr("action", "${pageContext.request.contextPath}/shop/login/basicCheck/"+$(this).attr("name"));
+    		alert("기본배송지로 등록되었습니다.");
+	         $("#basicCheck_form").submit(); 
+    	  });
     		
-		
-		
-		
-			
-		
-    
-   
-    
- 
+
     
     </script>
    <!-- 주소찾기 --> 
@@ -243,7 +233,7 @@
                   <div class="g-mb-50">
                     <h3 class="h5 mb-3">주소 ${status.count}
                     <c:if test="${addr.checkBasic==1}">
-                    : 기본배송지
+                     <mark>기본배송지</mark>
                     </c:if>
                     
                     </h3>
@@ -258,7 +248,7 @@
                       <div class="media-body g-color-text">
                         우편번호: ${addr.memberZip}
                         <br>
-                        ${addr.memberAddress}
+                        ${addr.memberAddress} ${addr.memberDetailAddress}
                         <br>
                       </div>
                     </address>
@@ -298,9 +288,9 @@
                     <c:if test="${addr.checkBasic==0}">
                     <li class="list-inline-item g-width-1 g-height-16 g-bg-gray-light-v2 g-pr-1 ml-2 mr-3"></li>
                     <li class="list-inline-item">
-                        <form id="basicCheck_form" action="${pageContext.request.contextPath}/shop/login/basicCheck/${addr.addressNo}">
+                        <form id="basicCheck_form">
                        		<input type="button"  class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
-                       		id="checked" name="checked" value="기본배송지로 설정" />  
+                       		id="checked" name="${addr.addressNo}" value="기본배송지로 설정" />  
                        		<input type="hidden" id="sendBasicCheck" name="sendBasicCheck" value="1">
                        	</form>
                      
