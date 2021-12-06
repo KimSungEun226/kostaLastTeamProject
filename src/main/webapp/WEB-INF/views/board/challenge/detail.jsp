@@ -128,7 +128,7 @@
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-color-primary">
-            <span>${requestScope.challenge.challengeCategory}</span>
+            <span>${requestScope.board.challenge.challengeCategory}</span>
           </li>
         </ul>
       </div>
@@ -141,133 +141,11 @@
         <div class="col-lg-9">
           <div class="g-mb-60">
             <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">${requestScope.board.boardTitle}</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2">H</span>${requestScope.board.boardContent}</p>
+            <!-- fullCalendar start -->
+            <div id='calendar'></div> 
+            <!-- fullCalendar end -->
           </div>
-
-          <!-- fullCalendar start -->
-          <div id='calendar'></div>          
-          <!-- fullCalendar end -->
-
-          <div class="row">
-            <div class="col-md-6 flex-md-unordered g-mb-60">
-              <h3 class="h4 g-color-black g-font-weight-600"><span class="g-font-size-25">02.</span> Snowden</h3>
-              <p>The story of whistleblower Edward Snowden is the most dramatic spy story of the decade. An Oliver Stone biopic was inevitable. So here it is. As movies almost always do, Snowden eliminates the nuance from this complicated and controversial
-                story, painting Snowden as a hero and the National Security Agency as a one-dimensional villain. But as WIRED pointed out when the movie debuted, Snowden is important because it's the accessible version of events that many Americans will
-                remember.</p>
-            </div>
-            <div class="col-md-6 flex-md-first g-mb-60">
-              <img class="img-fluid" src="../../assets/img-temp/400x270/img2.jpg" alt="Image Description">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 g-mb-60">
-              <h2 class="h4 g-color-black g-font-weight-600"><span class="g-font-size-25">03.</span> Person of Interest</h2>
-              <p>It's not every day that a network drama puts the ethics and repercussions of bulk surveillance at the core of its premise, but CBS's Person of Interest managed to do it successfully. The show combines government surveillance to stop terrorist
-                attacks with an eccentric hacker billionaire and vigilante justice. It even grapples with questions of how an artificial intelligence evolves and incorporates biases. Person of Interest is particularly known for airing a prescient episode
-                in 2012 about a National Security Agency whistleblower very similar to Edward Snowden.</p>
-            </div>
-            <div class="col-md-6 g-mb-60">
-              <img class="img-fluid" src="../../assets/img-temp/400x270/img17.jpg" alt="Image Description">
-            </div>
-          </div>
-
-          <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">Selecting the Right Movie</h2>
-          <p>It's important to stay detail oriented with every project we tackle. Staying focused allows us to turn every project we complete into something we love. We strive to embrace and drive change in our industry which allows us to keep our clients
-            relevant and ready to adapt. As creatives, it's important that we strive to do work outside of obligation. This lets us stay ahead of the curve for our clients and internal projects. At the end of the day, it's important to not let being busy
-            distract us from having fun. Smiling, laughing, and hanging helps us work together to achieve this.</p>
-        </div>
-      </div>
-    </section>
-    <!-- End Blog Single Item Info -->
-
-    <!-- Blog Single Item Video -->
-    <section class="container-fluid">
-      <div class="g-bg-cover g-bg-size-cover g-bg-pos-center g-bg-white-gradient-opacity-v1--after" data-bg-img-src="../../assets/img-temp/1920x800/img12.jpg">
-        <div class="row d-flex justify-content-center align-content-end flex-wrap g-min-height-450 g-pos-rel g-z-index-1 g-pb-50">
-          <div class="col-sm-8 col-md-7 col-lg-4 px-5 px-sm-0 mt-auto">
-            <div class="media">
-              <a class="js-fancybox d-flex align-self-center g-text-underline--none--hover mr-3" href="javascript:;" data-src="//vimeo.com/167434033" data-speed="350" data-caption="This Week's Featured TV Show">
-                <span class="u-icon-v3 g-width-55 g-height-55 g-color-black g-color-primary--hover g-bg-white g-font-size-16 g-cursor-pointer rounded-circle">
-                    <i class="g-pos-rel g-left-2 fa fa-play"></i>
-                  </span>
-              </a>
-              <div class="media-body align-self-center">
-                <div class="d-block">
-                  <span class="g-color-white g-font-weight-600 text-uppercase mr-3">Movie</span>
-                  <span class="g-color-white-opacity-0_5 g-font-size-12 text-uppercase">By Alex Teseira</span>
-                </div>
-                <h4 class="h3 g-color-white g-font-weight-600 mb-0">This Week's Featured TV Show</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Blog Single Item Video -->
-
-    <!-- Blog Single Item Info -->
-    <section class="container g-pt-100 g-pb-50">
-      <div class="row justify-content-center">
-        <div class="col-lg-9">
-          <div class="g-mb-60">
-            <p>Hundreds of millions of online accounts were compromised in corporate data breaches, the US presidential election process was plagued by cyber-meddling, internet infrastructure companies faced massive digital attacks that disrupted web connectivity
-              for millions of people, and Apple faced off with the FBI in an epic privacy battle. When reality is more terrifying than a movie could ever be, perhaps it's time to retreat into the fictional for awhile and enjoy the fascinating world of
-              cybersecurity from the safety of your living room for a change.</p>
-
-            <div class="float-right g-max-width-250 g-mr-minus-100--lg ml-5">
-              <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-4">Recommended</h3>
-              <ul class="list-unstyled g-brd-y g-brd-gray-light-v3 g-font-size-13 py-4">
-                <li>
-                  <article class="media mb-3">
-                    <img class="d-flex align-self-center g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img11.jpg" alt="Image Description">
-                    <div class="media-body align-self-center">
-                      <span class="g-color-gray-dark-v5 g-font-size-9 text-uppercase">News</span>
-                      <h4 class="g-color-black g-font-weight-600 g-font-size-12 mb-0"><a class="u-link-v5 g-color-black g-color-primary--hover" href="#">Black Male Glamour, as Style and Substance</a></h4>
-                    </div>
-                  </article>
-                </li>
-                <li>
-                  <article class="media mb-3">
-                    <img class="d-flex align-self-center g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img15.jpg" alt="Image Description">
-                    <div class="media-body align-self-center">
-                      <span class="g-color-gray-dark-v5 g-font-size-9 text-uppercase">News</span>
-                      <h4 class="g-color-black g-font-weight-600 g-font-size-12 mb-0"><a class="u-link-v5 g-color-black g-color-primary--hover" href="#">How a Strong Woman Defied Her Inner Critic</a></h4>
-                    </div>
-                  </article>
-                </li>
-                <li>
-                  <article class="media">
-                    <img class="d-flex align-self-center g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img13.jpg" alt="Image Description">
-                    <div class="media-body align-self-center">
-                      <span class="g-color-gray-dark-v5 g-font-size-9 text-uppercase">Food</span>
-                      <h4 class="g-color-black g-font-weight-600 g-font-size-12 mb-0"><a class="u-link-v5 g-color-black g-color-primary--hover" href="#">What to Cook in This New Year Eve for Family</a></h4>
-                    </div>
-                  </article>
-                </li>
-              </ul>
-            </div>
-
-            <p>Here are some favorite movies and television shows from 2016 that will let you get a taste of the hacker underworld over the holidays—hopefully without consigning you to a permanent state of digital dread. We aim high at being focused on building
-              relationships with our clients and community. Using our creative gifts drives this foundation.</p>
-            <p>It's important to stay detail oriented with every project we tackle. Staying focused allows us to turn every project we complete into something we love. We strive to embrace and drive change in our industry which allows us to keep our clients
-              relevant and ready to adapt. As creatives, it's important that we strive to do work outside of obligation. This lets us stay ahead of the curve for our clients and internal projects. At the end of the day, it's important to not let being
-              busy distract us from having fun. Smiling, laughing, and hanging helps us work together to achieve this.</p>
-          </div>
-
-          <h3 class="h4 g-color-black g-font-weight-600">The Fun Part</h3>
-          <p>Well, duh. USA's Mr. Robot is probably the most accurate and detailed dramatic portrayal ever made of current hacking practices and hacker culture. Its depiction of the cybersecurity community and its broader meditation on the relationship between
-            humans and technology isn't perfect. (Not to mention that Season 2, which aired this year, had some narrative issues.) But overall the show is compelling and full of delightful references and winks to the cybersecurity subculture.</p>
-
-          <div class="float-left g-max-width-300 g-ml-minus-100--lg mr-5">
-            <blockquote class="g-color-black g-font-weight-600 g-font-style-italic g-font-size-20">And action! Finding ways to help tell your story through video is a powerful tool.</blockquote>
-          </div>
-
-          <p>The story of whistleblower Edward Snowden is the most dramatic spy story of the decade. An Oliver Stone biopic was inevitable. So here it is. As movies almost always do, Snowden eliminates the nuance from this complicated and controversial story,
-            painting Snowden as a hero and the National Security Agency as a one-dimensional villain. But as WIRED pointed out when the movie debuted, Snowden is important because it's the accessible version of events that many Americans will remember.</p>
-          <p>It's not every day that a network drama puts the ethics and repercussions of bulk surveillance at the core of its premise, but CBS's Person of Interest managed to do it successfully. The show combines government surveillance to stop terrorist
-            attacks with an eccentric hacker billionaire and vigilante justice. It even grapples with questions of how an artificial intelligence evolves and incorporates biases. Person of Interest is particularly known for airing a prescient episode
-            in 2012 about a National Security Agency whistleblower very similar to Edward Snowden.</p>
+          <p>${requestScope.board.boardContent}</p>        
         </div>
       </div>
     </section>
@@ -280,12 +158,11 @@
           <!-- Tags -->
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
-              <form  name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/challenge/updateForm"> 
-	            <input type=hidden name="boardNo" value="${board.boardNo}">
-                <button type="submit" class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;">
-                	수정하기
-                </button>
-              </form>
+              <form  name="requestForm" method="post" id="requestForm"> 
+	           	 <input type=hidden name="boardNo" value="${board.boardNo}">
+	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="삭제하기">
+	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="수정하기">	           	 
+          		</form>
             </ul>
           </div>
           <!-- End Tags -->
@@ -589,6 +466,25 @@
         }, 200);
       });
   </script>
+  
+  
+  <script type="text/javascript">
+	$(function(){
+		   
+		   $("input[value=수정하기]").click(function(){	   
+			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/challenge/updateForm");
+			   $("#requestForm").submit();
+		   })
+		   $("input[value=삭제하기]").click(function(){
+			   var pwd = prompt("비밀번호를 입력하세요.");
+			   if(pwd){
+		           $("#password").val(pwd);
+				   $("#requestForm").attr("action", "${pageContext.request.contextPath}/challenge/delete");
+				   $("#requestForm").submit();
+			   }
+		   })  
+		})
+	</script>
 
 </body>
 

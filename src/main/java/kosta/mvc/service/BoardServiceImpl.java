@@ -1,6 +1,7 @@
 package kosta.mvc.service;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -59,6 +60,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board update(Board board) {
 		System.out.println("service의 update 메소드...");
+		//수정일 넣기
+		LocalDateTime today = LocalDateTime.now();
+		board.setBoardUpdate(today);
+		
 		//글번호 검증
 		Board dbBoard = boardRepository.findById(board.getBoardNo()).orElse(null);
 		if(dbBoard == null) throw new RuntimeException("글번호 오류로 수정할 수 없습니다.");

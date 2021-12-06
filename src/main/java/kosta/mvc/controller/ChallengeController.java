@@ -217,7 +217,7 @@ public class ChallengeController {
 	public String delete(Long boardNo, String password) {
 		boardService.delete(boardNo, password);
 		
-		return "redirect:/board/list";
+		return "redirect:select";
 	}
 	
 }

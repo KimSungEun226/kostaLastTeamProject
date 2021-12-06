@@ -52,7 +52,7 @@ public class ShopMyPageController {
 		String receiver=request.getParameter("nameInput");
 		String addr=request.getParameter("addrInput2");
 		String detailAddr=request.getParameter("detailAddrInput");
-		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String zip=request.getParameter("zipInput");
 		String phone=request.getParameter("phoneNumber");
 		
 		Address address= new Address(null, addr, zip, checkBasic, member, receiver, phone, detailAddr);
@@ -91,7 +91,7 @@ public class ShopMyPageController {
 		String receiver=request.getParameter("nameInput");
 		String addr=request.getParameter("addrInput2");
 		String detailAddr=request.getParameter("detailAddrInput");
-		int zip=Integer.parseInt(request.getParameter("zipInput"));
+		String zip=request.getParameter("zipInput");
 		String phone=request.getParameter("phoneNumber");
 		
 		address.setMember(member);
