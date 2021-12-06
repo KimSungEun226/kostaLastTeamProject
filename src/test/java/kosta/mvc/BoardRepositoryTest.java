@@ -15,7 +15,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Commit;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.Member;
+import kosta.mvc.domain.order.UserOrderDetail;
 import kosta.mvc.repository.BoardRepository;
+import kosta.mvc.repository.UserOrderDetailRepository;
+import kosta.mvc.service.MemberService;
 
 @SpringBootTest
 @Transactional // DML문장을 하기 위해서는 필수!!
@@ -23,7 +27,12 @@ import kosta.mvc.repository.BoardRepository;
 public class BoardRepositoryTest {
 
 	@Autowired
-	private BoardRepository rep;
+	private UserOrderDetailRepository rep;
+
+	@Autowired
+	private MemberService ms;
+	//	@Autowired
+//	private BoardRepository rep;
 
 	@Test
 	public void test() {
@@ -33,42 +42,51 @@ public class BoardRepositoryTest {
 	/**
 	 * 전체검색
 	 */
-	  @Test
-	  public void selectAll() { 
-		  List<Board> boardList = rep.findAll();
-		  System.out.println("갯수 : " + boardList.size());
-	  
-	  
-		  for(Board b : boardList) { 
-			  System.out.println(b); 
-		  }
-	  
-		  boardList.forEach(b->System.out.println(b));
-		  
-	  }
-	 
+//	  @Test
+//	  public void selectAll() { 
+//		  List<Board> boardList = rep.findAll();
+//		  System.out.println("갯수 : " + boardList.size());
+//	  
+//	  
+//		  for(Board b : boardList) { 
+//			  System.out.println(b); 
+//		  }
+//	  
+//		  boardList.forEach(b->System.out.println(b));
+//		  
+//	  }
+//	 
 
 	/**
 	 * 등록하기
 	 */
-	@Test
-	void insert() {
-		//자유게시판 등록 (boardKind - 3)
-		
-		  for (int i = 0; i < 5; i++) { 
-			  // rep.save(new FreeBoard(null, null, null, null, null, null, null, i));
-			  Board board = Board.builder().boardTitle("제목" +i).boardContent("자유내용자유내용" + i).boardKind(3).password("1234").build();
-		  
-		  rep.save(board); }
-		 
-	}
+//	@Test
+//	void insert() {
+//		//자유게시판 등록 (boardKind - 3)
+//		
+//		  for (int i = 0; i < 5; i++) { 
+//			  // rep.save(new FreeBoard(null, null, null, null, null, null, null, i));
+//			  Board board = Board.builder().boardTitle("제목" +i).boardContent("자유내용자유내용" + i).boardKind(3).password("1234").build();
+//		  
+//		  rep.save(board); }
+//		 
+//	}
 	
 	/**
 	 * 검색 test
 	 * */
-	/*
-	 * @Test public void testRead() { rep.findById(1L).ifPresent((board)->{
-	 * System.out.println(board); }); }
-	 */
+	
+	 @Test 
+	 public void testRead() {
+		Pageable pageable = PageRequest.of(0,5, Direction.DESC, "userOrderDetailNo" );
+
+		 Member m = ms.selectByMemberId("tjdt11");
+		 System.out.println(m.getOrderList().size());
+		 Page<UserOrderDetail> pageList = rep.findByUserOrderIn(m.getOrderList(), pageable);
+		 
+		 System.out.println("pageList size : " + pageList.getSize());
+		 
+	 }
+	 
 
 }

@@ -81,4 +81,9 @@ public interface OrderService {
 	void updateNonuserOrderDetailStatus(Long orderDetailNo, String reason);
 	
 	
+	/**
+	 * 회원의 주문상세를 전부 리턴
+	 * */
+	Page<UserOrderDetail> userOrderDetailPage(List<UserOrder> list, Pageable pageable);
+	
 }

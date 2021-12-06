@@ -128,13 +128,27 @@ public class OrderController {
 	
 	//유저의 orderList를 보여준다.
 	@RequestMapping("/user/orderList")
-	public String orderList(Principal principal, Model model) {
+	public ModelAndView orderList(Principal principal, Model model, @RequestParam(defaultValue = "1") int nowPage) {
+		
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userOrderDetailNo" );
+
 		
 		String id = principal.getName();
 		Member m = memberService.selectByMemberId(id);
 		List<UserOrder> orderList = m.getOrderList();
-		model.addAttribute("list", orderList);
-		return "shop/user/page-orders";
+		
+		Page<UserOrderDetail> pageList = orderService.userOrderDetailPage(orderList, pageable);
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.setViewName("shop/user/page-orders");
+		model.addAttribute("list", pageList);
+		return mv;
 	}
 	
 	
