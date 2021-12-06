@@ -1,10 +1,13 @@
 package kosta.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.FoodCalory;
 import kosta.mvc.service.CalorieService;
 import kosta.mvc.vo.Calorie;
 import lombok.RequiredArgsConstructor;
@@ -43,8 +46,8 @@ public class CalorieController {
 
 	@RequestMapping("/foodCalList")
 	public ModelAndView foodCalList(Calorie cal) {
-		Calorie result = calorieService.calPreOutput(cal);
-		return new ModelAndView("board/calPrescriptionOutput","cal",result);
+		List<FoodCalory> result = calorieService.selectAll();
+		return new ModelAndView("board/calPrescriptionOutput","food",result);
 	}
 
 }
