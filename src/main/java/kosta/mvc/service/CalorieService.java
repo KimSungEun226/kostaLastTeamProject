@@ -1,20 +1,25 @@
 package kosta.mvc.service;
 
 import java.util.Calendar;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import kosta.mvc.domain.BurnCalory;
 import kosta.mvc.domain.FoodCalory;
-import kosta.mvc.repository.CalorieRepository;
+import kosta.mvc.repository.BurnCalorieRepository;
+import kosta.mvc.repository.FoodCalorieRepository;
 import kosta.mvc.vo.Calorie;
 
 @Service
 public class CalorieService {
 	
 	@Autowired
-	private CalorieRepository CalorieRepository;
+	private FoodCalorieRepository foodCalorieRepository;
+	@Autowired
+	private BurnCalorieRepository burnCalorieRepository;
 	
 	private int getAge(int birthYear, int birthMonth, int birthDay)	{
 		Calendar current = Calendar.getInstance();
@@ -59,6 +64,8 @@ public class CalorieService {
 		int dailyWeightTraining = targetWeight*7000/targetDay;	//운동으로 빼야할 칼로리
 		int dailyEatCal = 3500 - dailyWeightTraining;	//하루에 먹어야할 칼로리
 		
+		if (dailyWeightTraining<0) dailyWeightTraining*=-1;
+		
 		//남여로 bmr계산식 구별
 		if(cal.getGender().equals("남성")) {
 			bmr = (66.47 + (13.75*cal.getWeight()) + (5*cal.getHeight()) - (6.76*age) );
@@ -87,8 +94,23 @@ public class CalorieService {
 		return cal;
     }
 	
-	public List<FoodCalory> selectAll(){
+	public Page<FoodCalory> foodSelectAll(Pageable page){
 		
-		return CalorieRepository.findAll();
+		return foodCalorieRepository.findAll(page);
+	}
+
+	public Page<FoodCalory> foodSelectByName(String keyword, Pageable page){
+
+		return foodCalorieRepository.findByFoodNameLike(keyword, page);
+	}
+	
+	public Page<BurnCalory> burnSelectAll(Pageable page){
+		
+		return burnCalorieRepository.findAll(page);
+	}
+
+	public Page<BurnCalory> burnSelectByName(String keyword, Pageable page){
+		
+		return burnCalorieRepository.findByExerciseLike(keyword, page);
 	}
 }

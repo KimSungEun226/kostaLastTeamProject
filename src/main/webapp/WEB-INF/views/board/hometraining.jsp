@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -273,7 +274,10 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
+            <!-- 관리자만 글쓰기 버튼 보이게 -->
+            <sec:authorize access="hasRole('ADMIN')">
             <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/writeHometraining">글쓰기</a></span>
+            </sec:authorize>
           </ul>
         </nav>
         <!-- End Pagination -->
