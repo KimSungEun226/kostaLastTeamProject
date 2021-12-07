@@ -244,10 +244,13 @@
 				  <li class="nav-item  g-mx-10--lg g-mx-15--xl">
 	                <a href="${pageContext.request.contextPath}/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
 	              </li>
-	              <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+				</sec:authorize>
+				
+				<sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
+				<li class="nav-item  g-mx-10--lg g-mx-15--xl">
                     <a href="${pageContext.request.contextPath}/logout" class="g-color-gray-dark-v5 nav-link g-py-7 g-px-0">로그아웃</a>
                   </li>
-				</sec:authorize>
+                </sec:authorize>
               </ul>
             </div><!-- End Navigation -->
 
