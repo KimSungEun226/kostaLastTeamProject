@@ -454,7 +454,6 @@
           <article class="u-block-hover">
             <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/saladmain.png" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
-              <span class="d-block g-color-black">Collections</span>
               <h2 class="h1 mb-0">샐러드</h2>
             </div>
             <a class="u-link-v2" href="${pageContext.request.contextPath}/shop/select/2"></a>
@@ -465,7 +464,6 @@
           <article class="u-block-hover">
             <img class="w-100 u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/proteinmain.jpg" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
-              <span class="d-block g-color-black">Collections</span>
               <h2 class="h1 mb-0">프로틴</h2>
             </div>
             <a class="u-link-v2" href="${pageContext.request.contextPath}/shop/select/3"></a>
@@ -479,7 +477,6 @@
     <div class="container g-pb-100">
       <div class="text-center mx-auto g-max-width-600 g-mb-50">
         <h2 class="g-color-black mb-4">인기 상품</h2>
-        <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
       </div>
 
       <div id="carouselCus1" class="js-carousel g-pb-100 g-mx-minus-10"
@@ -497,7 +494,7 @@
           <div class="g-px-10">
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
-              <img class="img-fluid" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+              <img class="img-fluid  g-width-250 g-height-250" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
 
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">New Arrival</a>
@@ -609,8 +606,8 @@
     <section class="container g-py-100">
       <div class="text-center mx-auto g-max-width-600 g-mb-50">
         <h2 class="g-color-black mb-4">신제품</h2>
-        <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
-      </div>
+<!--         <p class="lead">We want to create a range of beautiful, practical and modern outerwear that doesn't cost the earth – but let's you still live life in style.</p>
+ -->      </div>
 
       <div class="row g-mx-minus-10 g-mb-50">
       
@@ -1035,9 +1032,7 @@
         </div> -->
       </div>
 
-      <div class="text-center">
-        <a class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">All New Arrivals</a>
-      </div>
+     
     </section>
     <!-- End New Arrivals -->
 
@@ -1046,92 +1041,7 @@
     <!-- End Categories -->
 
     <!-- News -->
-    <div class="container g-pt-100 g-pb-70">
-      <div class="text-center mx-auto g-max-width-600 g-mb-50">
-        <h2 class="g-color-black mb-4">Blog News</h2>
-        <p class="lead">Keep in touch with the latest blogs &amp; news.</p>
-      </div>
-
-      <div class="row g-mx-minus-10">
-        <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
-          <!-- Blog Background Overlay Blocks -->
-          <article class="u-block-hover">
-            <div class="g-bg-cover g-bg-white-gradient-opacity-v1--after">
-              <img class="d-flex align-items-end u-block-hover__main--mover-down" src="assets/img-temp/650x650/img1.jpg" alt="Image Description">
-            </div>
-            <div class="u-block-hover__additional--partially-slide-up text-center g-z-index-1 mt-auto">
-              <div class="u-block-hover__visible g-pa-25">
-                <span class="d-block g-color-white-opacity-0_7 g-font-size-13 mb-2">sport</span>
-                <h2 class="h4 g-color-white g-font-weight-400 mb-3">
-                  <a class="u-link-v5 g-color-white g-color-primary--hover g-cursor-pointer" href="#">24 Hours in Shopping</a>
-                </h2>
-                <h4 class="d-inline-block g-color-white-opacity-0_7 g-font-size-11 mb-0">
-                  By,
-                  <a class="g-color-white-opacity-0_7 text-uppercase" href="#">Dan Shaw</a>
-                </h4>
-                <span class="g-color-white-opacity-0_7 g-pos-rel g-top-2 mx-2">&#183;</span>
-                <span class="g-color-white-opacity-0_7 g-font-size-10 text-uppercase">May 31, 2017</span>
-              </div>
-
-              <a class="d-inline-block g-brd-bottom g-brd-white g-color-white g-font-weight-500 g-font-size-12 text-uppercase g-text-underline--none--hover g-mb-30" href="#">Read more</a>
-            </div>
-          </article>
-          <!-- End Blog Background Overlay Blocks -->
-        </div>
-
-        <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
-          <!-- Blog Background Overlay Blocks -->
-          <article class="u-block-hover">
-            <div class="g-bg-cover g-bg-white-gradient-opacity-v1--after">
-              <img class="d-flex align-items-end u-block-hover__main--mover-down" src="assets/img-temp/650x650/img2.jpg" alt="Image Description">
-            </div>
-            <div class="u-block-hover__additional--partially-slide-up text-center g-z-index-1 mt-auto">
-              <div class="u-block-hover__visible g-pa-25">
-                <span class="d-block g-color-white-opacity-0_7 g-font-size-13 mb-2">design</span>
-                <h2 class="h4 g-color-white g-font-weight-400 mb-3">
-                  <a class="u-link-v5 g-color-white g-color-primary--hover g-cursor-pointer" href="#">How to Design with Colors</a>
-                </h2>
-                <h4 class="d-inline-block g-color-white-opacity-0_7 g-font-size-11 mb-0">
-                  By,
-                  <a class="g-color-white-opacity-0_7 text-uppercase" href="#">Dan Shaw</a>
-                </h4>
-                <span class="g-color-white-opacity-0_7 g-pos-rel g-top-2 mx-2">&#183;</span>
-                <span class="g-color-white-opacity-0_7 g-font-size-10 text-uppercase">May 31, 2017</span>
-              </div>
-
-              <a class="d-inline-block g-brd-bottom g-brd-white g-color-white g-font-weight-500 g-font-size-12 text-uppercase g-text-underline--none--hover g-mb-30" href="#">Read more</a>
-            </div>
-          </article>
-          <!-- End Blog Background Overlay Blocks -->
-        </div>
-
-        <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
-          <!-- Blog Background Overlay Blocks -->
-          <article class="u-block-hover">
-            <div class="g-bg-cover g-bg-white-gradient-opacity-v1--after">
-              <img class="d-flex align-items-end u-block-hover__main--mover-down" src="assets/img-temp/650x650/img3.jpg" alt="Image Description">
-            </div>
-            <div class="u-block-hover__additional--partially-slide-up text-center g-z-index-1 mt-auto">
-              <div class="u-block-hover__visible g-pa-25">
-                <span class="d-block g-color-white-opacity-0_7 g-font-size-13 mb-2">photography</span>
-                <h2 class="h4 g-color-white g-font-weight-400 mb-3">
-                  <a class="u-link-v5 g-color-white g-color-primary--hover g-cursor-pointer" href="#">Stunning Woman's Capture</a>
-                </h2>
-                <h4 class="d-inline-block g-color-white-opacity-0_7 g-font-size-11 mb-0">
-                  By,
-                  <a class="g-color-white-opacity-0_7 text-uppercase" href="#">Dan Shaw</a>
-                </h4>
-                <span class="g-color-white-opacity-0_7 g-pos-rel g-top-2 mx-2">&#183;</span>
-                <span class="g-color-white-opacity-0_7 g-font-size-10 text-uppercase">May 31, 2017</span>
-              </div>
-
-              <a class="d-inline-block g-brd-bottom g-brd-white g-color-white g-font-weight-500 g-font-size-12 text-uppercase g-text-underline--none--hover g-mb-30" href="#">Read more</a>
-            </div>
-          </article>
-          <!-- End Blog Background Overlay Blocks -->
-        </div>
-      </div>
-    </div>
+    
     <!-- End News -->
 
     <!-- Go To Top -->

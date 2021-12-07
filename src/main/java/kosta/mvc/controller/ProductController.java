@@ -34,6 +34,9 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+
+	
+	
 	/**
 	 * 등록폼
 	 */
