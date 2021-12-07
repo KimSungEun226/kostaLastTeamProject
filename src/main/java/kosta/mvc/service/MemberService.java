@@ -171,5 +171,23 @@ public class MemberService implements UserDetailsService {
     public Member insert(Member member) {
     	return memberRepository.save(member);
     }
+
+    /**
+     * 마이페이지 - 개인정보 수정 
+     */
+	public void update(Member member, String path) {
+		Member dbMember = memberRepository.selectByMemberId(member.getMemberId());
+			
+		dbMember.setMemberName(member.getMemberName());
+		dbMember.setMemberNickname(member.getMemberNickname());
+		dbMember.setMemberEmail(member.getMemberEmail());
+		dbMember.setMemberBirth(member.getMemberBirth());
+		dbMember.setMemberMessage(member.getMemberMessage());
+		if(member.getProfileImage()!=null) {
+			dbMember.setProfileImage(member.getProfileImage());
+		}
+
+		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	}
     
 }
