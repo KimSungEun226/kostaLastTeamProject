@@ -22,5 +22,10 @@ public interface CartService {
 	 * */
 	void deleteCart(Long cartNo);
 
+	
+	/**
+	 * 장바구니의 수량변경
+	 * */
+	void updateCart(List<Cart> cartList);
 
 }
