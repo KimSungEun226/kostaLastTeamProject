@@ -152,8 +152,7 @@ public class MyPageController {
 				}
 		}
 				
-
-		memberService.update(member, path);
+		myPageService.update(member, path);
 		
 		return "redirect:/myPage/setting";
 	}

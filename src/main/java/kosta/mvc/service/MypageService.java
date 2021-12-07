@@ -52,6 +52,12 @@ public interface MypageService {
 	Page<Board> findBoardByChallengeNo(Long challengeNo, Pageable pageable);
 
 
+	/**
+     * 마이페이지 - 개인정보 수정 
+     */
+	void update(Member member, String path);
+
+
 
 	
 	
