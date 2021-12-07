@@ -14,8 +14,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <!-- Favicon -->
-  
   <!-- 페이징 css -->
   <style type="text/css">
   	.pagination-container {
@@ -81,6 +79,9 @@
 
 <body>
   <main>
+
+${food.foodName }
+
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
