@@ -23,13 +23,13 @@ public class BurnCalory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "burn_calory_no_seq")
 	@SequenceGenerator(sequenceName = "burn_calory_no_seq", allocationSize = 1, name = "burn_calory_no_seq")
-	private Long burncaloryNo;	//음식번호
+	private Long burncaloryNo;
 	
 	private String exerciseKind;
 	
-	private String excersizeIntensity;
+	private String exerciseIntensity;
 	
-	private String exersize;
+	private String exercise;
 	private float metPoint;
 	
 }

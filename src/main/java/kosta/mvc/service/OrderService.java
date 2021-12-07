@@ -2,6 +2,8 @@ package kosta.mvc.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -68,7 +70,7 @@ public interface OrderService {
 	/**
 	 * 비회원 주문조회 상세 리턴
 	 */
-	NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone);
+	NonuserOrder selectNonuserOrder(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone) throws Exception;
 	
 	/**
 	 * 회원의 주문상세의 상태를 0 -> 1 (취소신청)으로 바꾼다.
