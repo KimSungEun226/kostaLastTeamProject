@@ -10,7 +10,7 @@
 
 <head>
   <!-- Title -->
-  <title>게시물 상세보기</title>
+  <title>챌린지게시물 상세보기</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -65,6 +65,7 @@
         	  <fmt:parseDate var="cntday" value="${requestScope.board.challenge.challengeDate}" pattern="yyyy-MM-dd"/> 
         	  //Tue Nov 30 00:00:00 KST 2021
               <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyyMMdd"/>
+              <fmt:formatDate  var="regdate" value="${cntday}" type="DATE" pattern="yyyy년MM월dd일"/>
               //2021-11-30
                                                    
         	  <c:forEach var='i' begin="0" end="${requestScope.board.challenge.challengeCnt}" step="1">          	  
@@ -116,7 +117,7 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">${day} / ${requestScope.board.boardNo}</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">/ ${requestScope.board.boardNo}</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
@@ -169,30 +170,12 @@
 
           <!-- Social Icons -->
           <div class="text-center">
-            <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-3">Share:</h3>
+            <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-3"></h3>
             <ul class="list-inline g-mb-60">
               <li class="list-inline-item g-mx-2">
                 <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover" href="#">
                   <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-facebook"></i>
                   <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-2">
-                <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="#">
-                  <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-twitter"></i>
-                  <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-2">
-                <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-google-plus--hover" href="#">
-                  <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-google-plus"></i>
-                  <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-google-plus"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-2">
-                <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-linkedin--hover" href="#">
-                  <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-linkedin"></i>
-                  <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-linkedin"></i>
                 </a>
               </li>
             </ul>
