@@ -46,4 +46,7 @@ public class Reply {
 	@ManyToOne
 	@JoinColumn(name = "member_no")
 	private Member member;
+	
+	//은지 sqldeveloper에서 memberNickname 컬럼 추가_2021.12.07
+	private String memberNickname;
 }

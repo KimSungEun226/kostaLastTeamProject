@@ -188,8 +188,10 @@ public class MemberService implements UserDetailsService {
      */
 	public void update(Member member, String path) {
 		Member dbMember = memberRepository.selectByMemberId(member.getMemberId());
-			
+		System.out.println("dbMember : "+dbMember.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberName());
 		dbMember.setMemberName(member.getMemberName());
+		System.out.println("저장 후 : "+dbMember.getMemberName());
 		dbMember.setMemberNickname(member.getMemberNickname());
 		dbMember.setMemberEmail(member.getMemberEmail());
 		dbMember.setMemberBirth(member.getMemberBirth());
@@ -197,7 +199,8 @@ public class MemberService implements UserDetailsService {
 		if(member.getProfileImage()!=null) {
 			dbMember.setProfileImage(member.getProfileImage());
 		}
-
+		
+		memberRepository.save(dbMember);
 		System.out.println("member.getProfileImage() : "+member.getProfileImage());
 	}
     
