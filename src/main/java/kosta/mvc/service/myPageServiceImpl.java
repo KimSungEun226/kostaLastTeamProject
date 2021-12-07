@@ -60,4 +60,25 @@ public class myPageServiceImpl implements MypageService {
 		return boardRepository.findByChallengeNo(challengeNo, pageable);
 	}
 
+    /**
+     * 마이페이지 - 개인정보 수정 
+     */
+	public void update(Member member, String path) {
+		Member dbMember = memberRepository.selectByMemberId(member.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberName());
+		dbMember.setMemberName(member.getMemberName());
+		System.out.println("저장 후 : "+dbMember.getMemberName());
+		dbMember.setMemberNickname(member.getMemberNickname());
+		dbMember.setMemberEmail(member.getMemberEmail());
+		dbMember.setMemberBirth(member.getMemberBirth());
+		dbMember.setMemberMessage(member.getMemberMessage());
+		if(member.getProfileImage()!=null) {
+			dbMember.setProfileImage(member.getProfileImage());
+		}
+		
+		memberRepository.save(dbMember);
+		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	}
+
 }
