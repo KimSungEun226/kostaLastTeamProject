@@ -92,6 +92,7 @@ public class BoardController {
 	public ModelAndView update(Board board) {
 		System.out.println("수정완료 controller의 update 메소드...");
 		System.out.println(board.getBoardNo());
+		
 		Board dbBoard = boardService.update(board);
 		return new ModelAndView("board/detail", "board", dbBoard);
 	}
@@ -157,12 +158,15 @@ public class BoardController {
 	
 	
 	/**
-	 * 해당 게시물 조회 
+	 * 해당 게시물 상세 조회 
 	 */
 	@RequestMapping("/detail/{boardNo}")
 	public ModelAndView detail(@PathVariable Long boardNo, String flag) {
 		boolean state = flag == null;
 		Board board = boardService.selectBy(boardNo, state);
+		
+		//게시물 댓글 개수구하기 test중..
+		System.out.println("board.getReplyList().size() ===> " + board.getReplyList().size());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/detail");
