@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
   <!-- Title -->
-  <title>칼로리사전(음식)</title>
+  <title>칼로리사전(운동)</title>
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -93,11 +93,11 @@ $(document).ready(function(){
 	}
 	
 	table tr td{
-		width: 10%;
+		width: 20%;
 	}
 	
 	table tr th{
-		width: 10%;
+		width: 20%;
 	}
   </style>
 </head>
@@ -107,20 +107,20 @@ $(document).ready(function(){
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-50">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 음식칼로리</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 운동칼로리</h2>
 		<div class="container text-center g-py-50--mdg-py-80 ">
         
         <!-- Search Form -->
-        <form class="g-width-60x--md mx-auto" id="searchSubmit" action="${pageContext.request.contextPath}/selectFoodName" method="post">
+        <form class="g-width-60x--md mx-auto" id="searchSubmit" action="${pageContext.request.contextPath}/selectExersize" method="post">
           <div class="form-group g-mb-20">
             <div class="input-group u-shadow-v21 rounded g-mb-15">
               
               <c:choose>
                 <c:when test="${status==true}">
-                  <input id="keyword" name="keyword" value="${keyword }" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="음식명 검색">
+                  <input id="keyword" name="keyword" value="${keyword }" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="운동 검색">
                 </c:when>
                 <c:otherwise>
-                  <input id="keyword" name="keyword" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="음식명 검색">
+                  <input id="keyword" name="keyword" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="운동 검색">
                 </c:otherwise>
               </c:choose>
               
@@ -151,29 +151,19 @@ $(document).ready(function(){
         <!-- Blog Minimal Blocks -->
           <table style="width: 100%">
             <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0">
-              <th class=" g-color-gray-dark-v4" style="width: 5%">번호</th>
-              <th class=" g-color-gray-dark-v4" style="width: 12%">음식명</th>
-              <th class=" g-color-gray-dark-v4" style="width: 13%">제조사</th>
-              <th class=" g-color-gray-dark-v4">1회제공량(g)</th>
-              <th class=" g-color-gray-dark-v4">총 칼로리(kcal)</th>
-              <th class=" g-color-gray-dark-v4">단백질(g)</th>
-              <th class=" g-color-gray-dark-v4">지방(g)</th>
-              <th class=" g-color-gray-dark-v4">탄수화물(g)</th>
-              <th class=" g-color-gray-dark-v4">총당류(g)</th>
-              <th class=" g-color-gray-dark-v4">나트륨(mg)</th>
+              <th class=" g-color-gray-dark-v4" style="width: 10%">번호</th>
+              <th class=" g-color-gray-dark-v4">운동</th>
+              <th class=" g-color-gray-dark-v4">운동분류</th>
+              <th class=" g-color-gray-dark-v4">운동강도</th>
+              <th class=" g-color-gray-dark-v4">MET계수</th>
             </tr>
-            <c:forEach items="${requestScope.pageList.content}" var="food">
+            <c:forEach items="${requestScope.pageList.content}" var="burn">
               <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-15 g-py-13 mb-0">
-                <td class=" g-color-gray-dark-v4" style="width: 5%">${food.foodNo }</td>
-                <td class=" g-color-gray-dark-v4" style="width: 12%">${food.foodName }</td>
-                <td class=" g-color-gray-dark-v4" style="width: 13%">${food.regionManufac }</td>
-                <td class=" g-color-gray-dark-v4">${food.foodQuantity }${food.foodUnit }</td>
-                <td class=" g-color-gray-dark-v4">${food.foodKcal }</td>
-                <td class=" g-color-gray-dark-v4">${food.protein }</td>
-                <td class=" g-color-gray-dark-v4">${food.fat }</td>
-                <td class=" g-color-gray-dark-v4">${food.carbohydrate }</td>
-                <td class=" g-color-gray-dark-v4">${food.sugars }</td>
-                <td class=" g-color-gray-dark-v4">${food.na }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 10%">${burn.burncaloryNo }</td>
+                <td class=" g-color-gray-dark-v4">${burn.exercise }</td>
+                <td class=" g-color-gray-dark-v4">${burn.exerciseKind }</td>
+                <td class=" g-color-gray-dark-v4">${burn.exerciseIntensity }</td>
+                <td class=" g-color-gray-dark-v4">${burn.metPoint }</td>
               </tr>
             </c:forEach>
           </table>
@@ -186,7 +176,7 @@ $(document).ready(function(){
             <c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectFoodName?nowPage=${startPage-1}&keyword=${keyword}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectExersize?nowPage=${startPage-1}&keyword=${keyword}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-left"></i>
                 </span>
@@ -200,14 +190,14 @@ $(document).ready(function(){
 			</c:if>
 			<c:if test="${not doneLoop}" >
 			  <li class="list-inline-item hidden-down">
-			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/selectFoodName?keyword=${keyword}&nowPage=${i}">${i}</a> 
+			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/selectExersize?keyword=${keyword}&nowPage=${i}">${i}</a> 
 		      </li>
 		    </c:if>
             </c:forEach>
             
             <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectFoodName?keyword=${keyword}&nowPage=${startPage+blockCount}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectExersize?keyword=${keyword}&nowPage=${startPage+blockCount}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-right"></i>
                 </span>
@@ -226,7 +216,7 @@ $(document).ready(function(){
             <c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/foodCal?nowPage=${startPage-1}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/burnCal?nowPage=${startPage-1}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-left"></i>
                 </span>
@@ -240,14 +230,14 @@ $(document).ready(function(){
 			</c:if>
 			<c:if test="${not doneLoop}" >
 			  <li class="list-inline-item hidden-down">
-			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/foodCal?nowPage=${i}">${i}</a> 
+			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/burnCal?nowPage=${i}">${i}</a> 
 		      </li>
 		    </c:if>
             </c:forEach>
             
             <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/foodCal?nowPage=${startPage+blockCount}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/burnCal?nowPage=${startPage+blockCount}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-right"></i>
                 </span>

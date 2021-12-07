@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.BurnCalory;
 import kosta.mvc.domain.FoodCalory;
 import kosta.mvc.service.CalorieService;
 import kosta.mvc.vo.Calorie;
@@ -49,15 +50,12 @@ public class CalorieController {
 	}
 
 	@RequestMapping("/foodCal")
-	public ModelAndView list(@RequestParam(defaultValue = "1") int nowPage) {
-		System.out.println("컨트롤러");
-		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "foodNo" );
+	public ModelAndView foodCal(@RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,10, Direction.ASC, "foodNo" );
 		ModelAndView mv = new ModelAndView();
-		Page<FoodCalory> foodList = calorieService.selectAll(pageable); // board의 전체를 가지고 와서 boardList에 담아준다
-		System.out.println(foodList);
+		Page<FoodCalory> foodList = calorieService.foodSelectAll(pageable);
 		
-		// 상수로 잡자
-		int blockCount = 3;
+		int blockCount = 5;
 		int temp = (nowPage - 1) % blockCount;
 		int startPage = nowPage - temp;
 
@@ -67,8 +65,69 @@ public class CalorieController {
 
 		mv.addObject("pageList", foodList);
 		mv.setViewName("board/foodCalList");
-		System.out.println("컨트롤러 끝");
+		return mv;
+	}
+	
+	@RequestMapping("/selectFoodName")
+	public ModelAndView selectFoodName(@RequestParam(defaultValue = "1") int nowPage, String keyword) {
+		Pageable pageable = PageRequest.of(nowPage-1,10, Direction.ASC, "foodNo" );
+		ModelAndView mv = new ModelAndView();
+		keyword = "%"+keyword+"%";
+		System.out.println(keyword);
+		Page<FoodCalory> foodList = calorieService.foodSelectByName(keyword, pageable);
+		
+		int blockCount = 5;
+		int temp = (nowPage - 1) % blockCount;
+		int startPage = nowPage - temp;
+		
+		mv.addObject("keyword", keyword.replace("%", ""));
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("status", true);
+		mv.addObject("pageList", foodList);
+		mv.setViewName("board/foodCalList");
 		return mv;
 	}
 
+	@RequestMapping("/burnCal")
+	public ModelAndView burnCal(@RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,10, Direction.ASC, "burncaloryNo" );
+		ModelAndView mv = new ModelAndView();
+		Page<BurnCalory> burnList = calorieService.burnSelectAll(pageable);
+		
+		int blockCount = 5;
+		int temp = (nowPage - 1) % blockCount;
+		int startPage = nowPage - temp;
+
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+
+		mv.addObject("pageList", burnList);
+		mv.setViewName("board/burnCalList");
+		return mv;
+	}
+	
+	@RequestMapping("/selectExersize")
+	public ModelAndView selectExersize(@RequestParam(defaultValue = "1") int nowPage, String keyword) {
+		Pageable pageable = PageRequest.of(nowPage-1,10, Direction.ASC, "burncaloryNo" );
+		ModelAndView mv = new ModelAndView();
+		keyword = "%"+keyword+"%";
+		System.out.println(keyword);
+		Page<BurnCalory> burnList = calorieService.burnSelectByName(keyword, pageable);
+		
+		int blockCount = 5;
+		int temp = (nowPage - 1) % blockCount;
+		int startPage = nowPage - temp;
+		
+		mv.addObject("keyword", keyword.replace("%", ""));
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("status", true);
+		mv.addObject("pageList", burnList);
+		mv.setViewName("board/burnCalList");
+		return mv;
+	}
 }

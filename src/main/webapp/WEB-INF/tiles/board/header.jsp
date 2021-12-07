@@ -230,7 +230,7 @@
 
                     <!-- 칼로리사전 - 운동 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">음식 칼로리</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/burnCal">운동 칼로리</a>
                     </li><!-- End 칼로리사전 - 운동 -->
                   </ul>
                 </li><!-- End 칼로리사전 -->
