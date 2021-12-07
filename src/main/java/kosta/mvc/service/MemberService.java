@@ -8,7 +8,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
-import org.junit.Test;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -167,6 +166,10 @@ public class MemberService implements UserDetailsService {
     
     public Member selectByMemberId(String memberId) {
     	return memberRepository.selectByMemberId(memberId);
+    }
+    
+    public Member insert(Member member) {
+    	return memberRepository.save(member);
     }
     
 }

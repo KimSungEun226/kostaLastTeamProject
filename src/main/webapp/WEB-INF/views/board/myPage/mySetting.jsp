@@ -38,6 +38,47 @@
 
   <!-- CSS Customization -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+  
+  <script type="text/javascript">
+    
+    
+	    function form_check() {
+	    	  var name = document.getElementById("memberName");
+	    	  var nickname = document.getElementById("memberNickname");    	
+	    	  var email = document.getElementById("memberEmail");
+	    	  var message = document.getElementById("memberMessage");
+
+	    	  
+		    	if ( name.value == "" ) {
+		    	    alert( "이름을 입력해주세요." );
+		    	    name.focus();
+		    		return false;
+		        }
+	
+		    	if ( nickname.value == "" ) {
+		            alert( "닉네임을 입력해주세요." );
+		            nickname.focus();
+		            return false;
+		        }
+		    	
+		    	if ( email.value =="") {
+		            alert( "이메일을 입력해주세요." );
+		            email.focus();
+		            return false;
+		        }
+
+		    	if ( message.value =="" ) {
+		            alert( "다짐메세지를 입력해주세요." );
+		            message.focus();
+		            return false;
+		        }
+
+		    	document.profileUpdate_Form.submit(); //유효성 검사의 포인트 
+	    }
+	
+    </script>
+  
+  
 </head>
 
 <body>
@@ -135,8 +176,7 @@
               <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item justify-content-between active">
                 <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
-              </a>
-              <!-- End 정보수정 -->
+              </a>              
             </div>
             <!-- End Sidebar Navigation -->
           </div>
@@ -152,10 +192,10 @@
                 <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--2" role="tab">Security Settings</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--3" role="tab">Payment Options</a>
+                <a class="nav-link g-py-10" data-toggle="tab" href="" role="tab"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--4" role="tab">Notification Settings</a>
+                <a class="nav-link g-py-10" data-toggle="tab" href="" role="tab"></a>
               </li>
             </ul>
             <!-- End Nav tabs -->
@@ -164,75 +204,75 @@
             <div id="nav-1-1-default-hor-left-underline" class="tab-content">
               <!-- Edit Profile -->
               <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">Manage your Name, ID and Email Addresses</h2>
-                <p>Below are name, email addresse, contacts and more on file for your account.</p>
-
+                <h2 class="h4 g-font-weight-300">정보수정</h2>
+                <p>이름, 닉네임, 성별, 이메일, 생년월일, 다짐메세지를 수정할 수 있습니다. </p>
+                <form name="profileUpdate_Form" method="post" action="${pageContext.request.contextPath}/myPage/update" enctype="multipart/form-data">
                 <ul class="list-unstyled g-mb-30">
-                  <!-- Name -->
+                  <!-- ID -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Name</strong>
-                      <span class="align-top">John Doe</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">아이디</strong>
+                      <span class="align-top">${requestScope.member.memberId}</span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Name -->
+                  <!-- End ID -->
 
-                  <!-- Your ID -->
+                  <!-- Your NAME -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Your ID</strong>
-                      <span class="align-top">FKJ-032440</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">이름</strong>
+                      <input class="align-top" id="memberName" name="memberName" value="${requestScope.member.memberName}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Your ID -->
+                  <!-- End Your NAME -->
 
-                  <!-- Company Name -->
+                  <!-- NickName -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Company name</strong>
-                      <span class="align-top">Htmlstream</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">닉네임</strong>
+                      <input class="align-top" id="memberNickname" name="memberNickname" value="${requestScope.member.memberNickname}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Company Name -->
+                  <!-- End NickName -->
 
-                  <!-- Position -->
+                  <!-- Gender -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Position</strong>
-                      <span class="align-top">Project Manager</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">성별</strong>
+                      <input class="align-top" id="memberGender" name="memberGender" value="${requestScope.member.memberGender}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Position -->
+                  <!-- End Gender -->
 
-                  <!-- Primary Email Address -->
+                  <!-- Email Address -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Primary email address</strong>
-                      <span class="align-top">john.doe@htmlstream.com</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">이메일</strong>
+                      <input class="align-top" id="memberEmail" name="memberEmail" value="${requestScope.member.memberEmail}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Primary Email Address -->
+                  <!-- End Email Address -->
 
-                  <!-- Linked Account -->
+                  <!-- 생년월일 -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Linked account</strong>
-                      <span class="align-top">Facebook</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">생년월일</strong>
+                      <input class="align-top" id="memberBirth" name="memberBirth" value="${requestScope.member.memberBirth}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
@@ -240,66 +280,56 @@
                   </li>
                   <!-- End Linked Account -->
 
-                  <!-- Website -->
+                  <!-- 가입일 -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Website</strong>
-                      <span class="align-top">https://htmlstream.com</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">가입일</strong>
+                      <span class="align-top">${requestScope.member.memberJoindate}</span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Website -->
+                  <!-- End 가입일 -->
 
-                  <!-- Phone Number -->
+                  <!-- 다짐메세지  -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Phone number</strong>
-                      <span class="align-top">(+123) 456 7890</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">다짐메세지</strong>
+                      <input class="align-top" id="memberMessage" name="memberMessage" value="${requestScope.member.memberMessage}"></span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Phone Number -->
+                  <!-- End 다짐메세지 -->
 
-                  <!-- Office Number -->
+                  <!-- 프로필 이미지 -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Office number</strong>
-                      <span class="align-top">(+123) 456 7891</span>
+                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">프로필이미지 변경</strong>
+                      <span class="align-top"><input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> </span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
                       </span>
                   </li>
-                  <!-- End Office Number -->
+                  <!-- End 프로필이미지 -->
 
-                  <!-- Address -->
-                  <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
-                    <div class="g-pr-10">
-                      <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">Address</strong>
-                      <span class="align-top">795 Folsom Ave, Suite 600, San Francisco CA, US </span>
-                    </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
-                  </li>
-                  <!-- End Address -->
                 </ul>
 
                 <div class="text-sm-right">
-                  <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
-                  <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                  <input type="reset" class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" ></a>
+                  <button id="check" type="button" onclick="form_check()" class="btn u-btn-primary rounded-0 g-py-12 g-px-25" >수정하기</a>
+                </form>
                 </div>
               </div>
-              <!-- End Edit Profile -->
+              <!-- End 정보수정 -->
 
               <!-- Security Settings -->
               <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--2" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">Security Settings</h2>
-                <p class="g-mb-25">Reset your password, change verifications and so on.</p>
+                <h2 class="h4 g-font-weight-300">보안설정</h2>
+                <p class="g-mb-25">비밀번호, 전화번호 변경 또는 탈퇴할 수 있습니다. </p>
 
                 <form>
                   <!-- Current Password -->
@@ -390,7 +420,6 @@
                     </div>
                   </div>
                   <!-- End Save Password -->
-
                   <hr class="g-brd-gray-light-v4 g-my-25">
 
                   <div class="text-sm-right">
@@ -401,305 +430,6 @@
               </div>
               <!-- End Security Settings -->
 
-              <!-- Payment Options -->
-              <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--3" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">Manage your Payment Settings</h2>
-                <p class="g-mb-25">Below are the payment options for your account.</p>
-
-                <form>
-                  <!-- Payment Options -->
-                  <div class="row">
-                    <!-- Visa Card -->
-                    <div class="col-md-3">
-                      <label class="u-check w-100 g-mb-25">
-                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Visa card</strong>
-                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments" checked="">
-
-                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
-                          <div class="media g-pa-12">
-                            <div class="media-body align-self-center g-color-blue">
-                              <i class="fa fa-cc-visa g-font-size-30 align-self-center mx-auto"></i>
-                            </div>
-
-                            <div class="d-flex align-self-center g-width-20 g-ml-15">
-                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                    <!-- End Visa Card -->
-
-                    <!-- Master Card -->
-                    <div class="col-md-3">
-                      <label class="u-check w-100 g-mb-25">
-                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Master card</strong>
-                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
-
-                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
-                          <div class="media g-pa-12">
-                            <div class="media-body align-self-center g-color-lightred">
-                              <i class="fa fa-cc-mastercard g-font-size-30 align-self-center mx-auto"></i>
-                            </div>
-
-                            <div class="d-flex align-self-center g-width-20 g-ml-15">
-                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                    <!-- End Master Card -->
-
-                    <!-- Amazon Payments -->
-                    <div class="col-md-3">
-                      <label class="u-check w-100 g-mb-25">
-                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Amazon payments</strong>
-                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
-
-                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
-                          <div class="media g-pa-12">
-                            <div class="media-body align-self-center g-color-orange">
-                              <i class="fa fa-amazon g-font-size-30 align-self-center mx-auto"></i>
-                            </div>
-
-                            <div class="d-flex align-self-center g-width-20 g-ml-15">
-                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                    <!-- End Amazon Payments -->
-
-                    <!-- Paypal -->
-                    <div class="col-md-3">
-                      <label class="u-check w-100 g-mb-25">
-                        <strong class="d-block g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Paypal</strong>
-                        <input class="g-hidden-xs-up g-pos-abs g-top-10 g-right-10" type="radio" name="profilePayments">
-
-                        <div class="g-brd-primary--checked g-bg-primary-opacity-0_2--checked g-brd-around g-brd-gray-light-v2 g-rounded-5">
-                          <div class="media g-pa-12">
-                            <div class="media-body align-self-center g-color-darkblue">
-                              <i class="fa fa-paypal g-font-size-30 align-self-center mx-auto"></i>
-                            </div>
-
-                            <div class="d-flex align-self-center g-width-20 g-ml-15">
-                              <div class="u-check-icon-radio-v5 g-pos-rel g-width-20 g-height-20"><i></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                    <!-- End Paypal -->
-                  </div>
-                  <!-- End Payment Options -->
-
-                  <!-- Card Name and Number -->
-                  <div class="row">
-                    <!-- Card Name -->
-                    <div class="col-md-6">
-                      <div class="form-group g-mb-20">
-                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Name on card</label>
-                        <div class="input-group g-brd-primary--focus">
-                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="John Doe">
-                          <div class="input-group-append">
-                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-user"></i></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Card Name -->
-
-                    <!-- Card Number -->
-                    <div class="col-md-6">
-                      <div class="form-group g-mb-20">
-                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Card number</label>
-                        <div class="input-group g-brd-primary--focus">
-                          <input id="inputGroup1_3" class="form-control form-control-md g-brd-right-none rounded-0 g-py-13" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" data-mask="9999-9999-9999-9999">
-                          <div class="input-group-append">
-                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-credit-card"></i></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Card Number -->
-                  </div>
-                  <!-- End Card Name and Number -->
-
-                  <!-- Card Expiration Dates and CVV Code -->
-                  <div class="row">
-                    <!-- Expiration Month -->
-                    <div class="col-md-4">
-                      <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Expiration month</label>
-                      <select class="js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-dark-v5 w-100 g-pt-11 g-pb-10" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                        <option selected="">Month</option>
-                        <option value="1">January</option>
-                        <option value="1">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                      </select>
-                    </div>
-                    <!-- End Expiration Month -->
-
-                    <!-- Expiration Year -->
-                    <div class="col-md-4">
-                      <div class="form-group g-mb-20">
-                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">Expiration year</label>
-                        <div class="input-group g-brd-primary--focus">
-                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="2021">
-                          <div class="input-group-append">
-                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-calendar"></i></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Expiration Year -->
-
-                    <!-- CVV Code -->
-                    <div class="col-md-4">
-                      <div class="form-group g-mb-20">
-                        <label class="g-color-gray-dark-v2 g-font-weight-700 g-mb-10" for="inputGroup1_1">CVV code</label>
-                        <div class="input-group g-brd-primary--focus">
-                          <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="text" placeholder="2021">
-                          <div class="input-group-append">
-                            <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End CVV Code -->
-                  </div>
-                  <!-- End Card Expiration Dates and CVV Code -->
-
-                  <!-- Billing Address -->
-                  <div class="form-group">
-                    <label class="d-block g-color-gray-dark-v2 g-font-weight-700 1text-sm-right g-mb-10">Billing address</label>
-                    <label class="u-check g-pl-25 mb-0">
-                      <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                      <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
-                        <i class="fa" data-check-icon="&#xf00c"></i>
-                      </div>
-                      Same as shipping address?
-                    </label>
-                  </div>
-                  <!-- End Billing Address -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-25">
-
-                  <div class="text-sm-right">
-                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
-                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
-                  </div>
-                </form>
-              </div>
-              <!-- End Payment Options -->
-
-              <!-- Notification Settings -->
-              <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--4" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">Manage your Notifications</h2>
-                <p class="g-mb-25">Below are the notifications you may manage.</p>
-
-                <form>
-                  <!-- Email Notification -->
-                  <div class="form-group">
-                    <label class="d-flex align-items-center justify-content-between">
-                      <span>Email notification</span>
-                      <div class="u-check">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="emailNotification" type="checkbox" checked>
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <!-- End Email Notification -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-20">
-
-                  <!-- Comments Notification -->
-                  <div class="form-group">
-                    <label class="d-flex align-items-center justify-content-between">
-                      <span>Send me email notification when a user comments on my blog</span>
-                      <div class="u-check">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="commentNotification" type="checkbox">
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <!-- End Comments Notification -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-20">
-
-                  <!-- Update Notification -->
-                  <div class="form-group">
-                    <label class="d-flex align-items-center justify-content-between">
-                      <span>Send me email notification for the latest update</span>
-                      <div class="u-check">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="updateNotification" type="checkbox" checked>
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <!-- End Update Notification -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-25">
-
-                  <!-- Message Notification -->
-                  <div class="form-group">
-                    <label class="d-flex align-items-center justify-content-between">
-                      <span>Send me email notification when a user sends me message</span>
-                      <div class="u-check">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="messageNotification" type="checkbox" checked>
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <!-- End Message Notification -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-25">
-
-                  <!-- Newsletter Notification -->
-                  <div class="form-group">
-                    <label class="d-flex align-items-center justify-content-between">
-                      <span>Receive our monthly newsletter</span>
-                      <div class="u-check">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="newsletterNotification" type="checkbox">
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <!-- End Newsletter Notification -->
-
-                  <hr class="g-brd-gray-light-v4 g-my-25">
-
-                  <div class="text-sm-right">
-                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
-                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
-                  </div>
-                </form>
-              </div>
-              <!-- End Notification Settings -->
             </div>
             <!-- End Tab panes -->
           </div>
@@ -707,226 +437,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <div id="contacts-section" class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 g-py-60">
-      <div class="container">
-        <div class="row">
-          <!-- Footer Content -->
-          <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-            <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">About Us</h2>
-            </div>
-
-            <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-          </div>
-          <!-- End Footer Content -->
-
-          <!-- Footer Content -->
-          <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-            <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Latest Posts</h2>
-            </div>
-
-            <article>
-              <h3 class="h6 g-mb-2">
-            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Incredible template</a>
-          </h3>
-              <div class="small g-color-white-opacity-0_6">May 8, 2017</div>
-            </article>
-
-            <hr class="g-brd-white-opacity-0_1 g-my-10">
-
-            <article>
-              <h3 class="h6 g-mb-2">
-            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">New features</a>
-          </h3>
-              <div class="small g-color-white-opacity-0_6">June 23, 2017</div>
-            </article>
-
-            <hr class="g-brd-white-opacity-0_1 g-my-10">
-
-            <article>
-              <h3 class="h6 g-mb-2">
-            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">New terms and conditions</a>
-          </h3>
-              <div class="small g-color-white-opacity-0_6">September 15, 2017</div>
-            </article>
-          </div>
-          <!-- End Footer Content -->
-
-          <!-- Footer Content -->
-          <div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
-            <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Useful Links</h2>
-            </div>
-
-            <nav class="text-uppercase1">
-              <ul class="list-unstyled g-mt-minus-10 mb-0">
-                <li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
-                  <h4 class="h6 g-pr-20 mb-0">
-                <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">About Us</a>
-                <i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
-              </h4>
-                </li>
-                <li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
-                  <h4 class="h6 g-pr-20 mb-0">
-                <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Portfolio</a>
-                <i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
-              </h4>
-                </li>
-                <li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
-                  <h4 class="h6 g-pr-20 mb-0">
-                <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Our Services</a>
-                <i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
-              </h4>
-                </li>
-                <li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
-                  <h4 class="h6 g-pr-20 mb-0">
-                <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Latest Jobs</a>
-                <i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
-              </h4>
-                </li>
-                <li class="g-pos-rel g-py-10">
-                  <h4 class="h6 g-pr-20 mb-0">
-                <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Contact Us</a>
-                <i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
-              </h4>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <!-- End Footer Content -->
-
-          <!-- Footer Content -->
-          <div class="col-lg-3 col-md-6">
-            <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
-              <h2 class="u-heading-v2__title h6 text-uppercase mb-0">Our Contacts</h2>
-            </div>
-
-            <address class="g-bg-no-repeat g-font-size-12 mb-0" style="background-image: url(../../assets/img/maps/map2.png);">
-          <!-- Location -->
-          <div class="d-flex g-mb-20">
-            <div class="g-mr-10">
-              <span class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-color-white-opacity-0_6">
-                <i class="fa fa-map-marker"></i>
-              </span>
-            </div>
-            <p class="mb-0">795 Folsom Ave, Suite 600, <br> San Francisco, CA 94107 795</p>
-          </div>
-          <!-- End Location -->
-
-          <!-- Phone -->
-          <div class="d-flex g-mb-20">
-            <div class="g-mr-10">
-              <span class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-color-white-opacity-0_6">
-                <i class="fa fa-phone"></i>
-              </span>
-            </div>
-            <p class="mb-0">(+123) 456 7890 <br> (+123) 456 7891</p>
-          </div>
-          <!-- End Phone -->
-
-          <!-- Email and Website -->
-          <div class="d-flex g-mb-20">
-            <div class="g-mr-10">
-              <span class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-color-white-opacity-0_6">
-                <i class="fa fa-globe"></i>
-              </span>
-            </div>
-            <p class="mb-0">
-              <a class="g-color-white-opacity-0_8 g-color-white--hover" href="mailto:info@htmlstream.com">info@htmlstream.com</a>
-              <br>
-              <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">www.htmlstream.com</a>
-            </p>
-          </div>
-          <!-- End Email and Website -->
-        </address>
-          </div>
-          <!-- End Footer Content -->
-        </div>
-      </div>
-    </div>
-    <!-- End Footer -->
-
-    <!-- Copyright Footer -->
-    <footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 text-center text-md-left g-mb-10 g-mb-0--md">
-            <div class="d-lg-flex">
-              <small class="d-block g-font-size-default g-mr-10 g-mb-10 g-mb-0--md">2020 &copy; All Rights Reserved.</small>
-              <ul class="u-list-inline">
-                <li class="list-inline-item">
-                  <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Privacy Policy</a>
-                </li>
-                <li class="list-inline-item">
-                  <span>|</span>
-                </li>
-                <li class="list-inline-item">
-                  <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Terms of Use</a>
-                </li>
-                <li class="list-inline-item">
-                  <span>|</span>
-                </li>
-                <li class="list-inline-item">
-                  <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">License</a>
-                </li>
-                <li class="list-inline-item">
-                  <span>|</span>
-                </li>
-                <li class="list-inline-item">
-                  <a class="g-color-white-opacity-0_8 g-color-white--hover" href="#">Support</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-4 align-self-center">
-            <ul class="list-inline text-center text-md-right mb-0">
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Facebook">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Skype">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-skype"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Linkedin">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Pinterest">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-pinterest"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Twitter">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10" data-toggle="tooltip" data-placement="top" title="Dribbble">
-                <a href="#" class="g-color-white-opacity-0_5 g-color-white--hover">
-                  <i class="fa fa-dribbble"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- End Copyright Footer -->
-    <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
-     "bottom": 15,
-     "right": 15
-   }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
-      <i class="hs-icon hs-icon-arrow-top"></i>
-    </a>
-  </main>
 
   <div class="u-outer-spaces-helper"></div>
 
@@ -1010,492 +520,6 @@
         }, 200);
       });
   </script>
-
-
-
-
-
-
-
-  <!-- Style Switcher -->
-  <aside class="u-ss" data-cookies-prefix="unify" data-defaults='[{
-              "customColor": "#72c02c",
-              "outerSpaces": "0px",
-              "contentFont": "Open Sans, Helvetica, Arial, sans-serif",
-              "headingFont": "Open Sans, Helvetica, Arial, sans-serif"
-           }]'>
-    <div class="u-ss-wrap">
-      <header class="u-ss-header">
-        <button class="u-ss-toggler g-color-primary" type="button">
-          <i class="fa fa-cogs"></i>
-        </button>
-
-        <h2 class="u-ss__main-title">Style Switcher
-        <span class="u-label g-rounded-3 g-font-size-10 g-bg-lightred g-pos-rel g-top-minus-1 g-ml-5">Beta</span>
-      </h2>
-      </header>
-
-      <div class="js-ss-scrollbar u-ss-body">
-        <form>
-          <section class="u-ss-section">
-            <div class="u-ss-control-wrap">
-              <h3 class="u-ss-section__title">Predefined Styles</h3>
-              <select class="js-ss-select js-ss-predefined-style u-ss-select" name="predefined-style" style="width: 100%;" data-placeholder="Select style" data-disable-search="true" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                <option></option>
-                <option id="preDefSMain" value='[{
-                    "checkIDs": {"custom-colors": "clr1", "heading-font": "hFnt1", "font": "fnt1", "layout-styles": "layS1", "outer-spaces": "outS1", "custom-bg": "", "predefined-style": "preDefS1"},
-                    "preDefStyle": "default"
-                  }]' selected>Main Style
-                </option>
-                <option id="preDefS1" value='[{
-                    "checkIDs": {"custom-colors": "clr2", "heading-font": "hFnt2", "font": "fnt2", "layout-styles": "layS2", "outer-spaces": "outS2", "custom-bg": "bg5", "predefined-style": "preDefS2"},
-                    "preDefStyle": "../../assets/style-switcher-predefined-styles/style1.css"
-                  }]'>Style 1
-                </option>
-                <option id="preDefS2" value='[{
-                    "checkIDs": {"custom-colors": "clr3", "heading-font": "hFnt3", "font": "fnt3", "layout-styles": "layS3", "outer-spaces": "outS3", "custom-bg": "bg12", "predefined-style": "preDefS3"},
-                    "preDefStyle": "../../assets/style-switcher-predefined-styles/style2.css"
-                  }]'>Style 2
-                </option>
-              </select>
-            </div>
-
-            <div class="u-ss-sub-section-wrap">
-              <div class="u-ss-sub-section_half">
-                <h3 class="u-ss-section__title">Heading Font</h3>
-                <select class="js-ss-select js-ss-heading-font u-ss-select" name="heading-font" style="width: 100%;" data-placeholder="Select font" data-disable-search="true" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                  <option></option>
-                  <option id="hFnt1" value='[
-                              {"headingFont":"\"Open Sans\",Helvetica,Arial,sans-serif"}
-                            ]' selected>Open Sans
-                  </option>
-                  <option id="hFnt2" value='[
-                              {"headingFont":"\"Playfair Display\",Helvetica,Arial,serif"}
-                            ]'>Playfair Display
-                  </option>
-                  <option id="hFnt3" value='[
-                              {"headingFont":"\"Roboto\",Helvetica,Arial,sans-serif"}
-                            ]'>Roboto
-                  </option>
-                  <option id="hFnt4" value='[
-                              {"headingFont":"\"Raleway\",Helvetica,Arial,sans-serif"}
-                            ]'>Raleway
-                  </option>
-                  <option id="hFnt5" value='[
-                              {"headingFont":"\"Spectral\",Helvetica,Arial,serif"}
-                            ]'>Spectral
-                  </option>
-                  <option id="hFnt6" value='[
-                              {"headingFont":"\"Rubik\",Helvetica,Arial,sans-serif"}
-                            ]'>Rubik
-                  </option>
-                </select>
-              </div>
-
-              <div class="u-ss-sub-section_half">
-                <h3 class="u-ss-section__title">Content Font</h3>
-                <select class="js-ss-select js-ss-font u-ss-select" name="content-font" style="width: 100%;" data-placeholder="Select font" data-disable-search="true" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                  <option></option>
-                  <option id="fnt1" value='[
-                              {"contentFont":"\"Open Sans\",Helvetica,Arial,sans-serif"}
-                            ]' selected>Open Sans
-                  </option>
-                  <option id="fnt2" value='[
-                              {"contentFont":"\"Playfair Display\",Helvetica,Arial,serif"}
-                            ]'>Playfair Display
-                  </option>
-                  <option id="fnt3" value='[
-                              {"contentFont":"\"Roboto\",Helvetica,Arial,sans-serif"}
-                            ]'>Roboto
-                  </option>
-                  <option id="fnt4" value='[
-                              {"contentFont":"\"Raleway\",Helvetica,Arial,sans-serif"}
-                            ]'>Raleway
-                  </option>
-                  <option id="fnt5" value='[
-                              {"contentFont":"\"Spectral\",Helvetica,Arial,serif"}
-                            ]'>Spectral
-                  </option>
-                  <option id="fnt6" value='[
-                              {"contentFont":"\"Rubik\",Helvetica,Arial,sans-serif"}
-                            ]'>Rubik
-                  </option>
-                </select>
-              </div>
-            </div>
-          </section>
-
-          <section class="u-ss-section u-ss-section--theme-colors">
-            <h3 class="u-ss-section__title">Theme Colors</h3>
-
-            <div id="customColors" class="u-ss-check-section">
-              <label class="u-ss-check">
-                <input id="clr1" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#72c02c"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #72c02c;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr2" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#107ef4"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #107ef4;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr3" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#fd9233"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #fd9233;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr4" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#e74b3c"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #e74b3c;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr5" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#111111"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #111111;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr6" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#9b6bcc"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #9b6bcc;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr7" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#e81c62"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #e81c62;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr8" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#29d6e6"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #29d6e6;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr9" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#9c8061"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #9c8061;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr10" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#527bcc"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #527bcc;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr11" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#6639b6"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #6639b6;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr12" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#a10f2b"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #a10f2b;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr13" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#19ba9b"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #19ba9b;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-              <label class="u-ss-check">
-                <input id="clr14" class="js-ss-color" name="custom-colors" type="radio" value='[
-                      {"customColor":"#4025d0"}
-                    ]'>
-
-                <div class="u-ss-check__item" style="background-color: #4025d0;">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                </div>
-              </label>
-            </div>
-          </section>
-
-          <section class="u-ss-section">
-            <h3 class="u-ss-section__title">Custom Color Theme</h3>
-
-            <div id="userColor">
-              <div class="u-ss-control-wrap">
-                <input class="u-ss__control" type="text" placeholder="Enter your color">
-                <input class="js-ss-color-picker form-control" type="text">
-              </div>
-            </div>
-          </section>
-
-          <section class="u-ss-section">
-            <h3 class="u-ss-section__title">Layout Styles</h3>
-
-            <div class="u-ss-radio-wrap">
-              <div class="u-ss-radio-section">
-                <label>
-                  <input id="layS1" class="js-ss-classes js-ss-option-close" name="layout-styles" type="radio" value="" checked data-selectors="body" data-option-target="#customBG" data-check-item="#bg1">
-
-                  <div class="u-ss-radio">Wide</div>
-                </label>
-              </div>
-
-              <div class="u-ss-radio-section">
-                <label>
-                  <input id="layS2" class="js-ss-classes js-ss-option-open" name="layout-styles" type="radio" value="g-layout-boxed" data-selectors="body" data-option-target="#customBG">
-
-                  <div class="u-ss-radio">Boxed</div>
-                </label>
-              </div>
-
-              <div id="semiboxed" class="u-ss-radio-section" data-modal-target="#resolutionCaution" data-modal-effect="slide">
-                <label id="layS3">
-                  <input class="js-ss-classes js-ss-option-open" name="layout-styles" type="radio" value="g-layout-semiboxed" data-selectors="body" data-option-target="#customBG">
-
-                  <div class="u-ss-radio">SemiBoxed</div>
-                </label>
-              </div>
-            </div>
-
-            <h3 class="u-ss-section__title">Outer Spaces</h3>
-
-            <div class="u-ss-radio-wrap">
-              <div class="u-ss-radio-section">
-                <label>
-                  <input id="outS1" class="js-ss-classes" name="outer-spaces" type="radio" value="" checked data-selectors="html">
-
-                  <div class="u-ss-radio">None</div>
-                </label>
-              </div>
-
-              <div class="u-ss-radio-section">
-                <label>
-                  <input id="outS2" class="js-ss-classes" name="outer-spaces" type="radio" value="u-outer-space-v1" data-selectors="html">
-
-                  <div class="u-ss-radio">20px</div>
-                </label>
-              </div>
-
-              <div class="u-ss-radio-section">
-                <label>
-                  <input id="outS3" class="js-ss-classes" name="outer-spaces" type="radio" value="u-outer-space-v2" data-selectors="html">
-
-                  <div class="u-ss-radio">40px</div>
-                </label>
-              </div>
-            </div>
-          </section>
-
-          <div class="u-ss-option">
-            <section class="u-ss-section">
-              <h3 class="u-ss-section__title">Boxed Background</h3>
-
-              <div id="customBG" class="u-ss-check-section">
-                <label class="u-ss-check">
-                  <input id="bg1" class="js-ss-classes" name="custom-bg" type="radio" value="" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/none-bg.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg2" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v2" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img2.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg3" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v3" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img3.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg4" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v4" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img4.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg5" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v5" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img5.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg6" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v6" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img6.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg7" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v7" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img-temp/1920x1080/img7.jpg);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg8" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v8" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/bricks-white.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg9" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v9" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/math-dark.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg10" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v10" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/figures-light.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg11" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v11" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/footer-lodyas.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg12" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v12" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/doodles.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg13" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v13" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/darkness.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-                <label class="u-ss-check">
-                  <input id="bg14" class="js-ss-classes" name="custom-bg" type="radio" value="g-bgi-v14" data-selectors="body">
-
-                  <div class="u-ss-check__item" style="background-image: url(../../assets/img/bg/pattern/memphis-colorful.png);">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </label>
-              </div>
-            </section>
-          </div>
-
-          <div class="u-ss-sub-section-wrap">
-            <div class="u-ss-sub-section_half">
-              <a id="getCSSSkin" class="u-ss-btn u-ss-btn--green" href="#" role="button" data-content-target="[id^='less']" data-modal-target="#copyModal" data-modal-effect="fadein">Get CSS
-            </a>
-            </div>
-
-            <div class="u-ss-sub-section_half">
-              <button class="js-ss-reset u-ss-btn" type="reset">Reset</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </aside>
-
-  <div id="resolutionCaution" class="text-left g-max-width-600 g-bg-white g-pa-20" style="display: none;">
-    <button type="button" class="close" onclick="Custombox.modal.close();">
-      <i class="hs-icon hs-icon-close"></i>
-    </button>
-    <h4 class="g-mb-20">Screen resolution less than 1400px</h4>
-  </div>
-
-  <div id="copyModal" class="text-left modal-demo g-bg-white g-color-black g-pa-20" style="display: none;"></div>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-
-  <link rel="stylesheet" href="../../assets/vendor/prism/themes/prism.css">
-  <link rel="stylesheet" href="../../assets/vendor/custombox/custombox.min.css">
-  <link rel="stylesheet" href="../../assets/style-switcher/vendor/spectrum/spectrum.css">
-  <link rel="stylesheet" href="../../assets/style-switcher/vendor/spectrum/themes/sp-dark.css">
-  <link rel="stylesheet" href="../../assets/style-switcher/style-switcher.css">
-  <!-- End CSS -->
-
-  <!-- Scripts -->
-
-
-  <script src="../../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="../../assets/vendor/custombox/custombox.min.js"></script>
-  <script src="../../assets/vendor/clipboard/dist/clipboard.min.js"></script>
-
-  <!-- Prism -->
-  <script src="../../assets/vendor/prism/prism.js"></script>
-  <script src="../../assets/vendor/prism/components/prism-markup.min.js"></script>
-  <script src="../../assets/vendor/prism/components/prism-css.min.js"></script>
-  <script src="../../assets/vendor/prism/components/prism-clike.min.js"></script>
-  <script src="../../assets/vendor/prism/components/prism-javascript.min.js"></script>
-  <script src="../../assets/vendor/prism/plugins/toolbar/prism-toolbar.min.js"></script>
-  <script src="../../assets/vendor/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
-  <!-- End Prism -->
-
-  <script src="../../assets/js/components/hs.scrollbar.js"></script>
-
-  <script src="../../assets/js/components/hs.modal-window.js"></script>
-  <script src="../../assets/js/components/hs.markup-copy.js"></script>
-
-  <script src="../../assets/style-switcher/vendor/cookiejs/jquery.cookie.js"></script>
-  <script src="../../assets/style-switcher/vendor/spectrum/spectrum.js"></script>
-  <script src="../../assets/style-switcher/style-switcher.js"></script>
-  <!-- End Scripts -->
-  <!-- End Style Switcher -->
-
 </body>
 
 </html>

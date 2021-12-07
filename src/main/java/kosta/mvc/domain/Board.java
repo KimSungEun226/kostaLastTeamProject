@@ -88,4 +88,8 @@ public class Board {
 	
 	@OneToMany(mappedBy = "board", cascade= CascadeType.ALL)
 	private List<BoardImage> boardImageList; 
+	
+	//은지_2021.12.06
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	private List<Reply> replyList;
 }
