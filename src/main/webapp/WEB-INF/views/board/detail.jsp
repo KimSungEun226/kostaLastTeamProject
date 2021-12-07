@@ -5,10 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				layout:decorate="~{/layout/layout1}">
+<html lang="en">
 
 <head>
   <!-- Title -->
@@ -65,16 +62,27 @@
 	            </a>
             </ul>
             
-			 <!-- Start 수정하기 삭제하기 버튼 sec 테스트중... -->
-	          <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
-	          <sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
-	          <form name="requestForm" method="post" id="requestForm" class="float-right"> 
-		            <input type=hidden name="boardNo" value="${board.boardNo}">
-		            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
-		            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
-	          </form>
+  			  <!-- Start 수정하기 삭제하기 버튼 -->
+			  <sec:authorize access="isAuthenticated()">
+	          <sec:authentication property="principal" var="user"/>
+	          <c:choose>
+		          <c:when test="${user.username eq board.memberId}">
+			          <form name="requestForm" method="post" id="requestForm" class="float-right"> 
+			          		<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+				            <input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+				            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+			          </form>
+		          </c:when>
+		          <c:otherwise>
+		          		<input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=hidden value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+				            <input type=hidden value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+		          </c:otherwise>
+	          </c:choose>
 	          </sec:authorize>
 			  <!-- End 수정하기 삭제하기 버튼 -->
+			  
 			  
             <!-- Start 작성자, 조회수, 날짜 -->
           <div class="g-mb-40">

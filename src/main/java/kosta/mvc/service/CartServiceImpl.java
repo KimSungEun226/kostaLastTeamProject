@@ -71,15 +71,15 @@ public class CartServiceImpl implements CartService {
 	public void deleteCart(Long cartNo) {
 		cartRepository.deleteById(cartNo);
 	}
-	
-	/**
-	 * 재고량 -1 감소
-	 * */
 
-	
-	
-	
-	
+
+	@Override
+	public void updateCart(List<Cart> cartList) {
+		for(Cart cart: cartList) {
+			Cart dbCart = cartRepository.findById(cart.getCartNo()).orElse(null);
+			dbCart.setCartCount(cart.getCartCount());
+		}
+	}
 	
 }
 
