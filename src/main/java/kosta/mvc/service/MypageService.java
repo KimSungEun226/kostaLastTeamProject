@@ -46,6 +46,12 @@ public interface MypageService {
 	List<Board> findBoard(Long memberNo);
 
 
+	/**
+	 * 마이페이지 - challengNo에 해당하는 boardPage조회
+	 */
+	Page<Board> findBoardByChallengeNo(Long challengeNo, Pageable pageable);
+
+
 
 	
 	
