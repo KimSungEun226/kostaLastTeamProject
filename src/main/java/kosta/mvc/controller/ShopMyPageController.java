@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,27 +156,37 @@ public class ShopMyPageController {
 	 * 마이페이지 개인정보 수정하기
 	 * */
 	@RequestMapping("/updateMyInfo")
+	@Transactional
 	public ModelAndView updateMyInfo(HttpServletRequest request, Principal principal) {
-		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		ModelAndView mv = new ModelAndView();
 		
-		String name=request.getParameter("name");
+		String name=request.getParameter("newName");
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");
 		String pwd=request.getParameter("pwd");
+		String encryptPassword = passwordEncoder.encode(pwd);
 		
-		if(pwd!=null) {
-			Member member=memberService.selectByMemberId(principal.getName());
-			member.setMemberName(name);
-			member.setMemberEmail(email);
-			member.setMemberPhone(phone);
+		Member member=memberService.selectByMemberId(principal.getName());
+		
+		if(encryptPassword!=null) {
+
+			if(passwordEncoder.matches(pwd, member.getMemberPwd())){
+				member.setMemberName(name);
+				member.setMemberEmail(email);
+				member.setMemberPhone(phone);
+				
+				Member memberUpdate=memberService.insert(member);
+				mv.addObject(memberUpdate);
+				mv.addObject("error", "");
+				mv.setViewName("shop/login/myPage");
+			}else{
+				System.out.println("계정 비밀번호와 불일치");
+				mv.addObject("member", member);
+				mv.addObject("error", "비밀번호가 맞지 않아 수정에 실패하였습니다.");
+				mv.setViewName("shop/login/myInfoEditForm");
+			}
 			
-			Member memberUpdate=memberService.insert(member);
-			mv.addObject(memberUpdate);
-			mv.setViewName("shop/login/myPage");
-		}else {
-			mv.addObject("error", "비밀번호가 맞지 않아 수정 실패하였습니다.");
-			mv.setViewName("shop/login/myInfoEditForm");
 		}
 
 		return mv;
