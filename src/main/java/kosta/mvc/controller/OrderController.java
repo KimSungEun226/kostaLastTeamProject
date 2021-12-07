@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -204,9 +206,24 @@ public class OrderController {
 	
 	
 	/**
+	 * 비회원 주문조회 정보입력(이름, 전화번호, 주문번호)
+	 */
+	@RequestMapping("/orderInfo")
+	public String nonUserOrderInfo() {
+		return "shop/nonUser/orderInfo";
+	}
+	
+	/**
 	 * 비회원 주문조회
-	 * */
-	//@RequestMapping("/shop")
+	 */
+	@RequestMapping(value="/orderList", method=RequestMethod.POST)
+	public String nonUserOrderList(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone, Model model) throws Exception {
+		NonuserOrder nonuserOrder = orderService.selectNonuserOrder(response, nonuserOrderNo, receiverName, receiverPhone);
+		System.out.println(nonuserOrder);
+		model.addAttribute("order", nonuserOrder);
+		model.addAttribute("orderDetail", nonuserOrder.getNonuserOrderDetailList());
+		return "shop/nonUser/orderList";
+	}
 	
 	
 	/**

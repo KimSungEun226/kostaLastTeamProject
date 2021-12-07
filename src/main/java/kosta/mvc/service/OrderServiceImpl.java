@@ -1,7 +1,9 @@
 package kosta.mvc.service;
 
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,11 +140,22 @@ public class OrderServiceImpl implements OrderService {
 	 * 비회원 주문조회
 	 */
 	@Override
-	public NonuserOrder selectNonuserOrder(Long nonuserOrderNo, String receiverName, String receiverPhone) {
-		System.out.println("service 진입");
+	public NonuserOrder selectNonuserOrder(HttpServletResponse response, Long nonuserOrderNo, String receiverName, String receiverPhone) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		
 		NonuserOrder result = nonuserOrderRepository.findByNonuserOrderNoAndReceiverNameAndReceiverPhone(nonuserOrderNo, receiverName, receiverPhone);
-		System.out.println("service : " + result);
-		return result;
+		PrintWriter out = response.getWriter();
+		if(result == null) {
+			out.println("<script>");
+    		out.println("alert('정보를 정확하게 입력해주세요.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		}else {
+			return result;
+		}
+		
 	}
 
 	/**
