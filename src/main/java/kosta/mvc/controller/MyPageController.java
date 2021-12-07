@@ -59,12 +59,6 @@ public class MyPageController {
 		
 		//댓글
 		
-		System.out.println("------------------------------");
-		for(Challenge challenge : challengeList) {
-			System.out.println(challenge.getChallengeNo());
-		}
-		System.out.println("------------------------------");
-		
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
@@ -158,12 +152,34 @@ public class MyPageController {
 				}
 		}
 				
-
-		memberService.update(member, path);
+		myPageService.update(member, path);
 		
 		return "redirect:/myPage/setting";
 	}
 	
+	/**
+	 * challengeNo에 해당하는 boardPage
+	 */
+	@RequestMapping("/challenge/{challengeNo}")
+	public ModelAndView challenge(@PathVariable Long challengeNo, HttpSession session, Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("challengeNo : "+challengeNo);
+		Page<Board> pageList = myPageService.findBoardByChallengeNo(challengeNo, pageable);
+		mv.addObject("pageList", pageList);
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		
+		mv.setViewName("board/myPage/myBoard");
+		return mv;
+	}
 }
 
 

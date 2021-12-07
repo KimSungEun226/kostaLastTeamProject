@@ -70,7 +70,7 @@ public class ShopLoginController {
 	
 	@RequestMapping("/user/myPage")
 	public String myPage(Model model, Principal principal) {
-		String memberId = principal.getName();
+		String memberId = principal.getName(); //tjdt11 
 		Member member = memberService.selectByMemberId(memberId);
 		model.addAttribute("member", member);
 		
