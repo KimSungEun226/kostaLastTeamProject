@@ -309,7 +309,8 @@
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">프로필이미지 변경</strong>
-                      <span class="align-top"><input type="file" name="file" value="${requestScope.member.profileImage}" id="profileImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"></span>
+                      <span class="align-top"><input type="file" name="file" id="mainImg" value="${pageContext.request.contextPath}/save/저염1.jpg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> </span>
+
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
@@ -335,7 +336,7 @@
                 <form>
                   <!-- Current Password -->
                   <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Current password</label>
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">현재 비밀번호</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
                         <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Current password">
@@ -349,7 +350,7 @@
 
                   <!-- New Password -->
                   <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">New password</label>
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">새로운 비밀번호</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
                         <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="New password">
@@ -363,7 +364,7 @@
 
                   <!-- Verify Password -->
                   <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Verify password</label>
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">새로운 비밀번호 확인</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
                         <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Verify password">
@@ -374,10 +375,10 @@
                     </div>
                   </div>
                   <!-- End Verify Password -->
-
+                  
                   <!-- Login Verification -->
                   <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Login verification</label>
+                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">전화번호 변경</label>
                     <div class="col-sm-9">
                       <label class="form-check-inline u-check g-pl-25">
                         <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">

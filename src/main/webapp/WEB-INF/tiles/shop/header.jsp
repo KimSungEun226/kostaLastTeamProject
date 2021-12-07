@@ -246,7 +246,7 @@
                  </li> 
                  
                  
-                 </sec:authorize>
+               </sec:authorize>
                  <!-- End Pages - Submenu -->
                  
 			    <sec:authorize access="isAnonymous()">

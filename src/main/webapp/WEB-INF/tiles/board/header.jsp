@@ -218,10 +218,22 @@
                 </li><!-- End 다이어트꿀팁 -->
 
                 <!-- 칼로리사전 -->
-                <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                  <a href="${pageContext.request.contextPath}/foodCal" class="nav-link g-py-7 g-px-0">칼로리사전</a>
-                </li>
-                <!-- End 칼로리사전 -->
+                <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/foodCal" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">칼로리 사전</a>
+
+                  <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                   
+                    <!-- 칼로리사전 - 음식 -->
+                    <li class="dropdown-item ">
+                      <a class="nav-link" href="${pageContext.request.contextPath}/foodCal">음식 칼로리</a>
+                    </li><!-- End 칼로리사전 - 음식 -->
+
+                    <!-- 칼로리사전 - 운동 -->
+                    <li class="dropdown-item ">
+                      <a class="nav-link" href="${pageContext.request.contextPath}/burnCal">운동 칼로리</a>
+                    </li><!-- End 칼로리사전 - 운동 -->
+                  </ul>
+                </li><!-- End 칼로리사전 -->
 
                 <!-- 고객센터 -->
                 <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
@@ -244,10 +256,13 @@
 				  <li class="nav-item  g-mx-10--lg g-mx-15--xl">
 	                <a href="${pageContext.request.contextPath}/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
 	              </li>
-	              <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+				</sec:authorize>
+				
+				<sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
+				<li class="nav-item  g-mx-10--lg g-mx-15--xl">
                     <a href="${pageContext.request.contextPath}/logout" class="g-color-gray-dark-v5 nav-link g-py-7 g-px-0">로그아웃</a>
                   </li>
-				</sec:authorize>
+                </sec:authorize>
               </ul>
             </div><!-- End Navigation -->
 

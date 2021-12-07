@@ -4,16 +4,33 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Title -->
   <title>칼로리사전(음식)</title>
-
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("button").on("click", function() {
+		let keyword = document.querySelector("#keyword");
+		
+		let state=true;
+		if(keyword.value ===null || keyword.value ===""){
+			alert("검색어를 입력해주세요");
+			keyword.focus();
+			state=false;
+			return false; 
+		}
+		$("#keyword2").val(keyword);
+		if(state)$("#searchSubmit").submit();//전
+	});
+});
+</script>
   <!-- 페이징 css -->
   <style type="text/css">
   	.pagination-container {
@@ -74,6 +91,14 @@
 	.pagination-older {
 		margin-left: 50px;
 	}
+	
+	table tr td{
+		width: 10%;
+	}
+	
+	table tr th{
+		width: 10%;
+	}
   </style>
 </head>
 
@@ -83,243 +108,164 @@
 ${food.foodName }
 
     <!-- Breadcrumbs -->
-    <section class="g-bg-gray-light-v5 g-py-80">
+    <section class="g-bg-gray-light-v5 g-py-50">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">커뮤니티 > 전체</h2>
-
-        <ul class="u-list-inline">
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
-            <i class="g-color-gray-light-v2 g-ml-5">/</i>
-          </li>
-          <li class="list-inline-item g-color-primary">
-            <span>전체</span>
-          </li>
-        </ul>
+        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 음식칼로리</h2>
+		<div class="container text-center g-py-50--mdg-py-80 ">
+        
+        <!-- Search Form -->
+        <form class="g-width-60x--md mx-auto" id="searchSubmit" action="${pageContext.request.contextPath}/selectFoodName" method="post">
+          <div class="form-group g-mb-20">
+            <div class="input-group u-shadow-v21 rounded g-mb-15">
+              
+              <c:choose>
+                <c:when test="${status==true}">
+                  <input id="keyword" name="keyword" value="${keyword }" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="음식명 검색">
+                </c:when>
+                <c:otherwise>
+                  <input id="keyword" name="keyword" class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" type="text" placeholder="음식명 검색">
+                </c:otherwise>
+              </c:choose>
+              
+              <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                <button class="btn u-btn-primary g-font-size-16 g-py-15 g-px-20" type="button">
+                  <i class="icon-magnifier g-pos-rel g-top-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div id="result"></div>
+        </div>
       </div>
     </section>
     <!-- End Breadcrumbs -->
 
 	<!-- 게시물 리스트 start -->
 	<c:choose>
-	<c:when test="${empty requestScope.pageList}">
-            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
-    </c:when>
+	  <c:when test="${empty requestScope.pageList.content}">
+        <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
+      </c:when>
+    
     <c:otherwise>
-    
     <!-- Blog Minimal Blocks -->
-    <div class="container g-pt-100 g-pb-20">
-      <div class="row justify-content-between">
-        <div class="col-lg-9 order-lg-2 g-mb-80">
-          <div class="g-pl-20--lg">
-            <!-- Blog Minimal Blocks -->
-            <c:forEach items="${requestScope.pageList.content}" var="board">
-            <article class="g-mb-100">
-              <div class="g-mb-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
-                <h2 class="h4 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="#">${board.boardTitle}</a>
-                  </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer, you have probably gotten an email from Clark or from InVision at one time or another, but if you’re not familiar with the company.</p>
-                <a class="g-font-size-13" href="#">Read more...</a>
-              </div>
-
-              <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
-                <li class="list-inline-item g-color-gray-dark-v4 mr-2">
-                  <span class="d-inline-block g-color-gray-dark-v4">
-                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                      Alex Teseira
-                    </span>
-                </li>
-                <li class="list-inline-item g-color-gray-dark-v4">
-                  <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
-                    <i class="align-middle g-font-size-default mr-1 icon-finance-206 u-line-icon-pro"></i>
-                    10 Comments
-                  </a>
-                </li>
-                <li class="list-inline-item g-color-gray-dark-v4">
-                  <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
-                    <i class="align-middle g-font-size-default mr-1 icon-medical-022 u-line-icon-pro"></i>
-                    57 Likes
-                  </a>
-                </li>
-              </ul>
-            </article>
+      <div class="container g-pt-100 g-pb-20">
+        <div>
+        <!-- Blog Minimal Blocks -->
+          <table style="width: 100%">
+            <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0">
+              <th class=" g-color-gray-dark-v4" style="width: 5%">번호</th>
+              <th class=" g-color-gray-dark-v4" style="width: 12%">음식명</th>
+              <th class=" g-color-gray-dark-v4" style="width: 13%">제조사</th>
+              <th class=" g-color-gray-dark-v4">1회제공량(g)</th>
+              <th class=" g-color-gray-dark-v4">총 칼로리(kcal)</th>
+              <th class=" g-color-gray-dark-v4">단백질(g)</th>
+              <th class=" g-color-gray-dark-v4">지방(g)</th>
+              <th class=" g-color-gray-dark-v4">탄수화물(g)</th>
+              <th class=" g-color-gray-dark-v4">총당류(g)</th>
+              <th class=" g-color-gray-dark-v4">나트륨(mg)</th>
+            </tr>
+            <c:forEach items="${requestScope.pageList.content}" var="food">
+              <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-15 g-py-13 mb-0">
+                <td class=" g-color-gray-dark-v4" style="width: 5%">${food.foodNo }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 12%">${food.foodName }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 13%">${food.regionManufac }</td>
+                <td class=" g-color-gray-dark-v4">${food.foodQuantity }${food.foodUnit }</td>
+                <td class=" g-color-gray-dark-v4">${food.foodKcal }</td>
+                <td class=" g-color-gray-dark-v4">${food.protein }</td>
+                <td class=" g-color-gray-dark-v4">${food.fat }</td>
+                <td class=" g-color-gray-dark-v4">${food.carbohydrate }</td>
+                <td class=" g-color-gray-dark-v4">${food.sugars }</td>
+                <td class=" g-color-gray-dark-v4">${food.na }</td>
+              </tr>
             </c:forEach>
-            </c:otherwise>
-            </c:choose>
-            <!-- End Blog Minimal Blocks -->
-            <!-- 게시물 리스트 End -->
-
+          </table>
+		</div>
+		<c:choose>
+		<c:when test="${status==true}">
 		
-
-           
-          </div>
-        </div>
-
-        <div class="col-lg-3 order-lg-1 g-brd-right--lg g-brd-gray-light-v4 g-mb-80">
-          <div class="g-pr-20--lg">
-            <!-- Links -->
-            <div class="g-mb-50">
-              <h3 class="h5 g-color-black g-font-weight-600 mb-4">Links</h3>
-              <ul class="list-unstyled g-font-size-13 mb-0">
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> People</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> News Publications</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Marketing &amp; IT</a>
-                </li>
-                <li>
-                  <a class="d-block u-link-v5 g-color-gray-dark-v4 rounded g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Business Strategy</a>
-                </li>
-                <li>
-                  <a class="d-block active u-link-v5 g-color-black g-bg-gray-light-v5 g-font-weight-600 g-rounded-50 g-px-20 g-py-8" href="#"><i class="mr-2 fa fa-angle-right"></i> Untold Stories</a>
-                </li>
-              </ul>
-            </div>
-            <!-- End Links -->
-
-            <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
-
-            <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-50" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end">
-              <!-- Publications -->
-              <div class="g-mb-50">
-                <h3 class="h5 g-color-black g-font-weight-600 mb-4">Publications</h3>
-                <ul class="list-unstyled g-font-size-13 mb-0">
-                  <li>
-                    <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
-                      <div class="media-body">
-                        <h4 class="h6 g-color-black g-font-weight-600">Htmlstream</h4>
-                        <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
-                        <a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" href="#">Follow</a>
-                      </div>
-                    </article>
-                  </li>
-                  <li>
-                    <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
-                      <div class="media-body">
-                        <h4 class="h6 g-color-black g-font-weight-600">Pixeel</h4>
-                        <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
-                        <a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" href="#">Follow</a>
-                      </div>
-                    </article>
-                  </li>
-                  <li>
-                    <article class="media">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
-                      <div class="media-body">
-                        <h4 class="h6 g-color-black g-font-weight-600">WrapBootstrap</h4>
-                        <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
-                        <a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" href="#">Follow</a>
-                      </div>
-                    </article>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Publications -->
-
-              <hr class="g-brd-gray-light-v4 g-my-50">
-
-              <!-- Tags -->
-              <div class="g-mb-40">
-                <h3 class="h5 g-color-black g-font-weight-600 mb-4">Tags</h3>
-                <ul class="u-list-inline mb-0">
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Design</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Art</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Graphic</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Front End Development</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">CSS</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">HTML</a>
-                  </li>
-                  <li class="list-inline-item g-mb-10">
-                    <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Sass</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- End Tags -->
-
-              <hr class="g-brd-gray-light-v4 g-my-50">
-
-              <!-- Newsletter -->
-              <div class="g-mb-50">
-                <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3>
-                <div class="input-group">
-                  <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-communication-062 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <input class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15" type="email" placeholder="Enter your email ...">
-                </div>
-              </div>
-              <!-- End Newsletter -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Blog Minimal Blocks -->
-
-    
-
-
-   	<!-- 페이징 start -->
-			${pageList.hasPrevious()}  /  ${pageList.hasNext()}
-		<div style="text-align: center">
+		<nav class="g-mb-100" aria-label="Page Navigation">
+          <ul class="list-inline mb-0 text-center">
+            <c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectFoodName?nowPage=${startPage-1}&keyword=${keyword}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+		    </c:if>
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+			  <c:if test="${(i-1)>=pageList.getTotalPages()}">
+			  <c:set var="doneLoop" value="true"/>
+			</c:if>
+			<c:if test="${not doneLoop}" >
+			  <li class="list-inline-item hidden-down">
+			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/selectFoodName?keyword=${keyword}&nowPage=${i}">${i}</a> 
+		      </li>
+		    </c:if>
+            </c:forEach>
+            
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/selectFoodName?keyword=${keyword}&nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+          </ul>
+        </nav>
 		
-		<!-- 이전, 다음 표시하기 (한블럭당 페이지 개수 제한) -->
-		<c:set var="doneLoop" value="false"/>
-			\${doneLoop} = ${doneLoop}<p>
-				<!--  블럭당  -->
-		 <nav class="pagination-container">
-			<div class="pagination">
-			<c:set var="doneLoop" value="false"/>
-				
-				  <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
-				      <a class="pagination-newer" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage-1}">PREV</a>
-				  </c:if>
-				  
-						<span class="pagination-inner"> 
-						  <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-						  
-							    <c:if test="${(i-1)>=pageList.getTotalPages()}">
-							       <c:set var="doneLoop" value="true"/>
-							    </c:if> 
-						    
-						  <c:if test="${not doneLoop}" >
-						         <a class="${i==nowPage?'pagination-active':page}" href="${pageContext.request.contextPath}/board/list?nowPage=${i}">${i}</a> 
-						  </c:if>
-						   
-						</c:forEach>
-						</span> 
-						 <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-						     <a class="pagination-older" href="${pageContext.request.contextPath}/board/list?nowPage=${startPage+blockCount}">NEXT</a>
-						 </c:if>
 		
-				</div>
-			</nav>  
-			\${doneLoop} = ${doneLoop}<p>
-			<!-- 페이징 end -->
+		</c:when>
+	  <c:otherwise>
+		<nav class="g-mb-100" aria-label="Page Navigation">
+          <ul class="list-inline mb-0 text-center">
+            <c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/foodCal?nowPage=${startPage-1}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+		    </c:if>
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+			  <c:if test="${(i-1)>=pageList.getTotalPages()}">
+			  <c:set var="doneLoop" value="true"/>
+			</c:if>
+			<c:if test="${not doneLoop}" >
+			  <li class="list-inline-item hidden-down">
+			    <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/foodCal?nowPage=${i}">${i}</a> 
+		      </li>
+		    </c:if>
+            </c:forEach>
+            
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/foodCal?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+          </ul>
+        </nav>
+        </c:otherwise>
+        </c:choose>
+	  </div>        
+    </c:otherwise>
+    </c:choose>
+
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
      "bottom": 15,
      "right": 15
@@ -332,25 +278,25 @@ ${food.foodName }
 
 
   <!-- JS Global Compulsory -->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-  <script src="../../assets/vendor/popper.js/popper.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
 
   <!-- JS Implementing Plugins -->
-  <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
 
   <!-- JS Unify -->
-  <script src="../../assets/js/hs.core.js"></script>
-  <script src="../../assets/js/components/hs.header.js"></script>
-  <script src="../../assets/js/helpers/hs.hamburgers.js"></script>
-  <script src="../../assets/js/components/hs.tabs.js"></script>
-  <script src="../../assets/js/components/hs.sticky-block.js"></script>
-  <script src="../../assets/js/components/hs.go-to.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.tabs.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.sticky-block.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
   <!-- JS Customization -->
-  <script src="../../assets/js/custom.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
   <!-- JS Plugins Init. -->
   <script>
@@ -386,11 +332,5 @@ ${food.foodName }
         }, 200);
       });
   </script>
-
-
-
-
-
 </body>
-
 </html>

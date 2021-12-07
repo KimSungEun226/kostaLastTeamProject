@@ -253,7 +253,7 @@
                         <script>
 							$('#summernote').summernote({
 							placeholder: 'Hello Bootstrap 4',
-							tabsize: 1,
+							tabsize: 0,
 							height:200
 							});
 						</script>

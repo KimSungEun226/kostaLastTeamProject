@@ -46,13 +46,39 @@ public class myPageServiceImpl implements MypageService {
 
 	@Override
 	public List<Board> findBoard(Long memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return boardRepository.findByChallengeNo(memberNo);
 	}
 
 	@Override
 	public List<Challenge> findChallenge(Long memberNo) {
 		return challengeRepository.findByMemberNo(memberNo);
+	}
+
+	@Override
+	public Page<Board> findBoardByChallengeNo(Long challengeNo, Pageable pageable) {
+		return boardRepository.findByChallengeNo(challengeNo, pageable);
+	}
+
+    /**
+     * 마이페이지 - 개인정보 수정 
+     */
+	public void update(Member member, String path) {
+		Member dbMember = memberRepository.selectByMemberId(member.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberName());
+		dbMember.setMemberName(member.getMemberName());
+		System.out.println("저장 후 : "+dbMember.getMemberName());
+		dbMember.setMemberNickname(member.getMemberNickname());
+		dbMember.setMemberEmail(member.getMemberEmail());
+		dbMember.setMemberBirth(member.getMemberBirth());
+		dbMember.setMemberMessage(member.getMemberMessage());
+		if(member.getProfileImage()!=null) {
+			dbMember.setProfileImage(member.getProfileImage());
+		}
+		
+		memberRepository.save(dbMember);
+		System.out.println("member.getProfileImage() : "+member.getProfileImage());
 	}
 
 }

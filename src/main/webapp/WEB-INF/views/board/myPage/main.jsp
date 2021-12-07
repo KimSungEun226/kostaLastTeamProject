@@ -333,7 +333,7 @@
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">${challenge.challengeNo}</span>
+                              <a class="g-mr-5" href="${pageContext.request.contextPath}/myPage/challenge/${challenge.challengeNo}">${challenge.challengeNo}</a>
                               <small class="g-font-size-12 g-color-blue">도전한 날 :  ${challenge.challengeDate}</small>
                             </h5>
                           <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
