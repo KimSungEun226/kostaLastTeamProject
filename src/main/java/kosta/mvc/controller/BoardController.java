@@ -59,6 +59,9 @@ public class BoardController {
 			String memberNick = member.getMemberNickname();
 			//System.out.println("memberNick : " + memberNick); //isshoeunji
 			
+			//memberId 담기
+			String memberId = member.getMemberId();
+			
 		    //System.out.println(tag.getTagrelNo());
 		    
 		    if(tag.getTagrelNo() != null) { //지역방의 지역카테고리 값이 들어오면
@@ -66,6 +69,7 @@ public class BoardController {
 		    	board.setTag(tag);
 		    }
 		    
+		    board.setMemberId(memberId);
 		    board.setMember(member);
 		    board.setMemberNickname(memberNick);
 		    boardService.insert(board);
@@ -165,8 +169,9 @@ public class BoardController {
 		boolean state = flag == null;
 		Board board = boardService.selectBy(boardNo, state);
 		
-		//게시물 댓글 개수구하기 test중..
-		System.out.println("board.getReplyList().size() ===> " + board.getReplyList().size());
+		//게시물 댓글 개수구하기 test_2021.12.07은지
+		//System.out.println("board.getReplyList().size() ===> " + board.getReplyList().size());
+		//System.out.println("board.getMemberId()" + board.getMemberId());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/detail");
