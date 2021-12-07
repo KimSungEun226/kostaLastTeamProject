@@ -150,8 +150,8 @@
                     <i class="icon-people align-self-center display-4 g-mr-20"></i>
 
                     <div class="g-line-height-1">
-                      <h4 class="h5">나의 등급</h4>
-                      <div class="js-counter g-font-size-30" data-comma-separated="true">52147</div>
+                      <h4 class="h5">나의 경험치</h4>
+                      <div class="js-counter g-font-size-30" data-comma-separated="true">${member.info.memberExp}</div>
                     </div>
                   </header>
 

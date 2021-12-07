@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
 import kosta.mvc.repository.BoardRepository;
 import kosta.mvc.repository.ChallengeRepository;
+import kosta.mvc.repository.GradeRepository;
 import kosta.mvc.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +27,7 @@ public class myPageServiceImpl implements MypageService {
 	private final BoardRepository boardRepository;
 	private final MemberRepository memberRepository;
 	private final ChallengeRepository challengeRepository;
+	private final GradeRepository gradeRepository;
 	
 	@Override
 	public Member findByMemberNo(Long memberNo) {
@@ -79,6 +82,11 @@ public class myPageServiceImpl implements MypageService {
 		
 		memberRepository.save(dbMember);
 		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	}
+
+	@Override
+	public List<Grade> selectGradeList() {
+		return gradeRepository.findAllGrade();
 	}
 
 }

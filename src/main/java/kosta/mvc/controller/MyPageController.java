@@ -40,6 +40,7 @@ public class MyPageController {
 	/**
 	 * 마이페이지 - main
 	 * member, info, level, 회원의 게시물, 회원의 챌린지,회원의 댓글 
+	 * grade DB모두 가져오기 
 	 */
 	@RequestMapping("")
 	public ModelAndView myPage(HttpSession session, Principal principal) {
@@ -59,6 +60,10 @@ public class MyPageController {
 		
 		//댓글
 		
+		//gradeList
+		List<Grade> gradeList = myPageService.selectGradeList(); 
+		
+		mv.addObject("gradeList",gradeList);
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
