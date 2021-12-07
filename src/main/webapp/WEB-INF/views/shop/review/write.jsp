@@ -138,7 +138,7 @@
                       
                     <!-- Rating -->
                     <div class="row col-md-8 g-mb-10">
-                      <h6>평점:</h6>
+                      <h6>별점:</h6>
                     <div class="col-5">
                       
                       <ul class="js-rating u-rating-v1 g-font-size-20 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">

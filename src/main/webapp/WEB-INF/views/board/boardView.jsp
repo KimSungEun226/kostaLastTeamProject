@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -300,13 +301,13 @@
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
                       <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                      작성자
+                      ${board.memberNickname}
                     </span>
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
                   <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
                     <i class="align-middle g-font-size-default mr-1 icon-finance-206 u-line-icon-pro"></i>
-                    10 Comments
+                     ${fn:length(board.replyList)} Comments
                   </a>
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">
