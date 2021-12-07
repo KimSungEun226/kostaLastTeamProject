@@ -38,13 +38,8 @@ public class Info {
         this.memberExp = memberExp;
     }
 	
-	@OneToOne(mappedBy = "info")
+	@OneToOne
+	@JoinColumn(name = "member_no")
 	private Member member; 
 	
-	//@OneToOne
-	//private Level level;
-	
-	@OneToOne
-	@JoinColumn(name="level_no")
-	private Grade level;
 }

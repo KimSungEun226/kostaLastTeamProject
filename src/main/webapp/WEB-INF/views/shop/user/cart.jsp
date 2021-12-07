@@ -8,11 +8,14 @@
     <!-- Title -->
     <title>E-commerce Checkout Page | Unify - Responsive Website Template</title>
 
+<!-- Google Fonts -->
     
     
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
  
  <script type="text/javascript">
+ 
+     
  	var IMP = window.IMP;
  	function form_check() {
  	
@@ -204,7 +207,7 @@
 
       <!-- Checkout Form -->
       <div class="container g-pt-100 g-pb-70">
-        <form name="check_form" class="js-validate js-step-form" data-progress-id="#stepFormProgress" data-steps-id="#stepFormSteps">
+        <form  method="post" name="check_form"  class="js-validate js-step-form" data-progress-id="#stepFormProgress" data-steps-id="#stepFormSteps" action="${pageContext.request.contextPath}/shop/updateCart">
           <div class="g-mb-100">
             <!-- Step Titles -->
             <ul id="stepFormProgress" class="js-step-progress row justify-content-center list-inline text-center g-font-size-17 mb-0">
@@ -235,17 +238,12 @@
               <div class="row">
                 <div class="col-md-8 g-mb-30">
                   <!-- Products Block -->
+                  <c:set  var="cartidx" value="-1"/>
                 <c:choose>
-				  
 				    <c:when test="${not empty requestScope.cartList}">
                   <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
                     <table class="text-center w-100">
-                     
-                      
-                      
-                
-                     
-                         <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
+                              <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
                         <tr>
                           <th class="g-font-weight-400 text-left g-pb-20">상품</th>
                           <th class="g-font-weight-400 g-width-130 g-pb-20">가격</th>
@@ -256,6 +254,7 @@
                       </thead>
                      <c:set var="amount" value="${0}"/> 
  					<c:forEach items="${requestScope.cartList}" var="cart">
+ 					  <c:set var="cartidx" value="${cartidx+1}"></c:set>
                       <tbody name="productList">
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
                           <td class="text-left g-py-25">
@@ -273,26 +272,21 @@
                           </td>
                           <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
                           <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-50 g-brd-primary--focus ">
                             
-                            <c:set var="productCount" value="1"/>
-             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
+             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly ="true" var = "pcount"/>
+                              <input type="hidden" name="list[${cartidx}].cartNo" value="${cart.cartNo}"/>
+                               <input name="list[${cartidx}].cartCount" id="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
                             
-                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
-                              
-                            </div>
                           </td>
                           <td class="text-right g-color-black">
                             <c:set var="amount" value="${amount+cart.product.price*pcount}"/>
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
                               <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
                               <a href="${pageContext.request.contextPath}/shop/deleteCart/${cart.cartNo}">
-                              
                                 <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
                               </a>
                             </span>
                           </td>                
-                       		<%-- <input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/> --%>
                         </c:forEach>
                         
 						 </tr>
@@ -328,6 +322,8 @@
                         </tr>
                       </thead>
  					<c:forEach items="${requestScope.soldoutList}" var="cart">
+ 				    <c:set var="cartidx" value="${cartidx+1}"></c:set>
+ 					
                       <tbody name="productList">
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
                           <td class="text-left g-py-25">
@@ -345,20 +341,14 @@
                           </td>
                           <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
                           <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-30  g-brd-primary--focus ">
-                            
-                            <c:set var="productCount" value="1"/>
              				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
-                            
-                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" readonly="readonly" value="${pcount}" min='1' max='50' >
-                              
-                            </div>
+             				   <input type="hidden" name="list[${cartidx}].cartNo" value="${cart.cartNo}"/>
+                               <input name="list[${cartidx}].cartCount" id="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' width="100%">
                           </td>
                           <td class="text-right g-color-black">
                             <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
                               <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
                               <a href="${pageContext.request.contextPath}/shop/deleteCart/${cart.cartNo}">
-                              
                               <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
                               </a>
                             </span>
@@ -373,147 +363,20 @@
                   </div>
                   
                 </div>
-                
-                
-                
-                
-                <!-- ------------------------------- -->
-                
-                <%-- <div class="col-md-8 g-mb-30">
-                  <!-- Products Block -->
-                  <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
-                    <table class="text-center w-100">
-                     
-                      
-                      
-                        <!-- Item-->
-
-                  <c:choose>
-				    
-				    <c:when test="${not empty requestScope.soldoutList}">
-                     
-                         <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
-                        <tr>
-                          <th class="g-font-weight-400 text-left g-pb-20">상품</th>
-                          <th class="g-font-weight-400 g-width-130 g-pb-20">가격</th>
-                          <th class="g-font-weight-400 g-width-50 g-pb-20">수량</th>
-                          <th class="g-font-weight-400 g-width-130 g-pb-20">합계</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                     <c:set var="amount" value="${0}"/> 
- 					<c:forEach items="${requestScope.soldoutList}" var="cart">
-                      <tbody name="productList">
-                        <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td class="text-left g-py-25">
-				    
-				           <a href="${pageContext.request.contextPath}/shop/select/single/${cart.product.productNo}">
-                            <img class="d-inline-block g-width-100 mr-4" src="${pageContext.request.contextPath}/save/${cart.product.productImageList[0].productImageName}" alt="Image Description">
-                            </a>
-                            <div class="d-inline-block align-middle">
-                              <h4 class="h6 g-color-black">${cart.product.productName}</h4>
-                              <ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">
-                                <fmt:parseDate value="${cart.product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
-                                <li>등록일: <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/> </li>
-                              </ul>
-                            </div>
-                          </td>
-                          <td class="g-color-gray-dark-v2 g-font-size-13"><span name="price"><fmt:formatNumber>${cart.product.price}</fmt:formatNumber> 원</span></td>
-                          <td>
-                            <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus ">
-                            
-                            <c:set var="productCount" value="1"/>
-             				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
-                            
-                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
-                              <div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">
-                                <i name="plusQuantity" class="js-plus g-color-gray g-color-primary--hover fa fa-angle-up" ></i>
-                                <i name="minusQuantity" class="js-minus g-color-gray g-color-primary--hover fa fa-angle-down"></i>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="text-right g-color-black">
-                            <c:set var="amount" value="${amount+cart.product.price*pcount}"/>
-                            <span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">
-                            <form name="requestForm" method="post" id="requestForm">
-                              <span class="g-color-gray-dark-v2 g-font-size-13 mr-4" name="sum"><fmt:formatNumber value="${cart.product.price*pcount}"/> 원</span>  
-                            
-                              <i class="mt-auto fa fa-trash" name="deleteProductFromCart"></i>
-                              <input type="hidden" value="${cart.product.productNo}" name="productNo"/>
-                              
-                            </form>
-                            </span>
-                          </td>                
-                       		<input name="amount" type="hidden" value="${amount+cart.product.price*pcount}"/>
-                        </c:forEach>
-                        </c:when>
-                        </c:otherwise>
-                        </c:choose>
-						 </tr>
-						  <!-- End Item-->
-                       
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- End Products Block -->
-                </div> --%>
-
+               
                  <div class="col-md-4 g-mb-30">
-                  <!-- Summary -->
-                  <%-- <div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">
-                    <h4 class="h6 text-uppercase mb-3">계산서</h4>
-
-                    <!-- Accordion -->
-                    
-                    <!-- End Accordion -->
-
-                    <div class="d-flex justify-content-between mb-2 ">
-                      <span class="g-color-black">배송비</span>
-                      <span class="g-color-black g-font-weight-300">3,000원</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      <span class="g-color-black">전체 상품 금액</span>
-                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount}"/>원</span>
-                    </div>
-                    <p>
-                    <div class="d-flex justify-content-between g-brd-y g-brd-gray-light-v2 py-3"> <!-- g-brd-y g-brd-gray-light-v2 py-3 선으로 테이블 그리기 -->
-                    <span class="g-color-black" >예상 결제 금액</span>
-                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount+3000}"/>원</span>
-                    </div>
-                  </div> --%>
+                 
                   <!-- End Summary -->
 					
 				 <c:if test="${not empty requestScope.cartList || requestScope.cartList.size()!=0}">
-				  <form  name="requestForm" method="post" id="requestForm"> 
 	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
 					 <input type=hidden name="quantity" value=""><!-- quantity -->	
                   <button name="cartInfo" class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
-                  </form>
                   </c:if>
-                  <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
+                  
+                 <button id="updateCart" class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" >장바구니 수정하기</button>
 					
-                 <!--  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
-                    <i class="mr-2 fa fa-info-circle"></i>Delivery
-                  </a> -->
-
-                  <!-- Accordion -->
-                  <!-- <div id="accordion-02" role="tablist" aria-multiselectable="true">
-                    <div id="accordion-02-heading-02" role="tab">
-                      <h5 class="g-font-weight-400 g-font-size-default mb-0">
-                        <a class="g-color-black g-text-underline--none--hover" href="#accordion-02-body-02" data-toggle="collapse" data-parent="#accordion-02" aria-expanded="false" aria-controls="accordion-02-body-02">Apply discount code
-                          <span class="ml-3 fa fa-angle-down"></span></a>
-                      </h5>
-                    </div>
-                    <div id="accordion-02-body-02" class="collapse" role="tabpanel" aria-labelledby="accordion-02-heading-02">
-                      <div class="input-group rounded g-pt-15">
-                        <input class="form-control g-brd-gray-light-v1 g-brd-right-none g-color-gray-dark-v3 g-placeholder-gray-dark-v3" type="text" placeholder="Enter discount code">
-                        <span class="input-group-append g-brd-gray-light-v1 g-bg-white">
-                          <button class="btn u-btn-primary" type="submit">Apply</button>
-                        </span>
-                      </div>
-                    </div>
-                  </div> -->
-                  <!-- End Accordion -->
+                
                 </div> 
               </div>
             </div>
@@ -597,38 +460,6 @@
 
                   <hr class="g-mb-50">
 
-<!--                   <h4 class="h6 text-uppercase mb-5">배송 상세 정보</h4>
- -->
-                  <!-- Shipping Mehtod -->
-                  <%-- <table class="mb-5">
-                    <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-gray-dark-v3 g-font-size-13">
-                      <tr>
-                        <th class="g-width-70 g-font-weight-500 g-pa-0 g-pb-10">배송지</th>
-                        <th class="g-width-150 g-font-weight-500 g-pa-0 g-pb-10">배송 소요시간</th>
-                        <th class="g-width-70 g-font-weight-500 text-right g-pa-0 g-pb-10">배송비</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">서울·경기</td>
-                        <td class="align-top g-py-10">2-3일 소요</td>
-                        <td class="align-top text-right g-py-10"><fmt:formatNumber>2500</fmt:formatNumber></td>
-                      </tr>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">제주·산간지역</td>
-                        <td class="align-top g-py-10">3-5일 소요</td>
-                        <td class="align-top text-right g-py-10"><fmt:formatNumber>3500</fmt:formatNumber></td>
-                      </tr>
-                      <tr class="g-color-gray-dark-v4 g-font-size-13">
-                        <td class="align-top g-py-10">이외 지역</td>
-                        <td class="align-top g-py-10">3-4일 소요</td>
-                        <td class="align-top text-right g-py-10"><fmt:formatNumber>3000</fmt:formatNumber></td>
-                      </tr>
-                    </tbody>
-                  </table> --%>
-                  <!-- End Shipping Mehtod -->
-
-                 
                 </div>
 
                 <div class="col-md-4 g-mb-30">
@@ -672,10 +503,7 @@
                     </div>
                     <!-- End Accordion -->
 
-                    <%-- <div class="d-flex justify-content-between mb-2">
-                      <span class="g-color-black">배송비</span>
-                      <span class="g-color-black g-font-weight-300"><fmt:formatNumber>3000</fmt:formatNumber></span>
-                    </div> --%>
+                   
                     <div class="d-flex justify-content-between">
                       <span class="g-color-black">결제 금액</span>
                       <span class="g-color-black g-font-weight-300"><fmt:formatNumber value="${amount}"/>원</span>
@@ -683,7 +511,7 @@
                  
                   </div>
                   <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" onclick="form_check()" >결제하기</button>
-                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
+                 <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
                   <!-- End Order Summary -->
                 </div>
                  

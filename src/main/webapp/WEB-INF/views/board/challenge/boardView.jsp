@@ -7,7 +7,7 @@
 
 <head>
   <!-- Title -->
-  <title>챌린지</title>
+  <title>챌린지 boardPage</title>
 
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
@@ -46,11 +46,11 @@
 	        <h2 class="h2 g-color-black g-font-weight-600">30일 아침밥 챙기기</h2>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -67,11 +67,11 @@
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -88,11 +88,11 @@
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -109,11 +109,11 @@
 	
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일 챌린지</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -131,11 +131,11 @@
 		
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home </a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일 챌린지</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일 챌린지</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -147,35 +147,31 @@
 	</c:otherwise>
 	</c:choose>
 
-	<!-- 게시물 리스트 start -->
-	<c:choose>
-	<c:when test="${empty requestScope.pageList.content}">
-            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
-    </c:when>
-    <c:otherwise>
-    
     <!-- Blog Minimal Blocks -->
     <div class="container g-pt-100 g-pb-20">
       <div class="row justify-content-between">
         <div class="col-lg-9 order-lg-2 g-mb-80">
           <div class="g-pl-20--lg">
             <!-- Blog Minimal Blocks -->
+            <!-- 게시물 리스트 start -->
+			<c:choose>
+			<c:when test="${empty requestScope.pageList.content}">
+		            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
+		    </c:when>
+		    <c:otherwise>
             <c:forEach items="${requestScope.pageList.content}" var="board">
             <article class="g-mb-50">
               <div class="g-mb-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">${board.boardRegdate}</span>
+                <span class="d-block g-color-gray-dark-v4 g-font-weight-700 g-font-size-12 text-uppercase mb-2">작성일 : ${board.boardRegdate}</span>
                 <h2 class="h4 g-color-black g-font-weight-600 mb-3"> 
                     <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/detail/${board.boardNo}">${board.boardTitle}</a>
-                  </h2>
-                <!-- <p class="g-color-gray-dark-v4 g-line-height-1_8"></p> --><!-- 글내용 -->
-                <%-- <a class="g-font-size-13" href="${pageContext.request.contextPath}/challenge/detail/${board.boardNo}">Read more...</a> --%>
+                </h2>
               </div>
 
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
-                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                      ${board.member.memberNickname} / ${board.member.memberNo}
+                      작성자 : ${board.member.memberNickname}
                     </span>
                 </li>
                 <li class="list-inline-item g-color-gray-dark-v4">

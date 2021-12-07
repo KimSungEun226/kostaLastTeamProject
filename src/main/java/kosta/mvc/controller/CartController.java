@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Address;
 import kosta.mvc.domain.Cart;
+import kosta.mvc.dto.CartListDTO;
 import kosta.mvc.service.AddressService;
 import kosta.mvc.service.CartService;
 
@@ -33,8 +34,6 @@ public class CartController {
 	 * */
 	@RequestMapping("/selectCart")
 	public ModelAndView selectCart(HttpSession session, Principal principal) {
-		
-		
 		
 		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
@@ -128,7 +127,16 @@ public class CartController {
 		  return new ModelAndView("shop/cart", "sum", sum);
 	  }
 	  
-	 
+	  /**
+	   * 장바구니 내용 수정
+	   * */
+	 @RequestMapping("/updateCart")
+	 public String updateCart(CartListDTO cartList) {
+		 
+		 cartService.updateCart(cartList.getList());
+		 
+		 return "redirect:/shop/selectCart";
+	 }
 	 
 	 
 }

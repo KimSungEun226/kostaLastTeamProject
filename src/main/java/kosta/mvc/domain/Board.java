@@ -82,6 +82,9 @@ public class Board {
 		
 	private String memberNickname; //회원 닉네임 다 : 1
 	
+	//은지 member_id sqldeveloper에서 추가_2021.12.07
+	private String memberId;
+	
 	@ManyToOne
 	@JoinColumn(name = "tagrel_no")
 	private Tag tag;
