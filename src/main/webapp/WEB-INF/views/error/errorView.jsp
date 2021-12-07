@@ -19,7 +19,7 @@
 메시지 : ${errMsg} / ${exception.message}
 </h3>
 <a href="javascript:history.back()">뒤로가기</a>
-<a href="${pageContext.request.contextPath}/shop/shop">홈으로</a>
+<a href="${pageContext.request.contextPath}/shop">홈으로</a>
 
 </body>
 </html>
