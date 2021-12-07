@@ -104,6 +104,9 @@ $(document).ready(function(){
 
 <body>
   <main>
+
+${food.foodName }
+
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-50">
       <div class="container text-center">

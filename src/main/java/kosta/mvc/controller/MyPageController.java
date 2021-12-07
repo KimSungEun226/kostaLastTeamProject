@@ -1,6 +1,8 @@
 package kosta.mvc.controller;
 
+import java.io.File;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
@@ -20,6 +24,7 @@ import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -53,12 +58,6 @@ public class MyPageController {
 		mv.addObject("challengeList", challengeList);
 		
 		//댓글
-		
-		System.out.println("------------------------------");
-		for(Challenge challenge : challengeList) {
-			System.out.println(challenge.getChallengeNo());
-		}
-		System.out.println("------------------------------");
 		
 		mv.setViewName("board/myPage/main");
 		return mv;
@@ -118,14 +117,69 @@ public class MyPageController {
 	 * 내 정보 수정 
 	 */
 	@RequestMapping("/update")
-	public ModelAndView update(HttpSession session, Principal principal) {
-		Member member = memberService.selectByMemberId(principal.getName());
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/myPage/mySetting");
-		return mv;
+	public String update(Member member, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, Principal principal) throws Exception{
+				
+		String path = session.getServletContext().getRealPath("/save/myPage");	
+		
+		
+		MultipartFile file = multipartHttpServletRequest.getFile("file");
+		if(!file.isEmpty()) {
+			File tempFile = new File(path+"/" + file.getOriginalFilename());
+			String fileName = file.getOriginalFilename();
+			
+			if(tempFile.isFile()) {
+	    		String saveFileName = "";
+	    		String fileCutName = fileName.substring(0, fileName.lastIndexOf("."));
+	    		String fileExt = fileName.substring(fileName.lastIndexOf(".")+1);
+	    		
+	    		boolean _exist = true;
+	    		int index = 0;
+	    		//동일한 파일명이 존재하지 않을때까지 반복한다.
+	    		while(_exist) {
+	    			index++;
+	    			saveFileName = fileCutName + "(" + index + ")." +fileExt;
+	    			
+	    			_exist = new File(path+"/"+saveFileName).isFile();
+	    			if(!_exist) fileName = saveFileName;
+	    		}
+	    		member.setProfileImage(fileName);
+	    		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	    	}
+			try {
+			      file.transferTo(new File(path+"/" + fileName));
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+				
+		myPageService.update(member, path);
+		
+		return "redirect:/myPage/setting";
 	}
 	
+	/**
+	 * challengeNo에 해당하는 boardPage
+	 */
+	@RequestMapping("/challenge/{challengeNo}")
+	public ModelAndView challenge(@PathVariable Long challengeNo, HttpSession session, Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("challengeNo : "+challengeNo);
+		Page<Board> pageList = myPageService.findBoardByChallengeNo(challengeNo, pageable);
+		mv.addObject("pageList", pageList);
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		
+		mv.setViewName("board/myPage/myBoard");
+		return mv;
+	}
 }
 
 

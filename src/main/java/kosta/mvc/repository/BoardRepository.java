@@ -40,5 +40,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	 */
 	@Query(value="select b from Board b where b.challenge.challengeNo=?1")
 	List<Board> findByChallengeNo(Long challengeNo);
+
+	/**
+	 * 마이페이지 - challengNo에 해당 boardPage
+	 */
+	@Query(value="select b from Board b where b.challenge.challengeNo=?1")
+	Page<Board> findByChallengeNo(Long challengeNo, Pageable pageable);
 	
 }

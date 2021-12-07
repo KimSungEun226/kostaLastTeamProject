@@ -33,14 +33,21 @@ public class CartController {
 	 * */
 	@RequestMapping("/selectCart")
 	public ModelAndView selectCart(HttpSession session, Principal principal) {
+		
+		
+		
 		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.
 		List<Cart> cartList = new ArrayList<Cart>();
 		List<Cart> soldoutList = new ArrayList<Cart>();
 		//회원번호에 해당하는 기본배송지 찾기 
-		Address addr = addressService.findBasicAddr(principal.getName());
+		Address addr = null;
 		
-		if(principal!=null) list=cartService.selectCart(principal.getName());
+		if(principal!=null) {
+			System.out.println("principal이 존재합니다");
+			list=cartService.selectCart(principal.getName());
+			addr = addressService.findBasicAddr(principal.getName());
+		}
 		else list=cartService.selectCart(session.getId());
 		
 		for(Cart cart: list) {

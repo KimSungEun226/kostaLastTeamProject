@@ -161,7 +161,7 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">요거 묵어봤는감?</a>
+              <a class="u-link-v5 g-color-text" href="#">EGYM SHOP</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
@@ -169,7 +169,7 @@
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템등록</span>
+              <span>아이템 등록</span>
             </li>
           </ul>
         </div>
@@ -233,8 +233,31 @@
                         
                         
                         <script>
+                        
+                        var toolbar = [
+                		    // 글꼴 설정
+                		    ['fontname', ['fontname']],
+                		    // 글자 크기 설정
+                		    ['fontsize', ['fontsize']],
+                		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                		    // 글자색
+                		    ['color', ['forecolor','color']],
+                		    // 표만들기
+                		    ['table', ['table']],
+                		    // 글머리 기호, 번호매기기, 문단정렬
+                		    ['para', ['ul', 'ol', 'paragraph']],
+                		    // 줄간격
+                		    ['height', ['height']],
+                		    // 그림첨부, 링크만들기, 동영상첨부
+                		    ['insert',['picture','link','video']],
+                		    // 코드보기, 확대해서보기, 도움말
+                		    ['view', ['codeview','fullscreen', 'help']]
+                		  ];	
+                        
 							$('#summernote').summernote({
 							placeholder: 'Hello Bootstrap 4',
+							toolbar : toolbar,
 							tabsize: 1,
 							height:200
 							});

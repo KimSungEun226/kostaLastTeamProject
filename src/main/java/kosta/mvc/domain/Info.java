@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,14 @@ public class Info {
 	private int contentNo;
 	private int memberExp;
 
+	@Builder
+    public Info(int infoNo, int attendNo, int contentNo, int memberExp) {
+        this.infoNo = infoNo;
+        this.attendNo = attendNo;
+        this.contentNo = contentNo;
+        this.memberExp = memberExp;
+    }
+	
 	@OneToOne(mappedBy = "info")
 	private Member member; 
 	

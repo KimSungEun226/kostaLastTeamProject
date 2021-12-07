@@ -67,7 +67,7 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="../../assets/img-temp/400x450/img5.jpg" alt="Image Description">
+                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
               </figure>
 
               <!-- Figure Caption -->
@@ -333,7 +333,7 @@
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <span class="g-mr-5">${challenge.challengeNo}</span>
+                              <a class="g-mr-5" href="${pageContext.request.contextPath}/myPage/challenge/${challenge.challengeNo}">${challenge.challengeNo}</a>
                               <small class="g-font-size-12 g-color-blue">도전한 날 :  ${challenge.challengeDate}</small>
                             </h5>
                           <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
