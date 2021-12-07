@@ -8,11 +8,20 @@
     <!-- Title -->
     <title>E-commerce Checkout Page | Unify - Responsive Website Template</title>
 
+<!-- Google Fonts -->
     
     
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
  
  <script type="text/javascript">
+ 
+    $(function(){
+    	$("#updateCart").click(function(){
+    		var changedCount = $("#pcount").val();
+    		location.href= location.href="${pageContext.request.contextPath}/shop/updateCart?orderNo="+result;
+    	})
+    })
+     
  	var IMP = window.IMP;
  	function form_check() {
  	
@@ -278,7 +287,7 @@
                             <c:set var="productCount" value="1"/>
              				 <fmt:parseNumber value = "${cart.cartCount}" integerOnly = "true" var = "pcount"/>
                             
-                              <input name="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
+                              <input name="pcount" id="pcount" class="js-result form-control text-center g-font-size-13 rounded-0 g-pa-0" type="number" value="${pcount}" min='1' max='50' >
                               
                             </div>
                           </td>
@@ -484,13 +493,11 @@
                   <!-- End Summary -->
 					
 				 <c:if test="${not empty requestScope.cartList || requestScope.cartList.size()!=0}">
-				  <form  name="requestForm" method="post" id="requestForm"> 
 	                 <input type=hidden name="productNo" value="${product.productNo}"><!--상품번호-->
 					 <input type=hidden name="quantity" value=""><!-- quantity -->	
                   <button name="cartInfo" class="btn btn-block u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-py-15 mb-4" type="button" data-next-step="#step2">주문하기</button>
-                  </form>
                   </c:if>
-                  <button class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
+                  <button id="updateCart" class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" type="button" >장바구니 수정하기</button>
 					
                  <!--  <a class="d-inline-block g-color-black g-color-primary--hover g-text-underline--none--hover mb-3" href="#">
                     <i class="mr-2 fa fa-info-circle"></i>Delivery
@@ -683,7 +690,7 @@
                  
                   </div>
                   <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" onclick="form_check()" >결제하기</button>
-                  <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
+                 <button class="btn u-btn-primary g-font-size-13 text-uppercase g-px-40 g-py-15" type="button" data-next-step="#step1">다시 돌아가기</button>
                   <!-- End Order Summary -->
                 </div>
                  
