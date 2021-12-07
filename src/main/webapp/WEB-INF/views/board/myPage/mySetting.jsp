@@ -308,7 +308,7 @@
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">프로필이미지 변경</strong>
-                      <span class="align-top"><input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> </span>
+                      <span class="align-top"><input type="file" name="file" id="mainImg" value="${pageContext.request.contextPath}/save/저염1.jpg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> </span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>

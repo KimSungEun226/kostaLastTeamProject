@@ -215,7 +215,7 @@
             <nav class="g-mb-100" aria-label="Page Navigation">
         	<ul class="list-inline mb-0">
          
-          	<c:set var="doneLoop" value="false"/>
+          	<var var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/select?nowPage=${startPage-1}" aria-label="Next">

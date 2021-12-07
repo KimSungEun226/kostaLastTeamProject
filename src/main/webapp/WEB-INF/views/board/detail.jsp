@@ -15,27 +15,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
-  <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/fancybox/jquery.fancybox.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
-
-  <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
-
-  <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  
 </head>
 
 
@@ -94,17 +74,20 @@
           <!-- End 작성자, 조회수, 날자 -->
           <!-- Start 수정하기 버튼 test중 -->
           <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
-          <form  name="requestForm" method="post" id="requestForm"> 
+          
+			<!-- End 수정하기 버튼 test 중 -->
+          <!--  Start 글내용 -->
+            <div class="my-3">${requestScope.board.boardContent}</div>
+          <!--  End 글내용 -->
+          </div>
+          
+
+		  <form  name="requestForm" method="post" id="requestForm"> 
 	            <input type=hidden name="boardNo" value="${board.boardNo}">
 	            <input type=button value="수정하기">
 	            <input type=button value="삭제하기">
           </form>
-			<!-- End 수정하기 버튼 test 중 -->
-          <!--  Start 글내용 -->
-            <div class="d-inline-block float-left g-width-60 g-color-black g-font-size-14 text-center g-pa-7 g-mt-40 mr-2">${requestScope.board.boardContent}</div>
-          <!--  End 글내용 -->
-          </div>
-          
+			
 
           <!-- <div class="row">
             <div class="col-md-6 g-mb-60">

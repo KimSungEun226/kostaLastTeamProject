@@ -9,7 +9,7 @@
   
   
     <!-- Title -->
-    <title>E-commerce Help Page | Unify - Responsive Website Template</title>
+    <title>게시글 작성하기</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
@@ -94,58 +94,67 @@
     
     
 	    function form_check() {
-	    	  var itemName = document.getElementById("productName");
-	    	  var categoryNo = $("#cateCode option:selected");
-	    	  var itemPrice = document.getElementById("price");
-	    	  var itemStock = document.getElementById("stock");	    	
+	    	  var boardName = document.getElementById("boardTitle");
+	    	  var categoryNo = $("#boardKind option:selected");    	
 	    	  var itemDescription = document.getElementById("summernote");
-	    	  var mainImg = document.getElementsByName("file");
+	    	  var boardPassword = document.getElementById("password");
 
 	    	  
-		    	if ( itemName.value == "" ) {
-		    	    alert( "상품이름을 확인해주세요." );
-		    	    itemName.focus();
+		    	if ( boardName.value == "" ) {
+		    	    alert( "글제목을 입력해주세요." );
+		    	    boardName.focus();
 		    		return false;
 		        }
 	
 		    	if ( categoryNo.val() == "0" ) {
 		            alert( "카테고리를 선택해주세요." );
-		            cateCode.focus();
-		            return false;
-		        }
-		    	
-		    	
-		    	if ( itemPrice.value == "" || itemPrice.value.length>9) {
-		            alert( "상품 가격을 확인 주세요." );
-		            itemPrice.focus();
-		            return false;
-		        }
-	
-		    	if ( itemStock.value == "" || itemStock.value.length>7) {
-		            alert( "상품 재고수를 확인 주세요." );
-		            itemStock.focus();
+		            categoryNo.focus();
 		            return false;
 		        }
 
 		    	if ( itemDescription.value == "" ) {
-		            alert( "상품 설명 확인 주세요." );
+		            alert( "글 내용을 입력해주세요." );
 		            itemDescription.focus();
 		            return false;
 		        }
-
-	
 		    	
-		    	for(var i = 0; i < mainImg.length; i++) {
-			    	 if ( mainImg[i].value == "" ) {
-			            alert( "메인 이미지를 넣어주세요." );
-			            return false;
-			         }
-		    	}
+		    	if ( boardPassword.value == "" ) {
+		            alert( "비밀번호를 입력해주세요." );
+		            boardPassword.focus();
+		            return false;
+		        }
 		    	
-		    	
-		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
+		    	document.boardWriteForm.submit(); //유효성 검사의 포인트 
 
 	    }
+	    
+	    <!-- 지역게시판 선택시 지역카테고리 나오게  -->
+		/* $(function(){
+		    
+		    // 질문유형을 선택한다.
+		    chnQnaType('1' , '11');
+		});
+		
+		function chnQnaType(type , select) {
+		    
+		    $('#tagrelNo').empty();
+		    
+		    if(type == '4') { // 지역방 선택
+		    	$('#tagrelNo').append("<option value='2' >서울</option>");
+		        $('#tagrelNo').append("<option value='3' >경기·인천</option>");
+		        $('#tagrelNo').append("<option value='4' >강원도</option>");
+		        $('#tagrelNo').append("<option value='5' >충청도</option>");
+		        $('#tagrelNo').append("<option value='6' >전라도</option>");
+		        $('#tagrelNo').append("<option value='7' >경상도</option>");
+		        $('#tagrelNo').append("<option value='8' >제주도</option>");
+		    } 
+		    document.getElementById("tagrelNo").style.display = "";
+		    
+		    if ($.trim(select) != "") {
+		        $('#boardKind').val(type);
+		        $('#tagrelNo').val(select);
+		    }
+		} */
     </script>
   </head>
 
@@ -161,15 +170,15 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">요거 묵어봤는감?</a>
+              <a class="u-link-v5 g-color-text" href="#">커뮤니티</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">고객센터</a>
+              <a class="u-link-v5 g-color-text" href="#">${board.boardKind}</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템등록</span>
+              <span>글쓰기</span>
             </li>
           </ul>
         </div>
@@ -177,11 +186,11 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/admin/insert" enctype="multipart/form-data">
-      
+      <form name="boardWriteForm" method="post" action="${pageContext.request.contextPath}/board/insert" enctype="multipart/form-data">
+
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">아이템등록</h2>
+          <h2 class="mb-5">글쓰기</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -196,29 +205,38 @@
                         <tr>
                         <th>
                           <!-- End Products Block -->
-		                  
-		                  
 		                  <div class="input-group mb-1">
-		                    <input id="productName" name="productName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="상품명">
-		                    <select id="cateCode" name="cateCode" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
+		                    <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="제목을 입력하세요.">
+		                    <select id="boardKind" name="boardKind" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;" onchange="selSub();">
 		                      <option value="0">카테고리</option>
-		                      <option value="1">닭가슴살</option>
-		                      <option value="2">샐러드</option>
-		                      <option value="3">프로틴</option>
-		                      
+		                      <option value="1">일기</option>
+		                      <option value="4">지역방</option>
+		                      <option value="3">자유게시판</option>
+		                      <option value="6">홈트레이닝</option>
 		                    </select>
-		
-				       
-		                   
+		                    <select id="tagrelNo" name="tagrelNo" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%; display:none;">
+		                    	<option value="">게시판 선택</option>
+								<option value="2" >서울</option>
+								<option value="3" >경기ㆍ인천</option>
+								<option value="4" >강원도</option>
+								<option value="5" >충청도</option>
+								<option value="6" >전라도</option>
+								<option value="7" >경상도</option>
+								<option value="8" >제주도</option>
+		                    </select>
 		                  </div>
 		                  
-		                  
-		                  <div class="input-group mb-1">
-		                    <input id="price" name="price" placeholder="가격(원 단위)" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >
-		                    <input id="stock" name="stock" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="재고량">
-		                                       
-		                  </div>                  	                  
-		                  
+		          <script>
+		          	function selSub(){
+		            	$("#tagrelNo").attr("style", "display:none;");
+		            	$("#thumbnail").attr("style", "display:none;");
+		            	
+		            	if ($("#boardKind option:selected").val() == "4"){ //지역방 선택시
+			          		$("#tagrelNo").attr("style", "display:;");
+			          		$("#category_sub1arr").attr("style", "display:;");
+		            	} 
+		            }
+		          </script>
                         <br>
                         </th>
                         </tr>
@@ -228,59 +246,23 @@
                         <!-- Item-->
                         
                         <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
+                          <td><textarea id="summernote" class="text-left g-py-70"  name="boardContent" style="border: none; outline: none;" cols="100%" placeholder="글 내용"></textarea></td> 
                         </tr>
                         
                         
                         <script>
-                        
-                        var toolbar = [
-                		    // 글꼴 설정
-                		    ['fontname', ['fontname']],
-                		    // 글자 크기 설정
-                		    ['fontsize', ['fontsize']],
-                		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-                		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-                		    // 글자색
-                		    ['color', ['forecolor','color']],
-                		    // 표만들기
-                		    ['table', ['table']],
-                		    // 글머리 기호, 번호매기기, 문단정렬
-                		    ['para', ['ul', 'ol', 'paragraph']],
-                		    // 줄간격
-                		    ['height', ['height']],
-                		    // 그림첨부, 링크만들기, 동영상첨부
-                		    ['insert',['picture','link','video']],
-                		    // 코드보기, 확대해서보기, 도움말
-                		    ['view', ['codeview','fullscreen', 'help']]
-                		  ];	
-                        
 							$('#summernote').summernote({
 							placeholder: 'Hello Bootstrap 4',
-							toolbar : toolbar,
 							tabsize: 1,
 							height:200
 							});
 						</script>
-                        
-                       
-
-                        
-						
                         <!-- End Item-->
 
                       </tbody>
                     </table>
-                    <br>
-                      <div class="addFile">
-                         <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
-						</div>
-                    <br>
-                    <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
+                    <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:30%;" type="password" placeholder="비밀번호">
                     
-                    <div class="col-md-8 g-mb-30">
-		              
-		            </div>
                   </div>
                   <!-- End Products Block -->
 
