@@ -22,7 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Cart;
+import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
+import kosta.mvc.dto.InfoDto;
 import kosta.mvc.dto.MemberDto;
 import kosta.mvc.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -41,8 +43,8 @@ public class LoginController {
     
     // 회원가입 처리
     @PostMapping("/signup")
-    public String execSignup(MemberDto memberDto) {
-        memberService.joinUser(memberDto);
+    public String execSignup(MemberDto memberDto, Info info) {
+        memberService.joinUser(memberDto, info);
 
         return "redirect:/login";
     }

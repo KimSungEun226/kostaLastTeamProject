@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,11 @@ public class IndexController {
 	@Autowired
 	ProductService productService;
 	
+	List<Product> readNumList;
+	List<Product> dateList;
+	
+	
+	  
 	@RequestMapping("/main")
 	public String main() {
 		return "board/main";// /WEB-INF/views/index.jsp이동
@@ -36,12 +43,12 @@ public class IndexController {
 	@RequestMapping("/shop")
 	public String shop(Model model) {
 		
-		//List<Product> readNumList =  productService.selectByReadNum();
-		
-		//List<Product> dateList = productService.selectByDate();
-		
-		//model.addAttribute("readNumList", readNumList);
-		//model.addAttribute("dateList", dateList);
+		if(readNumList==null) {
+			readNumList =  productService.selectByReadNum();
+			dateList = productService.selectByDate();
+		}
+		model.addAttribute("readNumList", readNumList);
+		model.addAttribute("dateList", dateList);
 		return "shop/main";
 	}
 

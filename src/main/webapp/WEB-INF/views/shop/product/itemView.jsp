@@ -172,7 +172,7 @@
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
-              <img class="img-fluid" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+              <img class="img-fluid  g-width-250 g-height-250" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="#">New Arrival</a>
@@ -294,47 +294,7 @@
       <!-- End Products -->
 
       <!-- Call to Action -->
-      <div class="g-bg-primary">
-        <div class="container g-py-20">
-          <div class="row justify-content-center">
-            <div class="col-md-4 mx-auto g-py-20">
-              <!-- Media -->
-              <div class="media g-px-50--lg">
-                <i class="d-flex g-color-white g-font-size-40 g-pos-rel g-top-3 mr-4 icon-real-estate-048 u-line-icon-pro"></i>
-                <div class="media-body">
-                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">Free Shipping</span>
-                  <span class="d-block g-color-white-opacity-0_8">In 2-3 Days</span>
-                </div>
-              </div>
-              <!-- End Media -->
-            </div>
-
-            <div class="col-md-4 mx-auto g-brd-x--md g-brd-white-opacity-0_3 g-py-20">
-              <!-- Media -->
-              <div class="media g-px-50--lg">
-                <i class="d-flex g-color-white g-font-size-40 g-pos-rel g-top-3 mr-4 icon-real-estate-040 u-line-icon-pro"></i>
-                <div class="media-body">
-                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">Free Returns</span>
-                  <span class="d-block g-color-white-opacity-0_8">No Questions Asked</span>
-                </div>
-              </div>
-              <!-- End Media -->
-            </div>
-
-            <div class="col-md-4 mx-auto g-py-20">
-              <!-- Media -->
-              <div class="media g-px-50--lg">
-                <i class="d-flex g-color-white g-font-size-40 g-pos-rel g-top-3 mr-4 icon-hotel-restaurant-062 u-line-icon-pro"></i>
-                <div class="media-body text-left">
-                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">Free 24</span>
-                  <span class="d-block g-color-white-opacity-0_8">Days Storage</span>
-                </div>
-              </div>
-              <!-- End Media -->
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- End Call to Action -->
 
       <!-- Footer -->

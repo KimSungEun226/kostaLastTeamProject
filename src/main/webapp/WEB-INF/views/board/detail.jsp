@@ -16,27 +16,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
-  <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/fancybox/jquery.fancybox.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
-
-  <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
-
-  <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  
 </head>
 
 
@@ -105,6 +85,7 @@
             </ul>
           </div>
           <!-- End 작성자, 조회수, 날자 -->
+
           
 			
           <!--  Start 글내용 -->
@@ -112,6 +93,8 @@
             <div class="d-inline-block float-left g-color-black g-font-size-14 text-center g-pa-7 g-mt-40 mr-2">${requestScope.board.boardContent}</div>
           <!--  End 글내용 -->
           </div>
+
+
         </div>
       </div>
 
