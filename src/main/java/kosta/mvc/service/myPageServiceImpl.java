@@ -46,13 +46,18 @@ public class myPageServiceImpl implements MypageService {
 
 	@Override
 	public List<Board> findBoard(Long memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return boardRepository.findByChallengeNo(memberNo);
 	}
 
 	@Override
 	public List<Challenge> findChallenge(Long memberNo) {
 		return challengeRepository.findByMemberNo(memberNo);
+	}
+
+	@Override
+	public Page<Board> findBoardByChallengeNo(Long challengeNo, Pageable pageable) {
+		return boardRepository.findByChallengeNo(challengeNo, pageable);
 	}
 
 }
