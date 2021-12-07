@@ -497,7 +497,7 @@
               <img class="img-fluid  g-width-250 g-height-250" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
 
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
-                <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">New Arrival</a>
+                <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">New Arrival</a>
               </figcaption>
             </figure>
 
@@ -505,7 +505,7 @@
               <!-- Product Info -->
               <div class="d-flex flex-column">
                 <h4 class="h6 g-color-black mb-1">
-                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">
+                  <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">
                     ${product.productName}
                   </a>
                 </h4>
@@ -517,24 +517,7 @@
               <!-- End Product Info -->
 
               <!-- Products Icons -->
-              <ul class="list-inline media-body text-right">
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Cart">
-                    <i class="icon-finance-100 u-line-icon-pro"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
-              </ul>
+              
               <!-- End Products Icons -->
             </div>
             <!-- End Product -->
@@ -625,7 +608,7 @@
             <!-- Article Info -->
             <div class="media-body align-self-center">
               <h4 class="h5 g-mb-7">
-                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}">${product.productName}</a>
+                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">${product.productName}</a>
               </h4>
               <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
               <!-- End Article Info -->
