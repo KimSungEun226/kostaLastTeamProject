@@ -6,93 +6,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
-  
     <!-- Title -->
     <title>E-commerce Help Page | Unify - Responsive Website Template</title>
 
-    <!-- Required Meta Tags Always Come First -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-
-
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
-
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line/css/simple-line-icons.css">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/jquery-ui/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-	
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-  
-  <!-- 서머노트를 위해 추가해야할 부분 -->
-  <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
-  <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote-lite.css">
-  <!--  -->
-  
-  
-    <!-- CSS Unify Theme -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/e-commerce/assets/css/styles.e-commerce.css">
-
-    <!-- CSS Customization -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       $(document).ready(function(){
     	  
-    	  let count = 1;
+   	  let count = 1;
+   	  
+   	  $("#btnAdd").click(function(){
+   		  
+   		  if (count <= 2) { 
+    		  $(".addFile").append(
+    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
     	  
-    	  $("#btnAdd").click(function(){
+    		  $(".btnRemove").on("click", function(){
+        		  $(this).prev().remove();
+        		  $(this).next().remove();
+        		  $(this).remove();
+        		  count-=1;
+        	  });
     		  
-    		  if (count <= 2) { 
-	    		  $(".addFile").append(
-	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
-	    	  
-	    		  $(".btnRemove").on("click", function(){
-	        		  $(this).prev().remove();
-	        		  $(this).next().remove();
-	        		  $(this).remove();
-	        		  count-=1;
-	        	  });
-	    		  
-	    		  count+=1;
-    		  }else{
-    			  alert("이미지는 최대 3장");
-    		  }
-    	  });
-    	  
-    	  
-    	  
-    	  
+    		  count+=1;
+   		  }else{
+   			  alert("이미지는 최대 3장");
+   		  }
+   	  });
       });
     </script>
     
     <script type="text/javascript">
-    
-    
 	    function form_check() {
 	    	  var itemName = document.getElementById("productName");
 	    	  var categoryNo = $("#cateCode option:selected");
@@ -100,7 +43,6 @@
 	    	  var itemStock = document.getElementById("stock");	    	
 	    	  var itemDescription = document.getElementById("summernote");
 	    	  var mainImg = document.getElementsByName("file");
-
 	    	  
 		    	if ( itemName.value == "" ) {
 		    	    alert( "상품이름을 확인해주세요." );
@@ -132,8 +74,6 @@
 		            itemDescription.focus();
 		            return false;
 		        }
-
-	
 		    	
 		    	for(var i = 0; i < mainImg.length; i++) {
 			    	 if ( mainImg[i].value == "" ) {
@@ -142,20 +82,12 @@
 			         }
 		    	}
 		    	
-		    	
 		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
-
 	    }
-    </script>
+    </script> -->
   </head>
-
   <body>
-
-  
     <main>
-      <!-- Header -->
-
-
       <!-- Breadcrumbs -->
       <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
         <div class="container">
@@ -169,7 +101,7 @@
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템 등록</span>
+              <span>리뷰 등록</span>
             </li>
           </ul>
         </div>
@@ -177,11 +109,12 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="itemInsert_form" method="post" action="${pageContext.request.contextPath}/shop/admin/insert" enctype="multipart/form-data">
-      
+      <form name="reviewInsert" method="post" action="${pageContext.request.contextPath}/shop/review/insert" enctype="multipart/form-data">
+      <input type="hidden" name="productNo" value="${productNo}" />
+      <input type="hidden" name="memberNo" value="${memberNo}" />
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">아이템등록</h2>
+          <h2 class="mb-5">리뷰 등록</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">
@@ -190,69 +123,48 @@
                 <!-- Accordion -->
                 <div id="accordion-12-1" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
                   <div class="g-overflow-x-scroll g-overflow-x-visible--lg">
-                    
-                    <table class="text-left w-100">
-                      <thead class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">
-                        <tr>
-                        <th>
                           <!-- End Products Block -->
-		                  
-		                  
-		                  <div class="input-group mb-1">
-		                    <input id="productName" name="productName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3"  style="width:70%;" type="text" placeholder="상품명">
-		                    <select id="cateCode" name="cateCode" class="js-custom-select u-select-v1 h-50 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded mr-3" style="width:15%;">
-		                      <option value="0">카테고리</option>
-		                      <option value="1">닭가슴살</option>
-		                      <option value="2">샐러드</option>
-		                      <option value="3">프로틴</option>
-		                      
-		                    </select>
-		
-				       
-		                   
+		                  <div class="input-group">
+					        <img style="width:100px; margin-bottom: 20px; vertical-align: middle" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+		                  <span style="margin-left: 10px; margin-top:50px" class="g-font-weight-700">${product.productName}<br><p style="color: green">&#8361;${product.price}</p></span>
 		                  </div>
-		                  
-		                  
-		                  <div class="input-group mb-1">
-		                    <input id="price" name="price" placeholder="가격(원 단위)" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >
-		                    <input id="stock" name="stock" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="재고량">
-		                                       
-		                  </div>                  	                  
-		                  
-                        <br>
-                        </th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <!-- Item-->
-                        
-                        <tr class="g-brd-bottom g-brd-gray-light-v3">
-                          <td><textarea id="summernote" class="text-left g-py-70"  name="productContent" style="border: none; outline: none;" cols="100%" placeholder="상품 설명"></textarea></td> 
-                        </tr>
-                        
-                        
-                        <script>
-							$('#summernote').summernote({
-							placeholder: 'Hello Bootstrap 4',
-							tabsize: 1,
-							height:200
-							});
-						</script>
-                        
-                       
-
-                        
-						
-                        <!-- End Item-->
-
-                      </tbody>
-                    </table>
-                    <br>
-                      <div class="addFile">
+		                  <div class="form-group">
+                        <input name="reviewName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus rounded-3 g-py-9 g-px-15" type="text" placeholder="제목">
+                      </div>                	                  
+                      <!-- Item-->
+				 	<div class="g-mb-5">
+                    <textarea name="reviewContent" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="9" placeholder="리뷰 작성"></textarea>
+                  </div>
+                      
+                    <!-- Rating -->
+                    <div class="row col-md-8 g-mb-10">
+                      <h6>평점:</h6>
+                    <div class="col-5">
+                      
+                      <ul class="js-rating u-rating-v1 g-font-size-20 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+                        <li class="g-color-primary g-line-height-1_4 click">
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li class="g-color-primary g-line-height-1_4 click">
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li class="g-color-primary g-line-height-1_4 click">
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li class="g-color-primary g-line-height-1_4 click">
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li class="g-line-height-1_4">
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                      </div>
+                      </div>
+                      <!-- End Rating -->
+                      <div class="addFile g-mb-5">
+                      <h6>이미지 업로드</h6>
                          <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
 						</div>
-                    <br>
                     <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
                     
                     <div class="col-md-8 g-mb-30">
@@ -260,17 +172,16 @@
 		            </div>
                   </div>
                   <!-- End Products Block -->
-
                   
                 </div>
                 <!-- End Accordion -->
                <!-- Contact Form -->
 		            
-		                <div class="text-center">
-		                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button"  onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
-		                </div>
-		              
-		              <!-- End Contact Form -->
+                <div class="text-center">
+                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit" ><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
+                </div>
+              
+              <!-- End Contact Form -->
             </div>
             <!-- End Tab panes -->
           </div>
