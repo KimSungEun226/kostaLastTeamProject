@@ -9,8 +9,96 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$("#receiverName").focus(function(){
+		$("#receiverName").css("outline", "1px solid green");
+	});
+	$("#receiverName").blur(function(){
+		$("#receiverName").css("outline", "none");
+	});
+	$("#receiverPhone").focus(function(){
+		$("#receiverPhone").css("outline", "1px solid green");
+	});
+	$("#receiverPhone").blur(function(){
+		$("#receiverPhone").css("outline", "none");
+	});
 	$("#nonuserOrderNo").focus(function(){
 		$("#orderNoCheck").show();
+		$("#nonuserOrderNo").css("outline", "1px solid green");
+	});
+	$("#nonuserOrderNo").blur(function(){
+		$("#nonuserOrderNo").css("outline", "none");
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	var nameCheck = false;
+	var phoneCheck = false;
+	var orderNoCheck = false;
+	
+	$("#receiverName").blur(function(){
+		var memberName = $("#receiverName").val();
+		var regExp = /^()[가-힣a-zA-Z\s]{2,16}$/;
+		
+		if(memberName == ""){
+			$("#nameCheckFail").hide();
+		}else{
+			if(!regExp.test(memberName)){
+				$("#nameCheckFail").show();
+				nameCheck = false;
+			}else{
+				$("#nameCheckFail").hide();
+				nameCheck = true;
+			}
+		}
+	});
+	
+	$("#receiverPhone").blur(function(){
+		let phoneNumber = $("#receiverPhone").val();
+		var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+		
+		if(regExp.test(phoneNumber)){
+			
+			phoneCheck = true;
+			console.log(phoneCheck);
+		}
+	});
+	
+	$("#nonuserOrderNo").blur(function(){
+		let orderNo = $("#nonuserOrderNo").val();
+		var regExp = /^[0-9]+$/;
+		
+		if(regExp.test(orderNo)){
+			orderNoCheck = true;
+		}
+	});
+	
+	$("#selectBtn").click(function(){
+		//이름 공백 확인
+		if($("#receiverName").val() == ""){
+			nameCheck = false;
+		}
+		if($("#receiverPhone").val() == ""){
+			phoneCheck = false;
+		}
+		if($("#nonuserOrderNo").val() == ""){
+			orderNoCheck = false;
+		}
+		
+		if(!nameCheck){
+			$("#receiverName").focus();
+			$("#receiverName").css("outline", "1px solid red");
+		}else if(!phoneCheck){
+			$("#receiverPhone").focus();
+			$("#receiverPhone").css("outline", "1px solid red");
+		}else if(!orderNoCheck){
+			$("#nonuserOrderNo").focus();
+			$("#nonuserOrderNo").css("outline", "1px solid red");
+		}else{
+			$("#selectForm").attr("action", "${pageContext.request.contextPath}/shop/orderList");
+			$("#selectForm").submit();
+		}
+		
 	});
 });
 </script>
@@ -50,11 +138,12 @@ $(function(){
             </header>
 
             <!-- Form -->
-              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/orderList" method="post">
+              <form id="selectForm" class="g-py-15" method="post">
                 <div class="g-mb-15">
                   <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">이름</label>
                   <input id="receiverName" name="receiverName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="이름 입력" autocomplete="off">
                 </div>
+                <p><span class="g-font-weight-500 g-font-size-13" id="nameCheckFail" style="color: red; display: none;">※ 이름이 적절하지 않습니다.</span></p>
 				<div class="g-mb-15">
                   <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-14">휴대전화</label>
                   <input id="receiverPhone" name="receiverPhone" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="tel" placeholder="휴대전화 번호 입력" autocomplete="off">
@@ -66,7 +155,7 @@ $(function(){
                 </div>
 				<hr class="g-brd-gray-light-v3 mb-25">
                 <div class="mb-4">
-                  <button type="submit" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">주문조회</button>
+                  <button id="selectBtn" type="button" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">주문조회</button>
                 </div>
               </form>
               <!-- End Form -->
