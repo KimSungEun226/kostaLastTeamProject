@@ -43,8 +43,18 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+
+
+    $(document).on("click","#checked",function(){
+		$("#basicCheck_form").attr("action", "${pageContext.request.contextPath}/shop/login/basicCheck/"+$(this).attr("name"));
+		alert("기본배송지로 등록되었습니다.");
+         $("#basicCheck_form").submit(); 
+	  });
     
+
+</script>
     
  
     
@@ -176,19 +186,16 @@
 
               <hr class="g-brd-gray-light-v4 g-my-20">
               
-              <form method="post" action="${pageContext.request.contextPath}/front" >
-                <input type="hidden" name="key" value = "customer" /> <!-- Controller를 찾는 정보 -->
-			    <input type="hidden" name="methodName" value = "checkPwd" />  <!-- 메소드이름 -->
-			    <input type="hidden" name="id" value = "${sessionScope.customerDTO.customerId}" />  <!-- 메소드이름 -->
+               <form method="post" action="${pageContext.request.contextPath}/shop/login/myInfoForm" >
 			    
               <div class="row">
                 <div class="col-8">
-                  <span class="d-block g-color-text g-font-size-13 mb-1">Password:</span>
-                  <input name="pwd" class="d-block" type="password"></span>
+                  <span class="d-block g-color-text g-font-size-13 mb-1"></span>
+                  </span>
                 </div>
 
                 <div class="col-4 text-right">
-                  <button type="submit" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >Edit</a>
+                  <button type="submit" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >수정하러 가기</a>
                 </div>
               
               </div>

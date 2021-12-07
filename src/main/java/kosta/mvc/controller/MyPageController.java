@@ -1,6 +1,8 @@
 package kosta.mvc.controller;
 
+import java.io.File;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Board;
@@ -20,6 +24,7 @@ import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -54,14 +59,12 @@ public class MyPageController {
 		
 		//댓글
 		
+		System.out.println("------------------------------");
+		for(Challenge challenge : challengeList) {
+			System.out.println(challenge.getChallengeNo());
+		}
+		System.out.println("------------------------------");
 		
-		//회원활동정보
-//		Info info = member.getInfo();
-//		mv.addObject("info", info);
-		
-		//등급
-//		Grade level = member.getInfo().getLevel();
-		mv.addObject(member);
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
@@ -107,11 +110,8 @@ public class MyPageController {
 	 * 내 정보 보기 
 	 */
 	@RequestMapping("/setting")
-	public ModelAndView setting() {
-		
-		Long memberNo = (long)1;
-		//회원번호로 회원정보가져오기 
-		Member member = myPageService.findByMemberNo(memberNo);
+	public ModelAndView setting(HttpSession session, Principal principal) {	
+		Member member = memberService.selectByMemberId(principal.getName());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("member", member);
@@ -123,14 +123,45 @@ public class MyPageController {
 	 * 내 정보 수정 
 	 */
 	@RequestMapping("/update")
-	public ModelAndView update(Member member) {
-		Long memberNo = (long)1;
+	public String update(Member member, MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, Principal principal) throws Exception{
+				
+		String path = session.getServletContext().getRealPath("/save/myPage");	
 		
 		
+		MultipartFile file = multipartHttpServletRequest.getFile("file");
+		if(!file.isEmpty()) {
+			File tempFile = new File(path+"/" + file.getOriginalFilename());
+			String fileName = file.getOriginalFilename();
+			
+			if(tempFile.isFile()) {
+	    		String saveFileName = "";
+	    		String fileCutName = fileName.substring(0, fileName.lastIndexOf("."));
+	    		String fileExt = fileName.substring(fileName.lastIndexOf(".")+1);
+	    		
+	    		boolean _exist = true;
+	    		int index = 0;
+	    		//동일한 파일명이 존재하지 않을때까지 반복한다.
+	    		while(_exist) {
+	    			index++;
+	    			saveFileName = fileCutName + "(" + index + ")." +fileExt;
+	    			
+	    			_exist = new File(path+"/"+saveFileName).isFile();
+	    			if(!_exist) fileName = saveFileName;
+	    		}
+	    		member.setProfileImage(fileName);
+	    		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	    	}
+			try {
+			      file.transferTo(new File(path+"/" + fileName));
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+				
+
+		memberService.update(member, path);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/myPage/mySetting");
-		return mv;
+		return "redirect:/myPage/setting";
 	}
 	
 }
