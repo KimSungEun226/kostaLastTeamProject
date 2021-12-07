@@ -161,7 +161,7 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">요거 묵어봤는감?</a>
+              <a class="u-link-v5 g-color-text" href="#">EGYM SHOP</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
@@ -169,7 +169,7 @@
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템등록</span>
+              <span>아이템 등록</span>
             </li>
           </ul>
         </div>

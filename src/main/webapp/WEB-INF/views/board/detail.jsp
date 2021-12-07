@@ -78,6 +78,7 @@
 			<!-- End 수정하기 버튼 test 중 -->
           <!--  Start 글내용 -->
             <div class="my-3">${requestScope.board.boardContent}</div>
+
           <!--  End 글내용 -->
           </div>
           
@@ -355,87 +356,27 @@
     <section class="container g-py-20">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-
           <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
             <div class="g-brd-y g-brd-gray-light-v4 g-py-30 mb-5">
-              <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-0">3 Comments</h3>
+              <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-0">댓글개수넣기</h3>
             </div>
 
-            <div class="media g-mb-30">
-              <img class="d-flex g-width-60 g-height-60 rounded-circle g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-              <div class="media-body">
-                <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
-                  <div class="d-block">
-                    <h5 class="h6 g-color-black g-font-weight-600">James Coolman</h5>
-                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">June 7, 2017</span>
-                  </div>
-                  <div class="ml-auto">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="#">Reply</a>
-                  </div>
-                </div>
-
-                <p>The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels. Whether through commerce or just an experience to tell your brand's story, the
-                  time has come to start using development languages that fit your projects needs.</p>
-
-                <ul class="list-inline my-0">
-                  <li class="list-inline-item g-mr-20">
-                    <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 5
-                    </a>
-                  </li>
-                  <li class="list-inline-item g-mr-20">
-                    <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 1
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="media g-brd-top g-brd-gray-light-v4 g-pt-30 g-ml-40 g-mb-30">
-              <img class="d-flex g-width-60 g-height-60 rounded-circle g-mt-3 g-mr-15" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-              <div class="media-body">
-                <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
-                  <div class="d-block">
-                    <h5 class="h6 g-color-black g-font-weight-600">Alberta Watson</h5>
-                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">June 7, 2017</span>
-                  </div>
-                  <div class="ml-auto">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="#">Reply</a>
-                  </div>
-                </div>
-
-                <p>Now that your brand is all dressed up and ready to party, it's time to release it to the world. By the way, let's celebrate already.</p>
-
-                <ul class="list-inline my-0">
-                  <li class="list-inline-item g-mr-20">
-                    <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 2
-                    </a>
-                  </li>
-                  <li class="list-inline-item g-mr-20">
-                    <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 0
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
+			<!--  댓글칸 Start -->
+			<c:forEach items="${board.replyList}" var="reply">
             <div class="media g-brd-top g-brd-gray-light-v4 g-pt-30 g-mb-30">
               <img class="d-flex g-width-60 g-height-60 rounded-circle g-mt-3 g-mr-15" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
               <div class="media-body">
                 <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
                   <div class="d-block">
-                    <h5 class="h6 g-color-black g-font-weight-600">David Lee</h5>
-                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">June 7, 2017</span>
+                    <h5 class="h6 g-color-black g-font-weight-600">${reply.memberNickname}</h5>
+                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">${reply.replyRegdate}</span>
                   </div>
                   <div class="ml-auto">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="#">Reply</a>
+                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
                   </div>
                 </div>
 
-                <p>We get it, you're busy and it's important that someone keeps up with marketing and driving people to your brand. We've got you covered.</p>
+                <p>${reply.replyContent}</p>
 
                 <ul class="list-inline my-0">
                   <li class="list-inline-item g-mr-20">
@@ -451,6 +392,8 @@
                 </ul>
               </div>
             </div>
+            </c:forEach>
+            <!-- 댓글칸 End -->
           </div>
           End Blog Single Item Comments
 
@@ -461,7 +404,7 @@
 	          <div class="g-mb-30">
 	            <textarea name="replyContent" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="12" placeholder="댓글 내용을 입력하세요."></textarea>
 	          </div>
-	          <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" type="button">댓글 등록하기</button>
+	          <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">댓글 등록하기</button>
           </form>
        
     </section>

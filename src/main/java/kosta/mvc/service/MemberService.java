@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,31 +18,38 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Role;
 import kosta.mvc.dto.MemberDto;
+import kosta.mvc.repository.InfoRepository;
 import kosta.mvc.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class MemberService implements UserDetailsService {
+	@Autowired
     private MemberRepository memberRepository;
+	@Autowired
+    private InfoRepository infoRepository;
 
     @Transactional
-    public Long joinUser(MemberDto memberDto) {
+    public Long joinUser(MemberDto memberDto, Info info) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setMemberPwd(passwordEncoder.encode(memberDto.getMemberPwd()));
-
-        return memberRepository.save(memberDto.toEntity()).getMemberNo();
+        Member member = memberRepository.save(memberDto.toEntity());
+        info.setMember(member);
+        infoRepository.save(info);
+        return member.getMemberNo();
     }
 
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
         Optional<Member> userEntityWrapper = memberRepository.findByMemberId(memberId);
         Member userEntity = userEntityWrapper.get();
-
+        
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (("admin").equals(memberId)) {
@@ -49,7 +57,7 @@ public class MemberService implements UserDetailsService {
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
-
+        
         return new User(userEntity.getMemberId(), userEntity.getMemberPwd(), authorities);
     }
     
@@ -168,8 +176,32 @@ public class MemberService implements UserDetailsService {
     	return memberRepository.selectByMemberId(memberId);
     }
     
+    public Member selectByMemberNo(Long memberNo) {
+    	return memberRepository.selectByMemberNo(memberNo);
+    }
     public Member insert(Member member) {
     	return memberRepository.save(member);
     }
+
+    /**
+     * 마이페이지 - 개인정보 수정 
+     */
+	public void update(Member member, String path) {
+		Member dbMember = memberRepository.selectByMemberId(member.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberId());
+		System.out.println("dbMember : "+dbMember.getMemberName());
+		dbMember.setMemberName(member.getMemberName());
+		System.out.println("저장 후 : "+dbMember.getMemberName());
+		dbMember.setMemberNickname(member.getMemberNickname());
+		dbMember.setMemberEmail(member.getMemberEmail());
+		dbMember.setMemberBirth(member.getMemberBirth());
+		dbMember.setMemberMessage(member.getMemberMessage());
+		if(member.getProfileImage()!=null) {
+			dbMember.setProfileImage(member.getProfileImage());
+		}
+		
+		memberRepository.save(dbMember);
+		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	}
     
 }

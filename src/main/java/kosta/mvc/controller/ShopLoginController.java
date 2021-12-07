@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
 import kosta.mvc.dto.MemberDto;
 import kosta.mvc.service.MemberService;
@@ -31,8 +32,8 @@ public class ShopLoginController {
 
     // 쇼핑몰 회원가입 처리
     @PostMapping("/signup")
-    public String shopSignup(MemberDto memberDto) {
-        memberService.joinUser(memberDto);
+    public String shopSignup(MemberDto memberDto, Info info) {
+        memberService.joinUser(memberDto, info);
 
         return "redirect:/shop/login";
     }
