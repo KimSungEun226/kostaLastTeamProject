@@ -8,10 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import kosta.mvc.domain.order.UserOrderDetail;
 import kosta.mvc.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +46,7 @@ public class Review {
 	@JoinColumn(name="product_no")
 	private Product product;
 
+	@OneToOne
+	@JoinColumn(name = "user_order_detail_no") //review 테이블에 user_order_detail_no를 fk로 설정
+	private UserOrderDetail userOrderDetail;
 }
