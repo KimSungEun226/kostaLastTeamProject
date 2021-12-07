@@ -67,7 +67,7 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="../../assets/img-temp/400x450/img5.jpg" alt="Image Description">
+                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
               </figure>
 
               <!-- Figure Caption -->
