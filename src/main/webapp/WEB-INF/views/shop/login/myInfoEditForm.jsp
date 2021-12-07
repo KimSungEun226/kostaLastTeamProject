@@ -43,15 +43,15 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
 
 	function form_check_myInfo(){
 	  //이름, 이메일, 휴대전화
-  	  var name = document.getElementById("name"); 
-  	  var email = document.getElementById("email");
-  	  var phone = document.getElementById("phone");
+  	  var newName = document.getElementById("newName"); 
+  	  var newEmail = document.getElementById("email");
+  	  var newPhone = document.getElementById("phone");
+  	  var pwd = document.getElementById("pwd");
 
   	  var reg_name = /^[가-힣]+$/; //한글만
   	  var reg_num = /^[0-9]*$/; // 숫자만 
@@ -59,28 +59,33 @@
       var reg_contact = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
       var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
   	  
-  	  
-	  	  if (name.value == "" || !reg_name.test(name.value) || name.value.length >5 ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+  	   
+ 	      if (newName.value == "" || !reg_name.test(newName.value) || newName.value.length >5 ) {
 	  	    alert("이름을 확인하세요.");
-	  	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-	  	  };
+	  	    return false;
+	  	  }
 
 
-    	  if (email.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	  if (newEmail.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
       	    alert("이메일 주소를 입력하세요.");
       	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-          };
-          
-          if (!reg_email.test(email.value)) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+          }
+         
+          if (!reg_email.test(newEmail.value)) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
         	    alert("이메일 형식이 올바르지 않습니다.");
         	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-          };
+          }
 
 
-    	  if (phone.value == "" || !reg_contact.test(phone.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+    	  if (newPhone.value == "" || !reg_contact.test(newPhone.value) ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
     	    alert("전화번호를 확인하세요.");
     	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-    	  };
+    	  }
+    	  
+    	  if (pwd.value == "" ) { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+      	    alert("비밀번호를 입력해주세요.");
+      	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+      	  }
     	  
         
 
@@ -178,6 +183,7 @@
 			
           <div class="col-lg-9 g-mb-50">
             <!-- Info -->
+            <center>${error}</center><p>
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
               <div class="row">
                 <div class="col-8">
@@ -191,10 +197,14 @@
               <hr class="g-brd-gray-light-v4 g-my-20">
 
               <div class="row">
+               <form name="check_form_myInfo" method="post" action="${pageContext.request.contextPath}/shop/login/updateMyInfo" >
                 <div class="col-8">
-                <form name="check_form_myInfo" method="post" action="${pageContext.request.contextPath}/shop/login/updateMyInfo" >
+                
                   <span class="d-block g-color-text g-font-size-13 mb-1">이름:</span>
-                  <span class="d-block"><input id="name" name="name" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${member.memberName}"></span>
+                  <span class="d-block">
+                 
+                  <input id="newName" name="newName" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="text" value="${member.memberName}">
+                  </span>
                 </div>
 
                 
@@ -229,14 +239,15 @@
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1"></span>
-                  <input name="pwd" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="비밀번호를 입력해주세요.">
+                  <input name="pwd" id="pwd" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="비밀번호를 입력해주세요."/>
+                  
                   </span>
                 </div>
                 
                 
 
                 <div class="col-4 text-right">
-                  <button name="form_check" type="button" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" onclick="form_check_myInfo()">수정</a>
+                  <button name="form_check" type="button" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" onclick="form_check_myInfo()">수정
                 </div>
               
               </div>
