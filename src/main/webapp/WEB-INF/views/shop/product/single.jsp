@@ -11,7 +11,12 @@
     
  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
  <script type="text/javascript">
+ 
+  
+ 
    $(function(){
+	   
+	   $("#memberId")
 	   
 	   var qty=parseInt($('input[name=pcount]').val());
 	   
@@ -466,9 +471,13 @@
      </div>
      End Tab panes -->
 
-        
+      <div class="tab-pane fade show active g-pt-50" id="nav-1-2-accordion-default-hor-left-underline--1" role="tabpanel">
+	    <h4 class="h4 mb-3" style="text-align: center">상세설명</h4>
+	    <hr class="g-mb-60">
+	  </div>
       <!-- Details -->
       <div id="details" class="container-fluid g-px-0 g-py-1">
+      
         <div class="row no-gutters g-min-height-100vh justify-content-center">
           
          <!--   <div class="col-md-6 g-bg-size-cover g-min-height-300" data-bg-img-src="${pageContext.request.contextPath}/save/치즈뿌링클1.jpg"></div> -->
@@ -482,81 +491,99 @@
         </div>
       </div>
       
-      <!-- Review -->
-      <div class="container">
-        <div class="g-brd-y g-brd-gray-light-v4 g-py-100">
-        <%-- <c:forEach item="${product.reviewList}" var="review">
-           ${review.member.membernickName}
-           ${reivew.reviewContent}
-        </c:forEach> --%>
-          <div class="row justify-content-center">
-            <div class="col-lg-9">
-              <h2 class="h4 mb-5">상품후기</h2>
-
-              <!-- Review -->
-              <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
-                <!-- Media -->
-                <div class="media g-mb-30">
-                  <div class="media-body">
-                    <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
-                      <div class="d-block">
-                        <h5 class="h6">James Coolman</h5>
-
-                        <!-- Rating -->
-                        <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-                          <li class="g-color-primary g-line-height-1_4">
-                            <i class="fa fa-star"></i>
-                          </li>
-                          <li class="g-color-primary g-line-height-1_4">
-                            <i class="fa fa-star"></i>
-                          </li>
-                          <li class="g-color-primary g-line-height-1_4">
-                            <i class="fa fa-star"></i>
-                          </li>
-                          <li class="g-color-primary g-line-height-1_4">
-                            <i class="fa fa-star"></i>
-                          </li>
-                          <li class="g-color-primary g-line-height-1_4">
-                            <i class="fa fa-star"></i>
-                          </li>
-                        </ul>
-                        <!-- End Rating -->
-
-                        <span class="d-block g-color-gray-dark-v5 g-font-size-11">June 7, 2017</span>
-                      </div>
-                      <div class="ml-auto">
-                        <a class="u-link-v5 g-color-black g-color-primary--hover g-font-size-12 text-uppercase" href="#">Reply</a>
-                      </div>
-                    </div>
-
-                    <p>The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels. Whether through commerce or just an experience to tell your brand's story, the time has come to start using development languages that fit your projects needs.</p>
-
-                    <ul class="list-inline my-0">
-                      <li class="list-inline-item g-mr-20">
-                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                          <i class="icon-medical-022 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 5
-                        </a>
-                      </li>
-                      <li class="list-inline-item g-mr-20">
-                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                          <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 1
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!-- End Review -->
-
-              
-              <!-- End Comment Form -->
-
-
-              
-            </div>
-          </div>
-        </div>
+   <!-- Review -->
+   <div class="container">
+     <div class="g-brd-y g-py-100">
+       <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="tab-pane fade show active g-pt-50" id="nav-1-2-accordion-default-hor-left-underline--1" role="tabpanel">
+         <h4 class="h4 mb-3" style="text-align: center">상품후기</h4>
+         <hr class="g-mb-60">
       </div>
+      <c:choose>
+        <c:when test="${empty product.productReviewList}">
+          <div id="accordion-12-1" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
+             <!-- Card -->
+             <div class="card g-brd-none g-brd-bottom g-brd-gray-light-v3 rounded-0 g-pb-30 g-mb-30">
+               <div id="accordion-12-1-heading-01" class="u-accordion__header g-color-gray-dark-v4 g-font-weight-500 g-font-size-16 g-pa-0" role="tab">
+                   아직 등록된 리뷰가 없습니다.
+               </div>
+             </div>
+             <!-- End Card -->
+           </div>
+        </c:when>
+        <c:otherwise>
+        <c:forEach items="${product.productReviewList}" var="review">
+	      <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
+	        <!-- Media -->
+	        <div class="media g-mb-30">
+	          <div class="media-body">
+	            <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
+	              <div class="d-block">
+	                <h5 class="h5"><b>제목 : ${review.reviewName}</b></h5>
+	
+	                <!-- Rating -->
+	                <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                  <li class="g-color-primary g-line-height-1_4">
+	                    <i class="fa fa-star"></i>
+	                  </li>
+	                  <li class="g-color-primary g-line-height-1_4">
+	                    <i class="fa fa-star"></i>
+	                  </li>
+	                  <li class="g-color-primary g-line-height-1_4">
+	                    <i class="fa fa-star"></i>
+	                  </li>
+	                  <li class="g-color-primary g-line-height-1_4">
+	                    <i class="fa fa-star"></i>
+	                  </li>
+	                  <li class="g-color-primary g-line-height-1_4">
+	                    <i class="fa fa-star"></i>
+	                  </li>
+	                  <li class="d-block g-color-gray-dark-v5 g-font-size-12"> |&nbsp; ${review.member.memberNickname}</li>
+	                </ul>
+	                <!-- End Rating -->
+	
+	                <fmt:parseDate var="cntday" value="${review.reviewDate}" pattern="yyyy-MM-dd"/>
+	                <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy-MM-dd"/>
+	              </div>
+	              <div class="ml-auto">
+	                <span class="d-block g-color-gray-dark-v5 g-font-size-12">${day}</span>
+	                <sec:authorize access="isAuthenticated()">
+	                  <c:if test="${review.member.memberId==memberId}">
+	                    <a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/review/delete/${review.reviewNo}/${product.productNo}">삭제</a>
+	                  </c:if>
+	                
+	                </sec:authorize>
+	                
+	                
+	              </div>
+	            </div>
+	
+	            <p>${review.reviewContent}</p>
+	
+	            <ul class="list-inline my-0">
+	              <!-- <li class="list-inline-item g-mr-20">
+	                <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+	                  <i class="icon-medical-022 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 5
+	                </a>
+	              </li> -->
+	              <li class="list-inline-item g-mr-20">
+	                <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
+	                  <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 1
+	                </a>
+	              </li>
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+	      </c:forEach>
+        </c:otherwise>
+      </c:choose>
+	      </div>
+	    </div>
+	          
+	  </div>
+	</div>
       <!-- End Review -->
       
       <!-- End Details -->

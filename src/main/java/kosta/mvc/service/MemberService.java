@@ -169,4 +169,8 @@ public class MemberService implements UserDetailsService {
     	return memberRepository.selectByMemberId(memberId);
     }
     
+    public Member selectByMemberNo(Long memberNo) {
+    	return memberRepository.selectByMemberNo(memberNo);
+    }
+    
 }

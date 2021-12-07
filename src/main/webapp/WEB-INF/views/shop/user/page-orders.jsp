@@ -185,8 +185,7 @@
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      반품하기
                      </a>  
-                     
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="${pageContext.request.contextPath}/shop/review/insert/${orderdetail.product.productNo}/${order.member.memberNo}">
                      리뷰작성
                      </a>  
                      
