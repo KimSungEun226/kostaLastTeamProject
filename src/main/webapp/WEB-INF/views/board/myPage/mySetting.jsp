@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <head>
   <!-- Title -->
   <title>내 정보 수정</title>

@@ -96,10 +96,10 @@
 		<div class="mb-5">
 			<c:choose>
 			<c:when test="${not empty requestScope.list}">
-             <h3 class="h6 d-inline-block">주문 내역 개수 : ${listSize.size()} 개</h3>
+             <h3 class="h6 d-inline-block">주문 내역 개수 : ${listSize} 개</h3>
              </c:when>
             <c:otherwise>
-            <h3 class="h6 d-inline-block">해당 내역 개수 : ${selectOrder.size()} 개</h3>
+            <h3 class="h6 d-inline-block">해당 내역 개수 : ${selectOrder.content.size()} 개</h3>
             </c:otherwise>
             </c:choose>
               
@@ -120,7 +120,7 @@
        	<div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
                <c:choose>
                <c:when test="${not empty requestScope.selectOrder}">
-               		<c:forEach items="${requestScope.selectOrder}" var="selectOrder">
+               		<c:forEach items="${requestScope.selectOrder.content}" var="selectOrder">
                	
                		<header class="g-bg-gray-light-v5 g-pa-20">
                 		<div class="row">
@@ -254,9 +254,61 @@
             
 
 
+            <c:choose>
+              <c:when test="${not empty requestScope.selectOrder}">
+              
+              
+              
+          <nav class="g-mb-100" aria-label="Page Navigation">
+        	<ul class="list-inline mb-0">
+         
+          	<c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/admin/selectOrderlist/${keyword}?nowPage=${startPage-1}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+            
+		    </c:if>
+          
+          
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+				  
+					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					       <c:set var="doneLoop" value="true"/>
+					    </c:if> 
+				    
+				  <c:if test="${not doneLoop}" >
+				  
+				      <li class="list-inline-item hidden-down">
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/shop/admin/selectOrderlist/${keyword}?nowPage=${i}">${i}</a> 
+		            </li>
+		         </c:if>
+            </c:forEach>
+            
+            
+            <c:if test="${(startPage+blockCount)<=list.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/admin/selectOrderlist/${keyword}?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+			
+          </ul>     
+              
+              </c:when>
 
-            <!-- Pagination -->
-            <nav class="g-mb-100" aria-label="Page Navigation">
+
+			<c:otherwise>
+			  <nav class="g-mb-100" aria-label="Page Navigation">
         	<ul class="list-inline mb-0">
          
           	<c:set var="doneLoop" value="false"/>
@@ -288,7 +340,7 @@
             </c:forEach>
             
             
-            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <c:if test="${(startPage+blockCount)<=list.getTotalPages()}">
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/admin/orderList/user?nowPage=${startPage+blockCount}" aria-label="Next">
                 <span aria-hidden="true">
@@ -301,6 +353,10 @@
 			
           </ul>
         </nav>   
+			</c:otherwise>
+			</c:choose>
+            <!-- Pagination -->
+            
             <!-- End Pagination -->
           </div>
           <!-- Orders -->

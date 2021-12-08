@@ -68,14 +68,7 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <c:choose>
-                  <c:when test="${empty member.profileImage}">
-                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
-                  </c:when>
-                  <c:otherwise>
-                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
-                  </c:otherwise>
-                </c:choose>             
+                <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
               </figure>
 
               <!-- End Figure Caption -->
@@ -157,7 +150,7 @@
 		                    </div>
 		                  </div>
 		
-		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10"><fmt:formatNumber value="${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}" pattern=".0"/>%</span></h6>
+		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10"><fmt:formatNumber value="${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}" pattern="0"/>%</span></h6>
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
 		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
@@ -171,7 +164,7 @@
               
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
-                <div class="g-bg-purple g-color-white g-pa-25">
+                <div class="g-bg-purple g-color-white g-pa-25" style="word-break:break-all;">
                   <header class="d-flex text-uppercase g-mb-40">
                     <i class="icon-layers align-self-center display-4 g-mr-20"></i>
 
@@ -182,7 +175,7 @@
                   </header>
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
-                    <div class="g-line-height-1">
+                    <div class="g-line-height-1" style="word-break:break-all; ">
                       <c:choose>
                       	<c:when test="${empty member.memberMessage}">
                       		<h5 class="h6 g-font-weight-600">다짐 메세지를 작성해주세요!</h5>

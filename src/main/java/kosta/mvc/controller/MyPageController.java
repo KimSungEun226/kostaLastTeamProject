@@ -163,17 +163,19 @@ public class MyPageController {
 	    			
 	    			_exist = new File(path+"/"+saveFileName).isFile();
 	    			if(!_exist) fileName = saveFileName;
-	    		}
-	    		member.setProfileImage(fileName);
-	    		System.out.println("member.getProfileImage() : "+member.getProfileImage());
+	    		}	    		
 	    	}
+			
 			try {
 			      file.transferTo(new File(path+"/" + fileName));
-				}catch (Exception e) {
+			}catch (Exception e) {
 					e.printStackTrace();
-				}
+			}
+			member.setProfileImage(fileName);
+			System.out.println("member.getProfileImage() : "+member.getProfileImage());
 		}
-				
+		
+		
 		myPageService.update(member, path);
 		
 		return "redirect:/myPage/setting";

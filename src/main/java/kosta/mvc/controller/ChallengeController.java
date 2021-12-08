@@ -122,59 +122,65 @@ public class ChallengeController {
 
 		  //진행중인 챌린지가 있다.
 		  if(ischallenge!=null) { 
-
-			  //오늘 날짜구하기
-			  LocalDate today = LocalDate.now();
-			  System.out.println("today : "+today);
-			  
-			  //challengeNo에 해당하는 boardList 
-			  List<Board> boardList = boardService.findByChallengeNo(ischallenge.getChallengeNo());
-			  
-			  
-			  for(Board b : boardList) {				  
-				  if((b.getBoardRegdate().equals(today))) {
-					  System.out.println("cnt유지!!");					  
-					  
-			      //오늘 해당 챌린지의 처음 게시물을 올렸을때   
-				  }else {
-					  Info info = member.getInfo();
-					  
-					  //경험치 +10추가, 총 게시물 수 +1증가 
-					  if(ischallenge.getChallengeCnt()<28) {
-						  challengeService.update(info, 10);
-					  }
-					  //경험치 +50추가, 총 게시물 수 +1증가 
-					  if(ischallenge.getChallengeCnt()==28) {
-						  challengeService.update(info, 60);
-						  
-						  //챌린지 성공으로 상태바꾸기  
-						  ischallenge.setChallengeState(2);
+			  if(ischallenge.getDailyCheck() == 0) {
+				  //오늘 날짜구하기
+				  LocalDate today = LocalDate.now();
+				  System.out.println("today : "+today);
 				  
-					  }
+				  //challengeNo에 해당하는 boardList 
+				  List<Board> boardList = boardService.findByChallengeNo(ischallenge.getChallengeNo());
+				  
+				  /**
+				   * dailycheck 글쓰면 1
+				   * dailycheck 1이니까 challengCnt +1 
+				   * dailycheck ==1 -> 유지  
+				   */
+				  for(Board b : boardList) {				  
+//					  if((b.getBoardRegdate().equals(today))) {
+//						  System.out.println("cnt유지!!");					  
+//						  
+//				      //오늘 해당 챌린지의 처음 게시물을 올렸을때   
+//					  }else {
+						  Info info = member.getInfo();
+						  
+						  //경험치 +10추가, 총 게시물 수 +1증가 
+						  if(ischallenge.getChallengeCnt()<28) {
+							  challengeService.update(info, 10);
+						  }
+						  //경험치 +50추가, 총 게시물 수 +1증가 
+						  if(ischallenge.getChallengeCnt()==28) {
+							  challengeService.update(info, 60);
+							  
+							  //챌린지 성공으로 상태바꾸기  
+							  ischallenge.setChallengeState(2);
 					  
-					  //cnt증가
-					  int challengeCnt=ischallenge.getChallengeCnt()+1;
-					  ischallenge.setChallengeCnt(challengeCnt);
-					  System.out.println("cnt증가!!");
-					  
-					  //dailyCheck 1로 바꾸기
-					  ischallenge.setDailyCheck(1);
+						  }
+						  
+						  
+						  
+					  //}
 					  
 				  }
 				  
-			  }
-			  
-			  challengeService.update(ischallenge);
-			  
-			  //member.setInfo(info);
-			  board.setMember(member);
-			  board.setChallenge(ischallenge);
-			  boardService.insert(board);
-			  
-			  //게시물 작성 수 1증가 
-			  int contentNo=member.getInfo().getContentNo()+1;
-			  member.getInfo().setContentNo(contentNo);
-			  		  
+				//cnt증가
+				  int challengeCnt=ischallenge.getChallengeCnt()+1;
+				  ischallenge.setChallengeCnt(challengeCnt);
+				  System.out.println("cnt증가!!");
+				  
+				  //dailyCheck 1로 바꾸기
+				  ischallenge.setDailyCheck(1);
+				  
+				  challengeService.update(ischallenge);
+				  
+				  //member.setInfo(info);
+				  board.setMember(member);
+				  board.setChallenge(ischallenge);
+				  boardService.insert(board);
+				  
+				  //게시물 작성 수 1증가 
+				  int contentNo=member.getInfo().getContentNo()+1;
+				  member.getInfo().setContentNo(contentNo);
+			  }  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
 			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember(), 1);
