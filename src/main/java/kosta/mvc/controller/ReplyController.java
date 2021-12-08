@@ -37,12 +37,14 @@ public class ReplyController {
 		//member 객체의 memberNickname 가져와서 memberNick에 담기
 		String memberNickname = member.getMemberNickname(); 
 		//System.out.println("memberNickname : " + memberNickname);
+		String memberId = member.getMemberId();
 		
 		//부모글번호를 Reply에 세팅
 		reply.setBoard(Board.builder().boardNo(boardNo).build());
 		
 		//댓글 객체에 로그인 되어있는 member객체를 넣어준다
 		//reply.setMember(member);
+		reply.setMemberId(memberId);
 		reply.setMemberNickname(memberNickname);
 		replyService.insert(reply);
 		

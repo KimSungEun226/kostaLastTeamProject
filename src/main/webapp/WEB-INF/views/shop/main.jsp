@@ -442,7 +442,7 @@
       <div class="row g-mx-minus-10">
         <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
           <article class="u-block-hover">
-            <img class="img-fluid u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/chickenmain.jpg" alt="Image Description">
+            <img class="img-fluid u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/chickenmain1.jpg" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <h2 class="h1 mb-0">닭가슴살</h2>
             </div>

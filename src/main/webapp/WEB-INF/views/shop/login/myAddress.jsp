@@ -237,6 +237,8 @@
                     </c:if>
                     
                     </h3>
+                    
+                    
                     <span class="d-block g-color-gray-dark-v3 g-font-weight-600 mb-2">받는 분: ${addr.receiver}</span>
 
                     <!-- Address -->
