@@ -63,12 +63,6 @@ public class MyPageController {
 		//gradeList
 		List<Grade> gradeList = myPageService.selectGradeList(); 
 		
-		for(Grade grade : gradeList) {
-			System.out.println("levelNo : "+grade.getLevelNo());
-			System.out.println("MinExp : "+grade.getLevelMin());
-			System.out.println("MaxExp : "+grade.getLevelMax());
-		}
-		
 		mv.addObject("gradeList",gradeList);
 		mv.setViewName("board/myPage/main");
 		return mv;

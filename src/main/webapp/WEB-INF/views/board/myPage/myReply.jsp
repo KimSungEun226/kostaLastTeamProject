@@ -67,15 +67,15 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
-
-              <!-- User Info -->
-              <span class="g-pos-abs g-top-20 g-left-0">
-                  <a class="btn btn-sm u-btn-primary rounded-0" href="#">등급이름</a>
-                  <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small>
-                </span>
-              <!-- End User Info -->
             </div>
             <!-- User Image -->
 
