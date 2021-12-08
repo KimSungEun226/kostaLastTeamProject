@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,31 +153,33 @@
 		              <div class="col-md-6 g-mb-30 g-mb-0--md">
 		                <div class="g-bg-cyan g-color-white g-pa-25">
 		                  <header class="d-flex text-uppercase g-mb-40">
-		                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
+		                    <!-- <i class="icon-people align-self-center display-4 g-mr-20"></i> -->
+		                    <img class="g-width-40 g-height-40 rounded-circle" src="${pageContext.request.contextPath}/save/grade/${grade.levelImg}" alt="Image Description">
 		
 		                    <div class="g-line-height-1">
-		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelMax} 위</h4>
-		                      <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div>
+		                      <h4 class="h5">나의 경험치</h4>
+		                      <h4 class="h5">${grade.levelName} 등급 </h4>
+		                      <!-- <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div> -->
 		                    </div>
 		                  </header>
 		
 		                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
 		                    <div class="g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">12345</h5>
-		                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
+		                      <h5 class="h6 g-font-weight-600">현재경험치</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${member.info.memberExp}</div>
 		                    </div>
 		
 		                    <div class="text-right g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-		                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
+		                      <h5 class="h6 g-font-weight-600">다음경험치까지</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${grade.levelMax - member.info.memberExp + 1}</div>
 		                    </div>
 		                  </div>
 		
-		                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
+		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10">${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%</span></h6>
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
-		                  <small class="g-font-size-12">11% less than last month</small>
+		                  <small class="g-font-size-12">${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}% 남았습니다.</small>
 		                </div>
 		              </div>
 		            </c:when>		            
@@ -192,13 +195,13 @@
 
                     <div class="g-line-height-1">
                       <h4 class="h5">다짐 메세지</h4>
-                      <div class="js-counter g-font-size-30" data-comma-separated="true">324056</div>
+                      <h4 class="h5">다짐 메세지</h4>
                     </div>
                   </header>
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
                     <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Week</h5>
+                      <h5 class="h6 g-font-weight-600">${member.memberMessage}</h5>
                       <div class="js-counter g-font-size-16" data-comma-separated="true">26904</div>
                     </div>
 
@@ -291,13 +294,44 @@
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <a class="g-mr-5" href="${pageContext.request.contextPath}/myPage/challenge/${challenge.challengeNo}">${challenge.challengeNo}</a>
-                              <small class="g-font-size-12 g-color-blue">도전한 날 :  ${challenge.challengeDate}</small>
+                              <a class="g-mr-5" href="${pageContext.request.contextPath}/myPage/challenge/${challenge.challengeNo}">
+                                <c:if test="${challenge.challengeCategory == 1 }">
+                              		30일 아침밥 챙기기
+                              	</c:if>
+                              	<c:if test="${challenge.challengeCategory == 2 }">
+                              		30일 유산소 운동하기
+                              	</c:if>
+                              	<c:if test="${challenge.challengeCategory == 3 }">
+                              		30일 플랭크하기
+                              	</c:if>
+                              	<c:if test="${challenge.challengeCategory == 4 }">
+                              		30일 전신운동하기
+                              	</c:if>
+                              </a>
+                              <fmt:parseDate var="cntday" value="${challenge.challengeDate}" pattern="yyyy-MM-dd"/> 
+                              <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy년MM월dd일"/>
+                              <small class="g-font-size-12 g-color-blue">${day} 도전시작!</small>
                             </h5>
-                          <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                          <c:if test="${challenge.challengeState == 0 }">
+                          	<p class="m-0">성공까지 <b>${29 - challenge.challengeCnt}일</b> 남았어요! 조금만 더 힘내주세요.</p>
+                          </c:if>
+                          <c:if test="${challenge.challengeState == 1}">
+                          	<p class="m-0">앗.. 다시한번 도전해 주세요!</p>
+                          </c:if>
+                          <c:if test="${challenge.challengeState == 2}">
+                          	<p class="m-0">대단해요! 다른 챌린지도 도전해 보세요.</p>
+                          </c:if>
                         </div>
                         <div class="align-self-center ml-auto">
-                          <span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">$25 / hr</span>
+                          <c:if test="${challenge.challengeState == 0}">
+                          	<span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">도전중</span>
+                          </c:if>
+                          <c:if test="${challenge.challengeState == 1}">
+                          	<span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">도전실패</span>
+                          </c:if>
+                          <c:if test="${challenge.challengeState == 2}">
+                          	<span class="u-label u-label--sm g-bg-blue g-rounded-20 g-px-10">도전성공</span>
+                          </c:if>
                         </div>
                       </li>
                       
