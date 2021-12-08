@@ -18,7 +18,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 	List<Cart> selectCart(String id);
 	
 	/**
-	 * 같은 상품번호에 해당하는 cart 정보가 있는지 조회
+	 * 같은 상품번호에 해당하는 cart 정보가 있는지 조회 (session 아이디에 추가)
 	 * */
 	@Query("select c.cartNo from Cart c inner join c.product p where c.cartValue=?1 and p.productNo=?2")
 	Long doubleCheck(String id, Long productNo);
@@ -28,6 +28,12 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 	 * */
 	@Query("select c.cartNo from Cart c inner join c.product p where c.cartValue=?1 and p.productNo=?2")
 	Long selectByPno(String id, Long productNo);
+	
+	/**
+	 * 같은 상품번호에 해당하는 cart 정보가 있는지 조회 (회원 아이디에 추가)
+	 * */
+	@Query("select c.cartNo from Cart c inner join c.product p where c.cartValue=?1 and p.productNo=?2")
+	Long doubleCheck(Long id, Long productNo);
 	
 	 
 	

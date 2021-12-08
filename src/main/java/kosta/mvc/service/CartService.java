@@ -13,7 +13,7 @@ public interface CartService {
 	List<Cart> selectCart(String id);
 	
 	/**
-	 * 회원/식별번호에 해당하는 장바구니에 상품 추가
+	 * single페이지에서 회원/식별번호에 해당하는 장바구니에 상품 추가
 	 * */
 	void insertCart(String id, Long productNo, int qty);
 	
@@ -29,8 +29,15 @@ public interface CartService {
 	void updateCart(List<Cart> cartList);
 	
 	/**
-	 * 로그인전 세션에 저장된 장바구니를
-	 * 로그인된 회원의 장바구니로 옮긴다.
+	 * 상품 목록에서 식별번호에 해당하는 장바구니에 상품 추가
 	 * */
+	void insertCart(String id, Long pno);
+	
+	/**
+	 * 상품 목록에서 회원 아이디에 해당하는 장바구니에 상품 추가
+	 * */
+	void insertCart(Long id, Long pno);
+
+	
 	void moveCart(List<Cart> cartList, String id);
 }

@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -144,6 +143,8 @@ public class CartController {
 		 
 		 return "redirect:/shop/selectCart";
 	 }
+	 
+	 
 	 
 	 
 }
