@@ -96,7 +96,7 @@
 		<div class="mb-5">
 			<c:choose>
 			<c:when test="${not empty requestScope.list}">
-             <h3 class="h6 d-inline-block">주문 내역 개수 : ${list.content.size()} 개</h3>
+             <h3 class="h6 d-inline-block">주문 내역 개수 : ${listSize.size()} 개</h3>
              </c:when>
             <c:otherwise>
             <h3 class="h6 d-inline-block">해당 내역 개수 : ${selectOrder.size()} 개</h3>
@@ -256,7 +256,7 @@
 
 
             <!-- Pagination -->
-            <%-- <nav class="g-mb-100" aria-label="Page Navigation">
+            <nav class="g-mb-100" aria-label="Page Navigation">
         	<ul class="list-inline mb-0">
          
           	<c:set var="doneLoop" value="false"/>
@@ -300,7 +300,7 @@
 			</c:if>
 			
           </ul>
-        </nav>    --%>
+        </nav>   
             <!-- End Pagination -->
           </div>
           <!-- Orders -->

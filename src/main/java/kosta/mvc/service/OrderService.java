@@ -98,4 +98,9 @@ public interface OrderService {
 	 * */
 	List<UserOrder> orderListSelectByKeyword(String keyword);
 	
+	/**
+	 * 전체 리스트 검색
+	 * */
+	List<UserOrder> findAllList();
+	
 }

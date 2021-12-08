@@ -154,6 +154,8 @@ public class OrderController {
 			mv.addObject("list", orderList);
 			mv.setViewName("shop/admin/page-orders-nonuser");
 		}
+		List<UserOrder> listSize = orderService.findAllList();
+		mv.addObject("listSize", listSize);
 		
 		return mv;
 	}

@@ -201,6 +201,11 @@ public class OrderServiceImpl implements OrderService {
 		return userOrderRepository.selectByKeyword(keyword);
 	}
 
+	@Override
+	public List<UserOrder> findAllList() {
+		return userOrderRepository.findAll();
+	}
+
 	
 	
 	
