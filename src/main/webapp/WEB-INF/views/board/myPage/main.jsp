@@ -152,31 +152,33 @@
 		              <div class="col-md-6 g-mb-30 g-mb-0--md">
 		                <div class="g-bg-cyan g-color-white g-pa-25">
 		                  <header class="d-flex text-uppercase g-mb-40">
-		                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
+		                    <!-- <i class="icon-people align-self-center display-4 g-mr-20"></i> -->
+		                    <img class="g-width-40 g-height-40 rounded-circle" src="${pageContext.request.contextPath}/save/grade/${grade.levelImg}" alt="Image Description">
 		
 		                    <div class="g-line-height-1">
-		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelMax} 위</h4>
-		                      <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div>
+		                      <h4 class="h5">나의 경험치</h4>
+		                      <h4 class="h5">${grade.levelName} 등급 </h4>
+		                      <!-- <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div> -->
 		                    </div>
 		                  </header>
 		
 		                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
 		                    <div class="g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">12345</h5>
-		                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
+		                      <h5 class="h6 g-font-weight-600">현재경험치</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${member.info.memberExp}</div>
 		                    </div>
 		
 		                    <div class="text-right g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-		                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
+		                      <h5 class="h6 g-font-weight-600">다음경험치까지</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${grade.levelMax - member.info.memberExp + 1}</div>
 		                    </div>
 		                  </div>
 		
-		                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
+		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10">${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%</span></h6>
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
-		                  <small class="g-font-size-12">11% less than last month</small>
+		                  <small class="g-font-size-12">${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}% 남았습니다.</small>
 		                </div>
 		              </div>
 		            </c:when>		            
