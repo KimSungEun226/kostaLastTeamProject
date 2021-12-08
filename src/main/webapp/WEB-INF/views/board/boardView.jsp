@@ -16,25 +16,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-line-pro/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/icon-hs/style.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
-  <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css">
-  <link rel="stylesheet" href="../../assets/vendor/hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-line-pro/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-hs/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/hamburgers/hamburgers.min.css">
 
   <!-- CSS Unify -->
-  <link rel="stylesheet" href="../../assets/css/unify-core.css">
-  <link rel="stylesheet" href="../../assets/css/unify-components.css">
-  <link rel="stylesheet" href="../../assets/css/unify-globals.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-core.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-components.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="../../assets/css/custom.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
   
 </head>
 
@@ -298,7 +298,7 @@
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
                 <li class="list-inline-item g-color-gray-dark-v4 mr-2">
                   <span class="d-inline-block g-color-gray-dark-v4">
-                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
+                      <img class="g-g-width-20 g-height-20 rounded-circle mr-2" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img7.jpg" alt="Image Description">
                       ${board.memberNickname}
                     </span>
                 </li>
@@ -369,50 +369,34 @@
           </ul>
         </nav>
         <!-- End Pagination -->
-		
-
-           
           </div>
         </div>
-        
 
         <div class="col-lg-3 order-lg-1 g-brd-right--lg g-brd-gray-light-v4 g-mb-80">
           <div class="g-pr-20--lg">
-          <!-- Start 나의 BMI 지수는? -->
-              <div class="g-mb-50">
-                <!-- <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3> -->
-                <!-- Strat BMI button -->
-                <div class="input-group g-mb-10">
-                    <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-communication-106 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover" onclick="location.href='${pageContext.request.contextPath}/board/write'">글쓰기</button>
-                </div>
-                
-                <div class="input-group g-mb-10">
-                    <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">내 BMI지수 계산하기</button>
-                </div>
-                <!-- End BMI button -->
-                <!-- Strat BMI button -->
-                <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">칼로리 처방받기</button>
-                </div>
-                <!-- End BMI button -->
-                
-              </div>
-            <!-- End 나의 BMI 지수는? -->
+            <!-- Start 사이드 메뉴(BMI, 칼로리계산) -->
+            <div class="g-mb-50">
+              <!-- Strat BMI button -->
+              <div class="input-group g-mb-10">
+                <span class="input-group-btn">
+                  <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20" onclick="location.href='${pageContext.request.contextPath}/bmiInput'">
+                    <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
+                  </button>
+                </span>
+                <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover" onclick="location.href='${pageContext.request.contextPath}/bmiInput'">내 BMI지수 계산하기</button>
+              </div><!-- End BMI button -->
+              
+              <!-- Strat 칼로리 처방 -->
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20" onclick="location.href='${pageContext.request.contextPath}/calPreInput'">
+                    <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
+                  </button>
+                </span>
+                <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover" onclick="location.href='${pageContext.request.contextPath}/calPreInput'">칼로리 처방받기</button>
+              </div><!-- End 칼로리 처방 -->
+            </div><!-- End 사이드 메뉴(BMI, 칼로리계산) -->
+            
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
             <c:choose>
@@ -484,7 +468,7 @@
                 <ul class="list-unstyled g-font-size-13 mb-0">
                   <li>
                     <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img1.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">Htmlstream</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -494,7 +478,7 @@
                   </li>
                   <li>
                     <article class="media g-mb-35">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img3.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img3.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">Pixeel</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -504,7 +488,7 @@
                   </li>
                   <li>
                     <article class="media">
-                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="../../assets/img-temp/100x100/img2.jpg" alt="Image Description">
+                      <img class="d-flex g-width-40 g-height-40 rounded-circle mr-3" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img2.jpg" alt="Image Description">
                       <div class="media-body">
                         <h4 class="h6 g-color-black g-font-weight-600">WrapBootstrap</h4>
                         <p class="g-color-gray-dark-v4">This is where we sit down, grab a cup of coffee and dial in the details.</p>
@@ -571,25 +555,25 @@
 
 
   <!-- JS Global Compulsory -->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-  <script src="../../assets/vendor/popper.js/popper.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
 
 
   <!-- JS Implementing Plugins -->
-  <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
 
   <!-- JS Unify -->
-  <script src="../../assets/js/hs.core.js"></script>
-  <script src="../../assets/js/components/hs.header.js"></script>
-  <script src="../../assets/js/helpers/hs.hamburgers.js"></script>
-  <script src="../../assets/js/components/hs.tabs.js"></script>
-  <script src="../../assets/js/components/hs.sticky-block.js"></script>
-  <script src="../../assets/js/components/hs.go-to.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.tabs.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.sticky-block.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
 
   <!-- JS Customization -->
-  <script src="../../assets/js/custom.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
   <!-- JS Plugins Init. -->
   <script>
