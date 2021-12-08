@@ -136,15 +136,25 @@ public class CartController {
 	  /**
 	   * 장바구니 내용 수정
 	   * */
-	 @RequestMapping("/updateCart")
-	 public String updateCart(CartListDTO cartList) {
+	  @RequestMapping("/updateCart")
+	  public String updateCart(CartListDTO cartList) {
 		 
 		 cartService.updateCart(cartList.getList());
 		 
 		 return "redirect:/shop/selectCart";
+	  }
+	 
+	 /**
+	  * 상품목록에서 장바구니에 해당 상품 1 추가
+	  * */
+	 @RequestMapping("/addToCart/{cateCode}/{pno}")
+	 public String addOneToCart(@PathVariable int cateCode, @PathVariable Long pno, HttpSession session, Principal principal) {
+
+		 if (principal!=null) cartService.insertCart(principal.getName(), pno, 1);
+			else cartService.insertCart(session.getId(), pno, 1); 
+		 
+		 return "redirect:/shop/select/"+cateCode;
 	 }
-	 
-	 
 	 
 	 
 }
