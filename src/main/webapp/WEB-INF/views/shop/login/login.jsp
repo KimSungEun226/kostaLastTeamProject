@@ -45,7 +45,7 @@
             </header>
 
             <!-- Form -->
-              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/login" method="post">
+              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/loginProcess" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- csrf 토큰 값 -->
                 <div class="mb-2">
                   <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">

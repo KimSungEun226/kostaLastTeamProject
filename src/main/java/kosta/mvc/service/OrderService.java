@@ -93,4 +93,14 @@ public interface OrderService {
 	 * */
 	Page<UserOrderDetail> userCancleOrderDetailPage(List<UserOrder> list, Pageable pageable, int status);
 	
+	/**
+	 * 관리자가 회원 주문내역 검색어로 검색
+	 * */
+	List<UserOrder> orderListSelectByKeyword(String keyword);
+	
+	/**
+	 * 전체 리스트 검색
+	 * */
+	List<UserOrder> findAllList();
+	
 }

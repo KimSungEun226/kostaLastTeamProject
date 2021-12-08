@@ -60,6 +60,7 @@ public class MultiHttpSecurityConfig {
 	                .formLogin()
 	                //.loginPage("/login")
 	                .loginPage("/shop/login")
+	                .loginProcessingUrl("/shop/loginProcess")
 	                .defaultSuccessUrl("/shop/main")
 	                .permitAll()
 	                
@@ -112,6 +113,7 @@ public class MultiHttpSecurityConfig {
 	                .formLogin()
 	                .loginPage("/login")
 	                .defaultSuccessUrl("/user/main")
+	                .authenticationDetailsSource(null)
 	                .permitAll()
 	                
 	            .and() // 로그아웃 설정

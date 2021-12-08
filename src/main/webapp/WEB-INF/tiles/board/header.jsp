@@ -132,10 +132,6 @@
                       </ul><!-- End Submenu (level 2) -->
                     </li><!-- End 커뮤니티 - 지역 게시판 -->	
 
-					<!-- 커뮤니티 - 질문 게시판 -->
-                    <li class="dropdown-item ">
-                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">질문 게시판</a>
-                    </li><!-- End 커뮤니티 - 질문 게시판 -->
 	
                     <!-- 커뮤니티 - 일기 -->
                     <li class="dropdown-item">

@@ -48,11 +48,11 @@
 		        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 전체</h4>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -68,11 +68,11 @@
 	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 일기</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -88,11 +88,11 @@
 	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 자유게시판</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -108,11 +108,11 @@
 	        <h4 class="h4 g-color-black g-font-weight-600">커뮤니티 > 지역게시판</h4>
 	        <ul class="u-list-inline">
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">Home</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-mr-5">
-	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+	            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 	            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 	          </li>
 	          <li class="list-inline-item g-color-primary">
@@ -135,11 +135,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 서울</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -155,11 +155,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 경기·인천</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -175,11 +175,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 강원도</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -195,11 +195,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 충청도</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -215,11 +215,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 전라도</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -235,11 +235,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 경상도</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -255,11 +255,11 @@
 		        <h3 class="h4 g-color-black g-font-weight-600">지역게시판 > 제주도</h3>
 		        <ul class="u-list-inline">
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">커뮤니티</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/0">커뮤니티</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-mr-5">
-		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="#">지역게시판</a>
+		            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/board/select/4">지역게시판</a>
 		            <i class="g-color-gray-light-v2 g-ml-5">/</i>
 		          </li>
 		          <li class="list-inline-item g-color-primary">
@@ -293,8 +293,6 @@
                 <h2 class="h4 g-color-black g-font-weight-600 mb-3"> 
                     <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
                   </h2>
-                <!-- <p class="g-color-gray-dark-v4 g-line-height-1_8"></p> --><!-- 글내용 -->
-                <a class="g-font-size-13" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">Read more...</a>
               </div>
 
               <ul class="list-inline g-brd-y g-brd-gray-light-v3 g-font-size-13 g-py-13 mb-0">
@@ -461,11 +459,11 @@
             </c:choose>
             <!-- End Links -->
 
-            <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
+            <!-- <hr class="g-brd-gray-light-v4 g-mt-50 mb-0"> -->
 
             <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-50" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end">
               <!-- Publications -->
-              <div class="g-mb-50">
+              <!-- <div class="g-mb-50">
                 <h3 class="h5 g-color-black g-font-weight-600 mb-4">Publications</h3>
                 <ul class="list-unstyled g-font-size-13 mb-0">
                   <li>
@@ -499,13 +497,13 @@
                     </article>
                   </li>
                 </ul>
-              </div>
+              </div> -->
               <!-- End Publications -->
 
-              <hr class="g-brd-gray-light-v4 g-my-50">
+              <!-- <hr class="g-brd-gray-light-v4 g-my-50"> -->
 
               <!-- Tags -->
-              <div class="g-mb-40">
+              <!-- <div class="g-mb-40">
                 <h3 class="h5 g-color-black g-font-weight-600 mb-4">Tags</h3>
                 <ul class="u-list-inline mb-0">
                   <li class="list-inline-item g-mb-10">
@@ -530,10 +528,10 @@
                     <a class="u-tags-v1 g-color-gray-dark-v4 g-color-white--hover g-bg-gray-light-v5 g-bg-primary--hover g-font-size-12 g-rounded-50 g-py-4 g-px-15" href="#">Sass</a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
               <!-- End Tags -->
 
-              <hr class="g-brd-gray-light-v4 g-my-50">
+              <!-- <hr class="g-brd-gray-light-v4 g-my-50"> -->
               
             </div>
           </div>
