@@ -178,6 +178,7 @@ public class ChallengeController {
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
 			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember(), 1);
+
 			  
 			  //경험치 증가, 게시물 작성 수 1증가
 			  Info info = member.getInfo();

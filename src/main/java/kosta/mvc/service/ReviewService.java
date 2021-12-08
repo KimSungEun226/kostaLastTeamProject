@@ -12,5 +12,5 @@ public interface ReviewService {
 	/**
 	 * 삭제
 	 */
-	void delete(int no);
+	void delete(Long no);
 }

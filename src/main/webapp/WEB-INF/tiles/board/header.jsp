@@ -139,9 +139,9 @@
                     </li><!-- End 커뮤니티 - 일기 -->
                     
                     <!-- 커뮤니티 - 글쓰기 -->
-                    <li class="dropdown-item">
+                    <%-- <li class="dropdown-item">
                       <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/write" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">글쓰기</a>
-                    </li><!-- End 커뮤니티 - 글쓰기 -->
+                    </li> --%><!-- End 커뮤니티 - 글쓰기 -->
 
                     
                   </ul>

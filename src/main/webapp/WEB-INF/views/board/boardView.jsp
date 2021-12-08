@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -365,7 +366,9 @@
                 <span class="sr-only">Next</span>
               </a>
             </li> -->
+            <sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
             <span><a class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" href="${pageContext.request.contextPath}/board/write">글쓰기</a></span>
+            </sec:authorize>
           </ul>
         </nav>
         <!-- End Pagination -->
