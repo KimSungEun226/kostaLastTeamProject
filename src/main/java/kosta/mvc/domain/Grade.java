@@ -22,8 +22,9 @@ public class Grade {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "level_no_seq")
 	@SequenceGenerator(sequenceName = "level_no_seq", allocationSize = 1, name = "level_no_seq")
 	private int levelNo;	//레벨 번호
-	private String levelName;	//레벨 이름
-	private int levelExp;	//필요 경험치 
-	private String levelImg;	//등급 이미지 
-	
+	private String levelName;	//레벨 이름	
+	private String levelImg;	//등급 이미지
+	private int levelMin;	//레벨당 최소경험치
+	private int levelMax;	//레벨당 최대경험치
+		
 }
