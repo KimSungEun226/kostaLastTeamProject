@@ -143,39 +143,47 @@
           <div class="col-lg-9">
             <!-- Overall Statistics -->
             <div class="row g-mb-40">
-              <!-- START 나의 등급 -->
-              <div class="col-md-6 g-mb-30 g-mb-0--md">
-                <div class="g-bg-cyan g-color-white g-pa-25">
-                  <header class="d-flex text-uppercase g-mb-40">
-                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
-
-                    <div class="g-line-height-1">
-                      <h4 class="h5">나의 경험치</h4>
-                      <div class="js-counter g-font-size-30" data-comma-separated="true">${member.info.memberExp}</div>
-                    </div>
-                  </header>
-
-                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
-                    <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Week</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
-                    </div>
-
-                    <div class="text-right g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
-                    </div>
-                  </div>
-
-                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">11% less than last month</small>
-                </div>
-              </div>
-              <!-- 나의 등급 End -->
+            
+            
+            <!-- START 나의 등급 -->
+              <c:forEach items="${requestScope.gradeList}" var="grade">
+	              <c:choose>
+	              	<c:when test="${member.info.memberExp >= grade.levelMin and member.info.memberExp <= grade.levelMax}">		              
+		              <div class="col-md-6 g-mb-30 g-mb-0--md">
+		                <div class="g-bg-cyan g-color-white g-pa-25">
+		                  <header class="d-flex text-uppercase g-mb-40">
+		                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
 		
+		                    <div class="g-line-height-1">
+		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelMax} 위</h4>
+		                      <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div>
+		                    </div>
+		                  </header>
+		
+		                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
+		                    <div class="g-line-height-1">
+		                      <h5 class="h6 g-font-weight-600">12345</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
+		                    </div>
+		
+		                    <div class="text-right g-line-height-1">
+		                      <h5 class="h6 g-font-weight-600">Last Month</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
+		                    </div>
+		                  </div>
+		
+		                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
+		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
+		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+		                  </div>
+		                  <small class="g-font-size-12">11% less than last month</small>
+		                </div>
+		              </div>
+		            </c:when>		            
+	              </c:choose>
+              </c:forEach>
+              <!-- 나의 등급 End -->
+              
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
                 <div class="g-bg-purple g-color-white g-pa-25">
