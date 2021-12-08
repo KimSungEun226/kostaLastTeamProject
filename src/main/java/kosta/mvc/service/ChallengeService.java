@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.domain.Info;
+import kosta.mvc.domain.Member;
 
 public interface ChallengeService {
 	
@@ -31,25 +33,16 @@ public interface ChallengeService {
 	 * 챌린지 등록하기 
 	 */
 	void insert(Challenge challenge);
+	
+	/**
+	 * Info 정보(글 작성 ++, 경험치 +10)
+	 */
+	void update(Info info, int exp);
+	
+	/**
+	 * 챌린지 정보 업데이트 
+	 */
+	void update(Challenge ischallenge);
 
-	
-	/**
-	 * 등록하기
-	 */
 
-	/**
-	 * 상세보기
-	 */
-	
-	/**
-	 * 수정폼
-	 */
-	
-	/**
-	 * 수정완료
-	 */
-	
-	/**
-	 * 삭제하기
-	 */
 }

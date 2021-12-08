@@ -161,15 +161,11 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">EGYM SHOP</a>
-              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
-            </li>
-            <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">고객센터</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/main">EGYM SHOP</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>아이템 등록</span>
+              <span>상품 등록</span>
             </li>
           </ul>
         </div>
@@ -181,7 +177,7 @@
       
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
-          <h2 class="mb-5">아이템등록</h2>
+          <h2 class="mb-5">상품 등록</h2>
           <div class="col-md-8 g-mb-30">
             <!-- Tab panes -->
             <div id="nav-5-3-primary-ver" class="tab-content g-pt-20 g-pt-0--md">

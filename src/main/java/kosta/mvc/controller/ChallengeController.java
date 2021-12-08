@@ -21,6 +21,7 @@ import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
+import kosta.mvc.repository.MemberRepository;
 import kosta.mvc.service.BoardService;
 import kosta.mvc.service.ChallengeService;
 import kosta.mvc.service.MemberService;
@@ -36,6 +37,8 @@ public class ChallengeController {
 	private final BoardService boardService;
 	
 	private final MemberService memberService; 
+	
+	
 	 
 	
 	/**
@@ -109,6 +112,7 @@ public class ChallengeController {
 		  
 		  //로그인한 memberId로 member객체가져오기 
 		  Member member = memberService.selectByMemberId(principal.getName());
+		  
 		  //Info info = member.getInfo();
 		  //System.out.println("info : "+info);
 		  board.setBoardKind(5);
@@ -129,58 +133,67 @@ public class ChallengeController {
 			  //challengeNo에 해당하는 boardList 
 			  List<Board> boardList = boardService.findByChallengeNo(ischallenge.getChallengeNo());
 			  
-			  //오늘 해당 챌린지의 처음 게시물을 올렸을때 
+			  
 			  for(Board b : boardList) {				  
 				  if((b.getBoardRegdate().equals(today))) {
 					  System.out.println("cnt유지!!");
+					  
+			      //오늘 해당 챌린지의 처음 게시물을 올렸을때   
 				  }else {
+					  Info info = member.getInfo();
 					  
-					  //경험치 +10추가
-//					  if(ischallenge.getChallengeCnt()<29) {
-//						  int memberExp = member.getInfo().getMemberExp()+10;
-//						  info.setMemberExp(memberExp);
-//					  }
-//					  //경험치 +50추가
-//					  if(ischallenge.getChallengeCnt()==29) {
-//						  int memberExp = member.getInfo().getMemberExp()+50; 
-//						  //챌린지 성공으로 상태바꾸기  
-//						  ischallenge.setChallengeState(2);
-//						  info.setMemberExp(memberExp);					  
-//					  }
+					  //경험치 +10추가, 총 게시물 수 +1증가 
+					  if(ischallenge.getChallengeCnt()<30) {
+						  challengeService.update(info, 10);
+					  }
+					  //경험치 +50추가, 총 게시물 수 +1증가 
+					  if(ischallenge.getChallengeCnt()==30) {
+						  challengeService.update(info, 50);
+						  
+						  //챌린지 성공으로 상태바꾸기  
+						  ischallenge.setChallengeState(2);
+				  
+					  }
 					  
-					//cnt증가
+					  //cnt증가
 					  int challengeCnt=ischallenge.getChallengeCnt()+1;
 					  ischallenge.setChallengeCnt(challengeCnt);
-					  System.out.println("cnt증가!!");					  
+					  System.out.println("cnt증가!!");
+					  
+					  //dailyCheck 1로 바꾸기
+					  ischallenge.setDailyCheck(1);
+					  
 				  }
 				  
-				  System.out.println("-------------------------");
-				  boolean w =(b.getBoardRegdate().equals(today));
-				  System.out.println("(b.getBoardRegdate() == today) : "+w);
-				  System.out.println("board 등록일 : "+b.getBoardRegdate());
-				  System.out.println("today : "+today);
-	
-				  System.out.println("--------------------------");
 			  }
+			  
+			  challengeService.update(ischallenge);
 			  
 			  //member.setInfo(info);
 			  board.setMember(member);
 			  board.setChallenge(ischallenge);
 			  boardService.insert(board);
+			  
+			  //게시물 작성 수 1증가 
+			  int contentNo=member.getInfo().getContentNo()+1;
+			  member.getInfo().setContentNo(contentNo);
 			  		  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
-			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
-			  //int memberExp = info.getMemberExp()+10;
-			  //info.setMemberExp(memberExp);
+			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember(), 1);
 			  
-			  //member.setInfo(info);
+			  //경험치 증가, 게시물 작성 수 1증가
+			  Info info = member.getInfo();
+			  challengeService.update(info, 10);
+
 			  challenge.setMember(member);
 			  challengeService.insert(challenge);
 			  board.setMember(member);
 			  board.setChallenge(challenge);
 			  boardService.insert(board);
-		  }  
+			  		  
+		  }
+		    
 		return "board/challenge/detail";
 	}
 	

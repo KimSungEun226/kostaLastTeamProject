@@ -190,13 +190,26 @@
                    <!-- End Submenu -->
                  </li>
                  
-                <sec:authorize access="hasRole('ADMIN')">                   
+                <sec:authorize access="hasRole('ADMIN')">   
+                 <li class="nav-item g-mx-10--lg g-mx-15--xl"
+                     data-animation-in="fadeIn"
+                     data-animation-out="fadeOut"
+                     data-position="right">
+                   <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false">
+                     <b> | </b>
+                   </a>
+
+                   <!-- Mega Menu -->
+                   
+                   <!-- End Mega Menu -->
+                 </li> 
+                                
                  <li class="nav-item g-mx-10--lg g-mx-15--xl"
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
                      data-position="right">
                    <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/write" aria-haspopup="true" aria-expanded="false">
-                     <b>등록하기 폼</b>
+                     <b>상품등록</b>
                    </a>
 
                    <!-- Mega Menu -->
@@ -209,7 +222,7 @@
                      data-animation-out="fadeOut"
                      data-position="right">
                    <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/orderList/user" aria-haspopup="true" aria-expanded="false">
-                     <b>주문내역조회</b>
+                     <b>회원주문내역</b>
                    </a>
 
                    <!-- Mega Menu -->
@@ -223,7 +236,7 @@
                      data-animation-out="fadeOut"
                      data-position="right">
                    <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="${pageContext.request.contextPath}/shop/admin/orderList/nonuser" aria-haspopup="true" aria-expanded="false">
-                     <b>(비)주문내역조회</b>
+                     <b>비회원주문내역</b>
                    </a>
 
                    <!-- Mega Menu -->

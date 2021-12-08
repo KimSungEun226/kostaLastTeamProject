@@ -58,4 +58,9 @@ public interface RefundService {
 	 * */
 	public void agreeNonuserRefund(Long nonuserRefundNo);
 	
+	/**
+	 * 관리자가 환불내역을 검색어로 검색한다.
+	 * */
+	public List<UserRefund> selectRefundByKeyword(String keyword);
+	
 }

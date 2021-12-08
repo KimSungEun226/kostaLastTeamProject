@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.domain.Info;
+import kosta.mvc.domain.Member;
 import kosta.mvc.repository.BoardRepository;
 import kosta.mvc.repository.ChallengeRepository;
+import kosta.mvc.repository.InfoRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -21,6 +24,7 @@ public class ChallengeServiceImpl implements ChallengeService{
 
 	//private final BoardRepository boardRepository;
 	private final ChallengeRepository challengeRepository;
+	private final InfoRepository infoRepository;
 	
 	@Override
 	public Challenge selectChallenge(int challengeCategory, Long memberNo) {
@@ -43,5 +47,17 @@ public class ChallengeServiceImpl implements ChallengeService{
 		  Page<Board> p = challengeRepository.findByChallengeCategory(challenge_Category, pageable);
 		  return  p;
 	  }
-	 
+
+	@Override
+	public void update(Info info, int exp) {
+		info.setMemberExp(info.getMemberExp()+exp);
+		info.setContentNo(info.getContentNo()+1);
+		infoRepository.save(info);
+	}
+
+	@Override
+	public void update(Challenge ischallenge) {
+		challengeRepository.save(ischallenge);		
+	}
+	  
 }

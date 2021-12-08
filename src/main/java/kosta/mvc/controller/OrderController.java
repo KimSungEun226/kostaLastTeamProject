@@ -266,6 +266,8 @@ public class OrderController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/user/page-orders");
 		mv.addObject("list", pageList);
+		
+		mv.addObject("memberNo", m.getMemberNo());
 		return mv;
 	}
 	
@@ -332,8 +334,8 @@ public class OrderController {
 		return "redirect:/shop/admin/refundList/user";
 	}
 	
-	//관리자가 유저 orderlist 검색어로 검색한다.
-	@RequestMapping("admin/selectOrderlist/{keyword}")
+	//관리자가 유저 orderlist 검색어로 검색한다.(주문번호, 주문자명)
+	@RequestMapping("/admin/selectOrderlist/{keyword}")
 	public ModelAndView selectOrderlist(@PathVariable String keyword) {
 		System.out.println("검색어:"+keyword);
 		List<UserOrder> selectOrder=orderService.orderListSelectByKeyword(keyword);
@@ -344,8 +346,8 @@ public class OrderController {
 		return mv;
 	}
 	
-	//관리자가 비회원 orderlist 검색어로 검색한다.
-	@RequestMapping("admin/selectNonUserOrderlist/{keyword}")
+	//관리자가 비회원 orderlist 검색어로 검색한다.(주문번호, 주문자명)
+	@RequestMapping("/admin/selectNonUserOrderlist/{keyword}")
 	public ModelAndView selectNonUserOrderlist(@PathVariable String keyword) {
 		System.out.println("검색어:"+keyword);
 		List<NonuserOrder> selectOrder=orderService.nonuserOrderlistByKeyword(keyword);
@@ -354,6 +356,17 @@ public class OrderController {
 		mv.addObject("selectNonuserOrder", selectOrder);
 		return mv;
 		
+	}
+	
+	//관리자가 회원 환불내역을 검색어로 검색한다.(환불번호, 주문상세번호)
+	@RequestMapping("/admin/selectRefundByKeyword/{keyword}")
+	public ModelAndView selectRefundByKeyword(@PathVariable String keyword) {
+		System.out.println("검색어:"+keyword);
+		List<UserRefund> refundList=refundService.selectRefundByKeyword(keyword);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/admin/page-refund");
+		mv.addObject("refundList", refundList);
+		return mv;
 	}
 	
 }

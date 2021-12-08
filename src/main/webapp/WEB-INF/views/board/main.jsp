@@ -15,7 +15,7 @@
       <div class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll" data-options='{direction: "reverse", settings_mode_oneelement_max_offset: "150"}'>
         <div class="divimage dzsparallaxer--target w-100 g-bg-cover g-bg-pos-top-center g-bg-img-hero g-bg-bluegray-opacity-0_2--after" style="height: 130%; background-image: url(${pageContext.request.contextPath}/assets/img-temp/1920x700/main1.jpg);"></div>
 
-        <div class="container g-bg-cover__inner g-py-100">
+        <div class="container g-bg-cover__inner g-py-140 my-30" >
           <div class="row align-items-center">
             <div class="col-lg-6 g-mb-30 g-mb-0--lg">
               <h2 class="h1 g-color-white g-mb-30">
@@ -40,7 +40,7 @@
     </section><!-- End Promo Block -->
 
     <!-- 메인 아이콘 -->
-    <section class="g-py-100">
+    <section class="g-py-200">
       <div class="container">
         <div class="row no-gutters">
           
