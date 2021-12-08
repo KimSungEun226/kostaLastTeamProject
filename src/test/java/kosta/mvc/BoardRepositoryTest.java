@@ -78,13 +78,11 @@ public class BoardRepositoryTest {
 	
 //	 @Test 
 //	 public void testRead() {
-//		Pageable pageable = PageRequest.of(0,5, Direction.DESC, "userOrderDetailNo" );
-//
-//		 Member m = ms.selectByMemberId("tjdt11");
-//		 System.out.println(m.getOrderList().size());
-//		 Page<UserOrderDetail> pageList = rep.findByUserOrderIn(m.getOrderList(), pageable);
-//		 
-//		 System.out.println("pageList size : " + pageList.getSize());
+//		 Integer y = 130;
+//		 long x = y.longValue();
+//		 UserOrderDetail detail = rep.findById(x).orElse(null);
+//		 System.out.println(detail.getUserOrderDetailNo());
+//		 System.out.println(detail.getReview());
 //		 
 //	 }
 	 
