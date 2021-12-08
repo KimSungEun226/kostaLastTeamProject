@@ -68,14 +68,7 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <c:choose>
-                  <c:when test="${empty member.profileImage}">
-                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
-                  </c:when>
-                  <c:otherwise>
-                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
-                  </c:otherwise>
-                </c:choose>             
+                <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
               </figure>
 
               <!-- End Figure Caption -->
@@ -171,7 +164,7 @@
               
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
-                <div class="g-bg-purple g-color-white g-pa-25">
+                <div class="g-bg-purple g-color-white g-pa-25" style="word-break:break-all;">
                   <header class="d-flex text-uppercase g-mb-40">
                     <i class="icon-layers align-self-center display-4 g-mr-20"></i>
 
