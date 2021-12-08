@@ -89,6 +89,20 @@ public class CartServiceImpl implements CartService {
 			cartRepository.delete(cart);
 		}
 	}
+
+
+	@Override
+	public void insertCart(String id, Long pno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void insertCart(Long id, Long pno) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

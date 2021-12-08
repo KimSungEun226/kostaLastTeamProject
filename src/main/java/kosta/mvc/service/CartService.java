@@ -38,4 +38,6 @@ public interface CartService {
 	 * */
 	void insertCart(Long id, Long pno);
 
+	
+	void moveCart(List<Cart> cartList, String id);
 }
