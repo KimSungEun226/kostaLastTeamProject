@@ -51,4 +51,5 @@ public class Review {
 	private UserOrderDetail userOrderDetail;
 	
 	private int rating; //별점
+	private String reviewImage; //이미지
 }

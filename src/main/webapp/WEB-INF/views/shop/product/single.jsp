@@ -497,10 +497,10 @@
        <div class="row justify-content-center">
          <div class="col-lg-9">
             <div class="tab-pane fade show active g-pt-50" id="nav-1-2-accordion-default-hor-left-underline--1" role="tabpanel">
-         <h4 class="h4 mb-3" style="text-align: center">상품후기</h4>
-         <hr class="g-mb-60">
-      </div>
-      <c:choose>
+		       <h4 class="h4 mb-3" style="text-align: center">상품후기</h4>
+		       <hr class="g-mb-30">
+		    </div>
+      	<c:choose>
         <c:when test="${empty product.productReviewList}">
           <div id="accordion-12-1" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
              <!-- Card -->
@@ -514,83 +514,54 @@
         </c:when>
         <c:otherwise>
         <c:forEach items="${product.productReviewList}" var="review">
-	      <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
+	      <div class="row justify-content-center g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
+	        <c:if test="${!empty review.reviewImage}">
+              <div class="col-4 col-sm-2">
+                <img class="img-fluid g-width-120 g-height-120"  src="${pageContext.request.contextPath}/save/${review.reviewImage}" alt="Image Description">
+              </div>
+            </c:if>
 	        <!-- Media -->
-	        <div class="media g-mb-30">
+	        <div class="col-8 col-sm-9 media">
 	          <div class="media-body">
 	            <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
 	              <div class="d-block">
 	                <h5 class="h5"><b>제목 : ${review.reviewName}</b></h5>
 	
+					<!-- Rating -->
 	                <c:choose>
-                         <c:when test="${review.rating==0}">
-					    <!-- Rating -->
+                      <c:when test="${review.rating==0}">
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:when>
 		              <c:when test="${review.rating==1}">
-					    <!-- Rating -->
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:when>
 		              <c:when test="${review.rating==2}">
-					    <!-- Rating -->
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:when>
 		              <c:when test="${review.rating==3}">
-					    <!-- Rating -->
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:when>
 		              <c:when test="${review.rating==4}">
-					    <!-- Rating -->
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:when>
 		              <c:otherwise>
-					    <!-- Rating -->
 	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
-	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li><li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
 	                    </ul>
-	                    <!-- End Rating -->
 		              </c:otherwise>
 		            </c:choose>
-	
+					<!-- End Rating -->
+					
 	                <fmt:parseDate var="cntday" value="${review.reviewDate}" pattern="yyyy-MM-dd"/>
 	                <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy-MM-dd"/>
 	              </div>
@@ -608,19 +579,6 @@
 	            </div>
 	
 	            <p>${review.reviewContent}</p>
-	
-	            <ul class="list-inline my-0">
-	              <!-- <li class="list-inline-item g-mr-20">
-	                <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-	                  <i class="icon-medical-022 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 5
-	                </a>
-	              </li> -->
-	              <li class="list-inline-item g-mr-20">
-	                <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-	                  <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 1
-	                </a>
-	              </li>
-	            </ul>
 	          </div>
 	        </div>
 	      </div>
