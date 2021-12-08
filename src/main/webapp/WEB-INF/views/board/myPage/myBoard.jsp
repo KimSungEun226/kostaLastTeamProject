@@ -67,9 +67,15 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
-
             </div>
             <!-- User Image -->
 
@@ -133,19 +139,16 @@
                   <!-- START 게시물List -->
                   <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
                     <div class="d-flex g-mt-2 g-mr-15">
-                      <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
                     </div>
-                    
-				    
+
                     <div class="media-body">
                       <div class="d-flex justify-content-between">
-                        <h5 class="h6 g-font-weight-600 g-color-black">${board.boardTitle}</h5>
+                        <a class="u-link-v5 g-color-black g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/detail/${board.boardNo}">${board.boardTitle}</a>
                         <span class="small text-nowrap g-color-blue">${board.boardRegdate}</span>
                       </div>
                       <p>${board.boardContent}</p>
                       <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardRegdate}</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardReadnum}</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
+                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10"><i class="align-middle g-font-size-default mr-1 icon-medical-054 u-line-icon-pro"></i>${board.boardReadnum}Views</span>
                     </div>
                   </li>
                   <!-- END 게시물List-->

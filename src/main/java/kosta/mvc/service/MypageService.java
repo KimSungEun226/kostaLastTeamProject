@@ -10,6 +10,7 @@ import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Reply;
 
 public interface MypageService {
 
@@ -36,10 +37,6 @@ public interface MypageService {
 	List<Challenge> findChallenge(Long memberNo);
 	
 	/**
-	 * 작성한 댓글 조회
-	 */
-	
-	/**
 	 * 작성한 게시물 조회 
 	 */
 	Page<Board> findBoard(Long memberNo, Pageable pageable);
@@ -48,7 +45,7 @@ public interface MypageService {
 
 
 	/**
-	 * 마이페이지 - challengNo에 해당하는 boardPage조회
+	 * challengNo에 해당하는 boardPage조회
 	 */
 	Page<Board> findBoardByChallengeNo(Long challengeNo, Pageable pageable);
 
@@ -63,5 +60,11 @@ public interface MypageService {
 	 * 모든 등급정보 가져오기
 	 */
 	List<Grade> selectGradeList();
+
+
+	/**
+	 * 작성한 댓글 조회
+	 */
+	Page<Reply> findReply(Long memberNo, Pageable pageable);
 
 }

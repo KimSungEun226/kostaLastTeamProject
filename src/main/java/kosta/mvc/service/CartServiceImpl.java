@@ -1,6 +1,5 @@
 package kosta.mvc.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.product.Product;
-import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.repository.CartRepository;
 import kosta.mvc.repository.product.ProductImageRepository;
 import kosta.mvc.repository.product.ProductRepository;
@@ -80,6 +78,19 @@ public class CartServiceImpl implements CartService {
 			dbCart.setCartCount(cart.getCartCount());
 		}
 	}
+
+
+	
+	  @Override 
+	  public void moveCart(List<Cart> cartList, String id) { 
+		  for(Cart cart: cartList) { 
+			  insertCart(id, cart.getProduct().getProductNo(),cart.getCartCount()); 
+			  cartRepository.delete(cart); 
+			  }
+	  }
+	 
+
+
 	
 }
 
