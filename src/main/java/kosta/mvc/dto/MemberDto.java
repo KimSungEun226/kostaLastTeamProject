@@ -24,6 +24,7 @@ public class MemberDto {
 	private String memberEmail;
 	private String memberBirth;
 	private String memberPhone;
+	private String profileImage;
 	
 	private LocalDateTime memberJoindate;
     private LocalDateTime memberModifiedDate;

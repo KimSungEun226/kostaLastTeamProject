@@ -24,6 +24,7 @@ import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Reply;
 import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.MypageService;
@@ -99,10 +100,25 @@ public class MyPageController {
 	 * 나의 댓글 모아보기 
 	 */
 	@RequestMapping("/reply")
-	public ModelAndView comments() {
-		//member객체도 들고와야한다. 
+	public ModelAndView comments(HttpSession session, Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
+		Member member = memberService.selectByMemberId(principal.getName());
+		Long memberNo = member.getMemberNo();
+		
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "replyNo" );		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/myPage/myReply");
+		
+		Page<Reply> pageReply = myPageService.findReply(memberNo, pageable);
+		mv.addObject("pageReply", pageReply);
+		
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
+		mv.addObject("member", member);		
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.setViewName("board/myPage/myReply");		
 		return mv;
 	}
 	
