@@ -70,7 +70,7 @@
               </li>
               <li class="list-inline-item g-color-primary g-font-weight-400">
                 
-                <span>식품</span>
+                <span>건강식품</span>
                 
                 
               </li>
@@ -86,12 +86,12 @@
         <div class="d-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20">
           <!-- Show -->
           <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">전체 상품 개수:</h2>
+            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">전체 상품 개수: </h2>
 
             <!-- Secondary Button -->
             <div class="d-inline-block btn-group g-line-height-1_2">
               
-                9
+               ${list.content.size()}
               
             
             </div>
@@ -109,8 +109,6 @@
                 인기순
               </button>
               <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">제목순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">날짜순</a>
                 <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">높은가격순</a>
                 <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">낮은가격순</a>
               </div>
@@ -165,7 +163,7 @@
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
-              <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+              <img class="img-fluid  g-width-250 g-height-250" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="#">New Arrival</a>
@@ -180,7 +178,7 @@
                    ${product.productName}
                   </a>
                 </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">조회수: ${product.readNum}</a>
                 <span class="d-block g-color-black g-font-size-17"><fmt:formatNumber value="${product.price}"/>원</span>
               </div>
               <!-- End Product Info -->
@@ -195,14 +193,7 @@
                     <i class="icon-finance-100 u-line-icon-pro"></i>
                   </a>
                 </li>
-                <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
-                     data-toggle="tooltip"
-                     data-placement="top"
-                     title="Add to Wishlist">
-                    <i class="icon-medical-022 u-line-icon-pro"></i>
-                  </a>
-                </li>
+               
               </ul>
               <!-- End Products Icons -->
             </div>

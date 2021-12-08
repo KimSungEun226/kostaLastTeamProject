@@ -67,7 +67,14 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="../../assets/img-temp/400x450/img5.jpg" alt="Image Description">
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
 
               <!-- Figure Caption -->

@@ -44,7 +44,7 @@ public class BoardController {
 	}
 	
 	/**
-	 * 등록하기(커뮤니티 게시판)
+	 * 등록하기(커뮤니티 게시판, 다이어트꿀팁 게시판)
 	 * */
 	@RequestMapping("/insert")
 	public String insert(Principal principal, Board board, Tag tag) throws NullPointerException {
@@ -74,19 +74,29 @@ public class BoardController {
 		    board.setMemberNickname(memberNick);
 		    boardService.insert(board);
 		
-		return "redirect:/board/select/0";
+		return "redirect:/board/select/" + board.getBoardKind();
 	}
 	
 	/**
 	 * 게시판 수정폼
 	 * */
 	@RequestMapping("/updateForm")
-	public ModelAndView updateForm(Long boardNo) {
-		System.out.println("수정폼 시작"+boardNo);
+	public ModelAndView updateForm(Long boardNo, int boardKind) {
+		//System.out.println("수정폼 시작"+boardNo);
+		//System.out.println("수정폼 시작 boardKind ===> " + boardKind);
 		Board board = boardService.selectBy(boardNo, false); //조회수 증가x
-		
-		ModelAndView mv = new ModelAndView("board/update", "board", board);
-		return mv;
+		if(boardKind == 6) {
+			ModelAndView mv = new ModelAndView("board/updateHometraining", "board", board);
+			return mv;
+			
+		} else if(boardKind >= 7 && boardKind <= 10) {
+			ModelAndView mv = new ModelAndView("board/udateDietTip", "board", board);
+			return mv;
+			
+		} else {
+			ModelAndView mv = new ModelAndView("board/update", "board", board);
+			return mv;
+		}
 	}
 	
 	/**
@@ -112,11 +122,18 @@ public class BoardController {
 			Page<Board> boardList = boardService.selectAll(pageable); //board의 전체를 가지고 와서 boardList에 담아준다
 			mv.addObject("pageList", boardList);
 			mv.setViewName("board/boardView");
+			
 		} else if(boardKind == 6) { //홈트레이닝(운동) 게시판으로 이동_2021.12.05
 			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
 			mv.addObject("pageList", boardList);
 			mv.setViewName("board/hometraining");
+			
+		} else if(boardKind >= 7 && boardKind <= 10) { //7,8,9,10 은 dietTip.jsp로 이동_2021.12.08
+			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
+			mv.addObject("pageList", boardList);
+			mv.setViewName("board/dietTip");
 		}
+		
 		else { //boardkind가 0 이외의 값으로 들어오면 boardKind에 맞는 게시물들만 찾아준다.
 			Page<Board> boardList = boardService.findByBoardKind(boardKind, pageable);
 			mv.addObject("pageList", boardList);
@@ -184,10 +201,10 @@ public class BoardController {
 	 * 삭제하기_2021.12.05
 	 * */
 	@RequestMapping("/delete")
-	public String delete(Long boardNo, String password) {
+	public String delete(Board board, Long boardNo, String password) {
 		boardService.delete(boardNo, password);
 		
-		return "redirect:/board/select/0";
+		return "redirect:/board/select/" + board.getBoardKind();
 	}
 	
 	/**
@@ -223,7 +240,16 @@ public class BoardController {
 	    board.setMemberNickname(memberNick);
 		boardService.insert(board);
 		
-		return "redirect:/board/select/6"; //홈트레이닝>전체 게시판으로 이동
+		return "redirect:/board/select/6";
 	}
+	
+	/**
+	 * 다이어트 꿀팁 게시물 등록폼_2021.12.08
+	 * */
+	@RequestMapping("/writeDietTip")
+	public void writeDietTip() {
+		
+	}
+	
 	
 }

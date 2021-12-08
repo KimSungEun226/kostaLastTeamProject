@@ -164,7 +164,7 @@
               
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
-                <div class="g-bg-purple g-color-white g-pa-25">
+                <div class="g-bg-purple g-color-white g-pa-25" style="word-break:break-all;">
                   <header class="d-flex text-uppercase g-mb-40">
                     <i class="icon-layers align-self-center display-4 g-mr-20"></i>
 

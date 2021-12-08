@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <head>
   <!-- Title -->
   <title>내 정보 수정</title>
@@ -109,7 +109,14 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
             </div>
             <!-- User Image -->
