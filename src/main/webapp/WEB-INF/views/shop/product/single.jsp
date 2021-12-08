@@ -522,26 +522,74 @@
 	              <div class="d-block">
 	                <h5 class="h5"><b>제목 : ${review.reviewName}</b></h5>
 	
-	                <!-- Rating -->
-	                <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-	                  <li class="g-color-primary g-line-height-1_4">
-	                    <i class="fa fa-star"></i>
-	                  </li>
-	                  <li class="g-color-primary g-line-height-1_4">
-	                    <i class="fa fa-star"></i>
-	                  </li>
-	                  <li class="g-color-primary g-line-height-1_4">
-	                    <i class="fa fa-star"></i>
-	                  </li>
-	                  <li class="g-color-primary g-line-height-1_4">
-	                    <i class="fa fa-star"></i>
-	                  </li>
-	                  <li class="g-color-primary g-line-height-1_4">
-	                    <i class="fa fa-star"></i>
-	                  </li>
-	                  <li class="d-block g-color-gray-dark-v5 g-font-size-12"> |&nbsp; ${review.member.memberNickname}</li>
-	                </ul>
-	                <!-- End Rating -->
+	                <c:choose>
+                         <c:when test="${review.rating==0}">
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:when>
+		              <c:when test="${review.rating==1}">
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:when>
+		              <c:when test="${review.rating==2}">
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:when>
+		              <c:when test="${review.rating==3}">
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:when>
+		              <c:when test="${review.rating==4}">
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:when>
+		              <c:otherwise>
+					    <!-- Rating -->
+	                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+	                    </ul>
+	                    <!-- End Rating -->
+		              </c:otherwise>
+		            </c:choose>
 	
 	                <fmt:parseDate var="cntday" value="${review.reviewDate}" pattern="yyyy-MM-dd"/>
 	                <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy-MM-dd"/>

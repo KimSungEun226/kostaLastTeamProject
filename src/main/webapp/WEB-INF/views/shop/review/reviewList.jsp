@@ -135,26 +135,74 @@
                       <div class="col-8 col-sm-9 g-mb-30">
                         <h4 class="h6 g-font-weight-400"><b>제목 : ${orderdetail.review.reviewName}</b></h4>
                         <span class="d-block mb-2">${orderdetail.review.reviewContent}</span>
-                        
-						  <!-- Rating -->
-			                <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-			                  <li class="g-color-primary g-line-height-1_4">
-			                    <i class="fa fa-star"></i>
-			                  </li>
-			                  <li class="g-color-primary g-line-height-1_4">
-			                    <i class="fa fa-star"></i>
-			                  </li>
-			                  <li class="g-color-primary g-line-height-1_4">
-			                    <i class="fa fa-star"></i>
-			                  </li>
-			                  <li class="g-color-primary g-line-height-1_4">
-			                    <i class="fa fa-star"></i>
-			                  </li>
-			                  <li class="g-color-primary g-line-height-1_4">
-			                    <i class="fa fa-star"></i>
-			                  </li>
-			                </ul>
-			                <!-- End Rating -->
+                        <c:choose>
+                          <c:when test="${orderdetail.review.rating==0}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==1}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==2}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==3}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==4}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:otherwise>
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:otherwise>
+			            </c:choose>
 						<br>
                         <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
                       </div>

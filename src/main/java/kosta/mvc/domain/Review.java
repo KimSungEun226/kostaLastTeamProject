@@ -49,4 +49,6 @@ public class Review {
 	@OneToOne
 	@JoinColumn(name = "user_order_detail_no") //review 테이블에 user_order_detail_no를 fk로 설정
 	private UserOrderDetail userOrderDetail;
+	
+	private int rating; //별점
 }

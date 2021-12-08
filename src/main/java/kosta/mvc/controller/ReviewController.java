@@ -57,10 +57,11 @@ public class ReviewController {
 	 * 리뷰 등록하기
 	 */
 	@RequestMapping("insert") 
-	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, RedirectAttributes redirectAttributes) { //내용, 제품 번호
+	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, int rating) { //내용, 제품 번호
 		review.setProduct(Product.builder().productNo(productNo).build());
 		review.setMember(Member.builder().memberNo(memberNo).build());
 		review.setUserOrderDetail(UserOrderDetail.builder().userOrderDetailNo(userOrderDetailNo).build());
+		review.setRating(rating);
 		reviewService.insert(review);
 		
 		return "redirect:/shop/user/orderList";
@@ -108,6 +109,7 @@ public class ReviewController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/review/reviewList");
 		mv.addObject("list", pageList);
+		
 		return mv;
 	}
 }
