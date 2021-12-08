@@ -47,4 +47,11 @@ public class Challenge {
 	@JoinColumn(name = "member_no")
 	private Member member;
 	
+	//필드 하나 더 추가 --> 이 필드는 매일 00:00에 
+	//-->글을 썼는지 안 썼는지 확인 0으로 초기화되고 만약 1이면 -->challengeState ->0
+	// 만약 1이면 challengeState -> 1로 수정되고
+	//만약 글쓰면 1로 업데이트 되는
+	private int dailyCheck;
+	
+	
 }
