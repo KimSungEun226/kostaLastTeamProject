@@ -106,10 +106,10 @@
             <!-- Links -->
             <ul class="list-inline g-brd-bottom--sm g-brd-gray-light-v3 mb-5">
               <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
-                <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="${pageContext.request.contextPath}/shop/user/orderList">주문 목록</a>
+                <a class="g-brd-bottom g-brd-2 g-brd-transparent g-color-main g-color-gray-dark-v4 g-color-primary--hover g-text-underline--none--hover g-px-10 g-pb-13" href="${pageContext.request.contextPath}/shop/user/orderList">주문 목록</a>
               </li>
               <li class="list-inline-item g-pb-10 g-px-10 g-mb-20 g-mb-0--sm">
-                <a class="g-brd-bottom g-brd-2 g-brd-transparent g-color-main g-color-gray-dark-v4 g-color-primary--hover g-text-underline--none--hover g-px-10 g-pb-13" href="${pageContext.request.contextPath}/shop/review/reviewList">내가 쓴 리뷰</a>
+                <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="${pageContext.request.contextPath}/shop/review/reviewList">내가 쓴 리뷰</a>
               </li>
               
             </ul>
