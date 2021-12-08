@@ -49,4 +49,7 @@ public class Reply {
 	
 	//은지 sqldeveloper에서 memberNickname 컬럼 추가_2021.12.07
 	private String memberNickname;
+	
+	//은지 sqldeveloper에서 member_id 컬럼 추가_2021.12.08
+	private String memberId;
 }

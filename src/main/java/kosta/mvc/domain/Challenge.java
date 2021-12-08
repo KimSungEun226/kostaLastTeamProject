@@ -53,5 +53,13 @@ public class Challenge {
 	//만약 글쓰면 1로 업데이트 되는
 	private int dailyCheck;
 	
+	/**
+	 * 글을 작성 -> dailyCheck : 1 
+	 * 만약 1이면 challengeState -> 0
+	 * 그리고 나서 dailyCheck 모두 0으로 초기화 
+	 * 
+	 * 그렇다면 완료된 챌린지는....? => 프로시져에서 처리 
+	 */
+	
 	
 }

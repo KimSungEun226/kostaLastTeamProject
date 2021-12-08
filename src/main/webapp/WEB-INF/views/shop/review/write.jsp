@@ -6,85 +6,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Title -->
-    <title>E-commerce Help Page | Unify - Responsive Website Template</title>
-
-    <!-- <script type="text/javascript">
-      $(document).ready(function(){
-    	  
-   	  let count = 1;
-   	  
-   	  $("#btnAdd").click(function(){
-   		  
-   		  if (count <= 2) { 
-    		  $(".addFile").append(
-    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
-    	  
-    		  $(".btnRemove").on("click", function(){
-        		  $(this).prev().remove();
-        		  $(this).next().remove();
-        		  $(this).remove();
-        		  count-=1;
-        	  });
-    		  
-    		  count+=1;
-   		  }else{
-   			  alert("이미지는 최대 3장");
-   		  }
-   	  });
-      });
-    </script>
-    
-    <script type="text/javascript">
-	    function form_check() {
-	    	  var itemName = document.getElementById("productName");
-	    	  var categoryNo = $("#cateCode option:selected");
-	    	  var itemPrice = document.getElementById("price");
-	    	  var itemStock = document.getElementById("stock");	    	
-	    	  var itemDescription = document.getElementById("summernote");
-	    	  var mainImg = document.getElementsByName("file");
-	    	  
-		    	if ( itemName.value == "" ) {
-		    	    alert( "상품이름을 확인해주세요." );
-		    	    itemName.focus();
-		    		return false;
-		        }
-	
-		    	if ( categoryNo.val() == "0" ) {
-		            alert( "카테고리를 선택해주세요." );
-		            cateCode.focus();
-		            return false;
-		        }
-		    	
-		    	
-		    	if ( itemPrice.value == "" || itemPrice.value.length>9) {
-		            alert( "상품 가격을 확인 주세요." );
-		            itemPrice.focus();
-		            return false;
-		        }
-	
-		    	if ( itemStock.value == "" || itemStock.value.length>7) {
-		            alert( "상품 재고수를 확인 주세요." );
-		            itemStock.focus();
-		            return false;
-		        }
-
-		    	if ( itemDescription.value == "" ) {
-		            alert( "상품 설명 확인 주세요." );
-		            itemDescription.focus();
-		            return false;
-		        }
-		    	
-		    	for(var i = 0; i < mainImg.length; i++) {
-			    	 if ( mainImg[i].value == "" ) {
-			            alert( "메인 이미지를 넣어주세요." );
-			            return false;
-			         }
-		    	}
-		    	
-		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
-	    }
-    </script> -->
+  <!-- Title -->
+  <title>E-commerce Help Page | Unify - Responsive Website Template</title>
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+    	$("#one").click(function(){
+    		$("#rating").val('1');
+    	});
+    	$("#two").click(function(){
+    		$("#rating").val('2');
+    	});
+    	$("#three").click(function(){
+    		$("#rating").val('3');
+    	});
+    	$("#four").click(function(){
+    		$("#rating").val('4');
+    	});
+    	$("#five").click(function(){
+    		$("#rating").val('5');
+    	});
+    });
+  </script>
   </head>
   <body>
     <main>
@@ -144,21 +87,22 @@
                       
                       <ul class="js-rating u-rating-v1 g-font-size-20 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
                         <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
+                          <i id="one" class="fa fa-star"></i>
                         </li>
                         <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
+                          <i id="two" class="fa fa-star"></i>
                         </li>
                         <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
+                          <i id="three" class="fa fa-star"></i>
                         </li>
                         <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
+                          <i id="four" class="fa fa-star"></i>
                         </li>
                         <li class="g-line-height-1_4">
-                          <i class="fa fa-star"></i>
+                          <i id="five" class="fa fa-star"></i>
                         </li>
                       </ul>
+                      <input type="hidden" id="rating" name="rating" value="" />
                       </div>
                       </div>
                       <!-- End Rating -->
@@ -233,6 +177,7 @@
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.tabs.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/helpers/hs.rating.js"></script>
 
     <!-- JS Customization -->
     <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
@@ -266,6 +211,9 @@
 
         // Tabs
         $.HSCore.components.HSTabs.init('[role="tablist"]');
+        
+     	// initialization of rating
+        $.HSCore.helpers.HSRating.init();
       });
 
       $(window).on('resize', function () {

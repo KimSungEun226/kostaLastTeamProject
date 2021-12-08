@@ -142,10 +142,28 @@
                     <h5 class="h6 g-color-black g-font-weight-600">${reply.memberNickname}</h5>
                     <span class="d-block g-color-gray-dark-v5 g-font-size-11">${reply.replyRegdate}</span>
                   </div>
-                  <div class="ml-auto">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
-                  </div>
+                  <!--  ///////////////////////////////////////////////////////////// -->
+                  <!-- 댓글 삭제 sec 테스트중 ................... -->
+                  <sec:authorize access="isAuthenticated()">
+                  	<sec:authentication property="principal" var="user"/>
+	                  <c:choose>
+		                  <c:when test="${user.username eq reply.memberId}">
+		                  <div class="ml-auto">
+		                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
+		                  </div>
+		                  </c:when>
+		                  <c:when test="${user.username eq 'admin'}">
+		                  <div class="ml-auto">
+		                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
+		                  </div>
+		                  </c:when>
+		                  <c:otherwise>
+		                  
+		                  </c:otherwise>
+	                  </c:choose>
+                  </sec:authorize>
                 </div>
+                
 
                 <p>${reply.replyContent}</p>
 

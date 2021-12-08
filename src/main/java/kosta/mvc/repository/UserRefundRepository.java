@@ -1,5 +1,7 @@
 package kosta.mvc.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +17,10 @@ public interface UserRefundRepository extends JpaRepository<UserRefund, Long> {
 	@Modifying
 	int statusUpdate(Long userRefundNo);
 	
+	/**
+	 * 관리자가 회원, 비회원의 환불내역을 검색어로 검색한다. (환불번호, 주문상세번호)
+	 * */
+	@Query("select u from UserRefund u inner join u.userOrderDetail d where u.userRefundNo like '%?1%' or d.userOrderDetailNo like '%?1%'")
+	List<UserRefund> selectRefundByKeyword(String keyword);
 	
 }
