@@ -50,7 +50,7 @@
                 <div class="mb-2">
                   <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
                 </div>
-
+				<input type="hidden" id="prevSessionId" name="prevSessionId" value="${sessionId}"/>
                 <div class="g-mb-35">
                   <input name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
                   <div class="row justify-content-between">

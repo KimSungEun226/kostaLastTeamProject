@@ -57,23 +57,34 @@ public class ReviewController {
 	 * 리뷰 등록하기
 	 */
 	@RequestMapping("insert") 
-	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, RedirectAttributes redirectAttributes) { //내용, 제품 번호
+	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, int rating) { //내용, 제품 번호
 		review.setProduct(Product.builder().productNo(productNo).build());
 		review.setMember(Member.builder().memberNo(memberNo).build());
 		review.setUserOrderDetail(UserOrderDetail.builder().userOrderDetailNo(userOrderDetailNo).build());
+		review.setRating(rating);
 		reviewService.insert(review);
 		
 		return "redirect:/shop/user/orderList";
 	}
 	
 	/**
-	 * 리뷰 삭제하기
+	 * 리뷰 상품 페이지에서 삭제하기
 	 */
 	@RequestMapping("delete/{reviewNo}/{productNo}")
-	public String delete(@PathVariable int reviewNo, @PathVariable Long productNo) {
+	public String delete(@PathVariable Long reviewNo, @PathVariable Long productNo) {
 		reviewService.delete(reviewNo);
 		
 		return "redirect:/shop/select/single/" + productNo + "/1";
+	}
+	
+	/**
+	 * 리뷰 내가쓴 리뷰 페이지에서 삭제하기
+	 */
+	@RequestMapping("deleteReview/{reviewNo}/{productNo}")
+	public String deleteReview(@PathVariable Long reviewNo, @PathVariable Long productNo) {
+		reviewService.delete(reviewNo);
+		
+		return "redirect:/shop/review/reviewList";
 	}
 	
 	/**
@@ -98,6 +109,7 @@ public class ReviewController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/review/reviewList");
 		mv.addObject("list", pageList);
+		
 		return mv;
 	}
 }

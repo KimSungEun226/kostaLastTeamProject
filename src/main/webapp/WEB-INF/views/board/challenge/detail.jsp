@@ -117,15 +117,15 @@
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-80">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">/ ${requestScope.board.boardNo}</h2>
+        <h2 class="h2 g-color-black g-font-weight-600">30일 챌린지</h2>
 
         <ul class="u-list-inline">
           <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/">Home</a>
+            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/main">Home</a>
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-mr-5">
-            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/list">30일챌린지</a>
+            <a class="u-link-v5 g-color-gray-dark-v5 g-color-primary--hover" href="${pageContext.request.contextPath}/challenge/select">30일챌린지</a>
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-color-primary">
@@ -174,8 +174,7 @@
             <ul class="list-inline g-mb-60">
               <li class="list-inline-item g-mx-2">
                 <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover" href="#">
-                  <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-facebook"></i>
-                  <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-facebook"></i>
+
                 </a>
               </li>
             </ul>
@@ -186,11 +185,10 @@
           <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
             <div class="row justify-content-between">
               <div class="media">
-                <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img5.jpg" alt="Image Description">
                 <div class="media-body">
-                  <h4 class="h5 g-color-black g-font-weight-600">Maria Olsson</h4>
-                  <p class="g-color-gray-dark-v5 mb-4">I am an ambitious workaholic, but apart from that, pretty simple person. Whether it's branding, print, UI + UX I've got you covered. I strive to figure out the right solutions for your look to stand out amongst the rest.</p>
-                  <a class="btn u-btn-outline-black g-brd-gray-light-v1 g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">All author posts</a>
+                  <h4 class="h5 g-color-black g-font-weight-600">${board.member.memberNickname}</h4>
+                  <p class="g-color-gray-dark-v5 mb-4">${board.member.memberMessage}</p>
                 </div>
               </div>
             </div>
@@ -201,60 +199,7 @@
     </section>
     <!-- End Blog Single Item Author -->
 
-    <!-- Related Posts -->
-    <section class="g-bg-gray-light-v5">
-      <div class="container g-pt-100 g-pb-70">
-        <h3 class="h5 g-color-black g-font-weight-600 text-center text-uppercase g-mb-60">Related Posts</h3>
-
-        <div class="row">
-          <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
-            <article class="u-shadow-v19 g-bg-white">
-              <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img9.jpg" alt="Image Description">
-              <div class="g-bg-white g-pa-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-600 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
-                <h2 class="h5 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-cursor-pointer" href="#">Exclusive interview with Apple's CEO</a>
-                  </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">Clark Valberg is the founder and CEO of InVision. If you are a designer...</p>
-              </div>
-            </article>
-            <!-- End Blog Classic Blocks -->
-          </div>
-
-          <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
-            <article class="u-shadow-v19 g-bg-white">
-              <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img2.jpg" alt="Image Description">
-              <div class="g-bg-white g-pa-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-600 g-font-size-12 text-uppercase mb-2">31 May 2017</span>
-                <h2 class="h5 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-cursor-pointer" href="#">Announcing a free plan for small teams</a>
-                  </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">At Wake, our mission has always been focused on bringing openness...</p>
-              </div>
-            </article>
-            <!-- End Blog Classic Blocks -->
-          </div>
-
-          <div class="col-sm-6 col-lg-4 g-mb-30">
-            <!-- Blog Classic Blocks -->
-            <article class="u-shadow-v19 g-bg-white">
-              <img class="img-fluid w-100" src="../../assets/img-temp/500x450/img3.jpg" alt="Image Description">
-              <div class="g-bg-white g-pa-30">
-                <span class="d-block g-color-gray-dark-v4 g-font-weight-600 g-font-size-12 text-uppercase mb-2">31 May 2017</span>
-                <h2 class="h5 g-color-black g-font-weight-600 mb-3">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-cursor-pointer" href="#">In the future, design principles won't be about design</a>
-                  </h2>
-                <p class="g-color-gray-dark-v4 g-line-height-1_8">In an attempt to answer those questions, I poured over the biggest collections...</p>
-              </div>
-            </article>
-            <!-- End Blog Classic Blocks -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Related Posts -->
+    
 
     <!-- Blog Single Item Comments -->
     <section class="container g-py-100">

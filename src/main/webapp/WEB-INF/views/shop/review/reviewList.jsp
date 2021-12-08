@@ -8,14 +8,7 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    <script type="text/javascript">
-    $(document).on("click","#cancleOrder",function(){
-  		var reason = prompt("취소 사유를 알려주세요.");
-  		
-  		if(reason!=null) location.href = "${pageContext.request.contextPath}/shop/user/cancleOrder?userOrderDetailNo="+$(this).attr("name")+"&reason="+reason;
-
-  	});    
-    </script>
+    
   </head>
 
   <body>
@@ -124,14 +117,14 @@
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
             
             <c:forEach items="${list.content}" var="orderdetail">
-            <c:if test="${orderdetail.status==0}">
+            <c:if test="${!empty orderdetail.review}">
              <div class="g-pa-20">
                 <div class="row">
-                  <div class="col-md-8">
-                    <fmt:parseDate var="cntday" value="${orderdetail.userOrder.orderDate}" pattern="yyyy-MM-dd"/>
+                  <div class="col-md-10">
+                    <fmt:parseDate var="cntday" value="${orderdetail.review.reviewDate}" pattern="yyyy-MM-dd"/>
 	                <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy-MM-dd"/>
                     <div class="mb-4">
-                      <h3 class="h5 mb-1">주문날짜 : ${day}</h3>
+                      <h5 class="h5 mb-1">작성 날짜 : ${day}</h5>
                     </div>
 
                     <div class="row">
@@ -140,69 +133,87 @@
                       </div>
 
                       <div class="col-8 col-sm-9 g-mb-30">
-                        <h4 class="h6 g-font-weight-400"><a href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">${orderdetail.product.productName}</a></h4>
-                        <span class="d-block mb-2">가격 : ${orderdetail.product.price}</span>
-                        <span class="d-block mb-2">수량 : ${orderdetail.productCount}</span>
+                        <h4 class="h6 g-font-weight-400"><b>제목 : ${orderdetail.review.reviewName}</b></h4>
+                        <span class="d-block mb-2">${orderdetail.review.reviewContent}</span>
+                        <c:choose>
+                          <c:when test="${orderdetail.review.rating==0}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==1}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==2}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==3}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:when test="${orderdetail.review.rating==4}">
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-line-height-1_4"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:when>
+			              <c:otherwise>
+						    <!-- Rating -->
+		                    <ul class="js-rating u-rating-v1 g-font-size-13 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                      <li class="g-color-primary g-line-height-1_4 click"><i class="fa fa-star"></i></li>
+		                    </ul>
+		                    <!-- End Rating -->
+			              </c:otherwise>
+			            </c:choose>
+						<br>
                         <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/select/single/${orderdetail.product.productNo}/1">상품 보기</a>
                       </div>
                     </div>
                   </div>
                     
-              <c:choose>      
-                <c:when test="${orderdetail.orderStatus==0}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송준비중
+                  <div class="col-md-2">
+                    <a id="deleteReview" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="${pageContext.request.contextPath}/shop/review/deleteReview/${orderdetail.review.reviewNo}/${orderdetail.product.productNo}">
+                     삭제하기
                      </a>
-                     
-                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     환불하기
-                     </a>
-                    
-                  </div>
-                     
-                  </c:when>
-                  
-                
-                <c:when test="${orderdetail.orderStatus==1}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송중
-                     </a>
-                     
-                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     취소하기
-                     </a>
-                     
-                  </div>
-                     
-                  </c:when>
-                
-                  
-                 <c:when test="${orderdetail.orderStatus==2}">
-                  <div class="col-md-4">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     배송완료
-                     </a>
-                     
-                     <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
-                     반품하기
-                     </a>  
-                     
-                    <c:if test="${empty orderdetail.review}">
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="${pageContext.request.contextPath}/shop/review/insert/${orderdetail.product.productNo}/${memberNo}/${orderdetail.userOrderDetailNo}">
-                     리뷰작성
-                     </a>  
-                     </c:if>
-                     
-                  </div>
-                  </c:when> 
-                  
-                </c:choose>
-                    
-                    
-                    
-                    
+                   </div> 
                 </div>
               </div>
             </c:if>
