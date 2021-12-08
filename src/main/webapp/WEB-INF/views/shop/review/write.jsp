@@ -112,6 +112,7 @@
       <form name="reviewInsert" method="post" action="${pageContext.request.contextPath}/shop/review/insert" enctype="multipart/form-data">
       <input type="hidden" name="productNo" value="${productNo}" />
       <input type="hidden" name="memberNo" value="${memberNo}" />
+      <input type="hidden" name="userOrderDetailNo" value="${userOrderDetailNo}" />
       <div class="container g-pt-70 g-pb-70">
         <div class="row g-mb-20">
           <h2 class="mb-5">리뷰 등록</h2>

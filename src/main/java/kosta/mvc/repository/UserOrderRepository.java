@@ -12,4 +12,5 @@ public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 	
 	@Query("select u from UserOrder u where u.receiverName like %?1% or u.userOrderNo like %?1%")
 	List<UserOrder> selectByKeyword(String keyword);
+	
 }

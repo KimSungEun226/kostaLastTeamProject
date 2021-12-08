@@ -206,6 +206,16 @@ public class OrderServiceImpl implements OrderService {
 		return userOrderRepository.findAll();
 	}
 
+	@Override
+	public List<NonuserOrder> nonuserOrderlistByKeyword(String keyword) {
+		return nonuserOrderRepository.nonUserOrderlistByKeyword(keyword);
+	}
+
+	@Override
+	public List<NonuserOrder> findAllNonuserList() {
+		return nonuserOrderRepository.findAll();
+	}
+
 	
 	
 	

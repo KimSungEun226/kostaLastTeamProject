@@ -203,14 +203,24 @@ public class BoardController {
 	 * 홈트레이닝 게시물 등록하기_2021.12.06
 	 * */
 	@RequestMapping("/insertHometarining")
-	public String insertHometraining(Board board, Tag tag) {
+	public String insertHometraining(Principal principal, Board board, Tag tag) {
 		String[] tagList = {"전신", "복부", "상체", "하체", "스트레칭", "댄스", "요가"};
+
+		//로그인한 memberId로 member객체가져오기 
+		Member member = memberService.selectByMemberId(principal.getName());
 		
-		System.out.println(tag.getTagrelNo());
+		//해당 member객체의 memberNickname 가져와서 memberNick에 담기
+		String memberNick = member.getMemberNickname();
+		
+		//memberId 담기
+		String memberId = member.getMemberId();
 		
 		tag.setTegContent(tagList[Math.toIntExact(tag.getTagrelNo()-21)]);
 		board.setTag(tag);
 		
+		board.setMemberId(memberId);
+	    board.setMember(member);
+	    board.setMemberNickname(memberNick);
 		boardService.insert(board);
 		
 		return "redirect:/board/select/6"; //홈트레이닝>전체 게시판으로 이동

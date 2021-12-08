@@ -154,8 +154,11 @@ public class OrderController {
 			mv.addObject("list", orderList);
 			mv.setViewName("shop/admin/page-orders-nonuser");
 		}
+		//회원 비회원 주문내역 전체 조회(전체 게시물 수)
 		List<UserOrder> listSize = orderService.findAllList();
 		mv.addObject("listSize", listSize);
+		List<NonuserOrder> nonuserListSize = orderService.findAllNonuserList();
+		mv.addObject("nonuserListSize", nonuserListSize);
 		
 		return mv;
 	}
@@ -263,6 +266,8 @@ public class OrderController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/user/page-orders");
 		mv.addObject("list", pageList);
+		
+		mv.addObject("memberNo", m.getMemberNo());
 		return mv;
 	}
 	
@@ -339,6 +344,18 @@ public class OrderController {
 		mv.addObject("selectOrder", selectOrder);
 		
 		return mv;
+	}
+	
+	//관리자가 비회원 orderlist 검색어로 검색한다.
+	@RequestMapping("admin/selectNonUserOrderlist/{keyword}")
+	public ModelAndView selectNonUserOrderlist(@PathVariable String keyword) {
+		System.out.println("검색어:"+keyword);
+		List<NonuserOrder> selectOrder=orderService.nonuserOrderlistByKeyword(keyword);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/admin/page-orders-nonuser");
+		mv.addObject("selectNonuserOrder", selectOrder);
+		return mv;
+		
 	}
 	
 }

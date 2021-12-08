@@ -2,14 +2,18 @@ package kosta.mvc.domain.order;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Review;
 import kosta.mvc.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,5 +47,6 @@ public class UserOrderDetail extends OrderDetail{
 	private String refundCheck;
 	private int status; //1이면 배송전 주문취소, 2면 반품
 	
-	
+	@OneToOne(mappedBy = "userOrderDetail", cascade= CascadeType.ALL)
+	private Review review;
 }

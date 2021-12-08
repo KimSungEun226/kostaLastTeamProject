@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
@@ -206,12 +207,23 @@
 
                   <!-- Search Info -->
                   <ul class="list-inline d-flex justify-content-between g-mb-20">
+                  	<!-- 작성자 -->
                     <li class="list-inline-item g-mr-10">
-                      <i class="icon-sport-096 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i>태그
+                      <i class="icon-education-200 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i>${board.memberNickname}
                     </li>
+                    <!-- End 작성자 -->
+                    
+                     <!-- 댓글 수 -->
+                    <li class="list-inline-item">
+                      <i class="icon-finance-206 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i> ${fn:length(board.replyList)}
+                    </li>
+                    <!-- End 댓글 수 -->
+                    
+                    <!-- 조회수  -->
                     <li class="list-inline-item">
                       <i class="icon-eye g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i> ${board.boardReadnum}
                     </li>
+                    <!-- End 조회수 -->
                   </ul>
                   <!-- End Search Info -->
                 </article>
