@@ -183,7 +183,7 @@
 			
           <div class="col-lg-9 g-mb-50">
             <!-- Info -->
-            <center>${error}</center><p>
+            <center><b>${error}</b></center><p>
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
               <div class="row">
                 <div class="col-8">
