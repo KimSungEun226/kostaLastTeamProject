@@ -82,32 +82,29 @@
         <div class="row">
           <!-- Sidebar -->
           <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
-          	<!-- Start 나의 BMI 지수는? -->
-              <div class="g-mb-50">
-                <!-- <h3 class="h5 g-color-black g-font-weight-600 mb-4">Newsletter</h3> -->
-                <!-- Strat BMI button -->
-                <div class="input-group g-mb-10">
-                    <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">내 BMI지수 계산하기</button>
-                </div>
-                <!-- End BMI button -->
-                <!-- Strat BMI button -->
-                <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20">
-                        <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
-                      </button>
-                    </span>
-                  <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover">칼로리 처방받기</button>
-                </div>
-                <!-- End BMI button -->
-                
-              </div>
-            <!-- End 나의 BMI 지수는? -->
+          	<!-- Start 사이드 메뉴(BMI, 칼로리계산) -->
+            <div class="g-mb-50">
+              <!-- Strat BMI button -->
+              <div class="input-group g-mb-10">
+                <span class="input-group-btn">
+                  <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20" onclick="location.href='${pageContext.request.contextPath}/bmiInput'">
+                    <i class="icon-sport-086 u-line-icon-pro g-pos-rel g-top-1"></i>
+                  </button>
+                </span>
+                <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover" onclick="location.href='${pageContext.request.contextPath}/bmiInput'">내 BMI지수 계산하기</button>
+              </div><!-- End BMI button -->
+              
+              <!-- Strat 칼로리 처방 -->
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn u-btn-primary g-rounded-left-50 g-py-13 g-px-20" onclick="location.href='${pageContext.request.contextPath}/calPreInput'">
+                    <i class="icon-medical-099 u-line-icon-pro g-pos-rel g-top-1"></i>
+                  </button>
+                </span>
+                <button class="form-control g-brd-primary g-placeholder-gray-dark-v5 border-left-0 g-rounded-right-50 g-px-15 g-color-primary--hover" onclick="location.href='${pageContext.request.contextPath}/calPreInput'">칼로리 처방받기</button>
+              </div><!-- End 칼로리 처방 -->
+            </div><!-- End 사이드 메뉴(BMI, 칼로리계산) -->
+            
             <hr class="g-brd-gray-light-v4 g-mt-50 mb-0">
             <!-- Links -->
             		<div class="g-mb-50">
