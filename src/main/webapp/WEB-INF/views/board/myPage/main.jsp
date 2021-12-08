@@ -148,14 +148,14 @@
             <!-- START 나의 등급 -->
               <c:forEach items="${requestScope.gradeList}" var="grade">
 	              <c:choose>
-	              	<c:when test="${member.info.memberExp >= grade.levelMin and member.info.memberExp =< grade.levelMax}">		              
+	              	<c:when test="${member.info.memberExp >= grade.levelMin and member.info.memberExp <= grade.levelMax}">		              
 		              <div class="col-md-6 g-mb-30 g-mb-0--md">
 		                <div class="g-bg-cyan g-color-white g-pa-25">
 		                  <header class="d-flex text-uppercase g-mb-40">
 		                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
 		
 		                    <div class="g-line-height-1">
-		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelExp} 위</h4>
+		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelMax} 위</h4>
 		                      <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div>
 		                    </div>
 		                  </header>
