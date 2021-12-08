@@ -177,7 +177,6 @@
                       <p>${board.boardContent}</p>
                       <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardRegdate}</span>
                       <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">${board.boardReadnum}</span>
-                      <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
                     </div>
                   </li>
                   <!-- END 게시물List-->

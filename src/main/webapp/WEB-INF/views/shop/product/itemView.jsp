@@ -165,7 +165,7 @@
             <!-- Product -->
             <figure class="g-pos-rel g-mb-20">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
-              <img class="img-fluid  g-width-250 g-height-250" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+              <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
             </a>  
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="#">New Arrival</a>
