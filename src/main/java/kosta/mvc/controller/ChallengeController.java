@@ -170,7 +170,7 @@ public class ChallengeController {
 			  		  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
-			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember());
+			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember(), 1);
 			  //int memberExp = info.getMemberExp()+10;
 			  //info.setMemberExp(memberExp);
 			  

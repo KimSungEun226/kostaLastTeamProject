@@ -27,5 +27,10 @@ public interface CartService {
 	 * 장바구니의 수량변경
 	 * */
 	void updateCart(List<Cart> cartList);
-
+	
+	/**
+	 * 로그인전 세션에 저장된 장바구니를
+	 * 로그인된 회원의 장바구니로 옮긴다.
+	 * */
+	void moveCart(List<Cart> cartList, String id);
 }

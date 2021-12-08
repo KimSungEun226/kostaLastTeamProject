@@ -80,6 +80,17 @@ public class CartServiceImpl implements CartService {
 			dbCart.setCartCount(cart.getCartCount());
 		}
 	}
+
+
+	@Override
+	public void moveCart(List<Cart> cartList, String id) {
+		for(Cart cart: cartList) {
+			insertCart(id, cart.getProduct().getProductNo(), cart.getCartCount());
+			cartRepository.delete(cart);
+		}
+	}
+	
+	
 	
 }
 
