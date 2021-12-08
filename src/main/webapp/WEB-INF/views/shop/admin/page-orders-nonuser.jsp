@@ -15,7 +15,28 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     
-  </head>
+</head>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>    
+<script type="text/javascript">
+
+	//검색어로 검색하기
+    $(function(){
+    	$(document).on("click","#selectButton", function(){
+    		var keyword=$('#keyword').val();
+    		if(keyword=="" || keyword==null){
+    			alert("검색어를 입력해주세요.");
+    			$("#selectForm").focus();
+    		}else{
+    			$("#selectForm").attr("action", "${pageContext.request.contextPath}/shop/admin/selectNonUserOrderlist/"+$("#keyword").val());
+    			$("#selectForm").submit();
+    		}
+			
+		});
+		
+	});
+
+
+</script>
 
   <body>
     <main>
@@ -61,11 +82,16 @@
               <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
                 <a class="g-brd-bottom g-brd-2 g-brd-primary g-color-main g-color-black g-font-weight-600 g-text-underline--none--hover g-px-10 g-pb-13" href="page-orders-1.html">판매 목록</a>
               </li>
+              <li>
+              
+              </li>
             </ul>
+            
+            
             
             <!-- End Links -->
 			<c:choose>
-				<c:when test="${empty requestScope.list}">
+				<c:when test="${empty requestScope.list} && ${empty requestScope.selectNonuserOrder}">
 					<div id="accordion-12-1-heading-01" class="u-accordion__header g-color-gray-dark-v4 g-font-weight-500 g-font-size-16 g-pa-0" role="tab">
                          주문 내역이 없습니다.
             		</div>
@@ -74,10 +100,95 @@
 
 
 		<c:otherwise>
-		
+		<div class="mb-5">
+			<c:choose>
+			<c:when test="${not empty requestScope.list}">
+             <h3 class="h6 d-inline-block">주문 내역 개수 : ${nonuserListSize.size()} 개</h3>
+             </c:when>
+            <c:otherwise>
+            <h3 class="h6 d-inline-block">해당 내역 개수 : ${selectNonuserOrder.size()} 개</h3>
+            </c:otherwise>
+            </c:choose>
+            
+            <!-- Search Form -->
+                <form id="selectForm" class="input-group g-pos-rel">
+                  <span class="g-pos-abs g-top-0 g-left-0 g-z-index-3 g-px-13 g-py-10">
+                    <i class="g-color-gray-dark-v4 g-font-size-12 icon-education-045 u-line-icon-pro"></i>
+                  </span>
+                  <input id="keyword" class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="text" placeholder="검색어를 입력하세요. ex)주문번호, 주문자명">
+                  <div class="input-group-append g-brd-none g-py-0">
+                    <button id="selectButton" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" type="button">검색하기</button>
+                  </div>
+                </form>
+                <!-- End Search Form -->
+		</div>
             	<!-- Product Block -->
+           
        	<div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
-            	
+            	<c:choose>
+               <c:when test="${not empty requestScope.selectNonuserOrder}">
+               		<c:forEach items="${requestScope.selectNonuserOrder}" var="selectNonuserOrder">
+               	
+               		<header class="g-bg-gray-light-v5 g-pa-20">
+                		<div class="row">
+                  		
+                  		
+
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문번호</h4>
+                    		<span id="select1" class="g-color-black g-font-weight-300 g-font-size-13">
+                              ${selectNonuserOrder.nonuserOrderNo}
+                    		</span>
+                  		</div>
+                  		
+                  		
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문 일자</h4>
+                    		<span id="select2" class="g-color-black g-font-weight-300 g-font-size-13">${selectNonuserOrder.orderDate}</span>
+                  		</div>
+
+						<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문자 명</h4>
+                    		<span id="select3" class="g-color-black g-font-weight-300 g-font-size-13">${selectNonuserOrder.receiverName}</span>
+                  		</div>
+                  		
+                  		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">연락처</h4>
+                    		<span id="select4" class="g-color-black g-font-weight-300 g-font-size-13">${selectNonuserOrder.receiverPhone}</span>
+                  		</div>
+						
+                  		<div class="col-sm-3 col-md-4 ml-auto text-sm-right">
+                    		<h4 id="select5" class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">배송지 : ${selectNonuserOrder.orderAddr} </h4>
+                  		</div>
+                		</div>
+              		</header>
+
+              		<!-- Product Content -->
+              		<div class="g-pa-20">
+               		 <div class="row">
+                 		 <div class="col-md-8">
+           
+	
+		                    <div class="row">
+		                      
+		                      
+		                      <div class="col-8 col-sm-9 g-mb-30">
+		                        
+		                        </span>
+		                        <a class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="${pageContext.request.contextPath}/shop/admin/orderDetail/user/${order.userOrderNo}">주문 상세 내역 보기</a>
+		                      </div>
+		                    </div>
+	                  </div>
+	
+	                </div>
+	              </div>
+	              <!-- End Product Content -->
+            </c:forEach> 
+            </c:when>
+               		
+               		
+               		
+               		<c:otherwise>
                <c:forEach items="${requestScope.list.content}" var="order">
             	
               		<header class="g-bg-gray-light-v5 g-pa-20">
@@ -134,7 +245,10 @@
 	                </div>
 	              </div>
 	              <!-- End Product Content -->
-            </c:forEach> 
+	        </c:forEach> 
+            </c:otherwise>
+			</c:choose>
+            
             </c:otherwise>
 			</c:choose>
 			</div>

@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,12 @@ public class CartController {
 	 *  : 상품이름, 가격, 이미지파일이름, 상품수량, 상품번호
 	 * */
 	@RequestMapping("/selectCart")
-	public ModelAndView selectCart(HttpSession session, Principal principal) {
+	public ModelAndView selectCart(HttpSession session, Principal principal, HttpServletRequest request) {
+//		Cookie[] list =  request.getCookies();
+		
+//		for(CooKie c : list) {
+//			c.get
+//		}
 		
 		System.out.println("카트 컨트롤러, 식별번호 : "+session.getId());
 		//식별값 또는 아이디 값을 넘긴다.

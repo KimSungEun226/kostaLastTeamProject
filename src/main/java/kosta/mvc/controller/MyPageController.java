@@ -40,6 +40,7 @@ public class MyPageController {
 	/**
 	 * 마이페이지 - main
 	 * member, info, level, 회원의 게시물, 회원의 챌린지,회원의 댓글 
+	 * grade DB모두 가져오기 
 	 */
 	@RequestMapping("")
 	public ModelAndView myPage(HttpSession session, Principal principal) {
@@ -59,6 +60,16 @@ public class MyPageController {
 		
 		//댓글
 		
+		//gradeList
+		List<Grade> gradeList = myPageService.selectGradeList(); 
+		
+		for(Grade grade : gradeList) {
+			System.out.println("levelNo : "+grade.getLevelNo());
+			System.out.println("MinExp : "+grade.getLevelMin());
+			System.out.println("MaxExp : "+grade.getLevelMax());
+		}
+		
+		mv.addObject("gradeList",gradeList);
 		mv.setViewName("board/myPage/main");
 		return mv;
 	}
@@ -81,6 +92,7 @@ public class MyPageController {
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
 		
+		mv.addObject("member", member);
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
@@ -94,7 +106,7 @@ public class MyPageController {
 	 */
 	@RequestMapping("/reply")
 	public ModelAndView comments() {
-		
+		//member객체도 들고와야한다. 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/myPage/myReply");
 		return mv;
@@ -163,6 +175,7 @@ public class MyPageController {
 	@RequestMapping("/challenge/{challengeNo}")
 	public ModelAndView challenge(@PathVariable Long challengeNo, HttpSession session, Principal principal, @RequestParam(defaultValue = "1") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "boardNo" );
+		Member member = memberService.selectByMemberId(principal.getName());
 		ModelAndView mv = new ModelAndView();
 		
 		System.out.println("challengeNo : "+challengeNo);
@@ -173,6 +186,7 @@ public class MyPageController {
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
 		
+		mv.addObject("member", member);
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);

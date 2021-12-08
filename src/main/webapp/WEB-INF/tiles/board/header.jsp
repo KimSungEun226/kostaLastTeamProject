@@ -41,7 +41,7 @@
 
                 <!-- 홈트레이닝 -->
                 <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">홈트레이닝</a>
+                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/board/select/6" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">홈트레이닝</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
                     <!-- 홈트레이닝 - 전체 -->
@@ -88,7 +88,7 @@
 
                 <!-- 커뮤니티 -->
                 <li class="hs-has-sub-menu nav-item  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link-pages" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">커뮤니티</a>
+                  <a id="nav-link-pages" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/board/select/0" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">커뮤니티</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-pages" aria-labelledby="nav-link-pages">
                     
@@ -132,10 +132,6 @@
                       </ul><!-- End Submenu (level 2) -->
                     </li><!-- End 커뮤니티 - 지역 게시판 -->	
 
-					<!-- 커뮤니티 - 질문 게시판 -->
-                    <li class="dropdown-item ">
-                      <a id="nav-link--pages--login-signup" class="nav-link" href="${pageContext.request.contextPath}/" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--login-signup">질문 게시판</a>
-                    </li><!-- End 커뮤니티 - 질문 게시판 -->
 	
                     <!-- 커뮤니티 - 일기 -->
                     <li class="dropdown-item">

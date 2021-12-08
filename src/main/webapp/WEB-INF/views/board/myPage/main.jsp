@@ -143,39 +143,47 @@
           <div class="col-lg-9">
             <!-- Overall Statistics -->
             <div class="row g-mb-40">
-              <!-- START 나의 등급 -->
-              <div class="col-md-6 g-mb-30 g-mb-0--md">
-                <div class="g-bg-cyan g-color-white g-pa-25">
-                  <header class="d-flex text-uppercase g-mb-40">
-                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
-
-                    <div class="g-line-height-1">
-                      <h4 class="h5">나의 등급</h4>
-                      <div class="js-counter g-font-size-30" data-comma-separated="true">52147</div>
-                    </div>
-                  </header>
-
-                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
-                    <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Week</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
-                    </div>
-
-                    <div class="text-right g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
-                    </div>
-                  </div>
-
-                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
-                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="g-font-size-12">11% less than last month</small>
-                </div>
-              </div>
-              <!-- 나의 등급 End -->
+            
+            
+            <!-- START 나의 등급 -->
+              <c:forEach items="${requestScope.gradeList}" var="grade">
+	              <c:choose>
+	              	<c:when test="${member.info.memberExp >= grade.levelMin and member.info.memberExp <= grade.levelMax}">		              
+		              <div class="col-md-6 g-mb-30 g-mb-0--md">
+		                <div class="g-bg-cyan g-color-white g-pa-25">
+		                  <header class="d-flex text-uppercase g-mb-40">
+		                    <i class="icon-people align-self-center display-4 g-mr-20"></i>
 		
+		                    <div class="g-line-height-1">
+		                      <h4 class="h5">나의 경험치 ${grade.levelNo} / ${grade.levelMax} 위</h4>
+		                      <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div>
+		                    </div>
+		                  </header>
+		
+		                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
+		                    <div class="g-line-height-1">
+		                      <h5 class="h6 g-font-weight-600">12345</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">1385</div>
+		                    </div>
+		
+		                    <div class="text-right g-line-height-1">
+		                      <h5 class="h6 g-font-weight-600">Last Month</h5>
+		                      <div class="js-counter g-font-size-16" data-comma-separated="true">6048</div>
+		                    </div>
+		                  </div>
+		
+		                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">72%</span></h6>
+		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
+		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+		                  </div>
+		                  <small class="g-font-size-12">11% less than last month</small>
+		                </div>
+		              </div>
+		            </c:when>		            
+	              </c:choose>
+              </c:forEach>
+              <!-- 나의 등급 End -->
+              
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
                 <div class="g-bg-purple g-color-white g-pa-25">
@@ -221,31 +229,6 @@
                     <h3 class="h6 mb-0">
                         <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i>활동정보
                       </h3>
-                    <div class="dropdown g-mb-10 g-mb-0--md">
-                      <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="icon-options-vertical g-pos-rel g-top-1"></i>
-                        </span>
-                      <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
-                        </a>
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item g-px-10" href="#">
-                          <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
-                        </a>
-                      </div>
-                    </div>
                   </div>
                   <!-- End Panel Header -->
 
@@ -253,51 +236,26 @@
                   <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0">
                     <ul class="list-unstyled">
                       <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10">
-                        <div class="d-flex g-mt-2 g-mr-15">
-                          <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img1.jpg" alt="Image Description">
+                        <div class="d-flex g-mt-2 g-mr-15">  
+                          <img class="g-width-40 g-height-40 rounded-circle" src="${pageContext.request.contextPath}/save/icon/별.png" alt="Image Description">
                         </div>
                         <div class="media-body">
                           <div class="d-flex justify-content-between">
-                            <h5 class="h6 g-font-weight-600 g-color-black">Unify Template</h5>
-                            <span class="small text-nowrap g-color-blue">2 min ago</span>
+                            <h5 class="h6 g-font-weight-600 g-color-black">출석 횟수 : ${member.info.attendNo}</h5>
                           </div>
-                          <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">AnhularJS</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">PHP</span>
+                          <p>가입날짜 : ${member.memberJoindate}</p>
                         </div>
                       </li>
 
                       <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left rounded g-pa-20 g-mb-10">
                         <div class="d-flex g-mt-2 g-mr-15">
-                          <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                          <img class="g-width-40 g-height-40 rounded-circle" src="${pageContext.request.contextPath}/save/icon/list.png" alt="Image Description">
                         </div>
                         <div class="media-body">
                           <div class="d-flex justify-content-between">
-                            <h5 class="h6 g-font-weight-600 g-color-black">UX/UI Design and Backend</h5>
-                            <span class="small text-nowrap g-color-pink">16 min ago</span>
+                            <h5 class="h6 g-font-weight-600 g-color-black">작성한 게시물 수</h5>
                           </div>
-                          <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-color-black g-rounded-20 g-px-10">JavaScript</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">Ruby</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ASP.NET</span>
-                        </div>
-                      </li>
-
-                      <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-black-left rounded g-pa-20 g-mb-10">
-                        <div class="d-flex g-mt-2 g-mr-15">
-                          <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                          <div class="d-flex justify-content-between">
-                            <h5 class="h6 g-font-weight-600 g-color-black">React Native App</h5>
-                            <span class="small text-nowrap g-color-blue">2 min ago</span>
-                          </div>
-                          <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">ReactJS</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">CSS</span>
-                          <span class="u-label u-label--sm g-bg-gray-light-v4 g-color-main g-rounded-20 g-px-10">HTML</span>
+                          <p>지금까지 ${member.info.contentNo}개를 작성했습니다.</p>
                         </div>
                       </li>
                     </ul>
@@ -329,7 +287,7 @@
 
                       <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
                         <div class="g-mt-2">
-                          <img class="g-width-50 g-height-50 rounded-circle" src="../../assets/img-temp/100x100/img17.jpg" alt="Image Description">
+                          <img class="g-width-50 g-height-50 rounded-circle" src="${pageContext.request.contextPath}/save/icon/smallsmile.png" alt="Image Description">
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">

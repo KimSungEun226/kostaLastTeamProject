@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import kosta.mvc.domain.Board;
 import kosta.mvc.domain.Challenge;
+import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
 
@@ -58,14 +59,9 @@ public interface MypageService {
 	void update(Member member, String path);
 
 
-
-	
-	
-
-
-	
-	
 	/**
-	 * member정보 수정
+	 * 모든 등급정보 가져오기
 	 */
+	List<Grade> selectGradeList();
+
 }

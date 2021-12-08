@@ -80,8 +80,8 @@ public class Member {
 //	@OneToMany(mappedBy = "member", cascade= CascadeType.ALL)
 //	private List<ProductQuestion> productQuestionList; 
 	
-	@OneToOne
-	@JoinColumn(name="Info_No")
+	
+	@OneToOne(mappedBy = "member")
 	private Info info;
 	
 	

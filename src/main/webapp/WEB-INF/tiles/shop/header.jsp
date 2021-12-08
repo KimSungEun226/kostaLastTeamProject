@@ -190,8 +190,7 @@
                    <!-- End Submenu -->
                  </li>
                  
-                <sec:authorize access="hasRole('ADMIN')">
-                 
+                <sec:authorize access="hasRole('ADMIN')">                   
                  <li class="nav-item g-mx-10--lg g-mx-15--xl"
                      data-animation-in="fadeIn"
                      data-animation-out="fadeOut"
