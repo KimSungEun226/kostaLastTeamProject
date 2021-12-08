@@ -40,10 +40,10 @@ public class MemberService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setMemberPwd(passwordEncoder.encode(memberDto.getMemberPwd()));
         Member member = memberRepository.save(memberDto.toEntity());
-        member.setInfo(info);
+        //member.setInfo(info);
         info.setMember(member);
-        memberRepository.save(member);
         System.out.println("------------------memberNO : " + member.getMemberNo());
+        System.out.println("------------------info.memberNO : " + info.getMember().getMemberNo());
         info = infoRepository.save(info);
         return member.getMemberNo();
     }

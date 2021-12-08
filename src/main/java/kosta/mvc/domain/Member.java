@@ -80,6 +80,7 @@ public class Member {
 //	@OneToMany(mappedBy = "member", cascade= CascadeType.ALL)
 //	private List<ProductQuestion> productQuestionList; 
 	
+	
 	@OneToOne(mappedBy = "member")
 	private Info info;
 	
