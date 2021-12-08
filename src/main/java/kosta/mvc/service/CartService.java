@@ -29,15 +29,10 @@ public interface CartService {
 	void updateCart(List<Cart> cartList);
 	
 	/**
-	 * 상품 목록에서 식별번호에 해당하는 장바구니에 상품 추가
+	 * 장바구니
 	 * */
-	void insertCart(String id, Long pno);
-	
-	/**
-	 * 상품 목록에서 회원 아이디에 해당하는 장바구니에 상품 추가
-	 * */
-	void insertCart(Long id, Long pno);
-
-	
 	void moveCart(List<Cart> cartList, String id);
+	
+
+
 }

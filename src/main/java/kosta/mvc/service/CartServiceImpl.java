@@ -80,41 +80,17 @@ public class CartServiceImpl implements CartService {
 	}
 
 
-	/*
-	 * @Override public void moveCart(List<Cart> cartList, String id) { for(Cart
-	 * cart: cartList) { insertCart(id, cart.getProduct().getProductNo(),
-	 * cart.getCartCount()); cartRepository.delete(cart); } }
-	 */
-
-
-	@Override
-	public void insertCart(String id, Long pno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void insertCart(Long id, Long pno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void insertCart(String id, Long pno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void insertCart(Long id, Long pno) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	
+	  @Override 
+	  public void moveCart(List<Cart> cartList, String id) { 
+		  for(Cart cart: cartList) { 
+			  insertCart(id, cart.getProduct().getProductNo(),cart.getCartCount()); 
+			  cartRepository.delete(cart); 
+			  }
+	  }
+	 
+
+
 	
 }
 
