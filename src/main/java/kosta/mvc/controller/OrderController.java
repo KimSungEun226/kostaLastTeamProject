@@ -147,18 +147,20 @@ public class OrderController {
 			Page<UserOrder> orderList = orderService.selectUserOrder(pageable);
 			mv.addObject("list", orderList);
 			mv.setViewName("shop/admin/page-orders");
+			//회원 비회원 주문내역 전체 조회(전체 게시물 수)
+			int listSize = orderService.findAllList().size();
+			mv.addObject("listSize", listSize);
 		}
 		else {
 			Pageable pageable = PageRequest.of(nowPage-1,10, Direction.DESC, "orderDate" );
 			Page<NonuserOrder> orderList = orderService.selectNonuserOrder(pageable);
 			mv.addObject("list", orderList);
 			mv.setViewName("shop/admin/page-orders-nonuser");
+			int nonuserListSize = orderService.findAllNonuserList().size();
+			mv.addObject("nonuserListSize", nonuserListSize);
 		}
-		//회원 비회원 주문내역 전체 조회(전체 게시물 수)
-		List<UserOrder> listSize = orderService.findAllList();
-		mv.addObject("listSize", listSize);
-		List<NonuserOrder> nonuserListSize = orderService.findAllNonuserList();
-		mv.addObject("nonuserListSize", nonuserListSize);
+		
+		
 		
 		return mv;
 	}
@@ -266,7 +268,8 @@ public class OrderController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/user/page-orders");
 		mv.addObject("list", pageList);
-		
+		int listSize = orderService.findAllList().size();
+		mv.addObject("listSize", listSize);
 		mv.addObject("memberNo", m.getMemberNo());
 		return mv;
 	}
@@ -336,12 +339,24 @@ public class OrderController {
 	
 	//관리자가 유저 orderlist 검색어로 검색한다.(주문번호, 주문자명)
 	@RequestMapping("/admin/selectOrderlist/{keyword}")
-	public ModelAndView selectOrderlist(@PathVariable String keyword) {
+	public ModelAndView selectOrderlist(@PathVariable String keyword, @RequestParam(defaultValue = "1") int nowPage) {
+		
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "userOrderNo" );
+
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
 		System.out.println("검색어:"+keyword);
-		List<UserOrder> selectOrder=orderService.orderListSelectByKeyword(keyword);
+		Page<UserOrder> selectOrder=orderService.orderListSelectByKeyword(keyword,pageable);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/admin/page-orders");
 		mv.addObject("selectOrder", selectOrder);
+		
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("keyword", keyword);
 		
 		return mv;
 	}

@@ -31,4 +31,11 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long>{
 	@Query(value = "select c from Challenge c where c.member.memberNo=?1")
 	List<Challenge> findByMemberNo(Long memberNo);
 	
+	@Query(value = "update Challenge c set c.challengeState=1 where c.dailyCheck=0 and c.challengeState=0")
+	@Modifying
+	int updateChallengeState();
+	
+	@Query(value = "update Challenge c set c.dailyCheck=0")
+	@Modifying
+	int initDailyCheck();
 }

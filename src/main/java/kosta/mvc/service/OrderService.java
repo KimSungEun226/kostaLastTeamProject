@@ -96,7 +96,7 @@ public interface OrderService {
 	/**
 	 * 관리자가 회원 주문내역 검색어로 검색
 	 * */
-	List<UserOrder> orderListSelectByKeyword(String keyword);
+	Page<UserOrder> orderListSelectByKeyword(String keyword,Pageable pageable);
 	
 	/**
 	 * 회원 주문내역 전체 리스트 검색
