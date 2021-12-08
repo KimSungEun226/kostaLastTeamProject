@@ -196,6 +196,16 @@ public class OrderServiceImpl implements OrderService {
 		return userOrderDetailRepository.findByStatusGreaterThanAndUserOrderIn(status, list, pageable);
 	}
 
+	@Override
+	public List<UserOrder> orderListSelectByKeyword(String keyword) {
+		return userOrderRepository.selectByKeyword(keyword);
+	}
+
+	@Override
+	public List<UserOrder> findAllList() {
+		return userOrderRepository.findAll();
+	}
+
 	
 	
 	

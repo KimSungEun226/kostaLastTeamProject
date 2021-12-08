@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +111,7 @@ ${food.foodName }
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-50">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 음식칼로리</h2>
+        <h2 class="h2 g-color-green g-font-weight-600">칼로리 사전 - 음식칼로리</h2>
 		<div class="container text-center g-py-50--mdg-py-80 ">
         
         <!-- Search Form -->
@@ -150,33 +151,33 @@ ${food.foodName }
     <c:otherwise>
     <!-- Blog Minimal Blocks -->
       <div class="container g-pt-100 g-pb-20">
-        <div>
+        <div class="table-responsive">
         <!-- Blog Minimal Blocks -->
-          <table style="width: 100%">
-            <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0">
-              <th class=" g-color-gray-dark-v4" style="width: 5%">번호</th>
-              <th class=" g-color-gray-dark-v4" style="width: 12%">음식명</th>
-              <th class=" g-color-gray-dark-v4" style="width: 13%">제조사</th>
-              <th class=" g-color-gray-dark-v4">1회제공량(g)</th>
-              <th class=" g-color-gray-dark-v4">총 칼로리(kcal)</th>
-              <th class=" g-color-gray-dark-v4">단백질(g)</th>
-              <th class=" g-color-gray-dark-v4">지방(g)</th>
-              <th class=" g-color-gray-dark-v4">탄수화물(g)</th>
-              <th class=" g-color-gray-dark-v4">총당류(g)</th>
-              <th class=" g-color-gray-dark-v4">나트륨(mg)</th>
+          <table class="table table-striped" style="width: 100%">
+            <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0 text-center">
+              <th class=" g-color-green" style="width: 5%">번호</th>
+              <th class=" g-color-green" style="width: 13%">음식명</th>
+              <th class=" g-color-green" style="width: 14%">제조사</th>
+              <th class=" g-color-green">1회제공량(g)</th>
+              <th class=" g-color-green">총 칼로리(kcal)</th>
+              <th class=" g-color-green">단백질(g)</th>
+              <th class=" g-color-green">지방(g)</th>
+              <th class=" g-color-green">탄수화물(g)</th>
+              <th class=" g-color-green">총당류(g)</th>
+              <th class=" g-color-green">나트륨(mg)</th>
             </tr>
             <c:forEach items="${requestScope.pageList.content}" var="food">
-              <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-15 g-py-13 mb-0">
+              <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-15 g-py-13 mb-0 text-center">
                 <td class=" g-color-gray-dark-v4" style="width: 5%">${food.foodNo }</td>
-                <td class=" g-color-gray-dark-v4" style="width: 12%">${food.foodName }</td>
-                <td class=" g-color-gray-dark-v4" style="width: 13%">${food.regionManufac }</td>
-                <td class=" g-color-gray-dark-v4">${food.foodQuantity }${food.foodUnit }</td>
-                <td class=" g-color-gray-dark-v4">${food.foodKcal }</td>
-                <td class=" g-color-gray-dark-v4">${food.protein }</td>
-                <td class=" g-color-gray-dark-v4">${food.fat }</td>
-                <td class=" g-color-gray-dark-v4">${food.carbohydrate }</td>
-                <td class=" g-color-gray-dark-v4">${food.sugars }</td>
-                <td class=" g-color-gray-dark-v4">${food.na }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 13%">${food.foodName }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 14%">${food.regionManufac }</td>
+                <td class=" g-color-gray-dark-v4">100${food.foodUnit }</td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.foodKcal/(food.foodQuantity/100)}" pattern="0.00"/></td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.protein/(food.foodQuantity/100)}" pattern="0.00"/></td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.fat/(food.foodQuantity/100)}" pattern="0.00"/></td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.carbohydrate/(food.foodQuantity/100)}" pattern="0.00"/></td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.sugars/(food.foodQuantity/100)}" pattern="0.00"/></td>
+                <td class=" g-color-gray-dark-v4"><fmt:formatNumber value="${food.na/(food.foodQuantity/100)}" pattern="0.00"/></td>
               </tr>
             </c:forEach>
           </table>

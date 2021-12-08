@@ -96,7 +96,7 @@
         <table class="table table-striped">
           <thead class="g-color-white g-bg-primary text-center text-uppercase">
             <tr>
-              <th class="g-brd-top-none g-font-weight-500 g-py-15 g-font-size-16" colspan="2">나의 BMI 지수 확인</th>
+              <th class="g-brd-top-none g-font-weight-700 g-py-15 g-font-size-25" colspan="2">나의 BMI 지수 확인</th>
             </tr>
           </thead>
 
@@ -131,9 +131,9 @@
 
       <!-- Subtotal -->
       <div class="g-bg-gray-light-v5 mb-2">
-            <ul class="list-unstyled g-font-weight-600 text-uppercase py-4 g-pr-50 mb-0">
+            <ul class=" list-inline g-font-weight-600 text-uppercase py-4 g-pr-50 mb-0">
               <li class="text-left my-1">
-                <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">비만도(BMI) 검사 결과</h4>
+                <h4 class="d-inline-block h6 g-font-weight-600 g-min-width-110 mb-0">비만도(BMI) 검사 결과</h4>
               </li>
               <li class="text-center my-1">
 				<div class="container"> 
@@ -149,11 +149,9 @@
 
       <!-- Total -->
       <div class="row justify-content-between">
-        
-
         <div class="col-md-7 align-self-center g-mb-30">
-          <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-center text-uppercase py-4 g-pr-50 mb-3" style="width: 80%">
-            <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">당신의 비만도(BMI) 지수는 ${cal.bmi}로 “${cal.group}” 입니다.</h4>
+          <div class="g-bg-gray-light-v5 g-color-gray-dark-v4 g-font-weight-600 text-center text-uppercase py-4 g-pr-50 mb-3" style="width: 80%">
+            <h4 class="d-inline-block h6 text-left g-font-weight-600 g-min-width-110 mb-0">당신의 비만도(BMI) 지수는 <span style="color:#FF0033">${cal.bmi}</span>로 <span style="color:#FF0033">“${cal.group}”</span> 입니다.</h4>
           </div>
         </div>
         <div class="col-md-4 align-self-center g-hidden-sm-down g-mb-30">
