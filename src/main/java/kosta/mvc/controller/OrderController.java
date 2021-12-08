@@ -25,7 +25,6 @@ import kosta.mvc.domain.Cart;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.order.NonuserOrder;
 import kosta.mvc.domain.order.NonuserOrderDetail;
-import kosta.mvc.domain.order.OrderDetail;
 import kosta.mvc.domain.order.UserOrder;
 import kosta.mvc.domain.order.UserOrderDetail;
 import kosta.mvc.domain.order.UserRefund;
@@ -326,6 +325,18 @@ public class OrderController {
 		}
 		
 		return "redirect:/shop/admin/refundList/user";
+	}
+	
+	//관리자가 유저 orderlist 검색어로 검색한다.
+	@RequestMapping("admin/selectOrderlist/{keyword}")
+	public ModelAndView selectOrderlist(@PathVariable String keyword) {
+		System.out.println("검색어:"+keyword);
+		List<UserOrder> selectOrder=orderService.orderListSelectByKeyword(keyword);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/admin/page-orders");
+		mv.addObject("selectOrder", selectOrder);
+		
+		return mv;
 	}
 	
 }
