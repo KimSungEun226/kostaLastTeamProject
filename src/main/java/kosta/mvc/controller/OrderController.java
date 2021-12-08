@@ -262,6 +262,8 @@ public class OrderController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/user/page-orders");
 		mv.addObject("list", pageList);
+		
+		mv.addObject("memberNo", m.getMemberNo());
 		return mv;
 	}
 	

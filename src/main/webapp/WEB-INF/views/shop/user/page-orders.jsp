@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
@@ -120,14 +121,15 @@
             
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
             
-            
             <c:forEach items="${list.content}" var="orderdetail">
             <c:if test="${orderdetail.status==0}">
              <div class="g-pa-20">
                 <div class="row">
                   <div class="col-md-8">
+                    <fmt:parseDate var="cntday" value="${orderdetail.userOrder.orderDate}" pattern="yyyy-MM-dd"/>
+	                <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy-MM-dd"/>
                     <div class="mb-4">
-                      <h3 class="h5 mb-1">주문시각 : ${orderdetail.userOrder.orderDate}</h3>
+                      <h3 class="h5 mb-1">주문날짜 : ${day}</h3>
                     </div>
 
                     <div class="row">
@@ -184,15 +186,19 @@
                      <a id="cancleOrder" name="${orderdetail.userOrderDetailNo}" class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="#">
                      반품하기
                      </a>  
-                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="${pageContext.request.contextPath}/shop/review/insert/${orderdetail.product.productNo}/${order.member.memberNo}">
+                     
+                    <c:if test="${empty orderdetail.review}">
+                    <a class="btn btn-block g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 text-uppercase g-py-12 g-px-25" href="${pageContext.request.contextPath}/shop/review/insert/${orderdetail.product.productNo}/${memberNo}/${orderdetail.userOrderDetailNo}">
                      리뷰작성
                      </a>  
+                     </c:if>
                      
                   </div>
-                     
                   </c:when> 
                   
                 </c:choose>
+                    
+                    
                     
                     
                 </div>
@@ -214,7 +220,7 @@
             <nav class="g-mb-100" aria-label="Page Navigation">
         	<ul class="list-inline mb-0">
          
-          	<var var="doneLoop" value="false"/>
+          	<c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/select?nowPage=${startPage-1}" aria-label="Next">
