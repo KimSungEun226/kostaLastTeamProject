@@ -96,7 +96,7 @@
         <table class="table table-striped">
           <thead class="g-color-white g-bg-primary text-center text-uppercase">
             <tr>
-              <th class="g-brd-top-none g-font-weight-500 g-py-15 g-font-size-25" colspan="2">칼로리 처방 받기</th>
+              <th class="g-brd-top-none g-font-weight-700 g-py-15 g-font-size-25" colspan="2">칼로리 처방 받기</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -129,7 +129,7 @@
         <table class="table table-striped">
           <thead class="g-color-white g-bg-primary text-center text-uppercase">
             <tr>
-              <td class="g-width-150 g-font-weight-600 g-py-15 g-font-size-16 text-left" colspan="2">하루 소비 칼로리는 <span style="color:red">${cal.total}kcal</span></td>
+              <td class="g-brd-top-none g-font-weight-700 g-py-15 g-font-size-25 text-cneter" colspan="2">하루 소비 칼로리는 <span style="color:#FF0033">${cal.total}</span>kcal</td>
             </tr>
           </thead>
             <tbody class="text-center">
@@ -166,7 +166,7 @@
 					</div>				  
 					<div class="progress-bar" style="width:19%; height: 20px; background-color:#00ff0000"></div>			  
 				  </div>
-				  <ul class="text-left">
+				  <ul class="text-left ">
 				    <li>하루 소비 칼로리는 일상생활을 하는데 기본적으로 소비되는 칼로리입니다.</li>
 					<li>칼로리 처방 시, 선택하는 활동량에 따라 달라질 수 있습니다.</li>
 				  </ul>
@@ -178,18 +178,18 @@
          <table class="table table-striped">
           <thead class="g-color-white g-bg-primary text-center text-uppercase">
             <tr>
-              <td class="g-width-150 g-font-weight-600 g-py-15 g-font-size-16 text-left" colspan="2">처방 칼로리</td>
+              <td class="g-brd-top-none g-font-weight-700 g-py-15 g-font-size-25 text-cneter" colspan="2">처방 칼로리</td>
             </tr>
           </thead>
             <tbody class="text-center">
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-1200 g-py-15">하루 동안 섭취해야 할 음식 칼로리</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">하루 동안 섭취해야 할 음식 칼로리</td>
               <td class="g-max-width-300 text-left g-py-15">
                 <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.dailyEatCal } Kcal</h4>
               </td>
             </tr>
             <tr>
-              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-1200 g-py-15">하루 동안 운동으로 소모해야 할 칼로리</td>
+              <td class="g-width-150 g-color-gray-dark-v4 g-font-weight-600 g-py-15">하루 동안 운동으로 소모해야 할 칼로리</td>
 			  <td class="g-max-width-300 text-left g-py-15">
                 <h4 class="g-color-gray-dark-v4 g-font-weight-700 g-font-size-16">${cal.dailyWeightTraining } Kcal</h4>
               </td>
@@ -202,8 +202,8 @@
       <!-- Total -->
       <div class="row justify-content-between">
         <div class="col-md-7 align-self-center g-mb-30">
-          <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-center text-uppercase py-4 g-pr-50 mb-3" style="width: 80%">
-            <ul class="text-left">
+          <div class="g-bg-gray-light-v5 g-color-black g-font-weight-600 text-center text-uppercase py-4 mb-3" style="width: 100%">
+            <ul class="text-left g-color-gray-dark-v4 g-font-weight-600 g-py-15 ">
               <li>일일 음식 섭취 칼로리가 1000kcal 이하일 때는 감량 목표를 하향 조절해 주세요.</li>
               <li>1000kcal 이하의 음식 섭취는 영양 불균형 및 요요 현상의 원인이 될 수 있어요.</li>
             </ul>

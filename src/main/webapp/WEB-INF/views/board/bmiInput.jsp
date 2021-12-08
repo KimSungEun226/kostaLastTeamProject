@@ -49,7 +49,7 @@ $(document).ready(function(){
         <div class="col-lg-5 flex-lg-unordered g-mb-80">
           <div class="g-brd-around g-bg-white rounded g-px-30 g-py-50 mb-4">
             <header class="text-center mb-4">
-              <h1 class="h3 g-color-black g-font-weight-400 text-capitalize">나의 BMI 지수 확인</h1>
+              <h1 class="h3 g-color-black g-font-weight-700 text-capitalize">나의 BMI 지수 확인</h1>
             </header>
 			
 			<hr class="g-brd-gray-light-v3 mb-1">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +108,7 @@ $(document).ready(function(){
     <!-- Breadcrumbs -->
     <section class="g-bg-gray-light-v5 g-py-50">
       <div class="container text-center">
-        <h2 class="h2 g-color-black g-font-weight-600">칼로리 사전 - 운동칼로리</h2>
+        <h2 class="h2 g-color-green g-font-weight-600">칼로리 사전 - 운동칼로리</h2>
 		<div class="container text-center g-py-50--mdg-py-80 ">
         
         <!-- Search Form -->
@@ -147,23 +148,23 @@ $(document).ready(function(){
     <c:otherwise>
     <!-- Blog Minimal Blocks -->
       <div class="container g-pt-100 g-pb-20">
-        <div>
+        <div class="table-responsive">
         <!-- Blog Minimal Blocks -->
-          <table style="width: 100%">
-            <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0">
-              <th class=" g-color-gray-dark-v4" style="width: 10%">번호</th>
-              <th class=" g-color-gray-dark-v4">운동</th>
-              <th class=" g-color-gray-dark-v4">운동분류</th>
-              <th class=" g-color-gray-dark-v4">운동강도</th>
-              <th class=" g-color-gray-dark-v4">MET계수</th>
+          <table class="table table-striped" style="width: 100%">
+            <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-16 g-py-13 mb-0 text-center">
+              <th class=" g-color-green" style="width: 5%">번호</th>
+              <th class=" g-color-green" style="width: 20%">운동</th>
+              <th class=" g-color-green"style="width: 10%">운동분류</th>
+              <th class=" g-color-green"style="width: 10%">운동강도</th>
+              <th class=" g-color-green">운동별 소모 칼로리(60kg, 30min) (Met)</th>
             </tr>
             <c:forEach items="${requestScope.pageList.content}" var="burn">
               <tr class=" g-brd-y g-brd-gray-light-v3 g-font-size-15 g-py-13 mb-0">
-                <td class=" g-color-gray-dark-v4" style="width: 10%">${burn.burncaloryNo }</td>
-                <td class=" g-color-gray-dark-v4">${burn.exercise }</td>
-                <td class=" g-color-gray-dark-v4">${burn.exerciseKind }</td>
-                <td class=" g-color-gray-dark-v4">${burn.exerciseIntensity }</td>
-                <td class=" g-color-gray-dark-v4">${burn.metPoint }</td>
+                <td class=" g-color-gray-dark-v4 text-center" style="width: 5%">${burn.burncaloryNo }</td>
+                <td class=" g-color-gray-dark-v4" style="width: 20%">${burn.exercise }</td>
+                <td class=" g-color-gray-dark-v4 text-center" style="width: 10%">${burn.exerciseKind }</td>
+                <td class=" g-color-gray-dark-v4 text-center" style="width: 10%">${burn.exerciseIntensity }</td>
+                <td class=" g-color-gray-dark-v4 text-center"><fmt:formatNumber value="${(burn.metPoint*3.5*60*30)*5/1000}" pattern="0.00"/>  Kcal &nbsp;&nbsp;(Met: <span style="color:#FF0033">${(burn.metPoint)}</span>)</td>
               </tr>
             </c:forEach>
           </table>
