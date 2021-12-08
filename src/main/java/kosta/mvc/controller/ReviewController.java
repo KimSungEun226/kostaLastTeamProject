@@ -67,13 +67,23 @@ public class ReviewController {
 	}
 	
 	/**
-	 * 리뷰 삭제하기
+	 * 리뷰 상품 페이지에서 삭제하기
 	 */
 	@RequestMapping("delete/{reviewNo}/{productNo}")
-	public String delete(@PathVariable int reviewNo, @PathVariable Long productNo) {
+	public String delete(@PathVariable Long reviewNo, @PathVariable Long productNo) {
 		reviewService.delete(reviewNo);
 		
 		return "redirect:/shop/select/single/" + productNo + "/1";
+	}
+	
+	/**
+	 * 리뷰 내가쓴 리뷰 페이지에서 삭제하기
+	 */
+	@RequestMapping("deleteReview/{reviewNo}/{productNo}")
+	public String deleteReview(@PathVariable Long reviewNo, @PathVariable Long productNo) {
+		reviewService.delete(reviewNo);
+		
+		return "redirect:/shop/review/reviewList";
 	}
 	
 	/**

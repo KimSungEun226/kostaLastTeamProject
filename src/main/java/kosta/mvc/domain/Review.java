@@ -30,7 +30,7 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_no_seq")
 	@SequenceGenerator(sequenceName = "review_no_seq", allocationSize = 1, name = "review_no_seq")
-	private int reviewNo; //리뷰번호
+	private Long reviewNo; //리뷰번호
 	
 	private String reviewName; //리뷰제목
 	private String reviewContent; //리뷰내용
