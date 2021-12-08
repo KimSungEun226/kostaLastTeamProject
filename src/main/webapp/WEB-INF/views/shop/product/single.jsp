@@ -55,15 +55,24 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">Home</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/main">이짐샵</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">Pages</a>
+            <c:if test="${product.cateCode==1}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">닭가슴살</a>
+            </c:if> 
+            <c:if test="${product.cateCode==2}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">샐러드</a>
+            </c:if>
+            <c:if test="${product.cateCode==3}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">프로틴</a>
+            </c:if>
+              
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>Single Product 1</span>
+              <span>${product.productName}</span>
             </li>
           </ul>
         </div>
@@ -134,7 +143,7 @@
               <div id="accordion-01" role="tablist" aria-multiselectable="true">
                 <div id="accordion-01-heading-01" class="g-brd-y g-brd-gray-light-v3 py-3" role="tab">
                   <h5 class="g-font-weight-400 g-font-size-default mb-0">
-                    <a class="d-block g-color-gray-dark-v5 g-text-underline--none--hover" href="#accordion-01-body-01" data-toggle="collapse" data-parent="#accordion-01" aria-expanded="false" aria-controls="accordion-01-body-01">Details
+                    <a class="d-block g-color-gray-dark-v5 g-text-underline--none--hover" href="#accordion-01-body-01" data-toggle="collapse" data-parent="#accordion-01" aria-expanded="false" aria-controls="accordion-01-body-01">상세정보
                       <span class="float-right g-pos-rel g-top-3 mr-1 fa fa-angle-down"></span></a>
                   </h5>
                 </div>
@@ -149,83 +158,13 @@
               </div>
               <!-- End Accordion -->
 
-              <!-- Colour -->
-              <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Colour</h5>
-
-                <!-- Checkbox -->
-                <label class="form-check-inline u-check mb-0 ml-auto g-mr-10">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
-                  <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
-                    <i class="d-block g-absolute-centered g-width-12 g-height-12 g-bg-primary rounded-circle"></i>
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-mx-10">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
-                  <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
-                    <i class="d-block g-absolute-centered g-width-12 g-height-12 g-bg-beige rounded-circle"></i>
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-mx-10">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
-                  <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
-                    <i class="d-block g-absolute-centered g-width-12 g-height-12 g-bg-black rounded-circle"></i>
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-ml-10 mr-0">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
-                  <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
-                    <i class="d-block g-absolute-centered g-width-12 g-height-12 g-bg-gray-dark-v4 rounded-circle"></i>
-                  </span>
-                </label>
-                <!-- End Checkbox -->
-              </div>
-              <!-- End Colour -->
-
-              <!-- Size -->
-              <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Size</h5>
-
-                <!-- Checkbox -->
-                <label class="form-check-inline u-check mb-0 ml-auto g-mr-15">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline2_1" type="radio">
-                  <span class="d-block g-font-size-12 g-color-primary--checked">
-                    S
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-mx-15">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline2_1" type="radio">
-                  <span class="d-block g-font-size-12 g-color-primary--checked">
-                    M
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-mx-15">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline2_1" type="radio">
-                  <span class="d-block g-font-size-12 g-color-primary--checked">
-                    L
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-mx-15">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline2_1" type="radio">
-                  <span class="d-block g-font-size-12 g-color-primary--checked">
-                    XL
-                  </span>
-                </label>
-                <label class="form-check-inline u-check mb-0 g-ml-15">
-                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline2_1" type="radio">
-                  <span class="d-block g-font-size-12 g-color-primary--checked">
-                    XXL
-                  </span>
-                </label>
-                <!-- End Checkbox -->
-              </div>
-              <!-- End Size -->
+              
 
               <!-- Quantity 여기랑-->
               <c:set var="productCount" value="1"/>
               <fmt:parseNumber value = "${productCount}" integerOnly = "true" var = "pcount"/>
               <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3 g-mb-30" role="tab">
-                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Quantity</h5>
+                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">수량</h5>
 
 				
                 <div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus">
@@ -285,13 +224,13 @@
               <!-- Nav Tabs -->
               <ul class="nav d-flex justify-content-between g-font-size-12 text-uppercase" role="tablist" data-target="nav-1-1-default-hor-left">
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link active g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--3" role="tab">Returns</a>
+                  <a class="nav-link active g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--3" role="tab">환불정책</a>
                 </li>
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--1" role="tab">View Size Guide</a>
+                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--1" role="tab">FAQ</a>
                 </li>
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--2" role="tab">Delivery</a>
+                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--2" role="tab">배송비</a>
                 </li>
               </ul>
               <!-- End Nav Tabs -->
@@ -424,7 +363,7 @@
               <div class="media g-px-50--lg">
                 <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 icon-real-estate-048 u-line-icon-pro"></i>
                 <div class="media-body">
-                  <span class="d-block g-font-weight-400 g-font-size-default text-uppercase">Free Shipping</span>
+                  <span class="d-block g-font-weight-400 g-font-size-default text-uppercase">무료배송</span>
                   <span class="d-block g-color-gray-dark-v4">In 2-3 Days</span>
                 </div>
               </div>
@@ -434,7 +373,7 @@
               <div class="media g-px-50--lg">
                 <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 icon-real-estate-040 u-line-icon-pro"></i>
                 <div class="media-body">
-                  <span class="d-block g-font-weight-400 g-font-size-default text-uppercase">Free Returns</span>
+                  <span class="d-block g-font-weight-400 g-font-size-default text-uppercase">무료 반품</span>
                   <span class="d-block g-color-gray-dark-v4">No Questions Asked</span>
                 </div>
               </div>

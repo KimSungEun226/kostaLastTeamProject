@@ -363,6 +363,7 @@ public class OrderController {
 	public ModelAndView selectRefundByKeyword(@PathVariable String keyword) {
 		System.out.println("검색어:"+keyword);
 		List<UserRefund> refundList=refundService.selectRefundByKeyword(keyword);
+		System.out.println(refundList.size());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/admin/page-refund");
 		mv.addObject("refundList", refundList);

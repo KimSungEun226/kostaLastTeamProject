@@ -57,23 +57,22 @@
 
         <div class="container g-color-white g-pt-100 g-pb-40">
           <div class="g-mb-50">
-            <span class="d-block g-color-white-opacity-0_8 g-font-weight-300 g-font-size-20">Best hand-made</span>
-            <h3 class="g-color-white g-font-size-50 g-font-size-90--md g-line-height-1_2 mb-0">Innovative.</h3>
-            <p class="g-color-white g-font-weight-600 g-font-size-20 text-uppercase">Trends 2018</p>
+            <span class="d-block g-color-white-opacity-0_8 g-font-weight-300 g-font-size-20">맛있고 건강한</span>
+            <h3 class="g-color-white g-font-size-50 g-font-size-90--md g-line-height-1_2 mb-0">EGYM shop</h3>
+            <p class="g-color-white g-font-weight-600 g-font-size-20 text-uppercase"></p>
           </div>
 
           <div class="d-flex justify-content-end">
             <ul class="u-list-inline g-bg-gray-dark-v1 g-font-weight-300 g-rounded-50 g-py-5 g-px-20">
               <li class="list-inline-item g-mr-5">
-                <a class="u-link-v5 g-color-white g-color-primary--hover" href="#">Home</a>
-                <i class="g-color-white-opacity-0_5 g-ml-5">/</i>
-              </li>
-              <li class="list-inline-item g-mr-5">
-                <a class="u-link-v5 g-color-white g-color-primary--hover" href="#">Pages</a>
+                <a class="u-link-v5 g-color-white g-color-primary--hover" href="${pageContext.request.contextPath}/shop/main">이짐샵</a>
                 <i class="g-color-white-opacity-0_5 g-ml-5">/</i>
               </li>
               <li class="list-inline-item g-color-primary g-font-weight-400">
-                <span>Grid Filter No Sidebar 1</span>
+                
+                <span>식품</span>
+                
+                
               </li>
             </ul>
           </div>
@@ -87,20 +86,14 @@
         <div class="d-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20">
           <!-- Show -->
           <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">Show:</h2>
+            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">전체 상품 개수:</h2>
 
             <!-- Secondary Button -->
             <div class="d-inline-block btn-group g-line-height-1_2">
-              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              
                 9
-              </button>
-              <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">All</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">5</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">15</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">20</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">25</a>
-              </div>
+              
+            
             </div>
             <!-- End Secondary Button -->
           </div>
@@ -108,18 +101,18 @@
 
           <!-- Sort By -->
           <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">Sort by:</h2>
+            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">정렬:</h2>
 
             <!-- Secondary Button -->
             <div class="d-inline-block btn-group g-line-height-1_2">
               <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bestseller
+                인기순
               </button>
               <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">Bestseller</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">Trending</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">Price low to high</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">price high to low</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">제목순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">날짜순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">낮은가격순</a>
               </div>
             </div>
             <!-- End Secondary Button -->
@@ -195,7 +188,7 @@
               <!-- Products Icons -->
               <ul class="list-inline media-body text-right">
                 <li class="list-inline-item align-middle mx-0">
-                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="${pageContext.request.contextPath}/shop/addToCart/${product.cateCode}/${product.productNo}"
                      data-toggle="tooltip"
                      data-placement="top"
                      title="Add to Cart">

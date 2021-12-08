@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -144,6 +143,22 @@ public class CartController {
 		 
 		 return "redirect:/shop/selectCart";
 	 }
+	 
+	 /**
+	  * 상품 목록에서 장바구니에 상품담기
+	  * */
+	 @RequestMapping("/addToCart/{cateCode}/{pno}")
+		public ModelAndView selectCart(HttpSession session, Principal principal, @PathVariable int cateCode, @PathVariable Long pno) {
+
+		 	String id = session.getId();
+			if (principal!=null) {
+				cartService.insertCart(principal.getName(), pno);
+			}
+			else cartService.insertCart(id, pno, qty); 
+
+			return "redirect:/shop/select/"+cateCode;
+
+		}
 	 
 	 
 }
