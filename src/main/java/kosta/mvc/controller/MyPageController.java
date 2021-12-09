@@ -31,7 +31,7 @@ import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/myPage")
+@RequestMapping("/user/myPage")
 @RequiredArgsConstructor
 public class MyPageController {
 	
