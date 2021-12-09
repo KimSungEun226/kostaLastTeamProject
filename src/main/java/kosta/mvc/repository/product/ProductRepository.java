@@ -17,6 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 * */
 	Page<Product> findByCateCodeAndStockGreaterThan(int cateCode, int stock, Pageable pageable);
 	
+	
+	
 	/**
 	 * 조회수 증가
 	 * */

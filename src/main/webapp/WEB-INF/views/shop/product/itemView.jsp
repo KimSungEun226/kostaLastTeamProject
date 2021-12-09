@@ -98,18 +98,7 @@
         <!-- Filters -->
         <div class="d-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20">
           <!-- Show -->
-          <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">전체 상품 개수: </h2>
-
-            <!-- Secondary Button -->
-            <div class="d-inline-block btn-group g-line-height-1_2">
-              
-               ${list.content.size()}
-              
-            
-            </div>
-            <!-- End Secondary Button -->
-          </div>
+          
           <!-- End Show -->
 
           <!-- Sort By -->
@@ -117,18 +106,71 @@
             <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0"></h2>
 
             <!-- Secondary Button -->
+            
+            <c:choose>
+            <c:when test="${orderBy==3}">
             <div class="d-inline-block btn-group g-line-height-1_2">
               <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 등록일순
               </button>
                
               <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">높은가격순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">낮은가격순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">인기순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
 
               </div>
             </div>
+            </c:when>
+            
+            <c:when test="${orderBy==0}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                높은가격순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            <c:when test="${orderBy==1}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                낮은가격순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            <c:when test="${orderBy==2}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                인기순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            </c:choose>
+            
+           
             <!-- End Secondary Button -->
           </div>
           <!-- End Sort By -->

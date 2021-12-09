@@ -342,7 +342,7 @@
             <hr class="g-brd-gray-light-v4 g-mt-10 g-mb-40">
                 
                 <!-- Pagination -->
-		        <nav class="g-mb-100" aria-label="Page Navigation">
+		        <nav class="g-mb-100 text-center" aria-label="Page Navigation">
 		        <ul class="list-inline mb-0">
 		          	<c:set var="doneLoop" value="false"/>
 		            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->

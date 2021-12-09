@@ -165,7 +165,7 @@ public class MultiHttpSecurityConfig {
 	    	http.authorizeRequests()
 	                // 페이지 권한 설정
 	                .antMatchers("/admin/**").hasRole("ADMIN")
-	                //.antMatchers("/user/**").hasRole("MEMBER")
+	                .antMatchers("/user/**").hasRole("MEMBER")
 	                //.antMatchers("/shop/**").hasRole("MEMBER")
 	                //.antMatchers("/**").anonymous()
 	            .and() // 로그인 설정
