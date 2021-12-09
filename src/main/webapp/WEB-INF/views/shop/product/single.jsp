@@ -149,10 +149,10 @@
                 </div>
                 <div id="accordion-01-body-01" class="collapse" role="tabpanel" aria-labelledby="accordion-01-heading-01">
                   <div class="g-py-10">
-                    <p class="g-font-size-12 mb-2">SHELL: 100% POLYESTER</p>
-                    <p class="g-font-size-12 mb-2">Always check the care label instructions.</p>
-                    <p class="g-font-size-12 mb-2">Professional dry clean only. Remove all detachable parts before cleaning. Do not iron.</p>
-                    <p class="g-font-size-12 mb-2">(Navy: Avoid contact with light coloured fabrics and upholstery especially whilst damp.)</p>
+                  <fmt:parseDate value="${product.productDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                    <p class="g-font-size-12 mb-2">상품등록일:  <fmt:formatDate pattern="yyyy.MM.dd" value="${parsedDateTime}"/></p>
+                    <p class="g-font-size-12 mb-2">배송비: 무료</p>
+                    <p class="g-font-size-12 mb-2">배송지역: 전국</p>
                   </div>
                 </div>
               </div>
@@ -224,13 +224,13 @@
               <!-- Nav Tabs -->
               <ul class="nav d-flex justify-content-between g-font-size-12 text-uppercase" role="tablist" data-target="nav-1-1-default-hor-left">
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link active g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--3" role="tab">환불정책</a>
+                  <a class="nav-link active g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#" role="tab">환불정책</a>
                 </li>
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--1" role="tab">FAQ</a>
+                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#" role="tab">FAQ</a>
                 </li>
                 <li class="nav-item g-brd-bottom g-brd-gray-dark-v4">
-                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" href="#nav-1-1-default-hor-left--2" role="tab">배송비</a>
+                  <a class="nav-link g-color-primary--parent-active g-pa-0 g-pb-1" data-toggle="tab" role="tab">배송비 무료</a>
                 </li>
               </ul>
               <!-- End Nav Tabs -->
