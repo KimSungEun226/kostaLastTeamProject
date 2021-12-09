@@ -31,7 +31,7 @@ import kosta.mvc.service.MypageService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/myPage")
+@RequestMapping("/user/myPage")
 @RequiredArgsConstructor
 public class MyPageController {
 	
@@ -113,6 +113,12 @@ public class MyPageController {
 		int blockCount=3;
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
+		
+		for(Reply reply : pageReply) {
+			System.out.println("---------------------------------");
+			System.out.println("replyContent : "+reply.getReplyContent());
+			System.out.println("---------------------------------");
+		}
 		
 		mv.addObject("member", member);		
 		mv.addObject("blockCount", blockCount);

@@ -17,14 +17,16 @@
           <div class="col-sm-6 col-lg-3">
             <div class="g-pr-40 g-mt-20">
               <div class="g-mb-30">
-                <h3 class="h3 g-color-black g-font-weight-500 g-line-height-1_2 mb-4">아이디 찾기</h3>
+                <h3 class="h3 g-color-black g-font-weight-500 g-line-height-1_2 mb-4">비밀번호 찾기</h3>
               </div>
             </div>
           </div>
-
+		  
           <div class="col-lg-9">
+            <form method="post" action="${pageContext.request.contextPath}/shop/findPwdByPhonePage">
                 <!-- Icon Blocks -->
-                <div onclick="location.href='${pageContext.request.contextPath}/findIdByPhone';" class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                <input type="hidden" name="memberId" value="${memberId}">
+                <div onclick="javascript:document.forms[0].submit();" class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
                   <div class="mb-4">
                     <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
                         <i class="icon-education-087 u-line-icon-pro"></i>
@@ -34,9 +36,11 @@
                   </div>
                 </div>
                 <!-- End Icon Blocks -->
-              
+              </form>
+              <form method="post" action="${pageContext.request.contextPath}/shop/findPwdByEmailPage">
                 <!-- Icon Blocks -->
-                <div onclick="location.href='${pageContext.request.contextPath}/findIdByEmail';" class="mb-4  u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                <input type="hidden" name="memberId" value="${memberId}">
+                <div onclick="javascript:document.forms[1].submit();" class="mb-4  u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
                   <div class="mb-4">
                     <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
                         <i class="icon-education-035 u-line-icon-pro"></i>
@@ -45,10 +49,12 @@
                     <p>회원정보에 등록한 이메일로 인증합니다.</p>
                   </div>
                 </div>
+              </form>
                 <!-- End Icon Blocks -->
             </div>
+          
           </div>
-          <a style="float: right" class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="#">비밀번호 찾기 >></a>
+          <p style="float:right" class="g-color-gray-dark-v5 g-font-size-13 mb-0">아이디를 찾으시나요? <a class="g-font-weight-600" href="${pageContext.request.contextPath}/shop/findId">아이디 찾기</a>
         </div>
         <!-- End Icon Blocks -->
 		

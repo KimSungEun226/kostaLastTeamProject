@@ -94,7 +94,7 @@ $(function(){
 			$("#memberPwdConfirm").focus();
 			$("#memberPwdConfirm").css("outline", "1px solid red");
 		}else{ //true일 때 전송
-			$("#changePwdForm").attr("action", "/changePwd");
+			$("#changePwdForm").attr("action", "/shop/changePwd");
 			$("#changePwdForm").submit();
 		}
 	});

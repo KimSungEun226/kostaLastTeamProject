@@ -24,7 +24,7 @@
 
           <div class="col-lg-9">
                 <!-- Icon Blocks -->
-                <div onclick="location.href='${pageContext.request.contextPath}/findIdByPhone';" class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                <div onclick="location.href='${pageContext.request.contextPath}/shop/findIdByPhone';" class="u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
                   <div class="mb-4">
                     <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
                         <i class="icon-education-087 u-line-icon-pro"></i>
@@ -36,7 +36,7 @@
                 <!-- End Icon Blocks -->
               
                 <!-- Icon Blocks -->
-                <div onclick="location.href='${pageContext.request.contextPath}/findIdByEmail';" class="mb-4  u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
+                <div onclick="location.href='${pageContext.request.contextPath}/shop/findIdByEmail';" class="mb-4  u-shadow-v21--hover g-brd-around g-brd-gray-light-v3 g-brd-left-none g-brd-transparent--hover g-bg-white--hover g-transition-0_3 g-cursor-pointer g-px-30 g-pt-30 g-pb-50 g-ml-minus-1">
                   <div class="mb-4">
                     <span class="u-icon-v3 u-shadow-v19 g-bg-white g-color-primary rounded-circle mb-4">
                         <i class="icon-education-035 u-line-icon-pro"></i>
@@ -48,69 +48,13 @@
                 <!-- End Icon Blocks -->
             </div>
           </div>
-          <a style="float: right" class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="#">비밀번호 찾기 >></a>
+          <a style="float: right" class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/findPwd">비밀번호 찾기 >></a>
         </div>
         <!-- End Icon Blocks -->
 		
 	
     </section>
     <!-- End Icon Blocks -->
-  
-    <!-- <section class="g-py-150">
-      <div class="container">
-        <header class="text-center mb-4">
-          <h2 class="h2 g-color-black g-font-weight-400">아이디 찾기</h2>
-        </header>
-
-        <div class="row g-mb-30 row justify-content-center">
-          <div class="col-lg-4 g-mb-40 g-mb-0--lg">
-            <ul class="list-unstyled mb-0">
-              <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
-                <div class="d-flex align-self-center g-mt-3 g-mr-15">
-                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img6.png" alt="Image Description">
-                </div>
-                <div class="media-body">
-                  <a class="d-block u-link-v5 g-color-main g-color-primary--hover g-font-weight-600 g-mb-3" href="">휴대폰 인증</a>
-                  <span class="g-font-size-13 g-color-gray-dark-v4 g-mr-15">
-                      회원정보에 등록한 휴대폰으로 인증
-                    </span>
-                </div>
-              </li>
-              <!-- <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
-                <div class="d-flex align-self-center g-mt-3 g-mr-15">
-                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img5.png" alt="Image Description">
-                </div>
-                <div class="media-body align-self-center">
-                  <a class="d-block u-link-v5 g-color-main g-font-weight-600" href="">회원 정보에 등록한 휴대폰 인증</a>
-                  
-                </div>
-                <div class="d-flex align-self-center g-mt-3 g-mr-15">
-                  <i class="fa fa-angle-right"></i>
-                </div>
-              </li> -->
-
-              <!-- <li class="media u-shadow-v11 rounded g-pa-20 g-mb-10">
-                <div class="d-flex align-self-center g-mt-3 g-mr-15">
-                  <img class="g-width-40 g-height-40" src="../../assets/img-temp/logos/img6.png" alt="Image Description">
-                </div>
-                <div class="media-body">
-                  <a class="d-block u-link-v5 g-color-main g-color-primary--hover g-font-weight-600 g-mb-3" href="">이메일 인증</a>
-                  <span class="g-font-size-13 g-color-gray-dark-v4 g-mr-15">
-                      회원정보에 등록한 이메일로 인증
-                    </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="text-center">
-          <a class="btn btn-xl u-btn-outline-primary text-uppercase g-font-weight-600 g-font-size-12" href="#">View More Jobs</a>
-        </div>
-      </div>
-    </section> -->
-    <!-- End Popular Jobs -->
 
     <!-- Copyright Footer -->
     <footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20">
