@@ -191,7 +191,7 @@ public class LoginController {
     	return "board/login/findPwdNew";
     }
     
-    //비밀번호 찾기 이름 확인
+    //비밀번호 찾기 아이디 확인
     @RequestMapping(value="/findPwdInputId",method=RequestMethod.POST)
     public String findPwdInputId(HttpServletResponse response, String memberId, Model model) throws Exception {
     	memberService.findPwdInputId(response, memberId);
@@ -202,7 +202,6 @@ public class LoginController {
     //새 비밀번호 변경
     @RequestMapping(value="/changePwd", method=RequestMethod.POST)
     public String changePwd(HttpServletResponse response, MemberDto memberDto, String memberPwd, String memberId) throws Exception {
-    	System.out.println("컨트롤러 진입");
     	memberService.changePwd(memberDto, memberPwd, memberId);
     	return "board/login/findPwdResult";
     }

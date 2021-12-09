@@ -196,8 +196,9 @@
 
               <hr class="g-brd-gray-light-v4 g-my-20">
 
+			  <form name="check_form_myInfo" method="post" action="${pageContext.request.contextPath}/shop/login/updateMyInfo" >
               <div class="row">
-               <form name="check_form_myInfo" method="post" action="${pageContext.request.contextPath}/shop/login/updateMyInfo" >
+               
                 <div class="col-8">
                 
                   <span class="d-block g-color-text g-font-size-13 mb-1">이름:</span>
@@ -247,7 +248,7 @@
                 
 
                 <div class="col-4 text-right">
-                  <button name="form_check" type="button" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" onclick="form_check_myInfo()">수정
+                  <button name="form_check" type="button" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" style="margin-top: 10px" onclick="form_check_myInfo()">수정하기</button>
                 </div>
               
               </div>

@@ -194,4 +194,25 @@ public class MemberService implements UserDetailsService {
 		info.setAttendCheck(1);
 		infoRepository.save(info);
 	}    
+	
+	/**
+	 * 암호화된 비밀번호 복호화
+	 */
+	public boolean checkPwd(HttpServletResponse response, String memberPwd, String pwd) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		System.out.println("입력 비밀번호 : "+memberPwd);
+		System.out.println("원래 비밀번호 : " + pwd);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(!passwordEncoder.matches(memberPwd, pwd)) {
+			out.println("<script>");
+    		out.println("alert('비밀번호가 정확하지 않습니다.');");
+    		out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return false;
+		}
+		
+		return true;
+	}
 }

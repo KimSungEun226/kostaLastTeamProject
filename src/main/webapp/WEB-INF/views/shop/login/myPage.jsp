@@ -5,6 +5,17 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<style>
+  #pwdCheckOk, #pwdConfirmCheckOk {
+    color : green;
+    display : none;
+  }
+  #nameCheckFail, #pwdConfirmCheckFail {
+    color : red;
+    display : none;
+  }
+</style>
   <head>
     <!-- Title -->
     <title>E-commerce Login &amp; Security Page | Unify - Responsive Website Template</title>
@@ -55,7 +66,101 @@
     
 
 </script>
-    
+<script type="text/javascript">
+$(function(){
+	//id=memberPwd, newMemberPwd, newMemberPwdConfirm
+	$("#memberPwd").blur(function(){
+		$("#memberPwd").css("outline", "none");
+	});
+	$("#newMemberPwd").focus(function(){
+		$("#pwdCheck").show();
+	});
+	$("#newMemberPwd").blur(function(){
+		$("#newMemberPwd").css("outline", "none");
+	});
+	$("#newMemberPwdConfirm").focus(function(){
+		$("#memberPwdConfirm").show();
+	});
+	$("#newMemberPwdConfirm").blur(function(){
+		$("#newMemberPwdConfirm").css("outline", "none");
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	var pwdCheck = false;
+	var newPwdCheck = false;
+	var newPwdConfirmCheck = false;
+	
+	$("#newMemberPwd").on("propertychange change keyup paste input", function(){
+		
+		console.log("keyup 테스트");	
+		var newMemberPwd = $("#newMemberPwd").val();
+		var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
+
+		if(newMemberPwd == ""){
+			$("#pwdCheck").css("color", "black");
+		}else{
+			if(regExp.test(newMemberPwd)){
+				$("#pwdCheck").css("color", "green");
+				newPwdCheck = true;
+			}else{
+				$("#pwdCheck").css("color", "red");
+				newPwdCheck = false;
+			}
+		}
+	});
+	
+	$("#newMemberPwdConfirm").on("propertychange change keyup paste input", function(){
+		var newMemberPwd = $("#newMemberPwd").val();
+		var newMemberPwdConfirm = $("#newMemberPwdConfirm").val();
+
+		if(newMemberPwdConfirm == ""){
+			$("#pwdConfirmCheckOk").css("display", "none");
+			$("#pwdConfirmCheckFail").css("display", "none");
+		}else{
+			if(newMemberPwd == null || newMemberPwdConfirm != newMemberPwd){
+				$("#pwdConfirmCheckOk").css("display", "none");
+				$("#pwdConfirmCheckFail").css("display", "inline-block").css("color", "red");
+				newPwdConfirmCheck = false;
+			}else{
+				$("#pwdConfirmCheckFail").css("display", "none");
+				$("#pwdConfirmCheckOk").css("display", "inline-block").css("color", "green");
+				newPwdConfirmCheck = true;
+			}
+		}
+	});
+	
+	$("#changePwdBtn").click(function(){
+		//비밀번호 공백 확인
+		if($("#memberPwd").val() == ""){
+			pwdCheck = false;
+		}else{
+			pwdCheck = true;
+		}
+		//새 비밀번호 공백 확인
+		if($("#newMemberPwd").val() == ""){
+			newPwdCheck = false;
+		}
+		//새 비밀번호 확인 공백 확인
+		if($("#newMemberPwdConfirm").val() == ""){
+			newPwdConfirmCheck = false;
+		}
+		
+		if(!pwdCheck){
+			$("#memberPwd").focus();
+		}else if(!newPwdCheck){
+			$("#newMemberPwd").focus();
+		}else if(!newPwdConfirmCheck){
+			$("#newMemberPwdConfirm").focus();
+		}else{ //true일 때 전송
+			$("#changePwdForm").attr("action", "/shop/login/changePwd");
+			$("#changePwdForm").submit();
+		}
+	});
+});
+	
+</script>
  
     
   </head>
@@ -141,6 +246,7 @@
 
           <div class="col-lg-9 g-mb-50">
             <!-- Info -->
+            <h3 class="h4 g-font-weight-300">개인 정보</h3><p>
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
               <div class="row">
                 <div class="col-8">
@@ -191,11 +297,10 @@
               <div class="row">
                 <div class="col-8">
                   <span class="d-block g-color-text g-font-size-13 mb-1"></span>
-                  </span>
                 </div>
 
                 <div class="col-4 text-right">
-                  <button type="submit" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >수정하러 가기</a>
+                  <button type="submit" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >수정</button>
                 </div>
               
               </div>
@@ -203,7 +308,56 @@
               
             </div>
             <!-- End Info -->
+            <form class="g-py-15" id="changePwdForm" method="post">
+			<h3 class="h4 g-font-weight-300">비밀번호 변경</h3><p>
+            <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
+              <div class="row">
+                <div class="col-8">
+                  <span class="d-block g-color-text g-font-size-13 mb-1">현재 비밀번호:</span>
+                  <input id="memberPwd" name="memberPwd" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="현재 비밀번호 입력">
+                </div>
 
+                
+              </div>
+
+              <hr class="g-brd-gray-light-v4 g-my-20">
+
+              <div class="row">
+                <div class="col-8">
+                  <span class="d-block g-color-text g-font-size-13 mb-1">새 비밀번호:</span>
+                  <input id="newMemberPwd" name="newMemberPwd" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="새 비밀번호 입력">
+                </div>
+                
+              </div>
+			  <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdCheck" style="display:none">※ 8~16자 영문, 숫자, 특수문자 모두 포함하여 입력</span><p>
+              <hr class="g-brd-gray-light-v4 g-my-20">
+
+              <div class="row">
+                <div class="col-8">
+                  <span class="d-block g-color-text g-font-size-13 mb-1">새 비밀번호 확인</span>
+                  <input id="newMemberPwdConfirm" name="newMemberPwdConfirm" class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-color-text rounded g-py-13 g-px-15" type="password" placeholder="새 비밀번호 다시 한번 입력">
+                </div>
+              </div>
+			  <span class="g-font-weight-500 g-font-size-13" id="pwdConfirmCheckOk">※ 비밀번호가 일치합니다.</span>
+         	  <span class="g-font-weight-500 g-font-size-13" id="pwdConfirmCheckFail">※ 비밀번호가 일치하지 않습니다.</span>
+              <hr class="g-brd-gray-light-v4 g-my-20">
+              
+               
+			    
+              <div class="row">
+                <div class="col-8">
+                  <span class="d-block g-color-text g-font-size-13 mb-1"></span>
+                </div>
+
+                <div class="col-4 text-right">
+                  <button type="button" id="changePwdBtn" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-13 rounded g-px-18 g-py-7" >비밀번호 변경</button>
+                </div>
+              
+              </div>
+              </div>
+              </form>
+              
+            </div>
           </div>
           <!-- End Login & Security -->
         </div>
