@@ -197,7 +197,7 @@
             
 		 <!-- Pagination -->
         <nav class="g-mb-100" aria-label="Page Navigation">
-        <ul class="list-inline mb-0">
+        <ul class="list-inline mb-0 text-center">
           	<c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
