@@ -10,7 +10,7 @@
 <head>
   <!-- Title -->
   <title>Unify Search Results | | Unify - Responsive Website Template</title>
-
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -337,13 +337,14 @@
                 <article class="g-pa-25 u-shadow-v11 rounded">
                 <!-- Start 썸네일 -->
                 <img class="col-lg-17" src="${board.thumbnail}"  alt="${board.boardTitle}" />
+                
                 <!-- End 썸네일 -->
-                  <h2 class="h4 g-mb-15">
-                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}">${board.boardTitle}</a>
-                    </h2>
+                  <h5 class="h5 g-mb-15">
+                      <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="${pageContext.request.contextPath}/board/detail/${board.boardNo}"><br>${board.boardTitle}</a>
+                    </h5>
 
                   <!-- Search Info -->
-                  <ul class="list-inline d-flex justify-content-between g-mb-20">
+                  <ul class="list-inline d-flex justify-content-between">
                   	<!-- 작성자 -->
                     <li class="list-inline-item g-mr-10">
                       <i class="icon-education-200 g-pos-rel g-top-1 g-color-gray-dark-v5 g-mr-5"></i>${board.memberNickname}

@@ -158,7 +158,8 @@
                    <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20"
                       aria-haspopup="true"
                       aria-expanded="false"
-                      aria-controls="nav-submenu--pages">
+                      aria-controls="nav-submenu--pages"
+                      href="${pageContext.request.contextPath}/shop/user/myPage">
                      <b>마이페이지</b>
                    </a>
                  </sec:authorize>
@@ -170,22 +171,23 @@
                      <!-- Grid Filter -->
                      
                      <!-- Account -->
-
-                     <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/selectCart">장바구니</a>
+					 <li class="dropdown-item">
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/myPage">내정보</a>
                      </li>
+                     
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/orderList">주문내역</a>
                      </li>
                      <li class="dropdown-item">
-                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/myPage">개인정보내역
-                       </a>
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/user/cancleList">환불내역</a>
+                     </li>
+                     <li class="dropdown-item">
+                       <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/selectCart">장바구니</a>
                      </li>
                      <li class="dropdown-item">
                        <a class="nav-link g-color-gray-dark-v4" href="${pageContext.request.contextPath}/shop/login/myAddress">배송지 관리
                        </a>
-                     </li>
-                     
+                     </li>  
                    </ul>
                    <!-- End Submenu -->
                  </li>

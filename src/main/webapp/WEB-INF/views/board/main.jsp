@@ -18,9 +18,9 @@
         <div class="container g-bg-cover__inner g-py-140 my-30" >
           <div class="row align-items-center">
             <div class="col-lg-6 g-mb-30 g-mb-0--lg">
-              <h2 class="h1 g-color-white g-mb-30">
-                  <span class="g-bg-primary-dark-v3 g-px-5">오늘과 다른</span><br>
-                  <span class="g-bg-primary-dark-v3 g-px-5">내일의 나를 위하여</span>
+              <h2 class="h1 g-mb-30 text-underline" style="color: green; font-weight: 700;">
+                  <span><b>오늘과 다른</b></span><br>
+                  <span><b>내일의 나를 위하여</b></span>
                 </h2>
               <h3 class="h4 g-color-white">
                   <span class="g-bg-black-opacity-0_6 g-px-5">지금 바로 EGYM과 함께</span><br>

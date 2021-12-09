@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Insert title here</title>
+  <title>EGYM SHOP</title>
 </head>
 
 <body>
@@ -66,7 +66,7 @@
                    data-paddingbottom="[0,0,0,0]"
                    data-paddingleft="[0,0,0,0]"
 
-                   style="z-index: 6; white-space: nowrap; font-size: 110px; line-height: 110px; font-weight: 700; color: rgba(255, 255, 255, 1.00);border-width:0px;letter-spacing:-7px;">Christmas Collection
+                   style="z-index: 6; white-space: nowrap; font-size: 80px; line-height: 80px; font-weight: 600; color: rgba(255, 255, 255, 1.00);border-width:0px;letter-spacing:-7px;">EGYM샵에 오신걸 환영합니다
               </div>
 
               <!-- LAYER NR. 4 -->
@@ -80,7 +80,7 @@
                    data-whitespace="['nowrap','nowrap','normal','normal']"
 
                    data-type="text"
-                   data-typewriter='{"lines":"Special%20Offer:%20Free%20Shipping%20Today,%20Shop%20with%20EGYM%20Shop","enabled":"on","speed":"70","delays":"1%7C100","looped":"on","cursorType":"one","blinking":"on","word_delay":"off","sequenced":"on","hide_cursor":"off","start_delay":"1500","newline_delay":"1000","deletion_speed":"20","deletion_delay":"1000","blinking_speed":"500","linebreak_delay":"60","cursor_type":"two","background":"off"}'
+                   data-typewriter='{"lines":"다이어트%20대표%20쇼핑몰,%20EGYM%20SHOP%20과%20함께하세요.","enabled":"on","speed":"70","delays":"1%7C100","looped":"on","cursorType":"one","blinking":"on","word_delay":"off","sequenced":"on","hide_cursor":"off","start_delay":"1500","newline_delay":"1000","deletion_speed":"20","deletion_delay":"1000","blinking_speed":"500","linebreak_delay":"60","cursor_type":"two","background":"off"}'
                    data-responsive_offset="on"
 
                    data-frames='[{"from":"y:50px;sX:1;sY:1;opacity:0;","speed":2500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
@@ -90,7 +90,7 @@
                    data-paddingbottom="[0,0,0,0]"
                    data-paddingleft="[0,0,0,0]"
 
-                   style="z-index: 8; min-width: 640px; max-width: 640px; white-space: nowrap; font-size: 40px; line-height: 40px; font-weight: 400; color: rgba(255, 255, 255, 1.00);border-width:0px;">Get 20% off any Purchase over $100
+                   style="z-index: 8; min-width: 640px; max-width: 640px; white-space: nowrap; font-size: 40px; line-height: 40px; font-weight: 400; color: rgba(255, 255, 255, 1.00);border-width:0px;">맛있고 건강한 다이어트를 위해
               </div>
 
               <!-- LAYER NR. 5 -->
@@ -157,8 +157,8 @@
                    data-paddingright="[50,50,50,50]"
                    data-paddingbottom="[0,0,0,0]"
                    data-paddingleft="[50,50,50,50]"
-
-                   style="z-index: 11; white-space: nowrap; font-size: 15px; line-height: 46px; font-weight: 700; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, 0);border-color:rgba(255, 255, 255, 0.25);border-style:solid;border-width:2px;border-radius:4px 4px 4px 4px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;letter-spacing:5px;cursor:pointer;">CONTACT
+                   
+                   style="z-index: 11; white-space: nowrap; font-size: 15px; line-height: 46px; font-weight: 700; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, 0);border-color:rgba(255, 255, 255, 0.25);border-style:solid;border-width:2px;border-radius:4px 4px 4px 4px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;letter-spacing:5px;cursor:pointer;">LOGIN
               </div>
             </li>
             <!-- END SLIDE  -->

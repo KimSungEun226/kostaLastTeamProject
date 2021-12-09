@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- Title -->
-    <title>E-commerce Home Page 1 | Unify - Responsive Website Template</title>
+    <title>EGYM SHOP</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
