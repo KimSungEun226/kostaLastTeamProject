@@ -43,7 +43,7 @@ public class ReplyController {
 		reply.setBoard(Board.builder().boardNo(boardNo).build());
 		
 		//댓글 객체에 로그인 되어있는 member객체를 넣어준다
-		//reply.setMember(member);
+		reply.setMember(member);
 		reply.setMemberId(memberId);
 		reply.setMemberNickname(memberNickname);
 		replyService.insert(reply);
