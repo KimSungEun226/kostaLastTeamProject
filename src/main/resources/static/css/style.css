@@ -1,0 +1,9 @@
+@charset "UTF-8";
+#idDuplicateCheckOk, #nicknameDuplicateCheckOk, #pwdCheckOk, #pwdConfirmCheckOk {
+  color : green;
+  display : none;
+}
+#idDuplicateCheckFail, #nicknameDuplicateCheckFail, #pwdConfirmCheckFail, #nameCheckFail, #emailCheckFail {
+  color : red;
+  display : none;
+}

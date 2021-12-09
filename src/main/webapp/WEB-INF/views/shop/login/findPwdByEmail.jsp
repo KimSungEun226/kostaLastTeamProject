@@ -109,7 +109,7 @@ $(function(){
 		}else if(!emailCheck || !emailCertificationCheck){
 			alert("이메일 인증을 완료해주세요.");
 		}else{ //true일 때 전송
-			$("#findPwdForm").attr("action", "/findPwdByEmail");
+			$("#findPwdForm").attr("action", "/shop/findPwdByEmail");
 			$("#findPwdForm").submit();
 		}
 		
@@ -164,7 +164,7 @@ $(function(){
 			  <hr class="g-brd-gray-light-v3 mb-3">
 			  <button id="findIdBtn" class="btn btn-block u-btn-primary rounded g-py-13 g-mb-15">확인</button>
 			  <div class="text-center">
-            	<a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="${pageContext.request.contextPath}/findPwdByPhonePage">휴대폰으로 찾기 >></a>
+            	<a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/findPwdByPhonePage">휴대폰으로 찾기 >></a>
           	  </div>
             </form>
             <!-- End Form -->

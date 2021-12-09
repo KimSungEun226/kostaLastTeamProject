@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
 <body>
 
@@ -45,14 +47,14 @@
             </header>
 
             <!-- Form -->
-              <form class="g-py-15" action="${pageContext.request.contextPath}/shop/loginProcess" method="post">
+              <form id="loginForm_shop" class="g-py-15" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> <!-- csrf 토큰 값 -->
                 <div class="mb-2">
-                  <input name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
+                  <input id="username" name="username" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="아이디">
                 </div>
 				<input type="hidden" id="prevSessionId" name="prevSessionId" value="${sessionId}"/>
                 <div class="g-mb-35">
-                  <input name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
+                  <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="비밀번호">
                   <div class="row justify-content-between">
                     <div class="col align-self-center">
                       <label class="form-check-inline u-check g-color-gray-dark-v4 g-font-size-12 g-pl-25 mb-0">
@@ -72,7 +74,7 @@
                 </div>
 
                 <div class="mb-4">
-                  <button type="submit" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">로그인</button>
+                  <button id="loginBtn_shop" class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="button">로그인</button>
                 </div>
               </form>
               <!-- End Form -->
@@ -167,57 +169,6 @@
   </main>
 
   <div class="u-outer-spaces-helper"></div>
-
-
-  <!-- JS Global Compulsory -->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-  <script src="../../assets/vendor/popper.js/popper.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
-
-
-  <!-- JS Implementing Plugins -->
-  <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-
-  <!-- JS Unify -->
-  <script src="../../assets/js/hs.core.js"></script>
-  <script src="../../assets/js/components/hs.header.js"></script>
-  <script src="../../assets/js/helpers/hs.hamburgers.js"></script>
-  <script src="../../assets/js/components/hs.tabs.js"></script>
-  <script src="../../assets/js/components/hs.go-to.js"></script>
-
-  <!-- JS Customization -->
-  <script src="../../assets/js/custom.js"></script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-    $(document).on('ready', function () {
-        // initialization of tabs
-        $.HSCore.components.HSTabs.init('[role="tablist"]');
-
-        // initialization of go to
-        $.HSCore.components.HSGoTo.init('.js-go-to');
-      });
-
-      $(window).on('load', function () {
-        // initialization of header
-        $.HSCore.components.HSHeader.init($('#js-header'));
-        $.HSCore.helpers.HSHamburgers.init('.hamburger');
-
-        // initialization of HSMegaMenu component
-        $('.js-mega-menu').HSMegaMenu({
-          event: 'hover',
-          pageContainer: $('.container'),
-          breakpoint: 991
-        });
-      });
-
-      $(window).on('resize', function () {
-        setTimeout(function () {
-          $.HSCore.components.HSTabs.init('[role="tablist"]');
-        }, 200);
-      });
-  </script>
 
 </body>
 </html>

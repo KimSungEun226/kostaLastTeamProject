@@ -167,7 +167,7 @@ $(function(){
           </div>
 
           <div class="text-center">
-            <a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="page-login-12.html">이메일로 찾기 >></a>
+            <a class="g-brd-bottom g-brd-gray-dark-v5 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase g-text-underline--none--hover" href="${pageContext.request.contextPath}/findIdByPhone">휴대폰으로 찾기 >></a>
 
           </div>
         </div>
