@@ -387,10 +387,11 @@ public class OrderController {
 	
 	//관리자가 회원 환불내역을 검색어로 검색한다.(환불번호, 주문상세번호)
 	@RequestMapping("/admin/selectRefundByKeyword/{keyword}")
-	public ModelAndView selectRefundByKeyword(@PathVariable String keyword) {
+	public ModelAndView selectRefundByKeyword(@PathVariable Long keyword) {
 		System.out.println("검색어:"+keyword);
-		List<UserRefund> refundList=refundService.selectRefundByKeyword(keyword);
-		System.out.println(refundList.size());
+		UserRefund refund=refundService.selectRefundByKeyword(keyword);
+		List<UserRefund> refundList = new ArrayList<UserRefund>();
+		refundList.add(refund);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/admin/page-refund");
 		mv.addObject("refundList", refundList);

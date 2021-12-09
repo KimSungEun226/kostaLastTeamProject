@@ -20,7 +20,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
 
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans KR:300,400,500,700,900">
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
@@ -208,7 +208,7 @@
           
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
+            <figure class="g-pos-rel g-mb-20 g-width-250">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
               <img class="img-fluid  g-width-250 g-height-250" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  

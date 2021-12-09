@@ -13,7 +13,7 @@
 <body>
   <main>
     <!-- Revolution Slider -->
-    <%-- <div class="g-overflow-hidden">
+    <div class="g-overflow-hidden">
       <div id="rev_slider_1014_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="typewriter-effect" data-source="gallery" style="background-color:transparent;padding:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
         <div id="rev_slider_1014_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
@@ -390,7 +390,7 @@
           <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
         </div>
       </div>
-    </div> --%>
+    </div>
     <!-- End Revolution Slider -->
 
     <!-- Features -->
@@ -493,7 +493,7 @@
           <div class="js-slide">
           <div class="g-px-10">
             <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
+            <figure class="g-pos-rel g-mb-20 g-width-250">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">
               <img class="img-fluid  g-width-250 g-height-250" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
 			</a>
