@@ -174,17 +174,18 @@
             <aside class="g-brd-around g-brd-gray-light-v4 rounded g-px-20 g-py-30">
               <!-- Profile Picture -->
               <div class="text-center g-pos-rel g-mb-30">
-                <div class="g-width-100 g-height-100 mx-auto mb-3">
-                  <img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/save/${memberInfo.profileImage}" alt="Image Decor">
-                </div>
+              <%-- <div class="g-width-100 g-height-100 mx-auto mb-3">
+                  <img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/save/${member.profileImage}" alt="Image Decor">
+                </div> --%>
 
-                <span class="d-block g-font-weight-500">${memberInfo.memberName}</span>
-				<!-- 프로필 이미지 수정 -->
-                <span class="u-icon-v3 u-icon-size--xs g-color-white--hover g-bg-primary--hover rounded-circle g-pos-abs g-top-0 g-right-15 g-cursor-pointer" title="Change Profile Picture"
-                      data-toggle="tooltip"
-                      data-placement="top">
-                  <i class="icon-finance-067 u-line-icon-pro"></i>
+                <span id="name" class="d-block g-font-weight-500">
+                <sec:authorize access="isAuthenticated()">
+<%--     				<sec:authentication property="principal" /> <p>
+ --%>    			<hidden name="memberId" value='<sec:authentication property="principal.Username"/>'/>	
+        			<sec:authentication property="principal.Username" /> 님 환영합니다. <!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+    			</sec:authorize>
                 </span>
+
               </div>
               <!-- End Profile Picture -->
 
@@ -193,15 +194,9 @@
               <!-- Profile Settings List -->
               <ul class="list-unstyled mb-0">
                 <li class="g-pb-3">
-                  <a class="d-block align-middle active u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover g-color-primary--parent-active g-bg-gray-light-v5--active rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/myPage">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/myPage">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-059 u-line-icon-pro"></i></span>
                     내정보
-                  </a>
-                </li>
-                <li class="g-py-3">
-                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/selectCart">
-                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-114 u-line-icon-pro"></i></span>
-                    장바구니
                   </a>
                 </li>
                 <li class="g-py-3">
@@ -215,6 +210,18 @@
                   <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/user/cancleList">
                     <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-finance-115 u-line-icon-pro"></i></span>
                     환불내역
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover rounded g-pa-3" href="${pageContext.request.contextPath}/shop/selectCart">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-hotel-restaurant-105 u-line-icon-pro"></i></span>
+                    장바구니
+                  </a>
+                </li>
+                <li class="g-py-3">
+                  <a class="d-block align-middle active u-link-v5 g-color-text g-color-primary--hover g-bg-gray-light-v5--hover g-color-primary--parent-active g-bg-gray-light-v5--active rounded g-pa-3" href="${pageContext.request.contextPath}/shop/login/myAddress">
+                    <span class="u-icon-v1 g-color-gray-dark-v5 mr-2"><i class="icon-real-estate-048 u-line-icon-pro"></i></span>
+                    배송지관리
                   </a>
                 </li>
               </ul>
