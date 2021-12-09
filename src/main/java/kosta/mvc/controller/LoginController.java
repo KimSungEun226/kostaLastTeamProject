@@ -35,7 +35,6 @@ import lombok.AllArgsConstructor;
 public class LoginController {
     private MemberService memberService;
 
-
     // 회원가입 페이지
     @GetMapping("/signup")
     public String shopSignup() {
@@ -58,10 +57,15 @@ public class LoginController {
 
     // 로그인 결과 페이지
     @GetMapping("/user/main")
-    public String dispLoginResult() {
-        
-    	
-    	return "redirect:/main";
+
+    public String dispLoginResult(Principal principal) {
+    	Member member = memberService.selectByMemberId(principal.getName());
+		  
+    	Info info = member.getInfo();
+    	if(info.getAttendCheck() == 0) {
+    		memberService.updateAttend(info);   		
+    	}    	
+        return "redirect:/main";
     }
 
     // 로그아웃 결과 페이지
