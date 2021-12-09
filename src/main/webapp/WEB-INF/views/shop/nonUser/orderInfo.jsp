@@ -117,7 +117,7 @@ $(function(){
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item">
-              <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">EGYM</a>
+              <a class="u-link-v5 g-color-main g-color-primary--hover" href="${pageContext.request.contextPath}">EGYM SHOP</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">

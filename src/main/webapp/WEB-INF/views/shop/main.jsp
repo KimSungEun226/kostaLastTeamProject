@@ -509,7 +509,7 @@
                     ${product.productName}
                   </a>
                 </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13">조회수: ${product.readNum} </a>
                 <span class="d-block g-color-black g-font-size-17">
                  <fmt:formatNumber value="${product.price}"/>원
                 </span>
@@ -610,7 +610,7 @@
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">${product.productName}</a>
               </h4>
-              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
+              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10">조회수: ${product.readNum}</a>
               <!-- End Article Info -->
 
               <!-- Article Footer -->
