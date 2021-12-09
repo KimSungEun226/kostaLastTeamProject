@@ -178,7 +178,7 @@ public class MyPageController {
 		
 		myPageService.update(member, path);
 		
-		return "redirect:/myPage/setting";
+		return "redirect:/user/myPage/setting";
 	}
 	
 	/**
