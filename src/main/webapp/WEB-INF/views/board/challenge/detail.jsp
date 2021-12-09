@@ -185,7 +185,7 @@
           <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
             <div class="row justify-content-between">
               <div class="media">
-                <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                <img class="d-flex g-width-100 g-height-100 g-mr-30" src="${pageContext.request.contextPath}/save/myPage/${board.member.profileImage}" onerror="this.src='${pageContext.request.contextPath}/save/myPage/notimg.png'">
                 <div class="media-body">
                   <h4 class="h5 g-color-black g-font-weight-600">${board.member.memberNickname}</h4>
                   <p class="g-color-gray-dark-v5 mb-4">${board.member.memberMessage}</p>

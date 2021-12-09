@@ -601,7 +601,7 @@
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
             <!-- Article Image -->
             <div class="g-max-width-100 g-mr-15">
-              <img class="d-flex w-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+              <img class="d-flex g-width-100 g-height-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </div>
             <!-- End Article Image -->
 
