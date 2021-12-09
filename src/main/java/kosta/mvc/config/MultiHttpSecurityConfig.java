@@ -171,7 +171,7 @@ public class MultiHttpSecurityConfig {
 	            .and() // 로그인 설정
 	                .formLogin()
 	                .loginPage("/login")
-	                .defaultSuccessUrl("/user/main")
+	                .defaultSuccessUrl("/login/main")
 	                .authenticationDetailsSource(null)
 	                .permitAll()
 	                
