@@ -21,6 +21,7 @@ import kosta.mvc.domain.order.UserOrderDetail;
 import kosta.mvc.repository.BoardRepository;
 import kosta.mvc.repository.BurnCalorieRepository;
 import kosta.mvc.repository.ChallengeRepository;
+import kosta.mvc.repository.InfoRepository;
 import kosta.mvc.repository.UserOrderDetailRepository;
 import kosta.mvc.service.MemberService;
 
@@ -37,6 +38,9 @@ public class BoardRepositoryTest {
 	
 	@Autowired
 	private BurnCalorieRepository brep;
+	
+	@Autowired
+	private InfoRepository irep;
 	
 	@Autowired
 	private MemberService ms;
@@ -87,11 +91,7 @@ public class BoardRepositoryTest {
 	
 	 @Test 
 	 public void testRead() {
-		 //crep.updateChallengeState();
-		 //crep.initDailyCheck();
-		 BurnCalory bc = new BurnCalory().builder().exerciseKind("스케쥴러테스트").exerciseIntensity("스케쥴러테스트1").
-				 exercise("스케쥴러테스트").metPoint(1).build();
-		 brep.save(bc);
+		 irep.updateAttendCheck();
 		 
 	 }
 	 
