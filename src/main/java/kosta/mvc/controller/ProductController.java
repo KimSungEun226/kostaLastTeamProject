@@ -33,7 +33,7 @@ public class ProductController {
 	ProductService productService;
 
 
-	
+	private Pageable pageable;
 	
 	/**
 	 * 등록폼
@@ -160,20 +160,41 @@ public class ProductController {
 		return "redirect:/shop";
 	}
 
+	
+	
 	/**
 	 * category select
 	 */
 	@RequestMapping("select/{cateCode}")
-	public ModelAndView selectCate(@PathVariable int cateCode, @RequestParam(defaultValue = "1") int nowPage) {
-
-		Pageable pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "productDate");
+	public ModelAndView selectCate(@PathVariable int cateCode, @RequestParam(defaultValue = "1") int nowPage, Integer orderBy) {
+		
+		//orderBy: 0 -> 높은 가격순
+		//orderBy: 1 -> 낮은 가격순
+		//orderBy: 2 -> 인기순
+		//orderBy: 3 -> 등록일순
+		
+		if(orderBy==null) orderBy=3;
+		
+		if(orderBy==3) pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "productDate");
+		else if(orderBy==0)  pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "price");
+		else if(orderBy==1) pageable = PageRequest.of(nowPage - 1, 16, Direction.ASC, "price");
+		else if(orderBy==2) pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "readNum");
+		 
+		//pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "productDate");
+		
 		Page<Product> pageList = productService.selectByCateCode(cateCode, pageable);
 
+		
+		System.out.println("orderBy :" + orderBy);
+		
 		// 상수로 잡자
 		int blockCount = 5;
 		int temp = (nowPage - 1) % blockCount;
 		int startPage = nowPage - temp;
 		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("cateCode", cateCode);
+		mv.addObject("orderBy", orderBy);
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("startPage", startPage);
@@ -215,17 +236,5 @@ public class ProductController {
 		return new ModelAndView("shop/product/single-admin", "product", product);
 	}
 	
-	/**
-	 * 상품목록 정렬
-	 * */
-	@RequestMapping("/orderBy/{option}/{cateCode}")
-	public ModelAndView orderBy(@PathVariable int option, @PathVariable int cateCode) {
-		ModelAndView mv = new ModelAndView();
-	
-		mv.setViewName("shop/product/itemView");
-		return mv; 
-
-		
-	}
 }
 
