@@ -19,7 +19,7 @@
   		
   		if(confirm("환불을 승인하시겠습니까?")) 
   			location.href = "${pageContext.request.contextPath}/shop/admin/agreeRefund/user?refundNo="+$(this).attr("name");
-
+		
   	});    
     
     
@@ -27,8 +27,8 @@
     $(function(){
     	$(document).on("click","#selectButton", function(){
     		var keyword=$('#keyword').val();
-    		if(keyword=="" || keyword==null){
-    			alert("검색어를 입력해주세요.");
+    		if(keyword=="" || keyword==null || isNaN(keyword)){
+    			alert("검색어를 확인해주세요.");
     			$("#selectForm").focus();
     		}else{
     			$("#selectForm").attr("action", "${pageContext.request.contextPath}/shop/admin/selectRefundByKeyword/"+$("#keyword").val());
@@ -107,7 +107,7 @@
                   <span class="g-pos-abs g-top-0 g-left-0 g-z-index-3 g-px-13 g-py-10">
                     <i class="g-color-gray-dark-v4 g-font-size-12 icon-education-045 u-line-icon-pro"></i>
                   </span>
-                  <input id="keyword" class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="text" placeholder="검색어를 입력하세요. ex)환불번호, 주문상세번호">
+                  <input id="keyword" class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="text" placeholder="환불번호를 입력해주세요.">
                   <div class="input-group-append g-brd-none g-py-0">
                     <button id="selectButton" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" type="button">검색하기</button>
                   </div>
@@ -120,40 +120,40 @@
        	
        	 <c:choose>
                <c:when test="${not empty requestScope.refundList}">
-               		<c:forEach items="${requestScope.refundList}" var="refundList">
+               		<c:forEach items="${requestScope.refundList}" var="refund">
                		<header class="g-bg-gray-light-v5 g-pa-20">
                 		<div class="row">
 
                   		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
                     		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">환불번호</h4>
                     		<span class="g-color-black g-font-weight-300 g-font-size-13">
-                              ${refundList.userRefundNo}
+                              ${refund.userRefundNo}
                     		</span>
                   		</div>
                   		
                   		
                   		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
                     		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문 일자</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refundList.userOrderDetail.userOrder.orderDate}</span>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refund.userOrderDetail.userOrder.orderDate}</span>
                   		</div>
 
 						<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
                     		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문자 명</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refundList.userOrderDetail.userOrder.receiverName}</span>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refund.userOrderDetail.userOrder.receiverName}</span>
                   		</div>
                   		
                   		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
                     		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">연락처</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refundList.userOrderDetail.userOrder.receiverPhone}</span>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refund.userOrderDetail.userOrder.receiverPhone}</span>
                   		</div>
                   		
                   		<div class="col-sm-3 col-md-2 g-mb-20 g-mb-0--sm">
                     		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">주문상세번호</h4>
-                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refundList.userOrderDetail.userOrderDetailNo}</span>
+                    		<span class="g-color-black g-font-weight-300 g-font-size-13">${refund.userOrderDetail.userOrderDetailNo}</span>
                   		</div>
 						
                   		<div class="col-sm-3 col-md-4 ml-auto text-sm-right">
-                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">환불 사유 : ${refundList.refundReason} </h4>
+                    		<h4 class="g-color-gray-dark-v4 g-font-weight-400 g-font-size-12 text-uppercase g-mb-2">환불 사유 : ${refund.refundReason} </h4>
                   		</div>
                   		
                   		
@@ -168,16 +168,16 @@
 	
 		                    <div class="row">
 		                      
-		                      <c:if test="${refundList.refundStatus=='신청완료'}">
+		                      <c:if test="${refund.refundStatus=='신청완료'}">
 		                      <div class="col-8 col-sm-9 g-mb-30">
 		                        
 		                        
-		                        <a id="agreeRefund" name="${refundList.userRefundNo}" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="#">
+		                        <a id="agreeRefund" name="${refund.userRefundNo}" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" href="#">
 		                        환불 승인</a>
 		                      </div>
 		                      </c:if>
 		                      
-		                      <c:if test="${refundList.refundStatus=='환불완료'}">
+		                      <c:if test="${refund.refundStatus=='환불완료'}">
 		                      <div class="col-8 col-sm-9 g-mb-30">
 		                        
 		                        

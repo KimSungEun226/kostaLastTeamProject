@@ -23,4 +23,5 @@ public interface UserRefundRepository extends JpaRepository<UserRefund, Long> {
 	@Query("select u from UserRefund u where u.userRefundNo like %?1% or u.userOrderDetail like %?1%")
 	List<UserRefund> selectRefundByKeyword(String keyword);
 	
+	UserRefund findByUserRefundNo(Long userRefundNo);
 }
