@@ -8,7 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kosta.mvc.domain.Review;
 import kosta.mvc.domain.product.Product;
 import kosta.mvc.domain.product.ProductImage;
 import kosta.mvc.service.ProductService;
@@ -216,5 +214,18 @@ public class ProductController {
 
 		return new ModelAndView("shop/product/single-admin", "product", product);
 	}
-		 
+	
+	/**
+	 * 상품목록 정렬
+	 * */
+	@RequestMapping("/orderBy/{option}/{cateCode}")
+	public ModelAndView orderBy(@PathVariable int option, @PathVariable int cateCode) {
+		ModelAndView mv = new ModelAndView();
+	
+		mv.setViewName("shop/product/itemView");
+		return mv; 
+
+		
+	}
 }
+
