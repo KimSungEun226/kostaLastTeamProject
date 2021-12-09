@@ -238,7 +238,7 @@
           
             <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
 				  
-					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					    <c:if test="${(i-1)>=list.getTotalPages()}">
 					       <c:set var="doneLoop" value="true"/>
 					    </c:if> 
 				    
