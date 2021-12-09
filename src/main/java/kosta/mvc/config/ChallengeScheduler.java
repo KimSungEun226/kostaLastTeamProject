@@ -20,15 +20,12 @@ public class ChallengeScheduler {
 	@Autowired
     ChallengeRepository challengeRepository;
 	
-	@Autowired
-	BurnCalorieRepository brep;
 	
 	@Transactional
-	@Scheduled(cron = "0 0 0/1 * * *") //한시간마다
+	@Scheduled(cron = "0 0 0 * * *") //매일 00시 정각
 	public void challengeUpdate() {
-		System.out.println("안녕??");
-		BurnCalory bc = new BurnCalory().builder().exerciseKind("스케쥴러테스트").exerciseIntensity("스케쥴러테스트1").
-				 exercise("스케쥴러테스트").metPoint(1).build();
-		 brep.save(bc);
+		System.out.println("정각이므로 챌린지 상태 업데이트 진행합니다.");
+		challengeRepository.updateChallengeState();
+		challengeRepository.initDailyCheck();
 	}
 }

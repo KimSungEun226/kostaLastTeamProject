@@ -119,13 +119,14 @@
             <!-- Secondary Button -->
             <div class="d-inline-block btn-group g-line-height-1_2">
               <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                정렬선택
+                등록일순
               </button>
                
               <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/orderBy">인기순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/orderBy">높은가격순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/orderBy">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">인기순</a>
+
               </div>
             </div>
             <!-- End Secondary Button -->
@@ -133,18 +134,7 @@
           <!-- End Sort By -->
 
           <!-- Sort By -->
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-              <a class="u-icon-v2 u-icon-size--xs g-brd-gray-light-v3 g-brd-black--hover g-color-gray-dark-v5 g-color-black--hover" href="page-list-filter-left-sidebar-1.html">
-                <i class="icon-list"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a class="u-icon-v2 u-icon-size--xs g-brd-primary g-color-primary" href="page-grid-filter-left-sidebar-1.html">
-                <i class="icon-grid"></i>
-              </a>
-            </li>
-          </ul>
+          
           <!-- End Sort By -->
         </div>
         <!-- End Filters -->

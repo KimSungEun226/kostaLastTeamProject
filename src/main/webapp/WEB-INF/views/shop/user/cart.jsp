@@ -83,7 +83,7 @@
  		  IMP.init("imp57256984");
  	      var itemName ="";
  	      var size = ${cartList.size()};
- 	      if(size==0) itemName="${cartList[0].product.productName}";
+ 	      if(size==1) itemName="${cartList[0].product.productName}";
  	      else itemName="${cartList[0].product.productName}"+"외 "+ ${cartList.size()-1} +"개"  
  	      IMP.request_pay({ // param
  	           pg: "html5_inicis",
@@ -398,10 +398,13 @@
                    <div class="col-sm-6 g-mb-20"> 
                    <label class="d-block g-color-gray-dark-v2 g-font-size-15">
                    
+                   <sec:authorize access="hasRole('MEMBER')">
                    <form name="basicCheck">
 	                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
 	                       		id="checked" name="checked" value="기본배송지로 입력하기" />  
                    </form>
+                 </sec:authorize>
+                   
               
                     </label>
                      
