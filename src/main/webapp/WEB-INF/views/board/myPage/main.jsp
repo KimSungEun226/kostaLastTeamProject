@@ -68,7 +68,15 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" onerror="this.src='${pageContext.request.contextPath}/save/myPage/notimg.png'" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>
+                           
               </figure>
 
               <!-- End Figure Caption -->
@@ -84,28 +92,28 @@
             <!-- Sidebar Navigation -->
             <div class="list-group list-group-border-0 g-mb-40">
               <!-- 홈 -->
-              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item justify-content-between active">
+              <a href="${pageContext.request.contextPath}/user/myPage/" class="list-group-item justify-content-between active">
                 <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>나의 페이지</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>
               <!-- End 홈 -->
 
               <!-- 나의 게시물 -->
-              <a href="${pageContext.request.contextPath}/myPage/board" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/board" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
                 <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10"></span>
               </a>
               <!-- End 나의 게시물 -->
 
               <!-- 나의 댓글 -->
-              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
                 <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
               </a>
               <!-- End 나의 댓글 -->
               
               <!-- 정보 수정 -->
-              <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
                 <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
               </a>
@@ -150,11 +158,11 @@
 		                    </div>
 		                  </div>
 		
-		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10"><fmt:formatNumber value="${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}" pattern="0"/>%</span></h6>
+		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10"><fmt:formatNumber value="${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}" pattern="0"/>% 남았습니다.</span></h6>
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
 		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
-		                  <small class="g-font-size-12"><fmt:formatNumber value="${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}" pattern=".0"/>% 남았습니다.</small>
+		                  <small class="g-font-size-12"><fmt:formatNumber value="${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}" pattern="0"/>% </small>
 		                </div>
 		              </div>
 		            </c:when>		            
@@ -279,7 +287,7 @@
                         </div>
                         <div class="align-self-center g-px-10">
                           <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
-                              <a class="g-mr-5" href="${pageContext.request.contextPath}/myPage/challenge/${challenge.challengeNo}">
+                              <a class="g-mr-5" href="${pageContext.request.contextPath}/user/myPage/challenge/${challenge.challengeNo}">
                                 <c:if test="${challenge.challengeCategory == 1 }">
                               		30일 아침밥 챙기기
                               	</c:if>

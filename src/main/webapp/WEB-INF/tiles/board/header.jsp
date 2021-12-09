@@ -182,7 +182,7 @@
 
                 <!-- 다이어트꿀팁 -->
                 <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">다이어트꿀팁</a>
+                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="${pageContext.request.contextPath}/board/select/7" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">다이어트꿀팁</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
                     <!-- 다이어트꿀팁 - 칼럼 -->
@@ -250,7 +250,7 @@
                 <!-- 마이페이지 -->
                 <sec:authorize access="hasRole('MEMBER')">
 				  <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-	                <a href="${pageContext.request.contextPath}/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
+	                <a href="${pageContext.request.contextPath}/user/myPage" class="nav-link g-py-7 g-px-0">마이페이지</a>
 	              </li>
 				</sec:authorize>
 				

@@ -115,7 +115,7 @@
             <!-- Sidebar Navigation -->
             <div class="list-group list-group-border-0 g-mb-40">
               <!-- 홈 -->
-              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>
                 나의 페이지</span>
                 <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10"></span>
@@ -123,21 +123,21 @@
               <!-- End 홈 -->
 
               <!-- 나의 게시물 -->          
-              <a href="${pageContext.request.contextPath}/myPage/board" class="list-group-item justify-content-between active">
+              <a href="${pageContext.request.contextPath}/user/myPage/board" class="list-group-item justify-content-between active">
                 <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>
               <!-- End 나의 게시물 -->
 
               <!-- 나의 댓글 -->
-              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
                 <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
               </a>
               <!-- End 나의 댓글 -->
               
               <!-- 정보 수정 -->
-              <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
                 <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
               </a>
@@ -200,7 +200,7 @@
           	<c:set var="doneLoop" value="false"/>
             <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/board?nowPage=${startPage-1}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/user/myPage/board?nowPage=${startPage-1}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-right"></i>
                 </span>
@@ -214,13 +214,13 @@
 					    </c:if> 
 				  <c:if test="${not doneLoop}" >
 				      <li class="list-inline-item hidden-down">
-				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/myPage/board?nowPage=${i}">${i}</a> 
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/user/myPage/board?nowPage=${i}">${i}</a> 
 		            </li>
 		         </c:if>
             </c:forEach>
             <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
             <li class="list-inline-item">
-              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/board?nowPage=${startPage+blockCount}" aria-label="Next">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/user/myPage/board?nowPage=${startPage+blockCount}" aria-label="Next">
                 <span aria-hidden="true">
                   <i class="fa fa-angle-right"></i>
                 </span>

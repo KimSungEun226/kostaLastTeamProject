@@ -155,7 +155,7 @@
 						               <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:50%;" type="text" value="${board.boardTitle}">
 						            </div>		                  		                  
 						            <div class="input-group mb-1">		                  		                  
-						            	<b class="h5 g-color-black my-1">비밀번호 입력 : &nbsp;&nbsp;&nbsp;</b>   <input id="password" name="password" value="${board.password}" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="text" >			                                       
+						            	<b class="h5 g-color-black my-1">비밀번호 입력 : &nbsp;&nbsp;&nbsp;</b>   <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="password" >			                                       
 						            </div>                  	                  			             
 				                    <br>
 			                    </th>

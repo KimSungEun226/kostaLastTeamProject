@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Page<Product> selectByCateCode(int cateCode, Pageable pageable) {
-		return productRepository.findByCateCode(cateCode, pageable);
+		return productRepository.findByCateCodeAndStockGreaterThan(cateCode, 0 , pageable);
 	}
 
 	@Override

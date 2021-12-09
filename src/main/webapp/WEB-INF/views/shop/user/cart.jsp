@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -83,7 +85,7 @@
  		  IMP.init("imp57256984");
  	      var itemName ="";
  	      var size = ${cartList.size()};
- 	      if(size==0) itemName="${cartList[0].product.productName}";
+ 	      if(size==1) itemName="${cartList[0].product.productName}";
  	      else itemName="${cartList[0].product.productName}"+"외 "+ ${cartList.size()-1} +"개"  
  	      IMP.request_pay({ // param
  	           pg: "html5_inicis",
@@ -199,7 +201,7 @@
             <div class="align-self-center ml-auto">
               <ul class="u-list-inline">
                 <li class="list-inline-item g-mr-5">
-                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop">이짐샵</a>
+                  <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop">EGYM SHOP</a>
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
                 </li>
                 <li class="list-inline-item g-color-primary">
@@ -398,10 +400,13 @@
                    <div class="col-sm-6 g-mb-20"> 
                    <label class="d-block g-color-gray-dark-v2 g-font-size-15">
                    
+                   <sec:authorize access="hasRole('MEMBER')">
                    <form name="basicCheck">
 	                   <input type="button" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" 
 	                       		id="checked" name="checked" value="기본배송지로 입력하기" />  
                    </form>
+                 </sec:authorize>
+                   
               
                     </label>
                      

@@ -129,7 +129,20 @@
             <i class="g-color-gray-light-v2 g-ml-5">/</i>
           </li>
           <li class="list-inline-item g-color-primary">
-            <span>${requestScope.board.challenge.challengeCategory}</span>
+          	<c:choose>
+          		<c:when test="${requestScope.board.challenge.challengeCategory==1}">
+          			<span>30일 아침밥 챙기기</span>
+          		</c:when>
+          		<c:when test="${requestScope.board.challenge.challengeCategory==2}">
+          			<span>30일 유산소 운동하기</span>
+          		</c:when>
+          		<c:when test="${requestScope.board.challenge.challengeCategory==3}">
+          			<span>30일 플랭크 하기</span>
+          		</c:when>
+          		<c:when test="${requestScope.board.challenge.challengeCategory==4}">
+          			<span>30일 전신운동 하기</span>
+          		</c:when>
+          	</c:choose>
           </li>
         </ul>
       </div>
@@ -185,7 +198,7 @@
           <div class="g-brd-top g-brd-gray-light-v3 g-pt-60 g-pb-100">
             <div class="row justify-content-between">
               <div class="media">
-                <img class="d-flex g-width-100 g-height-100 rounded-circle g-mr-30" src="${pageContext.request.contextPath}/assets/img-temp/100x100/img5.jpg" alt="Image Description">
+                <img class="d-flex g-width-100 g-height-100 g-mr-30" src="${pageContext.request.contextPath}/save/myPage/${board.member.profileImage}" onerror="this.src='${pageContext.request.contextPath}/save/myPage/notimg.png'">
                 <div class="media-body">
                   <h4 class="h5 g-color-black g-font-weight-600">${board.member.memberNickname}</h4>
                   <p class="g-color-gray-dark-v5 mb-4">${board.member.memberMessage}</p>
@@ -202,10 +215,10 @@
     
 
     <!-- Blog Single Item Comments -->
-    <section class="container g-py-100">
+<!--     <section class="container g-py-100">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <!-- Blog Single Item Comments -->
+          Blog Single Item Comments
           <div class="g-brd-bottom g-brd-gray-light-v4 g-pb-30 g-mb-50">
             <div class="g-brd-y g-brd-gray-light-v4 g-py-30 mb-5">
               <h3 class="h6 g-color-black g-font-weight-600 text-uppercase mb-0">3 Comments</h3>
@@ -302,7 +315,7 @@
               </div>
             </div>
           </div>
-          <!-- End Blog Single Item Comments -->
+          End Blog Single Item Comments
 
           <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">Add Comment</h3>
 
@@ -326,7 +339,7 @@
         </div>
       </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Blog Single Item Comments -->
     
     <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{

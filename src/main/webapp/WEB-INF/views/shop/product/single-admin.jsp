@@ -56,15 +56,23 @@
         <div class="container">
           <ul class="u-list-inline">
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">Home</a>
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/main">EGYM SHOP</a>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-mr-5">
-              <a class="u-link-v5 g-color-text" href="#">Pages</a>
+               <c:if test="${product.cateCode==1}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">닭가슴살</a>
+            </c:if> 
+            <c:if test="${product.cateCode==2}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">샐러드</a>
+            </c:if>
+            <c:if test="${product.cateCode==3}">
+              <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop/select/${product.cateCode}">프로틴</a>
+            </c:if>
               <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
             </li>
             <li class="list-inline-item g-color-primary">
-              <span>Single Product 1</span>
+              <span>${product.productName}</span>
             </li>
           </ul>
         </div>

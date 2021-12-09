@@ -185,5 +185,12 @@ public class MemberService implements UserDetailsService {
     }
     public Member insert(Member member) {
     	return memberRepository.save(member);
-    }    
+    }
+
+	public void updateAttend(Info info) {
+		info.setAttendNo(info.getAttendNo()+1);
+		info.setMemberExp(info.getMemberExp()+1);
+		info.setAttendCheck(1);
+		infoRepository.save(info);
+	}    
 }

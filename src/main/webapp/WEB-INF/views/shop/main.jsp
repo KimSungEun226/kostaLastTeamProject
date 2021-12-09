@@ -509,7 +509,7 @@
                     ${product.productName}
                   </a>
                 </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13">조회수: ${product.readNum} </a>
                 <span class="d-block g-color-black g-font-size-17">
                  <fmt:formatNumber value="${product.price}"/>원
                 </span>
@@ -601,7 +601,7 @@
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
             <!-- Article Image -->
             <div class="g-max-width-100 g-mr-15">
-              <img class="d-flex w-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+              <img class="d-flex g-width-100 g-height-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </div>
             <!-- End Article Image -->
 
@@ -610,7 +610,7 @@
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">${product.productName}</a>
               </h4>
-              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
+              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10">조회수: ${product.readNum}</a>
               <!-- End Article Info -->
 
               <!-- Article Footer -->

@@ -43,6 +43,19 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
+     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>    
+    <script type="text/javascript">
+    $(function(){
+    	$("#addAlert").click(function(){
+    		alert("장바구니에 상품을 확인하러 가시겠어요?");
+    	});
+    	
+    });
+    
+    </script>
+    
+    
+    
   </head>
 
   <body>
@@ -57,7 +70,7 @@
 
         <div class="container g-color-white g-pt-100 g-pb-40">
           <div class="g-mb-50">
-            <span class="d-block g-color-white-opacity-0_8 g-font-weight-300 g-font-size-20">맛있고 건강한</span>
+            <span class="d-block g-color-white-opacity-0_8 g-font-weight-300 g-font-size-20">건강하고 맛있는</span>
             <h3 class="g-color-white g-font-size-50 g-font-size-90--md g-line-height-1_2 mb-0">EGYM shop</h3>
             <p class="g-color-white g-font-weight-600 g-font-size-20 text-uppercase"></p>
           </div>
@@ -85,51 +98,85 @@
         <!-- Filters -->
         <div class="d-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20">
           <!-- Show -->
-          <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">전체 상품 개수: </h2>
-
-            <!-- Secondary Button -->
-            <div class="d-inline-block btn-group g-line-height-1_2">
-              
-               ${list.content.size()}
-              
-            
-            </div>
-            <!-- End Secondary Button -->
-          </div>
+          
           <!-- End Show -->
 
           <!-- Sort By -->
           <div class="g-mr-60">
-            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0">정렬:</h2>
+            <h2 class="h6 align-middle d-inline-block g-font-weight-400 text-uppercase g-pos-rel g-top-1 mb-0"></h2>
 
             <!-- Secondary Button -->
+            
+            <c:choose>
+            <c:when test="${orderBy==3}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                등록일순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            <c:when test="${orderBy==0}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                높은가격순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            <c:when test="${orderBy==1}">
+            <div class="d-inline-block btn-group g-line-height-1_2">
+              <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                낮은가격순
+              </button>
+               
+              <div class="dropdown-menu rounded-0">
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=2">인기순</a>
+
+              </div>
+            </div>
+            </c:when>
+            
+            <c:when test="${orderBy==2}">
             <div class="d-inline-block btn-group g-line-height-1_2">
               <button type="button" class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v5 g-color-black--hover g-bg-transparent text-uppercase g-font-weight-300 g-font-size-12 g-pa-0 g-pl-10 g-ma-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 인기순
               </button>
+               
               <div class="dropdown-menu rounded-0">
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">높은가격순</a>
-                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="#">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=0">높은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=1">낮은가격순</a>
+                <a class="dropdown-item g-color-gray-dark-v4 g-font-weight-300" href="${pageContext.request.contextPath}/shop/select/${cateCode}?orderBy=3">등록일순</a>
+
               </div>
             </div>
+            </c:when>
+            
+            </c:choose>
+            
+           
             <!-- End Secondary Button -->
           </div>
           <!-- End Sort By -->
 
           <!-- Sort By -->
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-              <a class="u-icon-v2 u-icon-size--xs g-brd-gray-light-v3 g-brd-black--hover g-color-gray-dark-v5 g-color-black--hover" href="page-list-filter-left-sidebar-1.html">
-                <i class="icon-list"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a class="u-icon-v2 u-icon-size--xs g-brd-primary g-color-primary" href="page-grid-filter-left-sidebar-1.html">
-                <i class="icon-grid"></i>
-              </a>
-            </li>
-          </ul>
+          
           <!-- End Sort By -->
         </div>
         <!-- End Filters -->
@@ -138,7 +185,7 @@
         <div class="row g-pt-30 g-mb-50">
         
          <c:choose>
-			<c:when test="${empty requestScope.list.content}">
+			<c:when test="${empty requestScope.list}">
 			  <div class="container text-center g-py-100">
         		<div class="mb-5">
           		<span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">
@@ -189,7 +236,8 @@
                   <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="${pageContext.request.contextPath}/shop/addToCart/${product.cateCode}/${product.productNo}"
                      data-toggle="tooltip"
                      data-placement="top"
-                     title="Add to Cart">
+                     title="Add to Cart"
+                     id="addAlert">
                     <i class="icon-finance-100 u-line-icon-pro"></i>
                   </a>
                 </li>
