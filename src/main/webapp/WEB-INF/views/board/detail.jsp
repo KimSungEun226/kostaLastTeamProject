@@ -70,6 +70,7 @@
 			          <form name="requestForm" method="post" id="requestForm" class="float-right"> 
 			          		<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 				            <input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=hidden name="boardKind" value="${board.boardKind}">
 				            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
 				            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
 			          </form>
@@ -78,6 +79,7 @@
 				  	<form name="requestForm" method="post" id="requestForm" class="float-right"> 
 			          		<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 				            <input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=hidden name="boardKind" value="${board.boardKind}">
 				            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
 				            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
 			          </form>
@@ -142,10 +144,27 @@
                     <h5 class="h6 g-color-black g-font-weight-600">${reply.memberNickname}</h5>
                     <span class="d-block g-color-gray-dark-v5 g-font-size-11">${reply.replyRegdate}</span>
                   </div>
-                  <div class="ml-auto">
-                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
-                  </div>
+				
+                  <sec:authorize access="isAuthenticated()">
+                  	<sec:authentication property="principal" var="user"/>
+	                  <c:choose>
+		                  <c:when test="${user.username eq reply.memberId}">
+		                  <div class="ml-auto">
+		                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
+		                  </div>
+		                  </c:when>
+		                  <c:when test="${user.username eq 'admin'}">
+		                  <div class="ml-auto">
+		                    <a class="u-link-v5 g-color-black g-color-primary--hover g-font-weight-600 g-font-size-12 text-uppercase" href="${pageContext.request.contextPath}/reply/delete/${reply.replyNo}/${board.boardNo}">삭제</a>
+		                  </div>
+		                  </c:when>
+		                  <c:otherwise>
+		                  
+		                  </c:otherwise>
+	                  </c:choose>
+                  </sec:authorize>
                 </div>
+                
 
                 <p>${reply.replyContent}</p>
 

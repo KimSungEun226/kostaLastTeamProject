@@ -76,8 +76,34 @@
 
     <div class="u-outer-spaces-helper"></div>
 
-    <!-- JS Global Compulsory -->
     
+    <!-- JS Global Compulsory -->
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/popper.js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="${pageContext.request.contextPath}/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/chosen/chosen.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/image-select/src/ImageSelect.jquery.js"></script>
+
+    <!-- JS Unify -->
+    <script src="${pageContext.request.contextPath}/assets/js/hs.core.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.dropdown.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.select.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.count-qty.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.step-form.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.validation.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
+
+    <!-- JS Customization -->
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>

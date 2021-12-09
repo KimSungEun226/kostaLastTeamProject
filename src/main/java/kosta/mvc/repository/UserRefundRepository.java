@@ -20,7 +20,7 @@ public interface UserRefundRepository extends JpaRepository<UserRefund, Long> {
 	/**
 	 * 관리자가 회원, 비회원의 환불내역을 검색어로 검색한다. (환불번호, 주문상세번호)
 	 * */
-	@Query("select u from UserRefund u inner join u.userOrderDetail d where u.userRefundNo like '%?1%' or d.userOrderDetailNo like '%?1%'")
+	@Query("select u from UserRefund u where u.userRefundNo like %?1% or u.userOrderDetail like %?1%")
 	List<UserRefund> selectRefundByKeyword(String keyword);
 	
 }

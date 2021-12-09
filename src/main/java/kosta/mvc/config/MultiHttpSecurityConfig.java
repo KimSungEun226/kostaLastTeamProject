@@ -1,19 +1,33 @@
 package kosta.mvc.config;
 
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import kosta.mvc.service.MemberService;
@@ -31,6 +45,34 @@ public class MultiHttpSecurityConfig {
     private MemberService memberService;
 	
 	
+	public class AuthenticationFilterAnotherParam extends UsernamePasswordAuthenticationFilter {
+		
+		@Override
+		public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+				throws AuthenticationException {
+			String prevSessionId = request.getParameter("prevSessionId");
+			HttpSession session = request.getSession();
+			session.setAttribute("prevSessionId", prevSessionId);
+			return super.attemptAuthentication(request, response);
+		}
+		
+	    @Override
+
+	    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+	                Authentication authResult) throws IOException, ServletException {
+	            setAuthenticationSuccessHandler(new SimpleUrlAuthenticationSuccessHandler("/shop/main"));
+	            super.successfulAuthentication(request, response, chain, authResult);
+	      }
+
+       @Override
+       protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+               AuthenticationException failed) throws IOException, ServletException {
+           setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/shop/login"));
+           super.unsuccessfulAuthentication(request, response, failed);
+
+       }   
+	}
+	
 	public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -39,6 +81,24 @@ public class MultiHttpSecurityConfig {
 	@Order(1)
 	@Configuration
 	public class ShopSecurityConfig extends WebSecurityConfigurerAdapter {
+		
+		@Bean
+		@Override
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+			return super.authenticationManagerBean();
+		}
+
+
+
+		@Bean
+		public AuthenticationFilterAnotherParam authenticationFilterAnotherParam() throws Exception {
+	       AuthenticationFilterAnotherParam authenticationFilterAnotherParam = new AuthenticationFilterAnotherParam();
+	       authenticationFilterAnotherParam.setAuthenticationManager(this.authenticationManagerBean());
+	       authenticationFilterAnotherParam.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/shop/loginProcess","POST"));
+	       return authenticationFilterAnotherParam;
+		}
+		
+		
 		public ShopSecurityConfig() {
 		}
 		
@@ -74,8 +134,7 @@ public class MultiHttpSecurityConfig {
 	                .exceptionHandling().accessDeniedPage("/shop")
 	            .and()
 	                .csrf().disable();
-	        		
-	        
+	         http.addFilterBefore(authenticationFilterAnotherParam(),UsernamePasswordAuthenticationFilter.class); 
 	    }
 
 	    @Override

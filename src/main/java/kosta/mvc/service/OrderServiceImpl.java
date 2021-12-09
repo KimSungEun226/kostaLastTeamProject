@@ -197,8 +197,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<UserOrder> orderListSelectByKeyword(String keyword) {
-		return userOrderRepository.selectByKeyword(keyword);
+	public Page<UserOrder> orderListSelectByKeyword(String keyword, Pageable pageable) {
+    	//Long key1 = Long.parseLong(keyword);
+		
+		keyword = "%" + keyword +"%";
+		
+		return userOrderRepository.findByReceiverNameLike(keyword, pageable);
 	}
 
 	@Override
@@ -207,8 +211,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<NonuserOrder> nonuserOrderlistByKeyword(String keyword) {
-		return nonuserOrderRepository.nonUserOrderlistByKeyword(keyword);
+	public Page<NonuserOrder> nonuserOrderlistByKeyword(String keyword, Pageable pageable) {
+		keyword = "%" + keyword +"%";
+		return nonuserOrderRepository.findByReceiverNameLike(keyword, pageable);
 	}
 
 	@Override

@@ -68,39 +68,21 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">             
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
 
-              <!-- Figure Caption -->
-              <figcaption class="u-block-hover__additional--fade g-bg-black-opacity-0_5 g-pa-30">
-                <div class="u-block-hover__additional--fade u-block-hover__additional--fade-up g-flex-middle">
-                  <!-- Figure Social Icons -->
-                  <ul class="list-inline text-center g-flex-middle-item--bottom g-mb-20">
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-note u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-notebook u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-settings u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                  </ul>
-                  <!-- End Figure Social Icons -->
-                </div>
-              </figcaption>
               <!-- End Figure Caption -->
 
               <!-- User Info -->
               <span class="g-pos-abs g-top-20 g-left-0">
-                  <a class="btn btn-sm u-btn-primary rounded-0" href="#">등급이름</a>
-                  <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small>
+
                 </span>
               <!-- End User Info -->
             </div>
@@ -154,7 +136,7 @@
 		                <div class="g-bg-cyan g-color-white g-pa-25">
 		                  <header class="d-flex text-uppercase g-mb-40">
 		                    <!-- <i class="icon-people align-self-center display-4 g-mr-20"></i> -->
-		                    <img class="g-width-40 g-height-40 rounded-circle" src="${pageContext.request.contextPath}/save/grade/${grade.levelImg}" alt="Image Description">
+		                    <img class="img-fluid  g-width-80 g-height-80" src="${pageContext.request.contextPath}/save/grade/${grade.levelImg}" alt="Image Description">
 		
 		                    <div class="g-line-height-1">
 		                      <h4 class="h5">나의 경험치</h4>
@@ -175,11 +157,11 @@
 		                    </div>
 		                  </div>
 		
-		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10">${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%</span></h6>
+		                  <h6 class="g-mb-10">다음 등급까지<span class="float-right g-ml-10"><fmt:formatNumber value="${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}" pattern="0"/>%</span></h6>
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
 		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
-		                  <small class="g-font-size-12">${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}% 남았습니다.</small>
+		                  <small class="g-font-size-12"><fmt:formatNumber value="${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}" pattern=".0"/>% 남았습니다.</small>
 		                </div>
 		              </div>
 		            </c:when>		            
@@ -189,33 +171,41 @@
               
 			  <!-- START 다짐메세지 -->
               <div class="col-md-6">
-                <div class="g-bg-purple g-color-white g-pa-25">
+                <div class="g-bg-purple g-color-white g-pa-25" style="word-break:break-all;">
                   <header class="d-flex text-uppercase g-mb-40">
                     <i class="icon-layers align-self-center display-4 g-mr-20"></i>
 
                     <div class="g-line-height-1">
-                      <h4 class="h5">다짐 메세지</h4>
+                      <h4 class="h5">&nbsp</h4>
                       <h4 class="h5">다짐 메세지</h4>
                     </div>
                   </header>
 
                   <div class="d-flex justify-content-between text-uppercase g-mb-25">
-                    <div class="g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">${member.memberMessage}</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">26904</div>
+                    <div class="g-line-height-1" style="word-break:break-all; ">
+                      <c:choose>
+                      	<c:when test="${empty member.memberMessage}">
+                      		<h5 class="h6 g-font-weight-600">다짐 메세지를 작성해주세요!</h5>
+                      	</c:when>
+                      	<c:otherwise>
+                      		<h5 class="h6 g-font-weight-600">${member.memberMessage}</h5>
+                      	</c:otherwise>
+                      </c:choose> 
+                      <div>&nbsp</div>
                     </div>
 
                     <div class="text-right g-line-height-1">
-                      <h5 class="h6 g-font-weight-600">Last Month</h5>
-                      <div class="js-counter g-font-size-16" data-comma-separated="true">124766</div>
+                      <h5 class="h6 g-font-weight-600">&nbsp</h5>
+                      <div>&nbsp</div>
+                      <div>&nbsp</div>
                     </div>
                   </div>
 
-                  <h6 class="g-mb-10">Project Completeness <span class="float-right g-ml-10">89%</span></h6>
+                  <h6 class="g-mb-10">&nbsp<span class="float-right g-ml-10">&nbsp</span></h6>
                   <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
-                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                   </div>
-                  <small class="g-font-size-12">16% higher than last month</small>
+                  <small class="g-font-size-12">&nbsp</small>
                 </div>
               </div>
               <!-- End 다짐메세지 -->
@@ -246,7 +236,9 @@
                           <div class="d-flex justify-content-between">
                             <h5 class="h6 g-font-weight-600 g-color-black">출석 횟수 : ${member.info.attendNo}</h5>
                           </div>
-                          <p>가입날짜 : ${member.memberJoindate}</p>
+                          <fmt:parseDate var="cntday" value="${member.memberJoindate}" pattern="yyyy-MM-dd"/>
+                          <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy.MM.dd"/>
+                          <p>가입날짜 : ${day}</p>
                         </div>
                       </li>
 
@@ -308,12 +300,12 @@
                               		30일 전신운동하기
                               	</c:if>
                               </a>
-                              <fmt:parseDate var="cntday" value="${challenge.challengeDate}" pattern="yyyy-MM-dd"/> 
-                              <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy년MM월dd일"/>
+                              <fmt:parseDate var="cntday" value="${challenge.challengeDate}" pattern="yyyy-MM-dd"/><br>
+                              <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy.MM.dd"/>
                               <small class="g-font-size-12 g-color-blue">${day} 도전시작!</small>
                             </h5>
                           <c:if test="${challenge.challengeState == 0 }">
-                          	<p class="m-0">성공까지 <b>${29 - challenge.challengeCnt}일</b> 남았어요! 조금만 더 힘내주세요.</p>
+                          	<p class="m-0">성공까지 <b>${29 - challenge.challengeCnt}일</b> 남았어요!<br> 조금만 더 힘내주세요.</p>
                           </c:if>
                           <c:if test="${challenge.challengeState == 1}">
                           	<p class="m-0">앗.. 다시한번 도전해 주세요!</p>

@@ -15,9 +15,13 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Commit;
 
 import kosta.mvc.domain.Board;
+import kosta.mvc.domain.BurnCalory;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.order.UserOrderDetail;
 import kosta.mvc.repository.BoardRepository;
+import kosta.mvc.repository.BurnCalorieRepository;
+import kosta.mvc.repository.ChallengeRepository;
+import kosta.mvc.repository.InfoRepository;
 import kosta.mvc.repository.UserOrderDetailRepository;
 import kosta.mvc.service.MemberService;
 
@@ -29,6 +33,15 @@ public class BoardRepositoryTest {
 	@Autowired
 	private UserOrderDetailRepository rep;
 
+	@Autowired
+	private ChallengeRepository crep;
+	
+	@Autowired
+	private BurnCalorieRepository brep;
+	
+	@Autowired
+	private InfoRepository irep;
+	
 	@Autowired
 	private MemberService ms;
 	//	@Autowired
@@ -76,15 +89,11 @@ public class BoardRepositoryTest {
 	 * 검색 test
 	 * */
 	
-//	 @Test 
-//	 public void testRead() {
-//		 Integer y = 130;
-//		 long x = y.longValue();
-//		 UserOrderDetail detail = rep.findById(x).orElse(null);
-//		 System.out.println(detail.getUserOrderDetailNo());
-//		 System.out.println(detail.getReview());
-//		 
-//	 }
+	 @Test 
+	 public void testRead() {
+		 irep.updateAttendCheck();
+		 
+	 }
 	 
 
 }

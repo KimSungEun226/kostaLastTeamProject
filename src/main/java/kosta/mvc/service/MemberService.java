@@ -39,9 +39,10 @@ public class MemberService implements UserDetailsService {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setMemberPwd(passwordEncoder.encode(memberDto.getMemberPwd()));
+        memberDto.setProfileImage("defaultImg.jpg");
         Member member = memberRepository.save(memberDto.toEntity());
         //member.setInfo(info);
-        info.setMember(member);
+        info.setMember(member);        
         System.out.println("------------------memberNO : " + member.getMemberNo());
         System.out.println("------------------info.memberNO : " + info.getMember().getMemberNo());
         info = infoRepository.save(info);
@@ -184,5 +185,12 @@ public class MemberService implements UserDetailsService {
     }
     public Member insert(Member member) {
     	return memberRepository.save(member);
-    }    
+    }
+
+	public void updateAttend(Info info) {
+		info.setAttendNo(info.getAttendNo()+1);
+		info.setMemberExp(info.getMemberExp()+1);
+		info.setAttendCheck(1);
+		infoRepository.save(info);
+	}    
 }

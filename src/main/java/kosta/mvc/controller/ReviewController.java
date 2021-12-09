@@ -1,7 +1,10 @@
 package kosta.mvc.controller;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -57,23 +62,48 @@ public class ReviewController {
 	 * 리뷰 등록하기
 	 */
 	@RequestMapping("insert") 
-	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, RedirectAttributes redirectAttributes) { //내용, 제품 번호
+	public String insert(Review review, Long productNo, Long memberNo, Long userOrderDetailNo, int rating,
+			MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) { 
+		
+		String path = session.getServletContext().getRealPath("/save");
+		MultipartFile file = multipartHttpServletRequest.getFile("file"); //이미지 하나만 업로드
+		
+		
+		
+		try {
+			file.transferTo(new File(path + "/" + file.getOriginalFilename()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		review.setProduct(Product.builder().productNo(productNo).build());
 		review.setMember(Member.builder().memberNo(memberNo).build());
 		review.setUserOrderDetail(UserOrderDetail.builder().userOrderDetailNo(userOrderDetailNo).build());
+		review.setRating(rating);
+		review.setReviewImage(file.getOriginalFilename());
 		reviewService.insert(review);
 		
 		return "redirect:/shop/user/orderList";
 	}
 	
 	/**
-	 * 리뷰 삭제하기
+	 * 리뷰 상품 페이지에서 삭제하기
 	 */
 	@RequestMapping("delete/{reviewNo}/{productNo}")
-	public String delete(@PathVariable int reviewNo, @PathVariable Long productNo) {
+	public String delete(@PathVariable Long reviewNo, @PathVariable Long productNo) {
 		reviewService.delete(reviewNo);
 		
 		return "redirect:/shop/select/single/" + productNo + "/1";
+	}
+	
+	/**
+	 * 리뷰 내가쓴 리뷰 페이지에서 삭제하기
+	 */
+	@RequestMapping("deleteReview/{reviewNo}/{productNo}")
+	public String deleteReview(@PathVariable Long reviewNo, @PathVariable Long productNo) {
+		reviewService.delete(reviewNo);
+		
+		return "redirect:/shop/review/reviewList";
 	}
 	
 	/**
@@ -98,6 +128,7 @@ public class ReviewController {
 		mv.addObject("startPage", startPage);
 		mv.setViewName("shop/review/reviewList");
 		mv.addObject("list", pageList);
+		
 		return mv;
 	}
 }

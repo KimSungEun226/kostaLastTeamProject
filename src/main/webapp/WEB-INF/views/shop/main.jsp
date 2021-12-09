@@ -442,7 +442,7 @@
       <div class="row g-mx-minus-10">
         <div class="col-sm-6 col-md-4 g-px-10 g-mb-30">
           <article class="u-block-hover">
-            <img class="img-fluid u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/chickenmain.jpg" alt="Image Description">
+            <img class="img-fluid u-block-hover__main--zoom-v1 g-mb-minus-8" src="${pageContext.request.contextPath}/save/main/chickenmain1.jpg" alt="Image Description">
             <div class="g-pos-abs g-bottom-30 g-left-30">
               <h2 class="h1 mb-0">닭가슴살</h2>
             </div>
@@ -509,7 +509,7 @@
                     ${product.productName}
                   </a>
                 </h4>
-                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13">조회수: ${product.readNum} </a>
                 <span class="d-block g-color-black g-font-size-17">
                  <fmt:formatNumber value="${product.price}"/>원
                 </span>
@@ -610,7 +610,7 @@
               <h4 class="h5 g-mb-7">
                 <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">${product.productName}</a>
               </h4>
-              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10" href="#">Accessories</a>
+              <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13 g-mb-10">조회수: ${product.readNum}</a>
               <!-- End Article Info -->
 
               <!-- Article Footer -->

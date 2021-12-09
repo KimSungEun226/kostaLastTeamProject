@@ -139,9 +139,9 @@
                     </li><!-- End 커뮤니티 - 일기 -->
                     
                     <!-- 커뮤니티 - 글쓰기 -->
-                    <li class="dropdown-item">
+                    <%-- <li class="dropdown-item">
                       <a id="nav-link--pages--portfolio" class="nav-link" href="${pageContext.request.contextPath}/board/write" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages--portfolio">글쓰기</a>
-                    </li><!-- End 커뮤니티 - 글쓰기 -->
+                    </li> --%><!-- End 커뮤니티 - 글쓰기 -->
 
                     
                   </ul>
@@ -185,30 +185,30 @@
                   <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">다이어트꿀팁</a>
 
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
-                    <!-- 다이어트꿀팁 - 전체 -->
-                    <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">전체</a>
-                    </li><!-- End 다이어트꿀팁 - 전체 -->
-
                     <!-- 다이어트꿀팁 - 칼럼 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">칼럼</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/7">칼럼</a>
                     </li><!-- End 함께도전해요 - 칼럼 -->
                     
                     <!-- 다이어트꿀팁 - 운동 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">운동</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/8">운동</a>
                     </li><!-- End 함께도전해요 - 운동 -->
                     
                     <!-- 다이어트꿀팁 - 식단 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">식단</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/9">식단</a>
                     </li><!-- End 함께도전해요 - 식단 -->
                     
                     <!-- 다이어트꿀팁 - 성공후기 -->
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/promo/index.html">성공후기</a>
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/select/10">성공후기</a>
                     </li><!-- End 함께도전해요 - 성공후기 -->
+                    
+                    <!-- 다이어트꿀팁 - 글쓰기 -->
+                    <li class="dropdown-item ">
+                      <a class="nav-link" href="${pageContext.request.contextPath}/board/writeDietTip">다이어트꿀팁 글쓰기</a>
+                    </li><!-- End 함께도전해요 - 글쓰기 -->
 
                   </ul>
                 </li><!-- End 다이어트꿀팁 -->

@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,6 @@ import lombok.AllArgsConstructor;
 public class LoginController {
     private MemberService memberService;
 
-
     // 회원가입 페이지
     @GetMapping("/signup")
     public String shopSignup() {
@@ -57,7 +57,14 @@ public class LoginController {
 
     // 로그인 결과 페이지
     @GetMapping("/user/main")
-    public String dispLoginResult() {
+
+    public String dispLoginResult(Principal principal) {
+    	Member member = memberService.selectByMemberId(principal.getName());
+		  
+    	Info info = member.getInfo();
+    	if(info.getAttendCheck() == 0) {
+    		memberService.updateAttend(info);   		
+    	}    	
         return "redirect:/main";
     }
 

@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <head>
   <!-- Title -->
   <title>내 정보 수정</title>
@@ -108,41 +109,15 @@
             <!-- User Image -->
             <div class="u-block-hover g-pos-rel">
               <figure>
-                <img class="img-fluid w-100 u-block-hover__main--zoom-v1" src="../../assets/img-temp/400x450/img5.jpg" alt="Image Description">
+                <c:choose>
+                  <c:when test="${empty member.profileImage}">
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/defaultImg.jpg" alt="Image Description">
+                  </c:when>
+                  <c:otherwise>
+                    <img class="img-fluid  g-width-260 g-height-260" src="${pageContext.request.contextPath}/save/myPage/${member.profileImage}" alt="Image Description">
+                  </c:otherwise>
+                </c:choose>             
               </figure>
-
-              <!-- Figure Caption -->
-              <figcaption class="u-block-hover__additional--fade g-bg-black-opacity-0_5 g-pa-30">
-                <div class="u-block-hover__additional--fade u-block-hover__additional--fade-up g-flex-middle">
-                  <!-- Figure Social Icons -->
-                  <ul class="list-inline text-center g-flex-middle-item--bottom g-mb-20">
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-note u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-notebook u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item align-middle g-mx-7">
-                      <a class="u-icon-v1 u-icon-size--md g-color-white" href="#">
-                        <i class="icon-settings u-line-icon-pro"></i>
-                      </a>
-                    </li>
-                  </ul>
-                  <!-- End Figure Social Icons -->
-                </div>
-              </figcaption>
-              <!-- End Figure Caption -->
-
-              <!-- User Info -->
-              <span class="g-pos-abs g-top-20 g-left-0">
-                  <a class="btn btn-sm u-btn-primary rounded-0" href="#">등급이름</a>
-                  <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small>
-                </span>
-              <!-- End User Info -->
             </div>
             <!-- User Image -->
 
@@ -283,9 +258,11 @@
 
                   <!-- 가입일 -->
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
+                  <fmt:parseDate var="cntday" value="${member.memberJoindate}" pattern="yyyy-MM-dd"/>
+                  <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy년 MM월 dd일"/>
                     <div class="g-pr-10">
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">가입일</strong>
-                      <span class="align-top">${requestScope.member.memberJoindate}</span>
+                      <span class="align-top">${day}</span>
                     </div>
                     <span>
                         <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>

@@ -13,10 +13,12 @@ import kosta.mvc.domain.Challenge;
 import kosta.mvc.domain.Grade;
 import kosta.mvc.domain.Info;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Reply;
 import kosta.mvc.repository.BoardRepository;
 import kosta.mvc.repository.ChallengeRepository;
 import kosta.mvc.repository.GradeRepository;
 import kosta.mvc.repository.MemberRepository;
+import kosta.mvc.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,6 +30,7 @@ public class myPageServiceImpl implements MypageService {
 	private final MemberRepository memberRepository;
 	private final ChallengeRepository challengeRepository;
 	private final GradeRepository gradeRepository;
+	private final ReplyRepository replyRepository;
 	
 	@Override
 	public Member findByMemberNo(Long memberNo) {
@@ -87,6 +90,11 @@ public class myPageServiceImpl implements MypageService {
 	@Override
 	public List<Grade> selectGradeList() {
 		return gradeRepository.findAllGrade();
+	}
+
+	@Override
+	public Page<Reply> findReply(Long memberNo, Pageable pageable) {
+		return replyRepository.findByMemberNo(memberNo, pageable);
 	}
 
 }

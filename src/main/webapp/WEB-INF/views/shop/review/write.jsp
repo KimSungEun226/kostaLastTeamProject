@@ -6,87 +6,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Title -->
-    <title>E-commerce Help Page | Unify - Responsive Website Template</title>
-
-    <!-- <script type="text/javascript">
+  <!-- Title -->
+  <title>E-commerce Help Page | Unify - Responsive Website Template</title>
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+    	$("#one").click(function(){
+    		$("#rating").val('1');
+    	});
+    	$("#two").click(function(){
+    		$("#rating").val('2');
+    	});
+    	$("#three").click(function(){
+    		$("#rating").val('3');
+    	});
+    	$("#four").click(function(){
+    		$("#rating").val('4');
+    	});
+    	$("#five").click(function(){
+    		$("#rating").val('5');
+    	});
+    });
+  </script>
+  <script type="text/javascript">
       $(document).ready(function(){
-    	  
-   	  let count = 1;
-   	  
-   	  $("#btnAdd").click(function(){
-   		  
-   		  if (count <= 2) { 
-    		  $(".addFile").append(
-    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
-    	  
-    		  $(".btnRemove").on("click", function(){
-        		  $(this).prev().remove();
-        		  $(this).next().remove();
-        		  $(this).remove();
-        		  count-=1;
-        	  });
-    		  
-    		  count+=1;
-   		  }else{
-   			  alert("이미지는 최대 3장");
-   		  }
-   	  });
-      });
-    </script>
-    
-    <script type="text/javascript">
-	    function form_check() {
-	    	  var itemName = document.getElementById("productName");
-	    	  var categoryNo = $("#cateCode option:selected");
-	    	  var itemPrice = document.getElementById("price");
-	    	  var itemStock = document.getElementById("stock");	    	
-	    	  var itemDescription = document.getElementById("summernote");
-	    	  var mainImg = document.getElementsByName("file");
+    	  let count = 1;
+    	  $("#btnAdd").click(function(){
+    		  if (count <= 2) { 
+	    		  $(".addFile").append(
+	    		  '<input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> \ <button type="button" id="btnRemove" class="btnRemove">삭제</button><br>');
 	    	  
-		    	if ( itemName.value == "" ) {
-		    	    alert( "상품이름을 확인해주세요." );
-		    	    itemName.focus();
-		    		return false;
-		        }
+	    		  $(".btnRemove").on("click", function(){
+	        		  $(this).prev().remove();
+	        		  $(this).next().remove();
+	        		  $(this).remove();
+	        		  count-=1;
+	        	  });
+	    		  count+=1;
+    		  }else{
+    			  alert("이미지는 최대 3장");
+    		  }
+    	  });
+      });
+   </script>
+   <script type="text/javascript">
+   function form_check() {
+ 	  var reviewName = document.getElementById("reviewName");
+ 	  var reviewContent = document.getElementById("reviewContent");
+ 	  
+	   	if ( reviewName.value == "" ) {
+	   	    alert( "리뷰 제목을 입력해주세요." );
+	   	    reviewName.focus();
+	   		return false;
+	       }
 	
-		    	if ( categoryNo.val() == "0" ) {
-		            alert( "카테고리를 선택해주세요." );
-		            cateCode.focus();
-		            return false;
-		        }
-		    	
-		    	
-		    	if ( itemPrice.value == "" || itemPrice.value.length>9) {
-		            alert( "상품 가격을 확인 주세요." );
-		            itemPrice.focus();
-		            return false;
-		        }
-	
-		    	if ( itemStock.value == "" || itemStock.value.length>7) {
-		            alert( "상품 재고수를 확인 주세요." );
-		            itemStock.focus();
-		            return false;
-		        }
-
-		    	if ( itemDescription.value == "" ) {
-		            alert( "상품 설명 확인 주세요." );
-		            itemDescription.focus();
-		            return false;
-		        }
-		    	
-		    	for(var i = 0; i < mainImg.length; i++) {
-			    	 if ( mainImg[i].value == "" ) {
-			            alert( "메인 이미지를 넣어주세요." );
-			            return false;
-			         }
-		    	}
-		    	
-		    	document.itemInsert_form.submit(); //유효성 검사의 포인트 
-	    }
-    </script> -->
-  </head>
+	   	if ( reviewContent.value == "" ) {
+	   	    alert( "리뷰 내용을 입력해주세요." );
+	   	    reviewContent.focus();
+	   		return false;
+	       }
+	   	
+	   	document.reviewForm.submit();
+   }
+   </script> 
+   </head>
   <body>
+  
     <main>
       <!-- Breadcrumbs -->
       <section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
@@ -109,7 +94,7 @@
       <!-- End Breadcrumbs -->
 
       <!-- Help -->
-      <form name="reviewInsert" method="post" action="${pageContext.request.contextPath}/shop/review/insert" enctype="multipart/form-data">
+      <form id="reviewForm" name="reviewForm" method="post" action="${pageContext.request.contextPath}/shop/review/insert" enctype="multipart/form-data">
       <input type="hidden" name="productNo" value="${productNo}" />
       <input type="hidden" name="memberNo" value="${memberNo}" />
       <input type="hidden" name="userOrderDetailNo" value="${userOrderDetailNo}" />
@@ -130,11 +115,11 @@
 		                  <span style="margin-left: 10px; margin-top:50px" class="g-font-weight-700">${product.productName}<br><p style="color: green">&#8361;${product.price}</p></span>
 		                  </div>
 		                  <div class="form-group">
-                        <input name="reviewName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus rounded-3 g-py-9 g-px-15" type="text" placeholder="제목">
+                        <input id="reviewName" name="reviewName" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus rounded-3 g-py-9 g-px-15" type="text" placeholder="제목">
                       </div>                	                  
                       <!-- Item-->
 				 	<div class="g-mb-5">
-                    <textarea name="reviewContent" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="9" placeholder="리뷰 작성"></textarea>
+                    <textarea id="reviewContent" name="reviewContent" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="9" placeholder="리뷰 작성"></textarea>
                   </div>
                       
                     <!-- Rating -->
@@ -143,28 +128,29 @@
                     <div class="col-5">
                       
                       <ul class="js-rating u-rating-v1 g-font-size-20 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
-                        <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
-                        </li>
-                        <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
-                        </li>
-                        <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
-                        </li>
-                        <li class="g-color-primary g-line-height-1_4 click">
-                          <i class="fa fa-star"></i>
+                        <li class="g-line-height-1_4">
+                          <i id="one" class="fa fa-star"></i>
                         </li>
                         <li class="g-line-height-1_4">
-                          <i class="fa fa-star"></i>
+                          <i id="two" class="fa fa-star"></i>
+                        </li>
+                        <li class="g-line-height-1_4">
+                          <i id="three" class="fa fa-star"></i>
+                        </li>
+                        <li class="g-line-height-1_4">
+                          <i id="four" class="fa fa-star"></i>
+                        </li>
+                        <li class="g-line-height-1_4">
+                          <i id="five" class="fa fa-star"></i>
                         </li>
                       </ul>
+                      <input type="hidden" id="rating" name="rating" value="" />
                       </div>
                       </div>
                       <!-- End Rating -->
                       <div class="addFile g-mb-5">
                       <h6>이미지 업로드</h6>
-                         <input type="file" name="file" id="mainImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
+                         <input type="file" name="file" id="reviewImg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> <br>
 						</div>
                     <button type="button" id="btnAdd" class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">이미지 추가하기</button>
                     
@@ -179,7 +165,7 @@
                <!-- Contact Form -->
 		            
                 <div class="text-center">
-                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit" ><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
+                  <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()"><b>등록하기</b></button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn g-color-gray-dark-v5 g-bg-secondary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" id="cancel"><b>취소하기</b></button>
                 </div>
               
               <!-- End Contact Form -->
@@ -233,6 +219,7 @@
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.scrollbar.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.go-to.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/components/hs.tabs.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/helpers/hs.rating.js"></script>
 
     <!-- JS Customization -->
     <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
@@ -266,6 +253,9 @@
 
         // Tabs
         $.HSCore.components.HSTabs.init('[role="tablist"]');
+        
+     	// initialization of rating
+        $.HSCore.helpers.HSRating.init();
       });
 
       $(window).on('resize', function () {
