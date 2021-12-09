@@ -370,7 +370,7 @@
     <script>
       $(function(){
     	 $("#cancel").click(function(){
-    		 confirm("취소하시겠습니까?") ? location.href="${path}/front" : "취소";
+    		 confirm("취소하시겠습니까?") ? location.href="${path}/main" : "취소";
     	 }) 
       });
     </script>
