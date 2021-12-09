@@ -56,8 +56,7 @@ public class LoginController {
     }
 
     // 로그인 결과 페이지
-    @GetMapping("/user/main")
-
+    @GetMapping("/login/main")
     public String dispLoginResult(Principal principal) {
     	Member member = memberService.selectByMemberId(principal.getName());
 		  
