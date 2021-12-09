@@ -118,7 +118,7 @@
             <!-- Sidebar Navigation -->
             <div class="list-group list-group-border-0 g-mb-40">
               <!-- 홈 -->
-              <a href="${pageContext.request.contextPath}/myPage/" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>
                 나의 페이지</span>
                 <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
@@ -126,14 +126,14 @@
               <!-- End 홈 -->
 
               <!-- 나의 게시물 -->
-              <a href="${pageContext.request.contextPath}/myPage/board" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/board" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>나의 게시물</span>
                 <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10"></span>
               </a>
               <!-- End 나의 게시물 -->
 
               <!-- 나의 댓글 -->
-              <a href="${pageContext.request.contextPath}/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
+              <a href="${pageContext.request.contextPath}/user/myPage/reply" class="list-group-item list-group-item-action justify-content-between">
                 <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>나의 댓글</span>
                 <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
               </a>
@@ -142,7 +142,7 @@
               <!-- 정보 수정 -->
               
               
-              <a href="${pageContext.request.contextPath}/myPage/setting" class="list-group-item justify-content-between active">
+              <a href="${pageContext.request.contextPath}/user/myPage/setting" class="list-group-item justify-content-between active">
                 <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>              
@@ -175,7 +175,7 @@
               <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
                 <h2 class="h4 g-font-weight-300">정보수정</h2>
                 <p>이름, 닉네임, 성별, 이메일, 생년월일, 다짐메세지를 수정할 수 있습니다. </p>
-                <form name="profileUpdate_Form" method="post" action="${pageContext.request.contextPath}/myPage/update" enctype="multipart/form-data">
+                <form name="profileUpdate_Form" method="post" action="${pageContext.request.contextPath}/user/myPage/update" enctype="multipart/form-data">
                 <input type="hidden" name="memberId" value="${member.memberId}"/>
                 <ul class="list-unstyled g-mb-30">
                   <!-- ID -->
