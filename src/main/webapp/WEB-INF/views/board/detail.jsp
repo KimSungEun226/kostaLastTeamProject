@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,12 +138,14 @@
 			<!--  댓글 내용 Start -->
 			<c:forEach items="${board.replyList}" var="reply">
             <div class="media g-brd-top g-brd-gray-light-v4 g-pt-30 g-mb-30">
-              <img class="d-flex g-width-60 g-height-60 rounded-circle g-mt-3 g-mr-15" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
+              <img class="d-flex g-width-100 g-height-100 g-mr-30" src="${pageContext.request.contextPath}/save/myPage/${reply.member.profileImage}" onerror="this.src='${pageContext.request.contextPath}/save/myPage/notimg.png'">
               <div class="media-body">
                 <div class="d-flex align-items-start g-mb-15 g-mb-10--sm">
                   <div class="d-block">
                     <h5 class="h6 g-color-black g-font-weight-600">${reply.memberNickname}</h5>
-                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">${reply.replyRegdate}</span>
+                    <fmt:parseDate var="cntday" value="${reply.replyRegdate}" pattern="yyyy-MM-dd"/>
+                    <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy.MM.dd"/>
+                    <span class="d-block g-color-gray-dark-v5 g-font-size-11">${day}</span>
                   </div>
 				
                   <sec:authorize access="isAuthenticated()">
@@ -171,12 +174,12 @@
                 <ul class="list-inline my-0">
                   <li class="list-inline-item g-mr-20">
                     <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 0
+                      <!-- <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 0 -->
                     </a>
                   </li>
                   <li class="list-inline-item g-mr-20">
                     <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
-                      <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 0
+                      <!-- <i class="icon-finance-206 u-line-icon-pro g-pos-rel g-top-1 g-mr-3"></i> 0 -->
                     </a>
                   </li>
                 </ul>

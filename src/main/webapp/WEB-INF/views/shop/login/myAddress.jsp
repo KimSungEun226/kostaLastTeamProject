@@ -148,7 +148,7 @@
 
             <div class="align-self-center ml-auto">
               <ul class="u-list-inline">
-               <ul class="u-list-inline">
+        
                 <li class="list-inline-item g-mr-5">
                   <a class="u-link-v5 g-color-text" href="${pageContext.request.contextPath}/shop">EGYM SHOP</a>
                   <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
@@ -236,7 +236,7 @@
 		  <c:otherwise>
 		  	<c:forEach items="${requestScope.addrList}" var="addr" varStatus="status">
                 <!-- Addresses -->
-                <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30">
+                <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30"><!-- 여기@! -->
                   <div class="g-mb-50">
                     <h3 class="h5 mb-3">주소 ${status.count}
                     <c:if test="${addr.checkBasic==1}">
@@ -250,16 +250,14 @@
 
                     <!-- Address -->
                     <address class="media">
-                      <div class="d-flex mr-3">
+                   
                         <span class="u-icon-v1 g-color-gray-dark-v4"><i class="icon-real-estate-027 u-line-icon-pro"></i></span>
-                      </div>
-
-                      <div class="media-body g-color-text">
+                      
                         우편번호: ${addr.memberZip}
                         <br>
                         ${addr.memberAddress} ${addr.memberDetailAddress}
                         <br>
-                      </div>
+                      
                     </address>
                     <!-- End Address -->
 
@@ -278,7 +276,7 @@
                   <!-- Edit/Delete -->
                   <ul class="d-flex align-items-center list-inline mb-0">
                     <li class="list-inline-item">
-                      <a name="editIcon" class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/login/addrEditForm/${addr.addressNo}" title="수정"
+                      <a class="u-icon-v1 g-font-size-16 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/login/addrEditForm/${addr.addressNo}" title="수정"
                          data-toggle="tooltip"
                          data-placement="top">
                         <i class="icon-finance-023 u-line-icon-pro"></i>
@@ -320,10 +318,11 @@
             
 
             <!-- Contact Form -->
+            <form name="check_form" action="${pageContext.request.contextPath}/shop/login/insertAddr">
             <div class="g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-30">
-              <h3 class="h5 mb-3"><b>배송지 추가</h3>
+              <h3 class="h5 mb-3"><b>배송지 추가</b></h3>
 
-              <form name="check_form" action="${pageContext.request.contextPath}/shop/login/insertAddr">
+              
                 <div class="row">
                   <div class="col-sm-6 form-group g-mb-20">
                     <label class="g-color-text g-font-size-13">받는 분</label>
@@ -350,12 +349,12 @@
                   </div>
 
                   
-                </div>
+                
+           	</div>
             </div>
-            <!-- End Contact Form -->
-			
             <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25" type="button" onclick="form_check()">주소목록에 추가하기</button>
           	</form>
+          
           </div>
           <!-- Addresses -->
         </div>
@@ -370,7 +369,7 @@
               <div class="media g-px-50--lg">
                 <i class="d-flex g-color-white g-font-size-40 g-pos-rel g-top-3 mr-4 icon-real-estate-048 u-line-icon-pro"></i>
                 <div class="media-body">
-                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">Free Shipping</span>
+                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">무료 배송</span>
                   <span class="d-block g-color-white-opacity-0_8">In 2-3 Days</span>
                 </div>
               </div>
@@ -382,7 +381,7 @@
               <div class="media g-px-50--lg">
                 <i class="d-flex g-color-white g-font-size-40 g-pos-rel g-top-3 mr-4 icon-real-estate-040 u-line-icon-pro"></i>
                 <div class="media-body">
-                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">Free Returns</span>
+                  <span class="d-block g-color-white g-font-weight-500 g-font-size-17 text-uppercase">무료 반품</span>
                   <span class="d-block g-color-white-opacity-0_8">No Questions Asked</span>
                 </div>
               </div>
