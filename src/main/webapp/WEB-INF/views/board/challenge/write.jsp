@@ -70,7 +70,9 @@
 	    function form_check() {
 	    	  var boardTitle = document.getElementById("boardTitle");
 	    	  var password = document.getElementById("password");    	
-	    	  var boardContent = document.getElementById("summernote"); 	  
+	    	  var boardContent = document.getElementById("summernote"); 
+	    	  var categoryNo = $("#challengeCategory option:selected");
+	    		  challengeCategory
 		    	if ( boardTitle.value == "" ) {
 		    	    alert( "제목을 입력해주세요." );
 		    	    boardTitle.focus();
@@ -86,6 +88,12 @@
 		    	if ( boardContent.value == "") {
 		            alert( "내용을 입력해주세요." );
 		            boardContent.focus();
+		            return false;
+		        }
+		    	
+		    	if ( categoryNo.val() == "0" ) {
+		            alert( "카테고리를 선택해주세요." );
+		            categoryNo.focus();
 		            return false;
 		        }
 
@@ -145,7 +153,7 @@
 		                                    
 		                  <div class="input-group mb-1">
 		                    <input id="boardTitle" name="boardTitle" placeholder="제목" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:100%;" type="text" >
-		                    <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="수정하거나 삭제할때 사용할 비밀번호">   
+		                    <input id="password" type="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2" type="text" placeholder="수정하거나 삭제할때 사용할 비밀번호">   
 		                  </div>                  	                  
                         <br>
                         </th>
