@@ -4,16 +4,19 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Address;
 import kosta.mvc.domain.Member;
+import kosta.mvc.dto.MemberDto;
 import kosta.mvc.service.AddressService;
 import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -192,7 +195,24 @@ public class ShopMyPageController {
 		return mv;
 	}
 	
-	 	
+	/**
+	 * 비밀번호 변경
+	 */
+	@RequestMapping(value="/changePwd", method=RequestMethod.POST)
+	public String changePwd(HttpServletResponse response, MemberDto memberDto, String memberPwd, String newMemberPwd, Principal principal) throws Exception {
+		
+		Member member = memberService.selectByMemberId(principal.getName());
+		
+		boolean pwdCheck = memberService.checkPwd(response, memberPwd, member.getMemberPwd());
+		System.out.println(pwdCheck);
+		  
+		if(pwdCheck) { 
+			String memberId = principal.getName();
+			memberService.changePwd(memberDto, newMemberPwd, memberId); 
+		}
+		
+		return "redirect:/shop/user/myPage";
+	}
 	
 
 }

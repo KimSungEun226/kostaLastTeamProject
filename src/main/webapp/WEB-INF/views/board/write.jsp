@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
 
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans KR:300,400,500,700,900">
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
@@ -370,7 +370,7 @@
     <script>
       $(function(){
     	 $("#cancel").click(function(){
-    		 confirm("취소하시겠습니까?") ? location.href="${path}/front" : "취소";
+    		 confirm("취소하시겠습니까?") ? location.href="${path}/main" : "취소";
     	 }) 
       });
     </script>

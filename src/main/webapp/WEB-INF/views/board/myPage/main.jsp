@@ -18,7 +18,7 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CNoto Sans KR%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <!-- CSS Global Icons -->
@@ -114,7 +114,7 @@
               
               <!-- 정보 수정 -->
               <a href="${pageContext.request.contextPath}/user/myPage/setting" class="list-group-item list-group-item-action justify-content-between">
-                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
+                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>내정보</span>
                 <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8"></span>
               </a>
               <!-- End 정보수정 -->
@@ -139,21 +139,21 @@
 		                    <!-- <i class="icon-people align-self-center display-4 g-mr-20"></i> -->
 		                    <img class="img-fluid  g-width-80 g-height-80" src="${pageContext.request.contextPath}/save/grade/${grade.levelImg}" alt="Image Description">
 		
-		                    <div class="g-line-height-1">
-		                      <h4 class="h5">나의 경험치</h4>
-		                      <h4 class="h5">${grade.levelName} 등급 </h4>
+		                    <div class="g-line-height-1" style="margin-left: 10px; margin-top: 10px">
+		                      <h4 class="h5"> 나의 경험치</h4>
+		                      <h4 class="h5"> ${grade.levelName} 등급 </h4>
 		                      <!-- <div class="js-counter g-font-size-30" data-comma-separated="true">12345</div> -->
 		                    </div>
 		                  </header>
 		
 		                  <div class="d-flex justify-content-between text-uppercase g-mb-25">
 		                    <div class="g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">현재경험치</h5>
+		                      <h5 class="h6 g-font-weight-600">현재 경험치</h5>
 		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${member.info.memberExp}</div>
 		                    </div>
 		
 		                    <div class="text-right g-line-height-1">
-		                      <h5 class="h6 g-font-weight-600">다음경험치까지</h5>
+		                      <h5 class="h6 g-font-weight-600">다음 등급까지</h5>
 		                      <div class="js-counter g-font-size-16" data-comma-separated="true">${grade.levelMax - member.info.memberExp + 1}</div>
 		                    </div>
 		                  </div>

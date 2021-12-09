@@ -6,6 +6,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<style>
+  #pwdCheckOk, #pwdConfirmCheckOk {
+    color : green;
+    display : none;
+  }
+  #nameCheckFail, #pwdConfirmCheckFail {
+    color : red;
+    display : none;
+  }
+</style>
 <head>
   <!-- Title -->
   <title>내 정보 수정</title>
@@ -18,7 +28,7 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CNoto Sans KR%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <!-- CSS Global Icons -->
@@ -41,38 +51,127 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
   
   <script type="text/javascript">
-    
-    
-	    function form_check() {
-	    	  var name = document.getElementById("memberName");
-	    	  var nickname = document.getElementById("memberNickname");    	
-	    	  var email = document.getElementById("memberEmail");
-	    	  var message = document.getElementById("memberMessage");
-
-	    	  
-		    	if ( name.value == "" ) {
-		    	    alert( "이름을 입력해주세요." );
-		    	    name.focus();
-		    		return false;
-		        }
-	
-		    	if ( nickname.value == "" ) {
-		            alert( "닉네임을 입력해주세요." );
-		            nickname.focus();
-		            return false;
-		        }
-		    	
-		    	if ( email.value =="") {
-		            alert( "이메일을 입력해주세요." );
-		            email.focus();
-		            return false;
-		        }
-
-		    	document.profileUpdate_Form.submit(); //유효성 검사의 포인트 
-	    }
-	
+    function form_check() {
+    	  var name = document.getElementById("memberName");
+    	  var nickname = document.getElementById("memberNickname");    	
+    	  var email = document.getElementById("memberEmail");
+    	  var message = document.getElementById("memberMessage");
+    	  
+	    	if ( name.value == "" ) {
+	    	    alert( "이름을 입력해주세요." );
+	    	    name.focus();
+	    		return false;
+	        }
+	    	if ( nickname.value == "" ) {
+	            alert( "닉네임을 입력해주세요." );
+	            nickname.focus();
+	            return false;
+	        }
+	    	if ( email.value =="") {
+	            alert( "이메일을 입력해주세요." );
+	            email.focus();
+	            return false;
+	        }
+	    	document.profileUpdate_Form.submit(); //유효성 검사의 포인트 
+    }
     </script>
-  
+<script type="text/javascript">
+$(function(){
+	//id=memberPwd, newMemberPwd, newMemberPwdConfirm
+	$("#memberPwd").blur(function(){
+		$("#memberPwd").css("outline", "none");
+	});
+	$("#newMemberPwd").focus(function(){
+		$("#pwdCheck").show();
+	});
+	$("#newMemberPwd").blur(function(){
+		$("#newMemberPwd").css("outline", "none");
+	});
+	$("#newMemberPwdConfirm").focus(function(){
+		$("#memberPwdConfirm").show();
+	});
+	$("#newMemberPwdConfirm").blur(function(){
+		$("#newMemberPwdConfirm").css("outline", "none");
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	var pwdCheck = false;
+	var newPwdCheck = false;
+	var newPwdConfirmCheck = false;
+	
+	$("#newMemberPwd").on("propertychange change keyup paste input", function(){
+		
+		console.log("keyup 테스트");	
+		var newMemberPwd = $("#newMemberPwd").val();
+		var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
+
+		if(newMemberPwd == ""){
+			$("#pwdCheck").css("color", "black");
+		}else{
+			if(regExp.test(newMemberPwd)){
+				$("#pwdCheck").css("color", "green");
+				newPwdCheck = true;
+			}else{
+				$("#pwdCheck").css("color", "red");
+				newPwdCheck = false;
+			}
+		}
+	});
+	
+	$("#newMemberPwdConfirm").on("propertychange change keyup paste input", function(){
+		var newMemberPwd = $("#newMemberPwd").val();
+		var newMemberPwdConfirm = $("#newMemberPwdConfirm").val();
+
+		if(newMemberPwdConfirm == ""){
+			$("#pwdConfirmCheckOk").css("display", "none");
+			$("#pwdConfirmCheckFail").css("display", "none");
+		}else{
+			if(newMemberPwd == null || newMemberPwdConfirm != newMemberPwd){
+				$("#pwdConfirmCheckOk").css("display", "none");
+				$("#pwdConfirmCheckFail").css("display", "inline-block").css("color", "red");
+				newPwdConfirmCheck = false;
+			}else{
+				$("#pwdConfirmCheckFail").css("display", "none");
+				$("#pwdConfirmCheckOk").css("display", "inline-block").css("color", "green");
+				newPwdConfirmCheck = true;
+			}
+		}
+	});
+	
+	$("#changePwdBtn").click(function(){
+		//비밀번호 공백 확인
+		if($("#memberPwd").val() == ""){
+			pwdCheck = false;
+		}else{
+			pwdCheck = true;
+		}
+		//새 비밀번호 공백 확인
+		if($("#newMemberPwd").val() == ""){
+			newPwdCheck = false;
+		}
+		//새 비밀번호 확인 공백 확인
+		if($("#newMemberPwdConfirm").val() == ""){
+			newPwdConfirmCheck = false;
+		}
+		
+		if(!pwdCheck){
+			$("#memberPwd").focus();
+		}else if(!newPwdCheck){
+			$("#newMemberPwd").focus();
+		}else if(!newPwdConfirmCheck){
+			$("#newMemberPwdConfirm").focus();
+		}else{ //true일 때 전송
+			$("#changePwdForm").attr("action", "/user/myPage/changePwd");
+			$("#changePwdForm").submit();
+		}
+	});
+});
+	
+	
+</script>
+
   
 </head>
 
@@ -143,7 +242,7 @@
               
               
               <a href="${pageContext.request.contextPath}/user/myPage/setting" class="list-group-item justify-content-between active">
-                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>정보 수정</span>
+                <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>내정보</span>
                 <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
               </a>              
             </div>
@@ -155,10 +254,10 @@
             <!-- Nav tabs -->
             <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
               <li class="nav-item">
-                <a class="nav-link g-py-10 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">Edit Profile</a>
+                <a class="nav-link g-py-10 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">정보 수정</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--2" role="tab">Security Settings</a>
+                <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--2" role="tab">비밀번호 설정</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link g-py-10" data-toggle="tab" href="" role="tab"></a>
@@ -173,7 +272,7 @@
             <div id="nav-1-1-default-hor-left-underline" class="tab-content">
               <!-- Edit Profile -->
               <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">정보수정</h2>
+                <h2 class="h4 g-font-weight-300">개인정보</h2>
                 <p>이름, 닉네임, 성별, 이메일, 생년월일, 다짐메세지를 수정할 수 있습니다. </p>
                 
                 <form name="profileUpdate_Form" method="post" action="${pageContext.request.contextPath}/user/myPage/update" enctype="multipart/form-data">
@@ -185,9 +284,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">아이디</strong>
                       <span class="align-top">${requestScope.member.memberId}</span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End ID -->
 
@@ -197,9 +294,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">이름</strong>
                       <input class="align-top" id="memberName" name="memberName" value="${requestScope.member.memberName}"></span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End Your NAME -->
 
@@ -209,9 +304,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">닉네임</strong>
                       <input class="align-top" id="memberNickname" name="memberNickname" value="${requestScope.member.memberNickname}"></span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End NickName -->
 
@@ -219,11 +312,16 @@
                   <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15">
                     <div class="g-pr-10">
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">성별</strong>
-                      <input class="align-top" id="memberGender" name="memberGender" value="${requestScope.member.memberGender}"></span>
+                      <c:choose>
+                        <c:when test="${requestScope.member.memberGender==1}">
+                      	  <span class="align-top" id="memberGender" name="memberGender">남</span>
+                        </c:when>
+                        <c:otherwise>
+                          <span class="align-top" id="memberGender" name="memberGender">여</span>
+                        </c:otherwise>
+                      </c:choose>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End Gender -->
 
@@ -233,9 +331,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">이메일</strong>
                       <input class="align-top" id="memberEmail" name="memberEmail" value="${requestScope.member.memberEmail}"></span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End Email Address -->
 
@@ -245,9 +341,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">생년월일</strong>
                       <input class="align-top" id="memberBirth" name="memberBirth" value="${requestScope.member.memberBirth}"></span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End Linked Account -->
 
@@ -259,9 +353,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">가입일</strong>
                       <span class="align-top">${day}</span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End 가입일 -->
 
@@ -271,9 +363,7 @@
                       <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">다짐메세지</strong>
                       <input class="align-top" id="memberMessage" name="memberMessage" value="${requestScope.member.memberMessage}"></span>
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End 다짐메세지 -->
 
@@ -284,9 +374,7 @@
                       <span class="align-top"><input type="file" name="file" id="mainImg" value="${pageContext.request.contextPath}/save/저염1.jpg" maxlength="60" size="20" accept="image/jpeg, image/png, image/jpg"> </span>
 
                     </div>
-                    <span>
-                        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
-                      </span>
+                    
                   </li>
                   <!-- End 프로필이미지 -->
 
@@ -295,6 +383,7 @@
                 <div class="text-sm-right">
                   <input type="reset" class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" ></a>
                   <button id="check" type="button" onclick="form_check()" class="btn u-btn-primary rounded-0 g-py-12 g-px-25" >수정하기</a>
+                  </button>
                 </form>
                 </div>
               </div>
@@ -302,16 +391,16 @@
 
               <!-- Security Settings -->
               <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--2" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
-                <h2 class="h4 g-font-weight-300">보안설정</h2>
-                <p class="g-mb-25">비밀번호, 전화번호 변경 또는 탈퇴할 수 있습니다. </p>
+                <h2 class="h4 g-font-weight-300">비밀번호 설정</h2>
+                <p class="g-mb-25">비밀번호를 변경할 수 있습니다. </p>
 
-                <form>
+                <form class="g-py-15" id="changePwdForm" method="post">
                   <!-- Current Password -->
                   <div class="form-group row g-mb-25">
                     <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">현재 비밀번호</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
-                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Current password">
+                        <input id="memberPwd" name="memberPwd" class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="현재 비밀번호 입력">
                         <div class="input-group-append">
                           <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
                         </div>
@@ -325,11 +414,12 @@
                     <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">새로운 비밀번호</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
-                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="New password">
+                        <input id="newMemberPwd" name="newMemberPwd" class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="새 비밀번호 입력">
                         <div class="input-group-append">
                           <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
                         </div>
                       </div>
+                      <span class="g-font-weight-500 g-font-size-13 g-mb-25" id="pwdCheck" style="display:none">※ 8~16자 영문, 숫자, 특수문자 모두 포함하여 입력</span><p>
                     </div>
                   </div>
                   <!-- End New Password -->
@@ -339,66 +429,19 @@
                     <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">새로운 비밀번호 확인</label>
                     <div class="col-sm-9">
                       <div class="input-group g-brd-primary--focus">
-                        <input class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="Verify password">
+                        <input id="newMemberPwdConfirm" name="newMemberPwdConfirm" class="form-control form-control-md border-right-0 rounded-0 g-py-13 pr-0" type="password" placeholder="새 비밀번호 다시 한번 입력">
                         <div class="input-group-append">
                           <span class="input-group-text g-bg-white g-color-gray-light-v1 rounded-0"><i class="icon-lock"></i></span>
                         </div>
                       </div>
+                      <span class="g-font-weight-500 g-font-size-13" id="pwdConfirmCheckOk">※ 비밀번호가 일치합니다.</span>
+         			  <span class="g-font-weight-500 g-font-size-13" id="pwdConfirmCheckFail">※ 비밀번호가 일치하지 않습니다.</span>
                     </div>
                   </div>
                   <!-- End Verify Password -->
                   
-                  <!-- Login Verification -->
-                  <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">전화번호 변경</label>
-                    <div class="col-sm-9">
-                      <label class="form-check-inline u-check g-pl-25">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                        <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </div>
-                        Verify login requests
-                      </label>
-                      <small class="d-block text-muted">You need to add a phone to your profile account to enable this feature.</small>
-                    </div>
-                  </div>
-                  <!-- End Login Verification -->
-
-                  <!-- Password Reset -->
-                  <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Password reset</label>
-                    <div class="col-sm-9">
-                      <label class="form-check-inline u-check g-pl-25">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                        <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </div>
-                        Require personal information to reset my password
-                      </label>
-                      <small class="d-block text-muted">When you check this box, you will be required to verify additional information before you can request a password reset with just your email address.</small>
-                    </div>
-                  </div>
-                  <!-- End Password Reset -->
-
-                  <!-- Save Password -->
-                  <div class="form-group row g-mb-25">
-                    <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Save password</label>
-                    <div class="col-sm-9">
-                      <label class="form-check-inline u-check mx-0">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="savePassword" type="checkbox">
-                        <div class="u-check-icon-radio-v7">
-                          <i class="d-inline-block"></i>
-                        </div>
-                      </label>
-                      <small class="d-block text-muted">When you check this box, you will be saved automatically login to your profile account. Also, you will be always logged in all our services.</small>
-                    </div>
-                  </div>
-                  <!-- End Save Password -->
-                  <hr class="g-brd-gray-light-v4 g-my-25">
-
                   <div class="text-sm-right">
-                    <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">Cancel</a>
-                    <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" href="#">Save Changes</a>
+                    <button id="changePwdBtn" class="btn u-btn-primary rounded-0 g-py-12 g-px-25" type="button">비밀번호 변경</button>
                   </div>
                 </form>
               </div>

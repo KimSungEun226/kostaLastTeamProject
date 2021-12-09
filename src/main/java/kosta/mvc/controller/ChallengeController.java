@@ -129,18 +129,8 @@ public class ChallengeController {
 				  
 				  //challengeNo에 해당하는 boardList 
 				  List<Board> boardList = boardService.findByChallengeNo(ischallenge.getChallengeNo());
-				  
-				  /**
-				   * dailycheck 글쓰면 1
-				   * dailycheck 1이니까 challengCnt +1 
-				   * dailycheck ==1 -> 유지  
-				   */
+
 				  for(Board b : boardList) {				  
-//					  if((b.getBoardRegdate().equals(today))) {
-//						  System.out.println("cnt유지!!");					  
-//						  
-//				      //오늘 해당 챌린지의 처음 게시물을 올렸을때   
-//					  }else {
 						  Info info = member.getInfo();
 						  
 						  //경험치 +10추가, 총 게시물 수 +1증가 
@@ -154,12 +144,7 @@ public class ChallengeController {
 							  //챌린지 성공으로 상태바꾸기  
 							  ischallenge.setChallengeState(2);
 					  
-						  }
-						  
-						  
-						  
-					  //}
-					  
+						  }		  
 				  }
 				  
 				//cnt증가
@@ -172,15 +157,16 @@ public class ChallengeController {
 				  
 				  challengeService.update(ischallenge);
 				  
-				  //member.setInfo(info);
-				  board.setMember(member);
-				  board.setChallenge(ischallenge);
-				  boardService.insert(board);
-				  
-				  //게시물 작성 수 1증가 
-				  int contentNo=member.getInfo().getContentNo()+1;
-				  member.getInfo().setContentNo(contentNo);
+				  //member.setInfo(info);				  
 			  }  
+			  board.setMember(member);
+			  board.setChallenge(ischallenge);
+			  boardService.insert(board);
+			  
+			  //게시물 작성 수 1증가 
+			  int contentNo=member.getInfo().getContentNo()+1;
+			  member.getInfo().setContentNo(contentNo);
+			  
 		  } else {
 			  //진행중인 챌린지가 없으니 challenge생성하고 board에 challenge넣기
 			  Challenge challenge = new Challenge(null, null, 0, 0, challengeCategory, null, board.getMember(), 1);
