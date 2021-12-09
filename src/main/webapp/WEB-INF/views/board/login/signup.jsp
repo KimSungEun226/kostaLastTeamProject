@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,6 +11,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/signup.js"></script>
 </head>
 <body>
+<!-- 로그인이 된 사용자는 들어오면 안 된다!! -->
+
+  <sec:authorize access="isAuthenticated()">
+     <script>
+     location.href="${pageContext.request.contextPath}/main"
+     
+     </script>
+   </sec:authorize>
 <div class="g-bg-primary">&nbsp</div>
 	<!-- Signup -->
     <section class="container g-pt-100 g-pb-20">

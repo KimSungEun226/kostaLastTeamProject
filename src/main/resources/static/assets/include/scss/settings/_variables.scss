@@ -1,10 +1,10 @@
 //
 // Typography
 //
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 // Font Families
-$g-font-primary: "Open Sans", Helvetica, Arial, sans-serif !default;
-$g-font-secondary: "Roboto Slab", Helvetica, Arial, sans-serif !default;
+$g-font-primary: "Noto Sans KR", Helvetica, Arial, sans-serif !default;
+$g-font-secondary: "Noto Sans KR Slab", Helvetica, Arial, sans-serif !default;
 $g-font-code: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $g-font-niconne: "Niconne", cursive !default;
 

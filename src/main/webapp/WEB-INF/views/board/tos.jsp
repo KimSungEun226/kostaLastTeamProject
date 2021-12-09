@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body style="font-weight:normal;line-height:1.25em;margin:0px;padding:0px;font-family: 'Noto Sans',sans-serif;-webkit-text-size-adjust:none;font-style:normal;list-style:none;">
+<body style="font-weight:normal;line-height:1.25em;margin:0px;padding:0px;font-family: 'Noto Sans KR',sans-serif;-webkit-text-size-adjust:none;font-style:normal;list-style:none;">
 <div >
 	<div>
 		<!-- contents -->
