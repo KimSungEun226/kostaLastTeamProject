@@ -18,7 +18,7 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CNoto Sans KR%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <!-- CSS Global Icons -->
@@ -175,6 +175,7 @@
               <div class="tab-pane fade show active" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" data-parent="#nav-1-1-default-hor-left-underline">
                 <h2 class="h4 g-font-weight-300">정보수정</h2>
                 <p>이름, 닉네임, 성별, 이메일, 생년월일, 다짐메세지를 수정할 수 있습니다. </p>
+                
                 <form name="profileUpdate_Form" method="post" action="${pageContext.request.contextPath}/user/myPage/update" enctype="multipart/form-data">
                 <input type="hidden" name="memberId" value="${member.memberId}"/>
                 <ul class="list-unstyled g-mb-30">

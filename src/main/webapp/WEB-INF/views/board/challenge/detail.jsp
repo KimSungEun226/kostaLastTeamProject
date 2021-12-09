@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.sql.Timestamp"%>
 
@@ -20,7 +21,7 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CNoto Sans KR%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
@@ -172,11 +173,34 @@
           <!-- Tags -->
           <div class="g-mb-40">
             <ul class="u-list-inline mb-5">
-              <form  name="requestForm" method="post" id="requestForm"> 
-	           	 <input type=hidden name="boardNo" value="${board.boardNo}">
-	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="삭제하기">
-	           	 <input type=button class="btn u-btn-outline-primary g-font-size-11 g-rounded-25" style="float: right;" value="수정하기">	           	 
-          		</form>
+			  <!-- Start 수정하기 삭제하기 버튼 -->
+			  <sec:authorize access="isAuthenticated()">
+	          <sec:authentication property="principal" var="user"/>
+	          <c:choose>
+		          <c:when test="${user.username eq board.member.memberId}">
+			          <form name="requestForm" method="post" id="requestForm" class="float-right"> 
+			          		<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+				            <input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+				            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+			          </form>
+		          </c:when>
+				  <c:when test="${user.username eq 'admin'}">
+				  	<form name="requestForm" method="post" id="requestForm" class="float-right"> 
+			          		<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+				            <input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=button value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+				            <input type=button value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+			          </form>
+				  </c:when>		          
+		          <c:otherwise>
+		          		<input type=hidden name="boardNo" value="${board.boardNo}">
+				            <input type=hidden value="수정하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+				            <input type=hidden value="삭제하기" style="background: none; border: none;" class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5">
+		          </c:otherwise>
+	          </c:choose>
+	          </sec:authorize>
+			  <!-- End 수정하기 삭제하기 버튼 -->
             </ul>
           </div>
           <!-- End Tags -->

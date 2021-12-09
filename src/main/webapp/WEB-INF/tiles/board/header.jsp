@@ -231,21 +231,6 @@
                   </ul>
                 </li><!-- End 칼로리사전 -->
 
-                <!-- 고객센터 -->
-                <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                  <a id="nav-link-demos" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-demos">고객센터</a>
-                	
-                	<ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
-                    <!-- 고객센터 - 공지사항 -->
-                    <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">공지사항</a>
-                    </li><!-- End 고객센터 - 공지사항 -->
-                    <!-- 고객센터 - Q&A -->
-                    <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/unify-main/shortcodes/headers/index.html">Q&A</a>
-                    </li><!-- End 고객센터 - Q&A -->
-                  </ul>
-                </li><!-- End 고객센터 -->
                 
                 <!-- 마이페이지 -->
                 <sec:authorize access="hasRole('MEMBER')">

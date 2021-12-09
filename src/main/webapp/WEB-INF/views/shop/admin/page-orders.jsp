@@ -267,7 +267,7 @@
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/admin/selectOrderlist/${keyword}?nowPage=${startPage-1}" aria-label="Next">
                 <span aria-hidden="true">
-                  <i class="fa fa-angle-right"></i>
+                  <i class="fa fa-angle-left"></i>
                 </span>
                 <span class="sr-only">Next</span>
               </a>
@@ -278,7 +278,7 @@
           
             <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
 				  
-					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					    <c:if test="${(i-1)>=selectOrder.getTotalPages()}">
 					       <c:set var="doneLoop" value="true"/>
 					    </c:if> 
 				    
@@ -316,7 +316,7 @@
             <li class="list-inline-item">
               <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/shop/admin/orderList/user?nowPage=${startPage-1}" aria-label="Next">
                 <span aria-hidden="true">
-                  <i class="fa fa-angle-right"></i>
+                  <i class="fa fa-angle-left"></i>
                 </span>
                 <span class="sr-only">Next</span>
               </a>
@@ -327,7 +327,7 @@
           
             <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
 				  
-					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					    <c:if test="${(i-1)>=list.getTotalPages()}">
 					       <c:set var="doneLoop" value="true"/>
 					    </c:if> 
 				    

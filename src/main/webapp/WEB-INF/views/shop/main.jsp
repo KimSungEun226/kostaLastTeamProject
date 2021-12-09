@@ -13,7 +13,7 @@
 <body>
   <main>
     <!-- Revolution Slider -->
-    <%-- <div class="g-overflow-hidden">
+    <div class="g-overflow-hidden">
       <div id="rev_slider_1014_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="typewriter-effect" data-source="gallery" style="background-color:transparent;padding:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
         <div id="rev_slider_1014_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
@@ -390,7 +390,7 @@
           <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
         </div>
       </div>
-    </div> --%>
+    </div>
     <!-- End Revolution Slider -->
 
     <!-- Features -->
@@ -493,9 +493,10 @@
           <div class="js-slide">
           <div class="g-px-10">
             <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
+            <figure class="g-pos-rel g-mb-20 g-width-250">
+            <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">
               <img class="img-fluid  g-width-250 g-height-250" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
-
+			</a>
               <figcaption class="w-100 g-bg-primary g-bg-black--hover text-center g-pos-abs g-bottom-0 g-transition-0_2 g-py-5">
                 <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">New Arrival</a>
               </figcaption>
@@ -601,7 +602,9 @@
           <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
             <!-- Article Image -->
             <div class="g-max-width-100 g-mr-15">
+            <a class="g-color-white g-font-size-11 text-uppercase g-letter-spacing-1 g-text-underline--none--hover" href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">
               <img class="d-flex g-width-100 g-height-100" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
+            </a>
             </div>
             <!-- End Article Image -->
 

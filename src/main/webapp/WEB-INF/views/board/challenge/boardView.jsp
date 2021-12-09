@@ -8,7 +8,7 @@
 <head>
   <!-- Title -->
   <title>챌린지 boardPage</title>
-
+  <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?query=noto" rel="stylesheet">
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,7 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
   <!-- Google Fonts -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CNoto Sans KR%7CRaleway%7CSpectral%7CRubik">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/icon-awesome/css/font-awesome.min.css">
@@ -174,12 +174,12 @@
                       작성자 : ${board.member.memberNickname}
                     </span>
                 </li>
-                <li class="list-inline-item g-color-gray-dark-v4">
+ <!--                <li class="list-inline-item g-color-gray-dark-v4">
                   <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
                     <i class="align-middle g-font-size-default mr-1 icon-finance-206 u-line-icon-pro"></i>
                     10 Comments
                   </a>
-                </li>
+                </li> -->
                 <li class="list-inline-item g-color-gray-dark-v4">
                   <a class="d-inline-block g-color-gray-dark-v4 g-color-white--hover g-bg-gray-dark-v2--hover rounded g-transition-0_3 g-text-underline--none--hover g-px-15 g-py-5" href="#">
                     <i class="align-middle g-font-size-default mr-1 icon-medical-054 u-line-icon-pro"></i>

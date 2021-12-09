@@ -24,7 +24,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
 
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans KR:300,400,500,700,900">
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/bootstrap.min.css">
@@ -105,6 +105,13 @@
 	    }
 	
     </script>
+    <script>
+      $(function(){
+    	 $("#cancel").click(function(){
+    		 confirm("취소하시겠습니까?") ? history.go(-1) : "취소";
+    	 }) 
+      });
+    </script>
   </head>
 
   <body>
@@ -155,7 +162,7 @@
 						               <input id="boardTitle" name="boardTitle" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3" style="width:50%;" type="text" value="${board.boardTitle}">
 						            </div>		                  		                  
 						            <div class="input-group mb-1">		                  		                  
-						            	<b class="h5 g-color-black my-1">비밀번호 입력 : &nbsp;&nbsp;&nbsp;</b>   <input id="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;" type="password" >			                                       
+						            	<b class="h5 g-color-black my-1">비밀번호 입력 : &nbsp;&nbsp;&nbsp;</b>   <input id="password"  type="password" name="password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-3 g-rounded-right-3 mr-3 col-md-2 col-lg-2 col-sm-2"  style="width:70%;">			                                       
 						            </div>                  	                  			             
 				                    <br>
 			                    </th>

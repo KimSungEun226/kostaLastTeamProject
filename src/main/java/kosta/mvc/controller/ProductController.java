@@ -175,7 +175,7 @@ public class ProductController {
 		
 		if(orderBy==null) orderBy=3;
 		
-		if(orderBy==3) pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "productDate");
+		if(orderBy==3) pageable = PageRequest.of(nowPage - 1, 8, Direction.DESC, "productDate");
 		else if(orderBy==0)  pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "price");
 		else if(orderBy==1) pageable = PageRequest.of(nowPage - 1, 16, Direction.ASC, "price");
 		else if(orderBy==2) pageable = PageRequest.of(nowPage - 1, 16, Direction.DESC, "readNum");
