@@ -97,8 +97,9 @@ public class RefundServiceImpl implements RefundService {
 	}
 
 	@Override
-	public List<UserRefund> selectRefundByKeyword(String keyword) {
-		return userRefundRepository.selectRefundByKeyword(keyword);
+	public UserRefund selectRefundByKeyword(Long keyword) {
+		//return userRefundRepository.selectRefundByKeyword(keyword);
+		return userRefundRepository.findById(keyword).orElse(null);
 	}
 	
 	

@@ -187,7 +187,7 @@
             </li>
 		    </c:if>
             <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					    <c:if test="${(i-1)>=pageReply.getTotalPages()}">
 					       <c:set var="doneLoop" value="true"/>
 					    </c:if> 
 				  <c:if test="${not doneLoop}" >

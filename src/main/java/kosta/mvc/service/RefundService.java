@@ -61,6 +61,6 @@ public interface RefundService {
 	/**
 	 * 관리자가 환불내역을 검색어로 검색한다.
 	 * */
-	public List<UserRefund> selectRefundByKeyword(String keyword);
+	public UserRefund selectRefundByKeyword(Long keyword);
 	
 }
