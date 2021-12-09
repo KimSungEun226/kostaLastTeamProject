@@ -45,6 +45,7 @@ public class MemberService implements UserDetailsService {
         info.setMember(member);        
         System.out.println("------------------memberNO : " + member.getMemberNo());
         System.out.println("------------------info.memberNO : " + info.getMember().getMemberNo());
+        info.setAttendNo(0);
         info = infoRepository.save(info);
         return member.getMemberNo();
     }
