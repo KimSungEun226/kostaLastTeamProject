@@ -11,4 +11,5 @@ public interface InfoRepository extends JpaRepository<Info, Long> {
 	
 	@Query("select i from Info i where i.infoNo=?1")
 	Optional<Info> selectByInfoNo(int infoNo);
+	
 }

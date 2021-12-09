@@ -29,13 +29,15 @@ public class Info {
 	private int attendNo;
 	private int contentNo;
 	private int memberExp;
+	private Integer attendCheck;
 
 	@Builder
-    public Info(int infoNo, int attendNo, int contentNo, int memberExp) {
+    public Info(int infoNo, int attendNo, int contentNo, int memberExp, int check) {
         this.infoNo = infoNo;
         this.attendNo = attendNo;
         this.contentNo = contentNo;
         this.memberExp = memberExp;
+        this.attendCheck = attendCheck;
     }
 	
 	@OneToOne
