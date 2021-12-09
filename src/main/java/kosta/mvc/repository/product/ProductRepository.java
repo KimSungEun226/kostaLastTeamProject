@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	/**
 	 *  JPQL문법을 이용해서 자바객체기반으로 쿼리를 작성한다.
 	 * */
-	Page<Product> findByCateCode(int cateCode, Pageable pageable);
+	Page<Product> findByCateCodeAndStockGreaterThan(int cateCode, int stock, Pageable pageable);
 	
 	/**
 	 * 조회수 증가

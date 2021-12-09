@@ -211,8 +211,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<NonuserOrder> nonuserOrderlistByKeyword(String keyword) {
-		return nonuserOrderRepository.nonUserOrderlistByKeyword(keyword);
+	public Page<NonuserOrder> nonuserOrderlistByKeyword(String keyword, Pageable pageable) {
+		keyword = "%" + keyword +"%";
+		return nonuserOrderRepository.findByReceiverNameLike(keyword, pageable);
 	}
 
 	@Override

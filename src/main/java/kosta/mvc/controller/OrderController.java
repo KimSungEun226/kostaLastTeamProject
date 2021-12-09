@@ -363,12 +363,24 @@ public class OrderController {
 	
 	//관리자가 비회원 orderlist 검색어로 검색한다.(주문번호, 주문자명)
 	@RequestMapping("/admin/selectNonUserOrderlist/{keyword}")
-	public ModelAndView selectNonUserOrderlist(@PathVariable String keyword) {
+	public ModelAndView selectNonUserOrderlist(@PathVariable String keyword, @RequestParam(defaultValue = "1") int nowPage) {
 		System.out.println("검색어:"+keyword);
-		List<NonuserOrder> selectOrder=orderService.nonuserOrderlistByKeyword(keyword);
+		Pageable pageable = PageRequest.of(nowPage-1,5, Direction.DESC, "nonuserOrderNo" );
+
+		int blockCount=3;
+		int temp = (nowPage-1)%blockCount;
+		int startPage = nowPage -temp;
+		
+		Page<NonuserOrder> selectOrder=orderService.nonuserOrderlistByKeyword(keyword, pageable);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/admin/page-orders-nonuser");
 		mv.addObject("selectNonuserOrder", selectOrder);
+		
+		mv.addObject("blockCount", blockCount);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("keyword", keyword);
+		
 		return mv;
 		
 	}

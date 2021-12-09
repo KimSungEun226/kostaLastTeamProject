@@ -106,7 +106,7 @@ public interface OrderService {
 	/**
 	 * 관리자가 비회원 주문내역 검색어로 검색
 	 * */
-	List<NonuserOrder> nonuserOrderlistByKeyword(String keyword);
+	Page<NonuserOrder> nonuserOrderlistByKeyword(String keyword, Pageable pageable);
 	
 	/**
 	 * 비회원 주문내역 전체 리스트 검색

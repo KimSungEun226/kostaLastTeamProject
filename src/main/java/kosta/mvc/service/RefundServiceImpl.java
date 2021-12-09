@@ -16,6 +16,7 @@ import kosta.mvc.repository.NonuserOrderDetailRepository;
 import kosta.mvc.repository.NonuserRefundRepository;
 import kosta.mvc.repository.UserOrderDetailRepository;
 import kosta.mvc.repository.UserRefundRepository;
+import kosta.mvc.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service  //생성 id="productServiceImpl"
@@ -23,6 +24,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class RefundServiceImpl implements RefundService {
 
+	@Autowired
+	ProductRepository productRepository;
+	
 	@Autowired
 	UserRefundRepository userRefundRepository;
 	
@@ -79,6 +83,10 @@ public class RefundServiceImpl implements RefundService {
 		//orderDetail의 status 값 수정
 		result = userOrderDetailRepository.requestUserorderCancle(detail.getUserOrderDetailNo());
 		if(result==0) throw new RuntimeException();
+		
+		//재고량 증가시키기
+		result = productRepository.updateStock(detail.getProductCount()*-1, detail.getProduct().getProductNo());
+		if(result==0) throw new RuntimeException("취소후 재고량 증가 실패");
 		
 	}
 

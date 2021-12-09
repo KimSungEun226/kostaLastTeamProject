@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -58,7 +59,9 @@ public class LoginController {
     // 로그인 결과 페이지
     @GetMapping("/user/main")
     public String dispLoginResult() {
-        return "redirect:/main";
+        
+    	
+    	return "redirect:/main";
     }
 
     // 로그아웃 결과 페이지

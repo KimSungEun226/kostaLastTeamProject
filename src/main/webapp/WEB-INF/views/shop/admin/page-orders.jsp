@@ -108,7 +108,7 @@
                   <span class="g-pos-abs g-top-0 g-left-0 g-z-index-3 g-px-13 g-py-10">
                     <i class="g-color-gray-dark-v4 g-font-size-12 icon-education-045 u-line-icon-pro"></i>
                   </span>
-                  <input id="keyword" class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="text" placeholder="검색어를 입력하세요. ex)주문번호, 주문자명">
+                  <input id="keyword" class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="text" placeholder="주문자 명을 입력해주세요.">
                   <div class="input-group-append g-brd-none g-py-0">
                     <button id="selectButton" class="btn g-brd-around g-brd-gray-light-v3 g-color-gray-dark-v3 g-bg-gray-light-v5 g-bg-gray-light-v4--hover g-font-size-12 rounded g-px-18 g-py-7" type="button">검색하기</button>
                   </div>
@@ -254,7 +254,7 @@
             
 
 
-            <c:choose>
+        <c:choose>
               <c:when test="${not empty requestScope.selectOrder}">
               
               
