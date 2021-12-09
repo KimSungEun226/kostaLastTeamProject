@@ -97,6 +97,9 @@
             <aside class="g-brd-around g-brd-gray-light-v4 rounded g-px-20 g-py-30">
               <!-- Profile Picture -->
               <div class="text-center g-pos-rel g-mb-30">
+              <%-- <div class="g-width-100 g-height-100 mx-auto mb-3">
+                  <img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/save/${member.profileImage}" alt="Image Decor">
+                </div> --%>
 
                 <span id="name" class="d-block g-font-weight-500">
                 <sec:authorize access="isAuthenticated()">
