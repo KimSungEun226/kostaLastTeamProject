@@ -493,7 +493,7 @@
           <div class="js-slide">
           <div class="g-px-10">
             <!-- Product -->
-            <figure class="g-pos-rel g-mb-20 g-width-235">
+            <figure class="g-pos-rel g-mb-20 g-width-250">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/1">
               <img class="img-fluid  g-width-250 g-height-250" data-lazy="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
 			</a>
