@@ -204,11 +204,15 @@
                     <li class="dropdown-item ">
                       <a class="nav-link" href="${pageContext.request.contextPath}/board/select/10">성공후기</a>
                     </li><!-- End 함께도전해요 - 성공후기 -->
-                    
-                    <!-- 다이어트꿀팁 - 글쓰기 -->
-                    <li class="dropdown-item ">
-                      <a class="nav-link" href="${pageContext.request.contextPath}/board/writeDietTip">다이어트꿀팁 글쓰기</a>
-                    </li><!-- End 함께도전해요 - 글쓰기 -->
+                                                     
+ 
+	              <sec:authorize access="hasRole('ADMIN')">
+		          <sec:authentication property="principal" var="user"/>
+					  	<li class="dropdown-item ">
+	                      <a class="nav-link" href="${pageContext.request.contextPath}/board/writeDietTip">다이어트꿀팁 글쓰기</a>
+	                    </li>	
+		          </sec:authorize>
+		       
 
                   </ul>
                 </li><!-- End 다이어트꿀팁 -->
