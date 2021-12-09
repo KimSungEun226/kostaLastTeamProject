@@ -161,7 +161,7 @@
 		                  <div class="js-hr-progress-bar progress g-bg-black-opacity-0_1 rounded-0 g-mb-10">
 		                    <div class="js-hr-progress-bar-indicator progress-bar g-bg-white u-progress-bar--xs" role="progressbar" style="width: ${(member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100}%;" aria-valuenow="${member.info.memberExp}" aria-valuemin="${grade.levelMin}" aria-valuemax="${grade.levelMax}"></div>
 		                  </div>
-		                  <small class="g-font-size-12"><fmt:formatNumber value="${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}" pattern=".0"/>% 남았습니다.</small>
+		                  <small class="g-font-size-12"><fmt:formatNumber value="${100 - ((member.info.memberExp - grade.levelMin) / (grade.levelMax - grade.levelMin + 1) * 100)}" pattern="0"/>% 남았습니다.</small>
 		                </div>
 		              </div>
 		            </c:when>		            

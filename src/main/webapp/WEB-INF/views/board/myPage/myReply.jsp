@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,7 +116,6 @@
             <!-- End Sidebar Navigation -->
           </div>
           <!-- End Profile Sidebar -->
-
           <!-- Profle Content -->
           <div class="col-lg-9">
             <!-- Comments (Option 1) -->
@@ -123,7 +123,7 @@
               <!-- Panel Header -->
               <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                 <h3 class="h6 mb-0">
-                    <i class="icon-bubbles g-pos-rel g-top-1 g-mr-5"></i> Comments
+                    <i class="icon-bubbles g-pos-rel g-top-1 g-mr-5"></i>나의 댓글
                 </h3>
               </div>
               <!-- End Panel Header -->
@@ -131,24 +131,22 @@
               <!-- Panel Body -->
               <div class="card-block g-pa-0"> 
               <c:choose>
-              	<c:when test="${empty requestScope.pageReply}">
+              	<c:when test="${empty requestScope.pageReply.content}">
               		<p align="center"><b><span style="font-size:9pt;">등록된 댓글이 없습니다.</span></b></p>
               	</c:when>
               	<c:otherwise>
-              		<c:forEach items="${requsetScope.pageReply.replyNo}" var="reply">
+              		<c:forEach items="${requestScope.pageReply.content}" var="reply">
               		 <div class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-20">
-		                  <img class="d-flex g-width-50 g-height-50 g-mt-3 g-mr-20" src="../../assets/img-temp/100x100/img14.jpg" alt="Image Description">
 		                  <div class="media-body">
 		                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center g-mb-15 g-mb-10--sm">
-		                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">T</h5>
+		                      <h5 class="h4 g-font-weight-300 g-mr-10 g-mb-5 g-mb-0--sm">${reply.replyContent} </h5>
 		                      <div class="text-nowrap g-font-size-12">
-		                        <span>2 days ago</span> / <a href="#">Reply</a>
+		                      <fmt:parseDate var="cntday" value="${reply.replyRegdate}" pattern="yyyy-MM-dd"/>
+                          	  <fmt:formatDate  var="day" value="${cntday}" type="DATE" pattern="yyyy.MM.dd"/>
+		                        <a href="${pageContext.request.contextPath}/board/detail/${reply.board.boardNo}">${reply.board.boardTitle}</a> / <span>${day}</span> 
 		                      </div>
 		                    </div>
-		
-		                    <p>Cras </p>
-		
-		                    <ul class="list-inline my-0">
+<!-- 		                    <ul class="list-inline my-0">
 		                      <li class="list-inline-item g-mr-20">
 		                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover" href="#">
 		                          <i class="icon-like g-pos-rel g-top-1 g-mr-3"></i> 214
@@ -164,7 +162,7 @@
 		                          <i class="icon-share g-pos-rel g-top-1 g-mr-3"></i> 52
 		                        </a>
 		                      </li>
-		                    </ul>
+		                    </ul> -->
 		                  </div>
 		                </div>
               		</c:forEach>
@@ -172,6 +170,46 @@
 	            </c:choose>                
               </div> 
               <!-- End Panel Body -->
+              
+              
+ 		<!-- Pagination -->
+        <nav class="g-mb-100" aria-label="Page Navigation">
+        <ul class="list-inline mb-0">
+          	<c:set var="doneLoop" value="false"/>
+            <c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/reply?nowPage=${startPage-1}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+		    </c:if>
+            <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+					    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+					       <c:set var="doneLoop" value="true"/>
+					    </c:if> 
+				  <c:if test="${not doneLoop}" >
+				      <li class="list-inline-item hidden-down">
+				     <a class="${i==nowPage?'active u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--active g-color-white g-bg-primary--active g-font-size-12 rounded-circle g-pa-5':'u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5'}" href="${pageContext.request.contextPath}/myPage/reply?nowPage=${i}">${i}</a> 
+		            </li>
+		         </c:if>
+            </c:forEach>
+            <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+            <li class="list-inline-item">
+              <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15" href="${pageContext.request.contextPath}/myPage/reply?nowPage=${startPage+blockCount}" aria-label="Next">
+                <span aria-hidden="true">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+			</c:if>
+          </ul>
+        </nav>
+        <!-- End Pagination -->
+              
                           
             </div>
           </div>

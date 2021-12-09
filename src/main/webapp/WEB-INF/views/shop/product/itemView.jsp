@@ -143,7 +143,7 @@
         <div class="row g-pt-30 g-mb-50">
         
          <c:choose>
-			<c:when test="${empty requestScope.list.content}">
+			<c:when test="${empty requestScope.list}">
 			  <div class="container text-center g-py-100">
         		<div class="mb-5">
           		<span class="d-block g-color-gray-light-v1 g-font-size-70 g-font-size-90--md mb-4">

@@ -68,12 +68,6 @@
 		            return false;
 		        }
 
-		    	if ( message.value =="" ) {
-		            alert( "다짐메세지를 입력해주세요." );
-		            message.focus();
-		            return false;
-		        }
-
 		    	document.profileUpdate_Form.submit(); //유효성 검사의 포인트 
 	    }
 	

@@ -114,6 +114,12 @@ public class MyPageController {
 		int temp = (nowPage-1)%blockCount;
 		int startPage = nowPage -temp;
 		
+		for(Reply reply : pageReply) {
+			System.out.println("---------------------------------");
+			System.out.println("replyContent : "+reply.getReplyContent());
+			System.out.println("---------------------------------");
+		}
+		
 		mv.addObject("member", member);		
 		mv.addObject("blockCount", blockCount);
 		mv.addObject("nowPage", nowPage);
