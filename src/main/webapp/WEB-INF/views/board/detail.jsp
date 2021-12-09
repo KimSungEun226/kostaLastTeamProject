@@ -186,8 +186,9 @@
             <!-- 댓글 내용 End -->
           </div>
 
-          <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">댓글 쓰기</h3>
 		  <!-- Start 댓글 입력 폼 -->
+		  <sec:authorize access="hasAnyRole('MEMBER', 'ADMIN')">
+          <h3 class="h6 g-color-black g-font-weight-600 text-uppercase g-mb-30">댓글 쓰기</h3>
 		  <form name="replyWriteForm" method="post" action="${pageContext.request.contextPath}/reply/insert" enctype="multipart/form-data">
 		  	  <input type="hidden" name="boardNo" value="${board.boardNo}" />
 	          <div class="g-mb-30">
@@ -195,6 +196,8 @@
 	          </div>
 	          <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">댓글 등록하기</button>
           </form>
+          </sec:authorize>
+          <!-- End 댓글 입력 폼 -->
        
     </section>
     <!-- End 댓글 리스트 -->
