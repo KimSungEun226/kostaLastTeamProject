@@ -208,7 +208,7 @@
           
           <div class="col-6 col-lg-3 g-mb-30">
             <!-- Product -->
-            <figure class="g-pos-rel g-mb-20">
+            <figure class="g-pos-rel g-mb-20 g-width-250">
             <a href="${pageContext.request.contextPath}/shop/select/single/${product.productNo}/${readnumCheck}">
               <img class="img-fluid  g-width-250 g-height-250" src="${pageContext.request.contextPath}/save/${product.productImageList[0].productImageName}" alt="Image Description">
             </a>  
