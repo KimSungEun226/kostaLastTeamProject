@@ -1,0 +1,2 @@
+*.java linguist-detectable=true
+*.nunjucks linguist-detectable=false
