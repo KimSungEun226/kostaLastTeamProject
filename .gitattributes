@@ -1,2 +1,2 @@
-*.java linguist-detectable=true
-*.nunjucks linguist-detectable=false
+* linguist-vendored
+*.java linguist-vendored=false
